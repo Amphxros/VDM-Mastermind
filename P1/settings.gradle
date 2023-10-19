@@ -17,3 +17,6 @@ rootProject.name = "Mastermind"
 include ':app'
 include ':Logic'
 include ':Engine'
+include ':Android_Engine'
+include ':Android_Engine'
+include ':PC_Engine'

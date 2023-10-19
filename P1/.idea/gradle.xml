@@ -11,8 +11,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Android_Engine" />
             <option value="$PROJECT_DIR$/Engine" />
             <option value="$PROJECT_DIR$/Logic" />
+            <option value="$PROJECT_DIR$/PC_Engine" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
