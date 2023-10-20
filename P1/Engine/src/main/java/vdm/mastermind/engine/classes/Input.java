@@ -11,7 +11,7 @@ public class Input implements IInput {
      * Adds a TouchEvent to process
      * @param event {@link TouchEvent} to add
      */
-    public void addEvent(TouchEvent event){
+    public synchronized void addEvent(TouchEvent event){
         events.add(event);
     }
 
@@ -19,11 +19,9 @@ public class Input implements IInput {
      * @return The events to process in that moment
      */
     @Override
-    public ArrayList<TouchEvent> getTouchEvents() {
-        return events;
-    }
+    public synchronized ArrayList<TouchEvent> getTouchEvents() {
+        
 
-    public void cleanEvents(){
-        events.clear();
+        return events;
     }
 }

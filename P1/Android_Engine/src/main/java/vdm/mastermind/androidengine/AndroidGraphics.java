@@ -16,7 +16,7 @@ public class AndroidGraphics implements IGraphics {
     protected AssetManager assetManager;
 
     public AndroidGraphics(Context context){
-    
+
     }
     @Override
     public IImage newImage(String name) {

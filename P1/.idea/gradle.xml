@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/Engine" />
             <option value="$PROJECT_DIR$/Logic" />
             <option value="$PROJECT_DIR$/PC_Engine" />
+            <option value="$PROJECT_DIR$/PC_Launcher" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
