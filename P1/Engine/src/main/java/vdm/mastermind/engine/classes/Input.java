@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import vdm.mastermind.engine.interfaces.IInput;
 
 public class Input implements IInput {
-    protected ArrayList<TouchEvent> events;
+    /** ArrayList of {@Link TouchEvent} */
+    protected final ArrayList<TouchEvent> events= new ArrayList<>();
 
     /**
      * Adds a TouchEvent to process
@@ -16,12 +17,17 @@ public class Input implements IInput {
     }
 
     /**
-     * @return The events to process in that moment
+     * @return The events to process in that moment and clears the queue
      */
     @Override
     public synchronized ArrayList<TouchEvent> getTouchEvents() {
-        
+        ArrayList<TouchEvent> tmp;
 
-        return events;
+        synchronized (this){
+            tmp= new ArrayList<>(events);
+            events.clear();
+        }
+
+        return tmp;
     }
 }
