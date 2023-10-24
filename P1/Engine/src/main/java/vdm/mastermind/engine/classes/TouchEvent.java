@@ -11,12 +11,23 @@ public class TouchEvent {
         this.eventType=eventType;
     }
 
+    /**
+     * @return The horizontal position where the TouchEvent happened
+     */
     public int getPosX() {
         return posX;
     }
+
+    /**
+     * @return The vertical position where the TouchEvent happened
+     */
     public int getPosY(){
         return posY;
     }
+
+    /**
+     * @return The type of event (down, up)
+     */
     public EventType getEventType(){
         return eventType;
     }

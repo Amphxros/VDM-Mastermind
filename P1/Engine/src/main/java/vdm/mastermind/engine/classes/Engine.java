@@ -31,7 +31,8 @@ public class Engine implements IEngine {
     }
 
     @Override
-    public void setAudio(IAudio audio) {
+    public void setAudio(IAudio audio)
+    {
         this.audio=audio;
     }
 
@@ -61,5 +62,15 @@ public class Engine implements IEngine {
     @Override
     public void setLogic(ILogic logic) {
         this.logic=logic;
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
     }
 }

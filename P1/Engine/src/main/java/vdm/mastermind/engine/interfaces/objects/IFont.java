@@ -1,8 +1,8 @@
 package vdm.mastermind.engine.interfaces.objects;
 
 public interface IFont {
-
-    String fileName;
-    int id;
+    int getTamFont();
+    boolean isBold();
+    boolean isItalic();
 
 }

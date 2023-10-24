@@ -24,4 +24,7 @@ public interface IEngine {
      */
     ILogic getLogic();
     void setLogic(ILogic logic);
+
+    void pause();
+    void resume();
 }

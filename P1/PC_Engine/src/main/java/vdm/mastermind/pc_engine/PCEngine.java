@@ -1,4 +1,10 @@
 package vdm.mastermind.pc_engine;
 
-public class PCEngine {
+import vdm.mastermind.engine.classes.Engine;
+
+public class PCEngine extends Engine implements Runnable {
+    @Override
+    public void run() {
+
+    }
 }

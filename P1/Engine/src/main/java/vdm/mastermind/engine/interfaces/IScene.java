@@ -1,5 +1,7 @@
 package vdm.mastermind.engine.interfaces;
 
+import vdm.mastermind.engine.classes.Input;
+
 public interface IScene {
 
     /**

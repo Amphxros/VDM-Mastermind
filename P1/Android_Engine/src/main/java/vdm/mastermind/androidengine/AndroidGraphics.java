@@ -2,16 +2,22 @@ package vdm.mastermind.androidengine;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.io.InputStream;
+
+import vdm.mastermind.androidengine.graphics.AndroidFont;
+import vdm.mastermind.androidengine.graphics.AndroidImage;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
 
-public class AndroidGraphics implements IGraphics {
+public final class AndroidGraphics implements IGraphics {
     protected SurfaceView surfaceView;
     protected SurfaceHolder surfaceHolder;
     protected  Context context;
@@ -23,20 +29,34 @@ public class AndroidGraphics implements IGraphics {
     public AndroidGraphics(SurfaceView surfaceView, Context context){
         this.surfaceView=surfaceView;
         this.context= context;
+
+
     }
     @Override
-    public IImage newImage(String name) {
-        return null;
+    public AndroidImage newImage(String name) {
+        Bitmap image=null;
+        try {
+            InputStream in = assetManager.open(name);
+            image = BitmapFactory.decodeStream(in);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        AndroidImage aImage = new AndroidImage(image);
+        assert(aImage!=null);
+        return aImage;
     }
 
     @Override
-    public IFont newFont(String filename, int size, boolean isBold) {
+    public AndroidFont newFont(String filename, int size, boolean isBold) {
         return null;
     }
 
     @Override
     public void clear(int color) {
-
+        canvas = surfaceHolder.lockCanvas();
+        canvas.drawColor(color); // ARGB
+        updateTransformParameters();
     }
 
     @Override
@@ -111,6 +131,13 @@ public class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawText(String text, int x, int y) {
+
+    }
+
+    private void updateTransformParameters() {
+        int contentW = surfaceView.getWidth();
+        int contentH = surfaceView.getHeight();
+
 
     }
 

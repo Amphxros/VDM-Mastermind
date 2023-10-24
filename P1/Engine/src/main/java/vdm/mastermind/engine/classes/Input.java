@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import vdm.mastermind.engine.interfaces.IInput;
 
 public class Input implements IInput {
+
     /** ArrayList of {@Link TouchEvent} */
     protected final ArrayList<TouchEvent> events= new ArrayList<>();
 
