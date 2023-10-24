@@ -4,19 +4,25 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
 
 public class AndroidGraphics implements IGraphics {
+    protected SurfaceView surfaceView;
+    protected SurfaceHolder surfaceHolder;
+    protected  Context context;
     protected Canvas canvas;
     protected Paint paint;
 
     protected AssetManager assetManager;
 
-    public AndroidGraphics(Context context){
-
+    public AndroidGraphics(SurfaceView surfaceView, Context context){
+        this.surfaceView=surfaceView;
+        this.context= context;
     }
     @Override
     public IImage newImage(String name) {

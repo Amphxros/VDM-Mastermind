@@ -5,7 +5,7 @@ import vdm.mastermind.engine.enums.EventType;
 public class TouchEvent {
     private final int posX, posY;
     private final EventType eventType;
-    TouchEvent(int x, int y, EventType eventType){
+    public TouchEvent(int x, int y, EventType eventType){
         this.posX=x;
         this.posY=y;
         this.eventType=eventType;
