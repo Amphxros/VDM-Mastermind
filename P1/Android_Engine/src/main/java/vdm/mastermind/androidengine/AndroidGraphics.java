@@ -30,6 +30,8 @@ public final class AndroidGraphics implements IGraphics {
         this.surfaceView=surfaceView;
         this.context= context;
 
+        this.surfaceHolder=surfaceView.getHolder();
+
 
     }
     @Override
@@ -91,7 +93,7 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void setColor(Color color) {
-
+        paint.setColor(color.getARGB());
     }
 
     @Override
@@ -111,7 +113,7 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawRoundRectangle(int cx, int cy, int width, int height, float arc) {
-
+       
     }
 
     @Override
@@ -121,17 +123,17 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawCircle(float cx, float cy, float radius) {
-
+        canvas.drawCircle(cx,cy,radius,paint);
     }
 
     @Override
     public void fillCircle(float cx, float cy, float radius) {
-
+        canvas.drawCircle(cx,cy,radius,paint);
     }
 
     @Override
     public void drawText(String text, int x, int y) {
-
+        canvas.drawText(text,x,y,paint);
     }
 
     private void updateTransformParameters() {
@@ -143,11 +145,11 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public int getWidth() {
-        return 0;
+        return surfaceView.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return surfaceView.getHeight();
     }
 }

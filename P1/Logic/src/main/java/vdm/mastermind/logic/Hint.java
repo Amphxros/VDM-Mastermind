@@ -1,8 +1,14 @@
 package vdm.mastermind.logic;
 
+import vdm.mastermind.engine.interfaces.IScene;
+
 public class Hint extends GameObject{
 
     private HintState state = HintState.NOTSOLUTION;
+
+    public Hint(IScene scene) {
+        super(scene);
+    }
 
     public final void isWrong(){state = HintState.NOTSOLUTION;}
     public final void isDisplaced(){state = HintState.DISPLACED;}
