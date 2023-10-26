@@ -5,6 +5,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
@@ -70,7 +71,7 @@ public class PCGraphics implements IGraphics {
     }
 
     @Override
-    public void setColor(int color) {
+    public void setColor(Color color) {
 
     }
 

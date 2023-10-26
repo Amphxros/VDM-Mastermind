@@ -13,8 +13,8 @@ import java.io.InputStream;
 
 import vdm.mastermind.androidengine.graphics.AndroidFont;
 import vdm.mastermind.androidengine.graphics.AndroidImage;
+import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IGraphics;
-import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
 
 public final class AndroidGraphics implements IGraphics {
@@ -90,7 +90,7 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public void setColor(int color) {
+    public void setColor(Color color) {
 
     }
 

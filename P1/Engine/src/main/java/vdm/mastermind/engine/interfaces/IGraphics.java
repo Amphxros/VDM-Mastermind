@@ -1,5 +1,6 @@
 package vdm.mastermind.engine.interfaces;
 
+import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.objects.*;
 
 public interface IGraphics {
@@ -15,7 +16,7 @@ public interface IGraphics {
     void drawImage(IImage image,int x, int y, int w, int h);
     void drawImage(IImage image,int x, int y);
 
-    void setColor(int color);
+    void setColor(Color color);
     void fillRectangle(int cx, int cy, int width, int height);
     void fillRoundRectangle(int cx, int cy, int width, int height, float arc);
     void drawRectangle(int cx,int cy,int width,int height);
