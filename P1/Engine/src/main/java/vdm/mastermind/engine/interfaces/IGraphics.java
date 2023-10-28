@@ -6,7 +6,9 @@ import vdm.mastermind.engine.interfaces.objects.*;
 public interface IGraphics {
     IImage newImage(String name);
     IFont newFont(String filename, int size, boolean isBold, boolean isItalic);
-    void clear(int color);
+    void clear(Color color);
+    void present();
+
     //Métodos de control de la transformación sobre el canvas
     void translate(int x,int y);
     void scale(float x,float y);
@@ -17,6 +19,7 @@ public interface IGraphics {
     void drawImage(IImage image,int x, int y);
 
     void setColor(Color color);
+    void setFont(IFont font);
     void fillRectangle(int cx, int cy, int width, int height);
     void fillRoundRectangle(int cx, int cy, int width, int height, float arc);
     void drawRectangle(int cx,int cy,int width,int height);
@@ -28,5 +31,6 @@ public interface IGraphics {
     // Dimensiones de la ventana
     int getWidth();
     int getHeight();
+
 
 }

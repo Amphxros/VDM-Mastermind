@@ -19,11 +19,10 @@ public class AndroidLauncher extends AppCompatActivity {
 
         SurfaceView renderView = new SurfaceView(this);
         setContentView(renderView);
-
         engine = new AndroidEngine(renderView, this);
-        //engine.getGraphics().setResolution(400, 600);
-        Logic logic = new Logic(engine);
+        Logic logic= new Logic(engine);
         engine.setLogic(logic);
+        System.out.println("Launched android");
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();

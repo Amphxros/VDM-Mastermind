@@ -1,15 +1,17 @@
 package vdm.mastermind.pc_engine;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.nio.Buffer;
 import java.util.Map;
-import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -69,22 +71,51 @@ public class PCGraphics implements IGraphics {
 
     @Override
     public IFont newFont(String filename, int size, boolean isBold, boolean isItalic) {
-        return null;
+        Font font;
+        try{
+            font= Font.createFont(Font.TRUETYPE_FONT,new File("Assets/fonts/"+filename));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        if(isBold){
+            font.deriveFont(Font.BOLD, size);
+            if (isItalic) {
+                font.deriveFont(Font.ITALIC, size);
+            }
+        }
+
+        else{
+            font.deriveFont(Font.PLAIN, size);
+        }
+
+        PCFont pcFont= new PCFont(font);
+        assert (pcFont!=null);
+        fonts.put(filename, pcFont);
+        return pcFont;
     }
 
     @Override
-    public void clear(int color) {
+    public void clear(Color color) {
+        setColor(color);
+        graphics2D.fillRect(0,0,window.getWidth(), window.getHeight());
+        updateTransformParameters();
+    }
+
+    @Override
+    public void present() {
 
     }
 
     @Override
     public void translate(int x, int y) {
-
+        graphics2D.translate(x,y);
     }
 
     @Override
     public void scale(float x, float y) {
-
+        graphics2D.scale(x,y);
     }
 
     @Override
@@ -113,7 +144,15 @@ public class PCGraphics implements IGraphics {
 
     @Override
     public void setColor(Color color) {
+        java.awt.Color col= new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue(),color.getAlpha());
+        graphics2D.setColor(col);
+    }
 
+    @Override
+    public void setFont(IFont font) {
+        PCFont pcFont= (PCFont)font;
+        assert (pcFont!=null);
+        graphics2D.setFont(pcFont.getFont());
     }
 
     @Override
@@ -154,31 +193,45 @@ public class PCGraphics implements IGraphics {
 
     @Override
     public void drawLine(int initX, int initY, int endX, int endY) {
-
+        Shape line= new Line2D.Double(initX,initY,endX,endY);
+        graphics2D.draw(line);
     }
 
     @Override
     public void drawCircle(float cx, float cy, float radius) {
-
+        Shape circle = new Ellipse2D.Double(cx - radius, cy - radius, radius * 2.0, radius * 2.0);
+        graphics2D.draw(circle);
     }
 
     @Override
     public void fillCircle(float cx, float cy, float radius) {
-
+        Shape circle = new Ellipse2D.Double(cx - radius, cy - radius, radius * 2.0, radius * 2.0);
+        graphics2D.fill(circle);
     }
 
     @Override
     public void drawText(String text, int x, int y) {
-
+        graphics2D.drawString(text,x,y);
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        return transformer.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return transformer.getHeight();
+    }
+
+    private void updateTransformParameters() {
+        Insets insets= window.getInsets();
+        int contentW= window.getWidth() - insets.left - insets.right;
+        int contentH= window.getHeight() - insets.top - insets.bottom;
+
+        transformer.setInset(insets.top,insets.left, insets.bottom, insets.right);
+        transformer.update(contentW,contentH);
+        transformer.transform(this);
+
     }
 }

@@ -10,4 +10,5 @@ java {
 dependencies {
     implementation project(path: ':PC_Engine')
     implementation project(path: ':Logic')
+    implementation project(path: ':Engine')
 }

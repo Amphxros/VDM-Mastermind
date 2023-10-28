@@ -18,6 +18,7 @@ import vdm.mastermind.androidengine.graphics.AndroidFont;
 import vdm.mastermind.androidengine.graphics.AndroidImage;
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IGraphics;
+import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
 
 public final class AndroidGraphics implements IGraphics {
@@ -63,11 +64,17 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public void clear(int color) {
+    public void clear(Color color) {
         canvas = surfaceHolder.lockCanvas();
-        canvas.drawColor(color); // ARGB
+        canvas.drawColor(color.getARGB()); // ARGB
         updateTransformParameters();
     }
+
+    @Override
+    public void present() {
+
+    }
+
 
     @Override
     public void translate(int x, int y) {
@@ -102,6 +109,12 @@ public final class AndroidGraphics implements IGraphics {
     @Override
     public void setColor(Color color) {
         paint.setColor(color.getARGB());
+    }
+
+    @Override
+    public void setFont(IFont font) {
+        AndroidFont androidFont= (AndroidFont) font;
+        paint.setTypeface(androidFont.getTypeface());
     }
 
     @Override
@@ -149,8 +162,12 @@ public final class AndroidGraphics implements IGraphics {
         int contentH = surfaceView.getHeight();
 
 
+
     }
 
+    public boolean surfaceValid(){
+        return surfaceHolder.getSurface().isValid();
+    }
     @Override
     public int getWidth() {
         return surfaceView.getWidth();
