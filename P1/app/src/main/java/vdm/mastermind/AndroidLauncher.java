@@ -1,6 +1,5 @@
 package vdm.mastermind;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.SurfaceView;
 
@@ -8,6 +7,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import vdm.mastermind.androidengine.AndroidEngine;
+import vdm.mastermind.logic.Logic;
 
 public class AndroidLauncher extends AppCompatActivity {
     protected AndroidEngine engine;
@@ -22,10 +22,12 @@ public class AndroidLauncher extends AppCompatActivity {
 
         engine = new AndroidEngine(renderView, this);
         //engine.getGraphics().setResolution(400, 600);
-
+        Logic logic = new Logic(engine);
+        engine.setLogic(logic);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();
+
     }
 
     @Override

@@ -14,8 +14,29 @@ public final class AndroidFont implements IFont {
         this.tamFont=tamFont;
         this.isBold=isBold;
         this.isItalic=isItalic;
-        this.typeface= Typeface.create(new Typeface.Builder(manager,route).setWeight(this.tamFont).build(), isBold &&isItalic ? Typeface.NORMAL : Typeface.BOLD_ITALIC);
 
+        initTypeface(manager,route);
+
+    }
+
+    /**
+     * inits the typeface depending of the style (bold, italics, normal..)
+     * @param manager
+     * @param route route of the .tff
+     */
+    void initTypeface(AssetManager manager, String route){
+        if(isBold && isItalic) {
+            this.typeface = Typeface.create(new Typeface.Builder(manager, route).setWeight(this.tamFont).build(), Typeface.BOLD_ITALIC);
+        }
+        else if (isBold) {
+            this.typeface = Typeface.create(new Typeface.Builder(manager, route).setWeight(this.tamFont).build(), Typeface.BOLD);
+        }
+        else if(isItalic){
+            this.typeface = Typeface.create(new Typeface.Builder(manager, route).setWeight(this.tamFont).build(), Typeface.ITALIC);
+        }
+        else{
+            this.typeface = Typeface.create(new Typeface.Builder(manager, route).setWeight(this.tamFont).build(), Typeface.NORMAL);
+        }
     }
 
     /**

@@ -5,7 +5,7 @@ import vdm.mastermind.engine.interfaces.objects.*;
 
 public interface IGraphics {
     IImage newImage(String name);
-    IFont newFont(String filename, int size, boolean isBold);
+    IFont newFont(String filename, int size, boolean isBold, boolean isItalic);
     void clear(int color);
     //Métodos de control de la transformación sobre el canvas
     void translate(int x,int y);

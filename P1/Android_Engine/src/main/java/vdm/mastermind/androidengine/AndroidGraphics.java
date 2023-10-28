@@ -6,10 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Map;
 
 import vdm.mastermind.androidengine.graphics.AndroidFont;
 import vdm.mastermind.androidengine.graphics.AndroidImage;
@@ -25,6 +28,9 @@ public final class AndroidGraphics implements IGraphics {
     protected Paint paint;
 
     protected AssetManager assetManager;
+
+    Map<String,AndroidImage> images;
+    Map<String,AndroidFont> fonts;
 
     public AndroidGraphics(SurfaceView surfaceView, Context context){
         this.surfaceView=surfaceView;
@@ -50,8 +56,10 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public AndroidFont newFont(String filename, int size, boolean isBold) {
-        return null;
+    public AndroidFont newFont(String filename, int size, boolean isBold, boolean isItalic) {
+        AndroidFont font= new AndroidFont(filename,assetManager,size,isBold,isItalic);
+        fonts.put(filename,font);
+        return font;
     }
 
     @Override
