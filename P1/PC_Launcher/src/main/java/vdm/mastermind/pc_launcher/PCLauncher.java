@@ -8,12 +8,10 @@ import vdm.mastermind.pc_engine.PCEngine;
 public class PCLauncher {
     public static void main(String[] args){
 
-        JFrame frame= new JFrame("Mastermind");
-
-
-        System.out.println("Launched");
-        PCEngine engine= new PCEngine(frame);
-        engine.setLogic(new Logic(engine));
+        PCEngine engine= new PCEngine();
+        Logic logic = new Logic(engine);
+        engine.setLogic(logic);
+        System.out.println("Launched " + logic!=null);
         engine.run();
 
     }

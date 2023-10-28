@@ -8,8 +8,8 @@ import vdm.mastermind.engine.classes.Engine;
 public class PCEngine extends Engine implements Runnable {
 
     private JFrame frame;
-    public PCEngine(JFrame frame){
-        this.frame=frame;
+    public PCEngine(){
+        this.frame=new JFrame("Mastermind");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setIgnoreRepaint(true);
@@ -18,10 +18,13 @@ public class PCEngine extends Engine implements Runnable {
 
         PCGraphics pcGraphics= new PCGraphics(frame);
         PCInput pcInput= new PCInput(frame);
+
         frame.addMouseListener(pcInput);
         frame.addKeyListener(pcInput);
+
         setInput(pcInput);
         setGraphics(pcGraphics);
+
     }
     @Override
     public void run() {
@@ -38,7 +41,7 @@ public class PCEngine extends Engine implements Runnable {
             getLogic().handleInput(getInput());
             getLogic().update((float)elapsedTime);
 
-            getGraphics().clear(new Color(255,255,255,255));
+            getGraphics().clear(new Color(0,0,0));
             getLogic().render(getGraphics());
             getGraphics().present();
         }

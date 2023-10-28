@@ -36,11 +36,12 @@ public class PCGraphics implements IGraphics {
 
     public PCGraphics(JFrame window){
         this.window=window;
-        int attemps=10;
+        int attemps=2;
 
         do{
             try {
                 this.window.createBufferStrategy(2);
+                attemps--;
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -105,7 +106,9 @@ public class PCGraphics implements IGraphics {
 
     @Override
     public void present() {
-
+        bufferStrategy.show();
+        graphics2D.dispose();
+        graphics2D= (Graphics2D) bufferStrategy.getDrawGraphics();
     }
 
     @Override

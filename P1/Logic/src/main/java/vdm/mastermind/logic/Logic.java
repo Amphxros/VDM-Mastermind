@@ -15,6 +15,8 @@ public class Logic implements ILogic {
     IScene currentScene;
     IEngine engine;
     public Logic(IEngine engine){
+        super();
+        System.out.println("Logic");
         this.engine=engine;
     }
     public void setCurrentScene(IScene scene){
