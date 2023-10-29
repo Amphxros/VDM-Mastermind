@@ -2,7 +2,9 @@ package vdm.mastermind.logic;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
+import vdm.mastermind.engine.classes.TouchEvent;
 import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IInput;
@@ -10,6 +12,10 @@ import vdm.mastermind.engine.interfaces.IScene;
 
 public class Scene implements IScene {
     ArrayList<GameObject> gameObjects;
+    private final IEngine engine;
+    public Scene(IEngine engine){
+        this.engine=engine;
+    }
     @Override
     public void render(IGraphics graphics) {
         for(GameObject g : gameObjects){
@@ -26,7 +32,19 @@ public class Scene implements IScene {
 
     @Override
     public void handleInput(IInput input) {
+        List<TouchEvent> events = input.getTouchEvents();
+        if (events.isEmpty()) return;
 
+        IGraphics graphics = getEngine().getGraphics();
+        for (TouchEvent event : events) {
+            event.defineLogicCoordinates(graphics);
+            if (!event.isValid()) continue;
+
+            for (GameObject object : gameObjects) {
+                if (object.isEnabled())
+                    object.handleInput(event);
+            }
+        }
     }
 
     @Override
@@ -41,6 +59,6 @@ public class Scene implements IScene {
 
     @Override
     public IEngine getEngine() {
-        return null;
+        return engine;
     }
 }

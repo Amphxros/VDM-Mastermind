@@ -13,7 +13,7 @@ import vdm.mastermind.engine.interfaces.IScene;
 
 public class Logic implements ILogic {
     IScene currentScene;
-    IEngine engine;
+    protected IEngine engine;
     public Logic(IEngine engine){
         super();
         System.out.println("Logic");
@@ -41,5 +41,9 @@ public class Logic implements ILogic {
     @Override
     public void handleInput(IInput input) {
         currentScene.handleInput(input);
+    }
+
+    public IEngine getEngine(){
+        return this.engine;
     }
 }

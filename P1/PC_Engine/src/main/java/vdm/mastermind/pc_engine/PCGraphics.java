@@ -227,6 +227,16 @@ public class PCGraphics implements IGraphics {
         return transformer.getHeight();
     }
 
+    @Override
+    public int getLogicPointX(int x) {
+        return transformer.getTransformedX(x);
+    }
+
+    @Override
+    public int getLogicPointY(int y) {
+        return transformer.getTransformedY(y);
+    }
+
     private void updateTransformParameters() {
         Insets insets= window.getInsets();
         int contentW= window.getWidth() - insets.left - insets.right;

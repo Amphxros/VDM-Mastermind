@@ -17,6 +17,7 @@ import java.util.Map;
 import vdm.mastermind.androidengine.graphics.AndroidFont;
 import vdm.mastermind.androidengine.graphics.AndroidImage;
 import vdm.mastermind.engine.classes.Color;
+import vdm.mastermind.engine.classes.GraphicsTransformer;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
@@ -29,7 +30,7 @@ public final class AndroidGraphics implements IGraphics {
     protected Paint paint;
 
     protected AssetManager assetManager;
-
+    GraphicsTransformer transformer= new GraphicsTransformer();
     Map<String,AndroidImage> images;
     Map<String,AndroidFont> fonts;
 
@@ -161,8 +162,8 @@ public final class AndroidGraphics implements IGraphics {
         int contentW = surfaceView.getWidth();
         int contentH = surfaceView.getHeight();
 
-
-
+        transformer.update(contentW, contentH);
+        transformer.transform(this);
     }
 
     public boolean surfaceValid(){
@@ -176,5 +177,15 @@ public final class AndroidGraphics implements IGraphics {
     @Override
     public int getHeight() {
         return surfaceView.getHeight();
+    }
+
+    @Override
+    public int getLogicPointX(int x) {
+        return transformer.getTransformedX(x);
+    }
+
+    @Override
+    public int getLogicPointY(int y) {
+        return transformer.getTransformedY(y);
     }
 }

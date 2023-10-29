@@ -1,14 +1,20 @@
+
 package vdm.mastermind.engine.classes;
 
 import vdm.mastermind.engine.enums.EventType;
+import vdm.mastermind.engine.interfaces.IGraphics;
 
 public class TouchEvent {
     private final int posX, posY;
+    private int X, Y;
+
     private final EventType eventType;
     public TouchEvent(int x, int y, EventType eventType){
         this.posX=x;
         this.posY=y;
         this.eventType=eventType;
+        this.X=-1;
+        this.Y=-1;
     }
 
     /**
@@ -41,4 +47,8 @@ public class TouchEvent {
         return posX != -1 && posY != -1;
     }
 
+    public void defineLogicCoordinates(IGraphics graphics) {
+        X = graphics.getLogicPointX(posX);
+        Y = graphics.getLogicPointY(posY);
+    }
 }
