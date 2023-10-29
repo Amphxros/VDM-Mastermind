@@ -1,7 +1,7 @@
 package vdm.mastermind.logic;
 
 import vdm.mastermind.engine.interfaces.IScene;
-import vdm.mastermind.logic.buttons.GameObject;
+import vdm.mastermind.logic.gameobjects.GameObject;
 
 public class Hint extends GameObject {
 

@@ -8,9 +8,9 @@ import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IInput;
 import vdm.mastermind.engine.interfaces.IScene;
-import vdm.mastermind.logic.buttons.GameObject;
+import vdm.mastermind.logic.gameobjects.GameObject;
 
-public class Scene implements IScene {
+public abstract class Scene implements IScene {
     ArrayList<GameObject> gameObjects;
     private final IEngine engine;
     public Scene(IEngine engine){
@@ -49,9 +49,7 @@ public class Scene implements IScene {
     }
 
     @Override
-    public void init() {
-
-    }
+    public abstract void init();
 
     @Override
     public void release() {

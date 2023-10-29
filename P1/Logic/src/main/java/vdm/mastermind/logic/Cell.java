@@ -2,7 +2,7 @@ package vdm.mastermind.logic;
 
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.engine.classes.Color;
-import vdm.mastermind.logic.buttons.GameObject;
+import vdm.mastermind.logic.gameobjects.GameObject;
 
 public final class Cell  extends GameObject {
 

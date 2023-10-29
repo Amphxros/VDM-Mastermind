@@ -38,6 +38,7 @@ public class PCGraphics implements IGraphics {
 
     public PCGraphics(JFrame window){
         this.window=window;
+        transformer.setSize(300, 600);
         int attemps=2;
 
         do{

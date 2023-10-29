@@ -3,8 +3,8 @@ package vdm.mastermind.logic.scenes;
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.engine.interfaces.objects.IFont;
-import vdm.mastermind.logic.buttons.GameObject;
-import vdm.mastermind.logic.buttons.GoToSceneButton;
+import vdm.mastermind.logic.gameobjects.GameObject;
+import vdm.mastermind.logic.buttons.GoToChooseLevelScene;
 import vdm.mastermind.logic.gameobjects.TextObject;
 
 public class MenuScene extends Scene{
@@ -25,6 +25,19 @@ public class MenuScene extends Scene{
         tittle.setPosition(buttonX, 150);
         tittle.setSize(buttonW,100);
         addGameObject(tittle);
+
+        //button
+        GameObject button =(GameObject)new TextObject(this, font,new Color(0,0,0),"Jugar");
+        button.setPosition(buttonX, 450);
+        button.setSize(buttonW,100);
+
+        GoToChooseLevelScene toChooseLevelScene= new GoToChooseLevelScene(this);
+        toChooseLevelScene.setPosition(buttonX, 450);
+        toChooseLevelScene.setSize(buttonW,100);
+
+        addGameObject(toChooseLevelScene);
+
+
 
 
     }

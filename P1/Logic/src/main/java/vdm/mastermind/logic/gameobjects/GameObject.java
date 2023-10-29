@@ -1,4 +1,4 @@
-package vdm.mastermind.logic.buttons;
+package vdm.mastermind.logic.gameobjects;
 
 import java.util.Vector;
 

@@ -5,7 +5,6 @@ import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.engine.interfaces.objects.IFont;
-import vdm.mastermind.logic.buttons.GameObject;
 
 public class TextObject extends GameObject {
     private String text;

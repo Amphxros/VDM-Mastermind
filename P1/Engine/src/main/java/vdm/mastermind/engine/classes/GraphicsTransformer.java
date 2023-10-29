@@ -5,7 +5,7 @@ import vdm.mastermind.engine.interfaces.IGraphics;
 public final class GraphicsTransformer {
     private int width = 600;
     private int height = 800;
-    private double ratio = (double) width / (double) height;
+    private double ratio = width / (double) height;
     private int contentWidth = 0;
     private int contentHeight = 0;
     private double contentScale = 1;
@@ -67,7 +67,7 @@ public final class GraphicsTransformer {
     public void transform(IGraphics graphics) {
         graphics.translate(contentInsetL, contentInsetT);
         graphics.translate(contentOffsetX, contentOffsetY);
-        graphics.scale((float)contentScale, (float) contentScale);
+        graphics.scale((float) contentScale, (float) contentScale);
     }
 
     public int getTransformedX(int x) {
@@ -79,5 +79,4 @@ public final class GraphicsTransformer {
         int out = (int) ((y - contentInsetT - contentOffsetY) / contentScale);
         return out < 0 || out > height ? -1 : out;
     }
-
 }
