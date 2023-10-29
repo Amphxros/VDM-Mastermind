@@ -1,8 +1,9 @@
 package vdm.mastermind.logic;
 
 import vdm.mastermind.engine.interfaces.IScene;
+import vdm.mastermind.logic.buttons.GameObject;
 
-public class Hint extends GameObject{
+public class Hint extends GameObject {
 
     private HintState state = HintState.NOTSOLUTION;
 

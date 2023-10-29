@@ -3,7 +3,7 @@ package vdm.mastermind.logic.buttons;
 import vdm.mastermind.engine.classes.TouchEvent;
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.Logic;
-import vdm.mastermind.logic.Scene;
+import vdm.mastermind.logic.scenes.Scene;
 
 public abstract class GoToSceneButton extends Button{
     public GoToSceneButton(IScene scene) {

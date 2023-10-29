@@ -11,6 +11,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -18,6 +19,7 @@ import javax.swing.JFrame;
 
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.classes.GraphicsTransformer;
+import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
@@ -51,6 +53,8 @@ public class PCGraphics implements IGraphics {
         this.bufferStrategy=this.window.getBufferStrategy();
         this.graphics2D= (Graphics2D) this.bufferStrategy.getDrawGraphics();
 
+        this.images= new HashMap<>();
+        this.fonts= new HashMap<>();
     }
 
     @Override
@@ -74,7 +78,7 @@ public class PCGraphics implements IGraphics {
     public IFont newFont(String filename, int size, boolean isBold, boolean isItalic) {
         Font font;
         try{
-            font= Font.createFont(Font.TRUETYPE_FONT,new File("Assets/fonts/"+filename));
+            font= Font.createFont(Font.TRUETYPE_FONT,new File("Assets/"+filename));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -93,7 +97,7 @@ public class PCGraphics implements IGraphics {
 
         PCFont pcFont= new PCFont(font);
         assert (pcFont!=null);
-        fonts.put(filename, pcFont);
+        this.fonts.put(filename,pcFont);
         return pcFont;
     }
 
@@ -213,8 +217,16 @@ public class PCGraphics implements IGraphics {
     }
 
     @Override
-    public void drawText(String text, int x, int y) {
-        graphics2D.drawString(text,x,y);
+    public void drawText(String text, int x, int y, HorizontalAlignment alignment) {
+
+        int outX = x;
+        if (alignment == HorizontalAlignment.CENTER) {
+            outX -= graphics2D.getFontMetrics().stringWidth(text) / 2;
+        } else if (alignment == HorizontalAlignment.RIGHT) {
+            outX -= graphics2D.getFontMetrics().stringWidth(text);
+        }
+
+        graphics2D.drawString(text,outX,y);
     }
 
     @Override

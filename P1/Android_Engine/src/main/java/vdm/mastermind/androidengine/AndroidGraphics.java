@@ -7,17 +7,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.shapes.PathShape;
+import android.graphics.drawable.shapes.Shape;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Map;
 
 import vdm.mastermind.androidengine.graphics.AndroidFont;
 import vdm.mastermind.androidengine.graphics.AndroidImage;
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.classes.GraphicsTransformer;
+import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
@@ -73,7 +75,7 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void present() {
-
+        surfaceHolder.unlockCanvasAndPost(canvas);
     }
 
 
@@ -140,7 +142,7 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawLine(int initX, int initY, int endX, int endY) {
-
+        canvas.drawLine(initX,initY,endX,endY,paint);
     }
 
     @Override
@@ -154,7 +156,13 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public void drawText(String text, int x, int y) {
+    public void drawText(String text, int x, int y ,HorizontalAlignment alignment) {
+        int outX = x;
+        if (alignment == HorizontalAlignment.CENTER) {
+
+        } else if (alignment == HorizontalAlignment.RIGHT) {
+
+        }
         canvas.drawText(text,x,y,paint);
     }
 

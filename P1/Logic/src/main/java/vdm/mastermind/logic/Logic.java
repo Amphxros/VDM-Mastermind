@@ -10,6 +10,7 @@ import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IInput;
 import vdm.mastermind.engine.interfaces.ILogic;
 import vdm.mastermind.engine.interfaces.IScene;
+import vdm.mastermind.logic.scenes.MenuScene;
 
 public class Logic implements ILogic {
     IScene currentScene;
@@ -18,6 +19,8 @@ public class Logic implements ILogic {
         super();
         System.out.println("Logic");
         this.engine=engine;
+
+        setCurrentScene(new MenuScene(getEngine()));
     }
     public void setCurrentScene(IScene scene){
         assert (scene!=null);

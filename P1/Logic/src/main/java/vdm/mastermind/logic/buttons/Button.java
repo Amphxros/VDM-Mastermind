@@ -2,10 +2,7 @@ package vdm.mastermind.logic.buttons;
 
 import vdm.mastermind.engine.classes.TouchEvent;
 import vdm.mastermind.engine.enums.EventType;
-import vdm.mastermind.engine.interfaces.IGraphics;
-import vdm.mastermind.engine.interfaces.IInput;
 import vdm.mastermind.engine.interfaces.IScene;
-import vdm.mastermind.logic.GameObject;
 
 public abstract class Button extends GameObject {
     public Button(IScene scene) {

@@ -41,7 +41,7 @@ public class PCEngine extends Engine implements Runnable {
             getLogic().handleInput(getInput());
             getLogic().update((float)elapsedTime);
 
-            getGraphics().clear(new Color(0,0,0));
+            getGraphics().clear(new Color(255,0,0));
             getLogic().render(getGraphics());
             getGraphics().present();
         }

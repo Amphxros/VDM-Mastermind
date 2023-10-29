@@ -1,6 +1,7 @@
 package vdm.mastermind.engine.interfaces;
 
 import vdm.mastermind.engine.classes.Color;
+import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.objects.*;
 
 public interface IGraphics {
@@ -27,7 +28,7 @@ public interface IGraphics {
     void drawLine(int initX,int initY,int endX,int endY);
     void drawCircle(float cx, float cy, float radius);
     void fillCircle(float cx, float cy, float radius);
-    void drawText(String text,int x,int y);
+    void drawText(String text,int x,int y, HorizontalAlignment alignment);
     // Dimensiones de la ventana
     int getWidth();
     int getHeight();

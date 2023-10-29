@@ -1,6 +1,5 @@
-package vdm.mastermind.logic;
+package vdm.mastermind.logic.scenes;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +8,14 @@ import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IInput;
 import vdm.mastermind.engine.interfaces.IScene;
+import vdm.mastermind.logic.buttons.GameObject;
 
 public class Scene implements IScene {
     ArrayList<GameObject> gameObjects;
     private final IEngine engine;
     public Scene(IEngine engine){
         this.engine=engine;
+        gameObjects= new ArrayList<>();
     }
     @Override
     public void render(IGraphics graphics) {
@@ -60,5 +61,9 @@ public class Scene implements IScene {
     @Override
     public IEngine getEngine() {
         return engine;
+    }
+
+    public void addGameObject(GameObject g){
+        this.gameObjects.add(g);
     }
 }
