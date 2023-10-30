@@ -97,6 +97,7 @@ public class PCGraphics implements IGraphics {
         }
 
         PCFont pcFont= new PCFont(font);
+        pcFont.getTamFont();
         assert (pcFont!=null);
         this.fonts.put(filename,pcFont);
         return pcFont;

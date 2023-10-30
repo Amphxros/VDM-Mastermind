@@ -21,14 +21,14 @@ public class TouchEvent {
      * @return The horizontal position where the TouchEvent happened
      */
     public int getPosX() {
-        return posX;
+        return X;
     }
 
     /**
      * @return The vertical position where the TouchEvent happened
      */
     public int getPosY(){
-        return posY;
+        return Y;
     }
 
     /**
