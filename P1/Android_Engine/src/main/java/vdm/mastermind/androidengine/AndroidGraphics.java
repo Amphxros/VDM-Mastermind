@@ -133,7 +133,7 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public void setFont(IFont font) {
+    public void setFont(IFont font, float size) {
         AndroidFont androidFont= (AndroidFont) font;
         assert (androidFont!=null);
         paint.setTypeface(androidFont.getTypeface());

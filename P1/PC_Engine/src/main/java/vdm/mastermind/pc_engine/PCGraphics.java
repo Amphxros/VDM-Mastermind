@@ -85,19 +85,10 @@ public class PCGraphics implements IGraphics {
             e.printStackTrace();
             return null;
         }
-        if(isBold){
-            font.deriveFont(Font.BOLD, size);
-            if (isItalic) {
-                font.deriveFont(Font.ITALIC, size);
-            }
-        }
 
-        else{
-            font.deriveFont(Font.PLAIN, size);
-        }
 
         PCFont pcFont= new PCFont(font);
-        pcFont.getTamFont();
+        font.deriveFont((float) size);
         assert (pcFont!=null);
         this.fonts.put(filename,pcFont);
         return pcFont;
@@ -158,11 +149,13 @@ public class PCGraphics implements IGraphics {
     }
 
     @Override
-    public void setFont(IFont font) {
+    public void setFont(IFont font, float size) {
         PCFont pcFont= (PCFont)font;
         assert (pcFont!=null);
-        graphics2D.setFont(pcFont.getFont());
+        graphics2D.setFont(pcFont.getFont().deriveFont(size));
     }
+
+
 
     @Override
     public void fillRectangle(int cx, int cy, int width, int height) {
