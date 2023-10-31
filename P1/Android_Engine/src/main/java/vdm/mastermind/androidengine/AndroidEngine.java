@@ -17,6 +17,9 @@ public final class AndroidEngine extends Engine implements Runnable {
         view.setOnTouchListener(androidInput);
         setInput(androidInput);
         setGraphics(androidGraphics);
+        assert (androidGraphics!=null);
+        assert (androidInput!=null);
+        System.out.println("Android built");
 
     }
 
@@ -52,7 +55,7 @@ public final class AndroidEngine extends Engine implements Runnable {
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;
 
-        graphics.clear(new Color(0,0,0,255));
+        graphics.clear(new Color(0,255,255));
         getLogic().render(graphics);
         graphics.present();
     }

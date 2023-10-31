@@ -13,6 +13,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 import vdm.mastermind.androidengine.graphics.AndroidFont;
@@ -28,19 +29,21 @@ public final class AndroidGraphics implements IGraphics {
     protected SurfaceView surfaceView;
     protected SurfaceHolder surfaceHolder;
     protected  Context context;
-    protected Canvas canvas;
+    protected Canvas canvas=null;
     protected Paint paint;
 
     protected AssetManager assetManager;
     GraphicsTransformer transformer= new GraphicsTransformer();
-    Map<String,AndroidImage> images;
-    Map<String,AndroidFont> fonts;
+    Map<String,AndroidImage> images= new HashMap<>();
+    Map<String,AndroidFont> fonts= new HashMap<>();
 
     public AndroidGraphics(SurfaceView surfaceView, Context context){
         this.surfaceView=surfaceView;
-        this.context= context;
-
         this.surfaceHolder=surfaceView.getHolder();
+        this.context= context;
+        this.assetManager= context.getAssets();
+
+        this.paint= new Paint();
 
 
     }
@@ -62,6 +65,7 @@ public final class AndroidGraphics implements IGraphics {
     @Override
     public AndroidFont newFont(String filename, int size, boolean isBold, boolean isItalic) {
         AndroidFont font= new AndroidFont(filename,assetManager,size,isBold,isItalic);
+        assert(font.getTypeface()!=null);
         fonts.put(filename,font);
         return font;
     }
@@ -69,8 +73,21 @@ public final class AndroidGraphics implements IGraphics {
     @Override
     public void clear(Color color) {
         canvas = surfaceHolder.lockCanvas();
+        assert (canvas!=null);
         canvas.drawColor(color.getARGB()); // ARGB
         updateTransformParameters();
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
+    public SurfaceHolder getSurfaceHolder() {
+        return surfaceHolder;
     }
 
     @Override
@@ -111,12 +128,14 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void setColor(Color color) {
+        assert (color!=null);
         paint.setColor(color.getARGB());
     }
 
     @Override
     public void setFont(IFont font) {
         AndroidFont androidFont= (AndroidFont) font;
+        assert (androidFont!=null);
         paint.setTypeface(androidFont.getTypeface());
     }
 
