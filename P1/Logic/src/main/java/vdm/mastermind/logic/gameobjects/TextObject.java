@@ -24,7 +24,6 @@ public class TextObject extends GameObject {
 
         graphics.setFont(renderingFont, size);
         graphics.setColor(strokeColor);
-
         graphics.drawText(text, getX(),getY(),HorizontalAlignment.NONE);
 
     }

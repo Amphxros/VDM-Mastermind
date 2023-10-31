@@ -34,7 +34,7 @@ public class MenuScene extends Scene{
         button.setSize(buttonW/2,45);
 
         GoToChooseLevelScene toChooseLevelScene= new GoToChooseLevelScene(this);
-        toChooseLevelScene.setStrokeColor(new Color(0,205,150));
+        toChooseLevelScene.setStrokeColor(new Color(133,183,150));
         toChooseLevelScene.setPosition(buttonX, 350);
         toChooseLevelScene.setSize(buttonW,70);
 
