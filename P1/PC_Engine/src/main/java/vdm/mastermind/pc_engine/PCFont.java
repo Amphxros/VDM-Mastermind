@@ -10,8 +10,10 @@ import vdm.mastermind.engine.interfaces.objects.IFont;
 public class PCFont implements IFont {
 
     private final Font font; //underlying font
-    public PCFont(Font font){
+    int size;
+    public PCFont(Font font, int size){
         this.font=font;
+        this.size=size;
     }
 
     /**
@@ -28,7 +30,7 @@ public class PCFont implements IFont {
     @Override
     public int getTamFont()
     {
-        return font.getSize();
+        return size;
     }
 
     /**

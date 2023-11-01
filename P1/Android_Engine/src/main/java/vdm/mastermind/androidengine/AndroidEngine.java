@@ -30,12 +30,12 @@ public final class AndroidEngine extends Engine implements Runnable {
             // Makes it so runnable can only be called from this class
             throw new RuntimeException("run() should not be called directly");
         }
-
+        System.out.println("Thread assigned");
         // Waits for the view to be initialized (The thread could be faster than the initialization)
         while (running && getGraphics().getWidth() == 0) ;
 
         long lastFrameTime = System.nanoTime();
-
+        System.out.println("Entering");
         while (running) {
             long currentTime = System.nanoTime();
             long nanoElapsedTime = currentTime - lastFrameTime;

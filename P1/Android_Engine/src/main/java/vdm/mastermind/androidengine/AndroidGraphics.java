@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.shapes.PathShape;
 import android.graphics.drawable.shapes.Shape;
@@ -98,22 +99,22 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void translate(int x, int y) {
-
+        canvas.translate(x,y);
     }
 
     @Override
     public void scale(float x, float y) {
-
+        canvas.scale(x,y);
     }
 
     @Override
     public void save() {
-
+        canvas.save();
     }
 
     @Override
     public void restore() {
-
+        canvas.restore();
     }
 
     @Override
@@ -133,10 +134,11 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public void setFont(IFont font, float size) {
+    public void setFont(IFont font) {
         AndroidFont androidFont= (AndroidFont) font;
         assert (androidFont!=null);
         paint.setTypeface(androidFont.getTypeface());
+
     }
 
     @Override
@@ -151,12 +153,12 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawRectangle(int cx, int cy, int width, int height) {
-
+        canvas.drawRect(cx,cy,width,height,paint);
     }
 
     @Override
     public void drawRoundRectangle(int cx, int cy, int width, int height, float arc) {
-       
+       canvas.drawRoundRect(cx,cy,width,height,arc,arc,paint);
     }
 
     @Override
@@ -183,6 +185,11 @@ public final class AndroidGraphics implements IGraphics {
 
         }
         canvas.drawText(text,x,y,paint);
+    }
+
+    @Override
+    public void setResolution(int width, int height) {
+        transformer.setSize(width, height);
     }
 
     private void updateTransformParameters() {

@@ -16,7 +16,8 @@ public class Password {
     public void generateRandom(){
         Random rnd= new Random();
         for(int i=0; i<password.length;i++){
-            password[i]=rnd.nextInt(min,max);
+            password[i]=rnd.nextInt(min,max+1);
+            System.out.println(password[i]);
         }
     }
 
@@ -27,7 +28,11 @@ public class Password {
     }
 
     public int[] getPassword(){
-        return password;
+        return this.password;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

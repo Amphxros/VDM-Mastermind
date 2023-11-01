@@ -11,20 +11,19 @@ public class TextObject extends GameObject {
     private float size;
     private IFont renderingFont;
 
-    public TextObject(IScene scene, IFont font, float size, Color color,String text) {
+    public TextObject(IScene scene, IFont font, Color color,String text) {
         super(scene);
         this.text=text;
         this.renderingFont=font;
-        this.size=size;
         this.setStrokeColor(color);
     }
 
     @Override
     public void render(IGraphics graphics) {
         super.render(graphics);
-        graphics.setFont(renderingFont, size);
+        graphics.setFont(renderingFont);
         graphics.setColor(strokeColor);
-        graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),50);
+
         graphics.drawText(text, getX(),getY(),HorizontalAlignment.NONE);
 
     }

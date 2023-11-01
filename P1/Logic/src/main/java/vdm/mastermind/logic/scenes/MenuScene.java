@@ -19,17 +19,17 @@ public class MenuScene extends Scene{
         int buttonW = (int) (maxWidth * 0.8);
         int buttonX = center - buttonW / 2;
 
-        IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",1,true,true);
-        IFont fontTittle= getEngine().getGraphics().newFont("fonts/Falling For Autumn.ttf",1,true,true);
+        IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",50,true,true);
+        IFont fontTittle= getEngine().getGraphics().newFont("fonts/Falling For Autumn.ttf",45,true,true);
 
         // Title
-        GameObject tittle=(GameObject)new TextObject(this, fontTittle,50.0f,new Color(0,0,0),"Mastermind");
+        GameObject tittle=(GameObject)new TextObject(this, fontTittle,new Color(0,0,0),"Mastermind");
         tittle.setPosition(buttonX, 150);
         tittle.setSize(buttonW,100);
         addGameObject(tittle);
 
         //button
-        GameObject button =(GameObject)new TextObject(this, font,60.0f,new Color(255,255,255),"Jugar");
+        GameObject button =(GameObject)new TextObject(this, font,new Color(255,255,255),"Jugar");
         button.setPosition(buttonX+ buttonW/4, 400);
         button.setSize(buttonW/2,45);
 

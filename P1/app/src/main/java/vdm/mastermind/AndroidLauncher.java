@@ -16,13 +16,14 @@ public class AndroidLauncher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Creamos el SurfaceView que "contendrá" nuestra escena
-
         SurfaceView renderView = new SurfaceView(this);
         setContentView(renderView);
+
         engine = new AndroidEngine(renderView, this);
-        Logic logic= new Logic(engine);
+        engine.getGraphics().setResolution(400, 600);
+
+        Logic logic = new Logic(engine);
         engine.setLogic(logic);
-        System.out.println("Launched android");
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();
@@ -32,12 +33,13 @@ public class AndroidLauncher extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        engine.resume();
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
+        engine.pause();
     }
 }

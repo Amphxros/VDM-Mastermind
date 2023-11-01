@@ -20,7 +20,7 @@ public interface IGraphics {
     void drawImage(IImage image,int x, int y);
 
     void setColor(Color color);
-    void setFont(IFont font, float size);
+    void setFont(IFont font);
     void fillRectangle(int cx, int cy, int width, int height);
     void fillRoundRectangle(int cx, int cy, int width, int height, float arc);
     void drawRectangle(int cx,int cy,int width,int height);
@@ -30,6 +30,8 @@ public interface IGraphics {
     void fillCircle(float cx, float cy, float radius);
     void drawText(String text,int x,int y, HorizontalAlignment alignment);
     // Dimensiones de la ventana
+
+    void setResolution(int width, int height);
     int getWidth();
     int getHeight();
 

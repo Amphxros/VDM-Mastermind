@@ -86,9 +86,7 @@ public class PCGraphics implements IGraphics {
             return null;
         }
 
-
-        PCFont pcFont= new PCFont(font);
-        font.deriveFont((float) size);
+        PCFont pcFont= new PCFont(font,size);
         assert (pcFont!=null);
         this.fonts.put(filename,pcFont);
         return pcFont;
@@ -149,10 +147,10 @@ public class PCGraphics implements IGraphics {
     }
 
     @Override
-    public void setFont(IFont font, float size) {
+    public void setFont(IFont font) {
         PCFont pcFont= (PCFont)font;
         assert (pcFont!=null);
-        graphics2D.setFont(pcFont.getFont().deriveFont(size));
+        graphics2D.setFont(pcFont.getFont().deriveFont((float) pcFont.getTamFont()));
     }
 
 
