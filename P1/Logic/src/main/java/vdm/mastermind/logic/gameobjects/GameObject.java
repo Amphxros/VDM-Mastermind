@@ -29,11 +29,6 @@ public abstract class GameObject {
     }
 
     public void render(IGraphics graphics){
-        if (strokeColor != null) {
-            graphics.setColor(strokeColor);
-            graphics.drawRectangle(getX(), getY(), getWidth(), getHeight());
-        }
-
         for (GameObject child : getChildren()) {
             if (child.isEnabled()) {
                 child.render(graphics);
@@ -67,6 +62,13 @@ public abstract class GameObject {
     public GameObject getParent() {
         assert(parent!=null);
         return parent;
+    }
+
+    public void addChild(GameObject go){
+        children.add(go);
+    }
+    public void removeChild(GameObject go){
+        children.remove(go);
     }
 
     public Vector<GameObject> getChildren() {

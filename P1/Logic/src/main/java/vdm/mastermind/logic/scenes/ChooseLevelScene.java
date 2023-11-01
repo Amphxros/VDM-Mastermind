@@ -28,6 +28,7 @@ public class ChooseLevelScene extends Scene{
         tittle.setSize(buttonW,100);
         addGameObject(tittle);
 
+
         GoToGameScene chooseDifficulty= new GoToGameScene(this);
         chooseDifficulty.setStrokeColor(new Color(200,200,120));
         chooseDifficulty.setPosition(buttonX, 200);

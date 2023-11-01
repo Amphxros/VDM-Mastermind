@@ -21,9 +21,10 @@ public class TextObject extends GameObject {
 
     @Override
     public void render(IGraphics graphics) {
-
+        super.render(graphics);
         graphics.setFont(renderingFont, size);
         graphics.setColor(strokeColor);
+        graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),50);
         graphics.drawText(text, getX(),getY(),HorizontalAlignment.NONE);
 
     }

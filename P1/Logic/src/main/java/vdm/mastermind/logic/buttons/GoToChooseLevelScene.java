@@ -20,7 +20,6 @@ public class GoToChooseLevelScene extends GoToSceneButton{
 
     @Override
     public void render(IGraphics graphics) {
-
         graphics.setColor(strokeColor);
         graphics.fillRoundRectangle(getX(),getY(),getWidth(),getHeight(),50);
     }
