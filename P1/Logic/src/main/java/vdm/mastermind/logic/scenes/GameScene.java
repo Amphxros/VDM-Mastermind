@@ -2,8 +2,10 @@ package vdm.mastermind.logic.scenes;
 
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IEngine;
+import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.logic.Password;
 import vdm.mastermind.logic.Table;
+import vdm.mastermind.logic.buttons.DaltonicButton;
 
 public class GameScene extends Scene{
 
@@ -26,15 +28,25 @@ public class GameScene extends Scene{
 
     @Override
     public void init() {
+        IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
+        IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
+
         this.solution= new Password(this.tamPassword,1,this.numColors);
         this.solution.generateRandom();
 
         this.colors= new Color[this.numColors];
 
+        DaltonicButton daltonicButton= new DaltonicButton(this,open,close);
+        daltonicButton.setSize(50,50);
+        daltonicButton.setPosition(300,50);
+
+        addGameObject(daltonicButton);
 
 
     }
+    public void onDaltonicMode(boolean act){
 
+    }
     private void generateColors(int numColors){
         for(int i=0;i<this.numColors;i++){
             switch (i){
