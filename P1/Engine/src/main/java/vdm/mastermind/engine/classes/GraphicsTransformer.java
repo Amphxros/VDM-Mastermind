@@ -62,6 +62,8 @@ public final class GraphicsTransformer {
             contentOffsetX = (int) ((contentWidth - width * contentScale) / 2.0);
             contentOffsetY = 0;
         }
+
+
     }
 
     public void transform(IGraphics graphics) {

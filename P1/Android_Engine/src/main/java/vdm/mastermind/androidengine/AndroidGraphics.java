@@ -47,6 +47,7 @@ public final class AndroidGraphics implements IGraphics {
         this.paint= new Paint();
 
 
+
     }
     @Override
     public AndroidImage newImage(String name) {
@@ -104,7 +105,7 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void scale(float x, float y) {
-        canvas.scale(x,y);
+        canvas.scale((float) x, (float) y);
     }
 
     @Override
@@ -119,12 +120,17 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawImage(IImage image, int x, int y, int w, int h) {
+        Rect src = new Rect(0, 0, image.getWidth(), image.getHeight());
+        Rect dst = new Rect(x, y, x + w, y + h);
+        AndroidImage aImage= (AndroidImage) image;
 
+        canvas.drawBitmap(aImage.getImage(), src, dst, paint);
     }
 
     @Override
     public void drawImage(IImage image, int x, int y) {
-
+        AndroidImage aImage= (AndroidImage) image;
+        canvas.drawBitmap(aImage.getImage(), x, y, paint);
     }
 
     @Override
@@ -138,17 +144,17 @@ public final class AndroidGraphics implements IGraphics {
         AndroidFont androidFont= (AndroidFont) font;
         assert (androidFont!=null);
         paint.setTypeface(androidFont.getTypeface());
-
+        paint.setTextSize(androidFont.getTamFont());
     }
 
     @Override
     public void fillRectangle(int cx, int cy, int width, int height) {
-
+        canvas.drawRect(cx, cy, cx + width, cy + height, paint);
     }
 
     @Override
     public void fillRoundRectangle(int cx, int cy, int width, int height, float arc) {
-
+        canvas.drawRect(cx, cy, cx + width, cy + height, paint);
     }
 
     @Override
@@ -179,10 +185,13 @@ public final class AndroidGraphics implements IGraphics {
     @Override
     public void drawText(String text, int x, int y ,HorizontalAlignment alignment) {
         int outX = x;
+        Rect result = new Rect();
+        paint.getTextBounds(text, 0, text.length(), result);
         if (alignment == HorizontalAlignment.CENTER) {
+            outX -= result.centerX();
 
         } else if (alignment == HorizontalAlignment.RIGHT) {
-
+            outX -= result.width();
         }
         canvas.drawText(text,x,y,paint);
     }

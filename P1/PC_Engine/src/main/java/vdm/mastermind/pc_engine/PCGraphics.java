@@ -223,6 +223,11 @@ public class PCGraphics implements IGraphics {
     }
 
     @Override
+    public void setResolution(int width, int height) {
+
+    }
+
+    @Override
     public int getWidth() {
         return transformer.getWidth();
     }

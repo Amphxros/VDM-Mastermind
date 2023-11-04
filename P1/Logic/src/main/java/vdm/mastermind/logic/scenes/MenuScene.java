@@ -24,13 +24,13 @@ public class MenuScene extends Scene{
 
         // Title
         GameObject tittle=(GameObject)new TextObject(this, fontTittle,new Color(0,0,0),"Mastermind");
-        tittle.setPosition(buttonX, 150);
+        tittle.setPosition(buttonX, 100);
         tittle.setSize(buttonW,100);
         addGameObject(tittle);
 
         //button
-        GameObject button =(GameObject)new TextObject(this, font,new Color(255,255,255),"Jugar");
-        button.setPosition(buttonX+ buttonW/4, 400);
+        GameObject button =(GameObject)new TextObject(this, font,new Color(0,0,0),"Jugar");
+        button.setPosition(buttonX +buttonW/3, 370);
         button.setSize(buttonW/2,45);
 
         GoToChooseLevelScene toChooseLevelScene= new GoToChooseLevelScene(this);
