@@ -4,6 +4,8 @@ import vdm.mastermind.engine.interfaces.objects.ISound;
 
 public interface IAudio {
 
-    ISound playSound(String file, boolean loop);
-    void stopSound(String file);
+
+    ISound createSound(String filename);
+    void playSound(ISound s);
+    void stopSound(ISound s);
 }
