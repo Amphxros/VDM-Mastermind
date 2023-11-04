@@ -3,6 +3,7 @@ package vdm.mastermind.logic.scenes;
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.logic.Password;
+import vdm.mastermind.logic.Table;
 
 public class GameScene extends Scene{
 
@@ -13,12 +14,14 @@ public class GameScene extends Scene{
     Password solution;
     Color[] colors;
 
+    Table table;
+
     public GameScene(IEngine engine, int numColors, int numIntentos, int tamPassword) {
         super(engine);
         this.numColors=numColors;
         this.numIntentos= numIntentos;
         this.tamPassword= tamPassword;
-
+        this.table = new Table(this, numColors, numIntentos, tamPassword);
     }
 
     @Override
