@@ -14,16 +14,17 @@ public class PCEngine extends Engine implements Runnable {
         frame.pack();
         frame.setIgnoreRepaint(true);
         frame.setVisible(true);
-        frame.setSize(300,600);
+        frame.setSize(400,600);
 
         PCGraphics pcGraphics= new PCGraphics(frame);
         PCInput pcInput= new PCInput(frame);
-
+        PCAudio pcAudio= new PCAudio();
         frame.addMouseListener(pcInput);
         frame.addKeyListener(pcInput);
 
         setInput(pcInput);
         setGraphics(pcGraphics);
+        setAudio(pcAudio);
 
     }
     @Override

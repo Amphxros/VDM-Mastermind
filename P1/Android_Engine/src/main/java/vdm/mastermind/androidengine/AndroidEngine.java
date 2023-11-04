@@ -13,13 +13,14 @@ public final class AndroidEngine extends Engine implements Runnable {
     public AndroidEngine(SurfaceView view,Context context){
         AndroidGraphics androidGraphics= new AndroidGraphics(view,context);
         AndroidInput androidInput= new AndroidInput();
-
+        AndroidAudio androidAudio= new AndroidAudio(context);
         view.setOnTouchListener(androidInput);
         setInput(androidInput);
         setGraphics(androidGraphics);
+        setAudio(androidAudio);
         assert (androidGraphics!=null);
         assert (androidInput!=null);
-
+        assert (androidAudio!=null);
     }
 
     @Override

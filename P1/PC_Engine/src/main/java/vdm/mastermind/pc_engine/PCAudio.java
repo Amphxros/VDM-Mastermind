@@ -10,29 +10,33 @@ import vdm.mastermind.engine.interfaces.objects.ISound;
 
 public final class PCAudio implements IAudio {
     @Override
-    public ISound createSound(String path) {
+    public PCSound createSound(String path) {
         Clip sound;
-
-        try {
-            File audioFile = new File("assets/" + path + ".wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            sound = AudioSystem.getClip();
-            sound.open(audioStream);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        try{
+            File audio= new File("Assets/"+ path);
+            AudioInputStream stream= AudioSystem.getAudioInputStream(audio);
+            sound=AudioSystem.getClip();
+            sound.open(stream);
+        }
+        catch (Exception e){
+            e.printStackTrace();
             return null;
         }
-
-        return new PCSound(sound);
+        return  new PCSound(sound);
     }
 
     @Override
     public void playSound(ISound s) {
-        s.play();
+        PCSound pcSound= (PCSound) s;
+        assert (pcSound!=null);
+        pcSound.play();
+
     }
 
     @Override
     public void stopSound(ISound s) {
-        s.stop();
+        PCSound pcSound= (PCSound) s;
+        assert (pcSound!=null);
+        pcSound.stop();
     }
 }

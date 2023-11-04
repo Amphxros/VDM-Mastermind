@@ -7,7 +7,8 @@ public class Password {
     private int [] password;
     private final int min;
     private final int max;
-    public Password(int size,int min,int max){
+    boolean isRepeating;
+    public Password(int size,int min,int max, boolean isRepeating){
         password= new int[size];
         this.min=min;
         this.max=max;
