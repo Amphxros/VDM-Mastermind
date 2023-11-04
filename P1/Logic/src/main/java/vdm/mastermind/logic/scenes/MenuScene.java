@@ -16,7 +16,7 @@ public class MenuScene extends Scene{
     public void init() {
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
-        int buttonW = (int) (maxWidth/4);
+        int buttonW = (int) (maxWidth/3);
         int buttonX = (int)center - (int)(maxWidth * 0.9) / 2;
 
         IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",50,true,true);

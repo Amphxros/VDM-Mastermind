@@ -20,7 +20,7 @@ public class ChooseLevelScene extends Scene{
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
-        int buttonW = (int) (maxWidth/4);
+        int buttonW = (int) (maxWidth/3);
         int buttonX = center -(int)(maxWidth * 0.9) / 2;
 
         // Title
@@ -33,28 +33,28 @@ public class ChooseLevelScene extends Scene{
         GoToGameScene chooseDifficultyA= new GoToGameScene(this,4,5,4);
         chooseDifficultyA.setStrokeColor(new Color(200,200,120));
         chooseDifficultyA.setPosition(buttonX, 210);
-        chooseDifficultyA.setSize(buttonW,50);
+        chooseDifficultyA.setSize(buttonW,45);
 
         addGameObject(chooseDifficultyA);
 
         GoToGameScene chooseDifficultyB= new  GoToGameScene(this,6,5,4);
         chooseDifficultyB.setStrokeColor(new Color(249,231,132));
         chooseDifficultyB.setPosition(buttonX, 260);
-        chooseDifficultyB.setSize(buttonW,50);
+        chooseDifficultyB.setSize(buttonW,45);
 
         addGameObject(chooseDifficultyB);
 
         GoToGameScene chooseDifficultyC= new GoToGameScene(this,6,6,6);
         chooseDifficultyC.setStrokeColor(new Color(229,145,101));
         chooseDifficultyC.setPosition(buttonX, 310);
-        chooseDifficultyC.setSize(buttonW,50);
+        chooseDifficultyC.setSize(buttonW,45);
 
         addGameObject(chooseDifficultyC);
 
         GoToGameScene chooseDifficultyD= new GoToGameScene(this,10,10,5);
         chooseDifficultyD.setStrokeColor(new Color(208,83,83));
         chooseDifficultyD.setPosition(buttonX, 360);
-        chooseDifficultyD.setSize(buttonW,50);
+        chooseDifficultyD.setSize(buttonW,45);
 
         addGameObject(chooseDifficultyD);
 
