@@ -210,13 +210,13 @@ public class PCGraphics implements IGraphics {
     }
 
     @Override
-    public void drawText(String text, int x, int y, HorizontalAlignment alignment) {
+    public void drawText(String text, int x, int y,int w, HorizontalAlignment alignment) {
 
         int outX = x;
         if (alignment == HorizontalAlignment.CENTER) {
-            outX -= graphics2D.getFontMetrics().stringWidth(text) / 2;
+            outX += w/ 2;
         } else if (alignment == HorizontalAlignment.RIGHT) {
-            outX -= graphics2D.getFontMetrics().stringWidth(text);
+            outX += w;
         }
 
         graphics2D.drawString(text,outX,y);

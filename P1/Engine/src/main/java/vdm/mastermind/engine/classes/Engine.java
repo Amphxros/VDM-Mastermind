@@ -73,4 +73,14 @@ public class Engine implements IEngine {
     public void resume() {
 
     }
+
+    @Override
+    public int getWidth() {
+        return graphics.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return graphics.getHeight();
+    }
 }

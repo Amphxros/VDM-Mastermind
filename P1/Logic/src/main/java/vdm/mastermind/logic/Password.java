@@ -14,11 +14,7 @@ public class Password {
     }
 
     public void generateRandom(){
-        Random rnd= new Random();
-        for(int i=0; i<password.length;i++){
-            password[i]=rnd.nextInt(min,max+1);
-            System.out.println(password[i]);
-        }
+
     }
 
     public void generateCopy(int[] password){

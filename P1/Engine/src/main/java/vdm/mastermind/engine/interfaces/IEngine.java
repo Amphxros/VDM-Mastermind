@@ -27,4 +27,7 @@ public interface IEngine {
 
     void pause();
     void resume();
+
+    int getWidth();
+    int getHeight();
 }

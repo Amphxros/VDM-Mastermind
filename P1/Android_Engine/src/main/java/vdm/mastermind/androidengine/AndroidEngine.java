@@ -19,7 +19,6 @@ public final class AndroidEngine extends Engine implements Runnable {
         setGraphics(androidGraphics);
         assert (androidGraphics!=null);
         assert (androidInput!=null);
-        System.out.println("Android built");
 
     }
 
@@ -30,11 +29,12 @@ public final class AndroidEngine extends Engine implements Runnable {
             // Makes it so runnable can only be called from this class
             throw new RuntimeException("run() should not be called directly");
         }
-        System.out.println("Thread assigned");
         // Waits for the view to be initialized (The thread could be faster than the initialization)
         while (running && getGraphics().getWidth() == 0) ;
 
         long lastFrameTime = System.nanoTime();
+        //this is for avoiding screen width=0
+        getLogic().init();
         System.out.println("Entering");
         while (running) {
             long currentTime = System.nanoTime();
@@ -45,7 +45,7 @@ public final class AndroidEngine extends Engine implements Runnable {
             double elapsedTime = (double) nanoElapsedTime / 1.0E9;
 
             handleInput();
-            update((float) elapsedTime);
+            update((float)elapsedTime);
             render();
         }
     }
@@ -55,7 +55,6 @@ public final class AndroidEngine extends Engine implements Runnable {
 
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;
-
         graphics.clear(new Color(255,255,255));
         getLogic().render(graphics);
         graphics.present();
@@ -83,6 +82,16 @@ public final class AndroidEngine extends Engine implements Runnable {
     }
 
     @Override
+    public int getWidth() {
+        return getGraphics().getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return getGraphics().getHeight();
+    }
+
+    @Override
     public void pause() {
         if (running) {
             running = false;
@@ -97,4 +106,6 @@ public final class AndroidEngine extends Engine implements Runnable {
             }
         }
     }
+
+
 }

@@ -11,6 +11,7 @@ public class PCLauncher {
         PCEngine engine= new PCEngine();
         Logic logic = new Logic(engine);
         engine.setLogic(logic);
+        logic.init();
         System.out.println("Launched " + logic!=null);
         engine.run();
 

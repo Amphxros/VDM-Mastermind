@@ -20,6 +20,6 @@ public class GoToMenuScene extends GoToSceneButton{
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.drawImage(image,getX(),getY(),getWidth(),getHeight());
+        graphics.drawRectangle(getX(),getY(), getWidth(), getHeight());
     }
 }

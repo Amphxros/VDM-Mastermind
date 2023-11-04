@@ -17,9 +17,13 @@ public class Logic implements ILogic {
     protected IEngine engine;
     public Logic(IEngine engine){
         super();
-        System.out.println("Logic");
         this.engine=engine;
 
+
+    }
+
+    @Override
+    public void init(){
         setCurrentScene(new MenuScene(getEngine()));
     }
     public void setCurrentScene(IScene scene){

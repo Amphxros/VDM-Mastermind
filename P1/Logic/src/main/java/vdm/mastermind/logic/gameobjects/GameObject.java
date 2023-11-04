@@ -25,6 +25,7 @@ public abstract class GameObject {
         this.position= new Vector2D(0,0);
         this.setSize(0,0);
         this.enabled=true;
+        this.strokeColor= new Color(0,0,0);
 
     }
 

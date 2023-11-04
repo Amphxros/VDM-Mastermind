@@ -13,7 +13,6 @@ public class GoToChooseLevelScene extends GoToSceneButton{
 
     @Override
     protected Scene createScene() {
-        System.out.println("Click");
         return new ChooseLevelScene(getEngine());
 
     }
@@ -21,6 +20,6 @@ public class GoToChooseLevelScene extends GoToSceneButton{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.fillRoundRectangle(getX(),getY(),getWidth(),getHeight(),50);
+        graphics.drawRectangle(getX(),getY(), getWidth(), getHeight());
     }
 }

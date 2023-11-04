@@ -28,7 +28,7 @@ public interface IGraphics {
     void drawLine(int initX,int initY,int endX,int endY);
     void drawCircle(float cx, float cy, float radius);
     void fillCircle(float cx, float cy, float radius);
-    void drawText(String text,int x,int y, HorizontalAlignment alignment);
+    void drawText(String text,int x,int y, int w, HorizontalAlignment alignment);
     // Dimensiones de la ventana
 
     void setResolution(int width, int height);

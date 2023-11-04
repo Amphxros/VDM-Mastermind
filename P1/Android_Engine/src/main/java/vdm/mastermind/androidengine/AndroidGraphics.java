@@ -81,7 +81,7 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     public Canvas getCanvas() {
-        return canvas;
+        return this.canvas;
     }
 
     public void setCanvas(Canvas canvas) {
@@ -89,7 +89,7 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     public SurfaceHolder getSurfaceHolder() {
-        return surfaceHolder;
+        return this.surfaceHolder;
     }
 
     @Override
@@ -149,22 +149,29 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void fillRectangle(int cx, int cy, int width, int height) {
-        canvas.drawRect(cx, cy, cx + width, cy + height, paint);
+
     }
 
     @Override
     public void fillRoundRectangle(int cx, int cy, int width, int height, float arc) {
-        canvas.drawRect(cx, cy, cx + width, cy + height, paint);
+        assert (paint!=null);
+        System.out.println("Rectangle" + cx +" " + cy +" "+ cx + width+ " "+ cy+height);
+
     }
 
     @Override
     public void drawRectangle(int cx, int cy, int width, int height) {
-        canvas.drawRect(cx,cy,width,height,paint);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(cx,cy,width,cy+ height,paint);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     @Override
     public void drawRoundRectangle(int cx, int cy, int width, int height, float arc) {
-       canvas.drawRoundRect(cx,cy,width,height,arc,arc,paint);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRoundRect(cx,cy,width,height,arc,arc,paint);
+        paint.setStyle(Paint.Style.FILL);
+
     }
 
     @Override
@@ -174,26 +181,30 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawCircle(float cx, float cy, float radius) {
+        paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(cx,cy,radius,paint);
+        paint.setStyle(Paint.Style.FILL);
+
     }
 
     @Override
     public void fillCircle(float cx, float cy, float radius) {
+        paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(cx,cy,radius,paint);
     }
 
     @Override
-    public void drawText(String text, int x, int y ,HorizontalAlignment alignment) {
+    public void drawText(String text, int x, int y ,int w,HorizontalAlignment alignment) {
         int outX = x;
         Rect result = new Rect();
         paint.getTextBounds(text, 0, text.length(), result);
         if (alignment == HorizontalAlignment.CENTER) {
-            outX -= result.centerX();
+            outX += result.centerX();
 
         } else if (alignment == HorizontalAlignment.RIGHT) {
-            outX -= result.width();
+            outX += result.width();
         }
-        canvas.drawText(text,x,y,paint);
+        canvas.drawText(text,outX,y,paint);
     }
 
     @Override
