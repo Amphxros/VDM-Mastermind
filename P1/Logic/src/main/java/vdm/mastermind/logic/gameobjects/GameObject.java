@@ -11,45 +11,58 @@ import vdm.mastermind.logic.Vector2D;
 
 public abstract class GameObject {
     private final Vector<GameObject> children = new Vector<>();
-    protected final GameObject parent=null;
     private final IScene scene;
-    protected Color strokeColor = null;
+    private Vector2D position = new Vector2D(0, 0);
+    private Vector2D size = new Vector2D(0, 0);
     private boolean enabled = true;
-    Vector2D position;
-    int width;
-    int height;
+    private Color strokeColor = null;
+    private GameObject parent = null;
 
-
-    public GameObject(IScene scene){
-        this.scene=scene;
-        this.position= new Vector2D(0,0);
-        this.setSize(0,0);
-        this.enabled=true;
-        this.strokeColor= new Color(0,0,0);
-
+    public GameObject(IScene scene) {
+        this.scene = scene;
     }
 
-    public void render(IGraphics graphics){
-        for (GameObject child : getChildren()) {
-            if (child.isEnabled()) {
-                child.render(graphics);
-            }
-        }
+    public Vector2D getPosition() {
+        return position;
     }
-    public void update(double t){
-        for (GameObject child : getChildren()) {
-            if (child.isEnabled()) {
-                child.update(t);
-            }
-        }
+
+    public GameObject setPosition(Vector2D position) {
+        this.position = position;
+        return this;
     }
-    public boolean handleInput(TouchEvent event) {
-        for (GameObject child : children) {
-            if (child.isEnabled() && child.handleInput(event)) {
-                return true;
-            }
-        }
-        return false;
+
+    public GameObject setPosition(int x, int y) {
+        setPosition(new Vector2D(x, y));
+        return this;
+    }
+
+    public int getX() {
+        return position.getX();
+    }
+
+    public int getY() {
+        return position.getY();
+    }
+
+    public Vector2D getSize() {
+        return size;
+    }
+
+    public GameObject setSize(Vector2D size) {
+        this.size = size;
+        return this;
+    }
+
+    public GameObject setSize(int width, int height) {
+        return setSize(new Vector2D(width, height));
+    }
+
+    public int getWidth() {
+        return getSize().getX();
+    }
+
+    public int getHeight() {
+        return getSize().getY();
     }
 
     public boolean isEnabled() {
@@ -61,61 +74,11 @@ public abstract class GameObject {
     }
 
     public GameObject getParent() {
-        assert(parent!=null);
         return parent;
-    }
-
-    public void addChild(GameObject go){
-        children.add(go);
-    }
-    public void removeChild(GameObject go){
-        children.remove(go);
     }
 
     public Vector<GameObject> getChildren() {
         return children;
-    }
-
-    public int getX() {
-        return position.getX();
-    }
-
-    public int getY() {
-        return position.getY();
-    }
-
-    public void setX(int x) {
-        position.setX(x);
-    }
-
-    public void setY(int y) {
-        position.setY(y);
-    }
-
-    public void setPosition(int x,int y){
-        setX(x);
-        setY(y);
-    }
-
-    public Vector2D getSize() {
-        return new Vector2D(width,height);
-    }
-    public GameObject setSize(Vector2D size) {
-        this.width=size.getX();
-        this.height= size.getY();
-        return this;
-    }
-
-    public GameObject setSize(int width, int height) {
-        return setSize(new Vector2D(width, height));
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public int getHeight() {
-        return this.height;
     }
 
     public GameObject setStrokeColor(Color strokeColor) {
@@ -131,5 +94,73 @@ public abstract class GameObject {
         return scene.getEngine();
     }
 
+
+    /**
+     * Adds a child to the GameObject.
+     *
+     * @param gameObject The object to add as a child.
+     * @return The updated {@link GameObject} instance.
+     * @throws RuntimeException When the given object already has a parent.
+     */
+    public GameObject addChild(GameObject gameObject) {
+        if (gameObject.parent != null) {
+            throw new RuntimeException("The given GameObject already has a parent");
+        }
+
+        gameObject.parent = this;
+        children.add(gameObject);
+        return this;
+    }
+
+    /**
+     * An event method that's called once on initialization.
+     */
+    public void init() {
+        for (GameObject child : getChildren()) {
+            child.init();
+        }
+    }
+
+    public void render(IGraphics graphics) {
+        if (strokeColor != null) {
+            graphics.setColor(strokeColor);
+            graphics.drawRectangle(getX(), getY(), getWidth(), getHeight());
+        }
+
+        for (GameObject child : getChildren()) {
+            if (child.isEnabled()) {
+                child.render(graphics);
+            }
+        }
+    }
+
+    /**
+     * An event method that's called on each frame.
+     *
+     * @param delta The number of seconds since the last frame.
+     */
+    public void update(double delta) {
+        for (GameObject child : getChildren()) {
+            if (child.isEnabled()) {
+                child.update(delta);
+            }
+        }
+    }
+
+    /**
+     * An event method that's called when the device receives an event.
+     *
+     * @param event The received event from the device.
+     * @return Whether or not the input has been processed.
+     */
+    public boolean handleInput(TouchEvent event) {
+        for (GameObject child : getChildren()) {
+            if (child.isEnabled() && child.handleInput(event)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }
