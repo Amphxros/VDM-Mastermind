@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IEngine;
+import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.engine.interfaces.objects.ISound;
 import vdm.mastermind.logic.DaltonicListener;
@@ -20,7 +21,7 @@ public class GameScene extends Scene{
 
     Password solution;
     Color[] colors;
-
+    Table[] tables;
 
     ArrayList<DaltonicListener> daltonicListeners;
     public GameScene(IEngine engine, int numColors, int numIntentos, int tamPassword) {
@@ -37,11 +38,15 @@ public class GameScene extends Scene{
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         ISound eyeSound= getEngine().getAudio().createSound("sounds/2.wav");
+        IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",30,true,true);
 
         this.solution= new Password(this.tamPassword,1,this.numColors, this.numColors==4);
         this.solution.generateRandom();
 
         this.colors= new Color[this.numColors];
+
+        //Create an array to save the tables
+        this.tables = new Table[this.numIntentos];
 
         DaltonicButton daltonicButton= new DaltonicButton(this,open,close, eyeSound);
         daltonicButton.setSize(50,50);
@@ -49,8 +54,12 @@ public class GameScene extends Scene{
 
         addGameObject(daltonicButton);
 
-        addGameObject(createTable(1,0,50));
-        addGameObject(createTable(1,0,105));
+        for(int i = 0; i < this.numIntentos; ++i){
+            this.tables[i] = createTable(1,0,50 + (40 * i));
+            addGameObject((GameObject)this.tables[i]);
+        }
+        //addGameObject(createTable(1,0,50));
+        //addGameObject(createTable(1,0,105));
 
     }
     public void onDaltonicMode(boolean act){
@@ -97,7 +106,7 @@ public class GameScene extends Scene{
 
     private Table createTable(int index,int posX, int posY){
         Table t= new Table(this, index, this.numIntentos,this.numColors);
-        t.setSize(300,50);
+        t.setSize(300,35);
         t.setPosition(posX,posY);
 
         return t;
