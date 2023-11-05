@@ -14,16 +14,14 @@ public final class PCSound implements ISound {
 
     @Override
     public void play() {
-        if (!sound.isRunning())
-            sound.start();
+        sound.start();
     }
 
     @Override
     public void stop() {
-        if (sound.isRunning()) {
-            sound.stop();
-            sound.setFramePosition(0);
-        }
+        sound.stop();
+        sound.setFramePosition(0);
+
     }
 
     @Override

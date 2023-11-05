@@ -6,9 +6,10 @@ import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
+import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
 
-public class Table extends GameObject{
+public class Table extends GameObject implements DaltonicListener {
 
     int index;
     int tamRow;
@@ -32,10 +33,18 @@ public class Table extends GameObject{
         graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
         graphics.setColor(new Color(0,0,0));
         graphics.drawText(String.valueOf(index),getX(), getY() + getHeight()/2, getWidth(), HorizontalAlignment.NONE);
-
     }
 
     public void onColorSelected(int color){
+
+    }
+
+    @Override
+    public void onDaltonicMode() {
+
+    }
+    @Override
+    public void setDaltonicMode(boolean mode){
 
     }
 }

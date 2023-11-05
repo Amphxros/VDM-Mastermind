@@ -6,6 +6,7 @@ import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.engine.interfaces.objects.ISound;
+import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
 import vdm.mastermind.logic.buttons.DaltonicButton;
 import vdm.mastermind.logic.gameobjects.GameObject;
@@ -21,13 +22,14 @@ public class GameScene extends Scene{
     Color[] colors;
 
 
-    ArrayList<GameObject> daltonicListeners;
+    ArrayList<DaltonicListener> daltonicListeners;
     public GameScene(IEngine engine, int numColors, int numIntentos, int tamPassword) {
         super(engine);
         this.numColors=numColors;
         this.numIntentos= numIntentos;
         this.tamPassword= tamPassword;
 
+        this.daltonicListeners= new ArrayList<>();
     }
 
     @Override
@@ -43,40 +45,19 @@ public class GameScene extends Scene{
 
         DaltonicButton daltonicButton= new DaltonicButton(this,open,close, eyeSound);
         daltonicButton.setSize(50,50);
-        daltonicButton.setPosition(290,0);
+        daltonicButton.setPosition(270,0);
 
         addGameObject(daltonicButton);
 
-        Table t= new Table(this, 1, 4,this.numColors);
-        t.setSize(300,50);
-        t.setPosition(10,50);
-        addGameObject(t);
-
-        t= new Table(this, 2, 4,this.numColors);
-        t.setSize(300,50);
-        t.setPosition(10,110);
-        addGameObject(t);
-
-        t= new Table(this, 3, 4,this.numColors);
-        t.setSize(300,50);
-        t.setPosition(10,170);
-        addGameObject(t);
-
-        t= new Table(this, 4, 4,this.numColors);
-        t.setSize(300,50);
-        t.setPosition(10,230);
-        addGameObject(t);
-
-        t= new Table(this, 5, 4,this.numColors);
-        t.setSize(300,50);
-        t.setPosition(10,290);
-        addGameObject(t);
-
+        addGameObject(createTable(1,0,50));
+        addGameObject(createTable(1,0,105));
 
     }
     public void onDaltonicMode(boolean act){
-        for(GameObject g: daltonicListeners){
+        for(DaltonicListener g: daltonicListeners){
             //set daltonicMode
+            g.setDaltonicMode(act);
+            g.onDaltonicMode();
         }
     }
     private void generateColors(int numColors){
@@ -112,5 +93,13 @@ public class GameScene extends Scene{
 
             }
         }
+    }
+
+    private Table createTable(int index,int posX, int posY){
+        Table t= new Table(this, index, this.numIntentos,this.numColors);
+        t.setSize(300,50);
+        t.setPosition(posX,posY);
+
+        return t;
     }
 }

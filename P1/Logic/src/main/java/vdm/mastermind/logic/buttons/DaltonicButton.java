@@ -39,10 +39,16 @@ public class DaltonicButton extends Button{
     @Override
     public boolean onTouchDown(TouchEvent event) {
         datonic_mode=!datonic_mode;
+        if(datonic_mode)
+            getEngine().getAudio().playSound(sound);
+        else{
+            getEngine().getAudio().stopSound(sound);
+        }
         GameScene scene= (GameScene) getScene();
         if(scene!=null){
             scene.onDaltonicMode(datonic_mode);
         }
+
         return super.onTouchDown(event);
     }
 
