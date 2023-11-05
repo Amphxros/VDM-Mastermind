@@ -20,7 +20,7 @@ public class ChooseLevelScene extends Scene{
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
-        int buttonW = (int) (maxWidth/3);
+        int buttonW = (int) (maxWidth/4);
         int buttonX = center -(int)(maxWidth * 0.9) / 2;
 
         // Title

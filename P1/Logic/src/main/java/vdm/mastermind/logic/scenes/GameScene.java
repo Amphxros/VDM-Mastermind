@@ -55,7 +55,7 @@ public class GameScene extends Scene{
         addGameObject(daltonicButton);
 
         for(int i = 0; i < this.numIntentos; ++i){
-            this.tables[i] = createTable(1,0,50 + (40 * i));
+            this.tables[i] = createTable(i+1,10,50 + (40 * i));
             addGameObject((GameObject)this.tables[i]);
         }
         //addGameObject(createTable(1,0,50));

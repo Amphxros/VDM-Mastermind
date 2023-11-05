@@ -25,6 +25,6 @@ public class GoToGameScene extends GoToSceneButton{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.drawRectangle(getX(),getY(), getWidth(), getHeight());
+        graphics.fillRoundRectangle(getX(),getY(), getWidth(), getHeight(),50);
     }
 }

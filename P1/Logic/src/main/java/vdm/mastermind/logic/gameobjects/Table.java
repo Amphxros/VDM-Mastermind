@@ -30,9 +30,9 @@ public class Table extends GameObject implements DaltonicListener {
     public void render(IGraphics graphics) {
         super.render(graphics);
         graphics.setColor(new Color(200,200,200));
-        graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
+        graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),10);
         graphics.setColor(new Color(0,0,0));
-        graphics.drawText(String.valueOf(index),getX(), getY() + getHeight()/2, getWidth(), HorizontalAlignment.NONE);
+        graphics.drawText(String.valueOf(index),getX() + 1*getHeight()/4, getY() + 3*getHeight()/4, getWidth(), HorizontalAlignment.NONE);
     }
 
     public void onColorSelected(int color){
