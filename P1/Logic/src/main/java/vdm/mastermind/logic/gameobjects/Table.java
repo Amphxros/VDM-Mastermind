@@ -115,10 +115,18 @@ public class Table extends GameObject implements DaltonicListener {
 
     @Override
     public void onDaltonicMode() {
-
+        for(Cell c: cells)
+            c.onDaltonicMode();
     }
     @Override
     public void setDaltonicMode(boolean mode){
+        for(Cell c: cells)
+            c.setDaltonicMode(mode);
+    }
 
+    public void FillWithPassword(Password p){
+        for(int i=0; i<cells.size();i++){
+            cells.get(i).setIndex(p.getIntPassword(i));
+        }
     }
 }
