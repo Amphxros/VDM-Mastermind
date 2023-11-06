@@ -21,6 +21,7 @@ public final class Tracks extends GameObject{
     public void init(int _numMiniTracks){
         this.numMiniTracks = _numMiniTracks;
         state = CellState.EMPTY;
+        super.init();
     }
     public void render(IGraphics graphics){
         super.render(graphics);
