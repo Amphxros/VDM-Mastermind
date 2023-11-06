@@ -16,6 +16,15 @@ public class Password {
 
     public void generateRandom(){
 
+        //BORRAR Y CAMBIAR
+
+        int num = 0;
+        for(int i = 0; i < password.length; ++i){
+            password[i] = num;
+            System.out.println(num + ", ");
+            num++;
+            if(num > 3) num = 0;
+        }
     }
 
     public void generateCopy(int[] password){

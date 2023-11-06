@@ -26,7 +26,6 @@ public class Table extends GameObject implements DaltonicListener {
         this.tamRow=tamRow;
         this.currElem=0;
         this.maxValue=numColors;
-        this.password= new Password(this.tamRow, 1,numColors,false);
 
     }
 
@@ -62,14 +61,31 @@ public class Table extends GameObject implements DaltonicListener {
 
     private void doTrack(){
         int currentElem = 0;
+        ArrayList<Integer> wrong = new ArrayList<Integer>();
         for(int i = 0; i < myTracks.size(); ++i) {
-            if(cells.get(i).getIndex() == password.getIntPassword(i)){
-
+            if(cells.get(i).getIndex() == password.getIntPassword(i)) {
                 myTracks.get(currentElem).setState(CellState.CORRECT);
+                cells.get(i).setState(CellState.CORRECT);
+                myTracks.get(currentElem).setStrokeColor(new Color(0,0,0));
+                currentElem++;
+            }else{
+                wrong.add(i);
             }
         }
 
-        //TODO
+        for(int i = 0; i < wrong.size(); i++){
+            for(int j = 0; j < cells.size(); ++j){
+                if(currentElem < myTracks.size() && j != wrong.get(i) && cells.get(j).getState() != CellState.CORRECT &&
+                        cells.get(j).getIndex() == password.getIntPassword(wrong.get(i)) &&
+                        myTracks.get(currentElem).getState() != CellState.EMPTY) {
+
+                    myTracks.get(currentElem).setState(CellState.WRONG);
+                    cells.get(j).setState(CellState.WRONG);
+                    myTracks.get(currentElem).setStrokeColor(new Color(255,255,255));
+                    currentElem++;
+                }
+            }
+        }
     }
 
     @Override
