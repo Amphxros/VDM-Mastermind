@@ -7,6 +7,7 @@ import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.Cell;
+import vdm.mastermind.logic.CellState;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
 
@@ -26,7 +27,6 @@ public class Table extends GameObject implements DaltonicListener {
         this.currElem=0;
         this.maxValue=numColors;
         this.password= new Password(this.tamRow, 1,numColors,false);
-
 
     }
 
@@ -84,12 +84,20 @@ public class Table extends GameObject implements DaltonicListener {
             this.cells.get(i).render(graphics);
             this.myTracks.get(i).render(graphics);
         }
-
-        //super.render(graphics);
     }
 
-    public void onColorSelected(int color){
+    public boolean onColorSelected(Color color){
+        int i = 0;
 
+        for(; i < cells.size(); ++i){
+            if(cells.get(i).getState() == CellState.EMPTY){
+                cells.get(i).setState(CellState.FILLED);
+                cells.get(i).setStrokeColor(color);
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
