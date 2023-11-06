@@ -40,6 +40,7 @@ public class GameScene extends Scene{
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         ISound eyeSound= getEngine().getAudio().createSound("sounds/2.wav");
+        ISound buttonSound= getEngine().getAudio().createSound("sounds/6.wav");
         IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",30,true,true);
 
         int maxHeight= getEngine().getGraphics().getHeight();

@@ -20,16 +20,15 @@ public final class AndroidAudio implements IAudio {
     // Sound
     @Override
     public AndroidSound createSound(String filename){
-        int soundId = -1;
+        int soundID = -1;
         try {
             AssetFileDescriptor afd = context.getAssets().openFd(filename);
-            soundId = soundPool.load(afd, 1);
+            soundID = soundPool.load(afd, 1);
         }catch (Exception e) {
             throw new RuntimeException("Couldn't load sound."+  e);
         }
-        soundPool.play(soundId, 1, 1, 1, 0, 1);
 
-        return new AndroidSound(soundPool);
+        return new AndroidSound(soundPool, soundID);
     }
 
 

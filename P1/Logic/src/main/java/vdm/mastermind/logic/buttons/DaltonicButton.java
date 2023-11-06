@@ -45,6 +45,7 @@ public class DaltonicButton extends Button{
             scene.onDaltonicMode(datonic_mode);
         }
 
+        sound.play();
         return super.onTouchDown(event);
     }
 
