@@ -11,14 +11,15 @@ import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.Cell;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
+import vdm.mastermind.logic.scenes.Scene;
 
 public class Table extends GameObject implements DaltonicListener {
 
     int index;
     int tamRow;
     int currElem;
-
     int maxValue;
+    Cell[] cells;
     Password password;
     ArrayList<Cell> cells;
     public Table(IScene scene, int index, int tamRow, int numColors) {
@@ -28,7 +29,6 @@ public class Table extends GameObject implements DaltonicListener {
         this.currElem=0;
         this.maxValue=numColors;
         this.password= new Password(this.tamRow, 1,numColors,false);
-
 
 
     }
@@ -63,6 +63,7 @@ public class Table extends GameObject implements DaltonicListener {
             cells.get(i).render(graphics);
         }
 
+        //super.render(graphics);
     }
 
     public void onColorSelected(int color){
