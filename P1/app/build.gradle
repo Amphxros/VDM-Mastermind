@@ -4,9 +4,10 @@ plugins {
 
 task copyData(type: Copy) {
     description = 'Copying game data into assets folder...'
-    def fromDir = rootDir.getAbsolutePath() + '/data'
+    def fromDir = rootDir.getAbsolutePath() + '/Assets'
     from(fromDir) {
         include "**"
+        include "**.wav"
     }
     into 'src/main/assets'
 }
