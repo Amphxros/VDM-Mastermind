@@ -1,35 +1,35 @@
 package vdm.mastermind.androidengine;
 
-import android.media.MediaPlayer;
+import android.media.SoundPool;
 
 import vdm.mastermind.engine.interfaces.objects.ISound;
 
 public final class AndroidSound implements ISound {
-    private final MediaPlayer player;
+    SoundPool soundPool;
+    private int soundID = -1;
+    private int loop = 0;
 
-    public AndroidSound(MediaPlayer player) {
-        this.player = player;
+    public AndroidSound(SoundPool _soundPool, int _soundID) {
+        this.soundPool = _soundPool;
+        this.soundID = _soundID;
     }
 
     @Override
     public void play() {
-        if (!player.isPlaying())
-            player.start();
+            soundPool.play(soundID, 1.0f, 1.0f, 0, loop, 1);
     }
 
     @Override
     public void stop() {
-        if (player.isPlaying()) {
-            player.stop();
-        }
+            soundPool.stop(soundID);
     }
 
     @Override
     public void setLoop() {
-        player.setLooping(true);
+            loop = 1;
     }
 
     public void dispose() {
-        player.release();
+        soundPool.unload(soundID);
     }
 }
