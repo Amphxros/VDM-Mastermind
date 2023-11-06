@@ -4,9 +4,10 @@ import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.engine.classes.Color;
+import vdm.mastermind.logic.buttons.Button;
 import vdm.mastermind.logic.gameobjects.GameObject;
 
-public final class Cell  extends GameObject implements DaltonicListener {
+public final class Cell  extends Button implements DaltonicListener {
 
     private final CellState currentState = CellState.EMPTY;
     private final Color currentColor = new Color(0,0,0);
