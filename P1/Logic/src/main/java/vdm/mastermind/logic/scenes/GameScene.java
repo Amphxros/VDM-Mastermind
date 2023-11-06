@@ -104,7 +104,7 @@ public class GameScene extends Scene{
     }
 
     private Table createTable(int index,int posX, int posY){
-        Table t= new Table(this, index, this.numIntentos,this.numColors);
+        Table t= new Table(this, index, this.tamPassword,this.numColors);
         t.setSize(300,40);
         t.setPosition(posX,posY);
 

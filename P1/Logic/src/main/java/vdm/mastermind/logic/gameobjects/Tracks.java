@@ -25,7 +25,7 @@ public final class Tracks extends GameObject{
     public void render(IGraphics graphics){
         super.render(graphics);
         graphics.setColor(strokeColor);
-        graphics.drawCircle(2*getX(),2*getY(),(getWidth()/2));
+        graphics.drawCircle(getX(),getY(),(getWidth()));
     }
 
 }

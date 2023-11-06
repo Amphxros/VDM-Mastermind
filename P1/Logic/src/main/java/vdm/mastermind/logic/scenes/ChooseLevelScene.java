@@ -44,8 +44,8 @@ public class ChooseLevelScene extends Scene{
 
         addGameObject(createButton(4,5,4,new Color(200,200,120),buttonX, 110,buttonW, 45));
         addGameObject(createButton(6,5,4,new Color(249,231,132),buttonX,160,buttonW,45));
-        addGameObject(createButton(6,6,6,new Color(229,145,101),buttonX,210,buttonW,45));
-        addGameObject(createButton(10,10,5,new Color(208,83,83),buttonX,260,buttonW,45));
+        addGameObject(createButton(6,6,5,new Color(229,145,101),buttonX,210,buttonW,45));
+        addGameObject(createButton(10,10,6,new Color(208,83,83),buttonX,260,buttonW,45));
 
         addGameObject(createText("Facil",font,new Color(0,0,0),buttonX + buttonW/3, 140));
         addGameObject(createText("Medio",font,new Color(0,0,0),buttonX + buttonW/3, 190));

@@ -36,7 +36,9 @@ public class Table extends GameObject implements DaltonicListener {
 
       private Cell createCell(int index){
         Cell c= new Cell(getScene());
-        c.setPosition( ((index/2) + 1) * (this.getWidth()/(tamRow + 2)),this.getY()/2 + this.getHeight()/4);
+        //((index/2) + 1) * (this.getWidth()/(tamRow + 2))
+        c.setPosition( this.getX() + ((((this.getWidth()/(tamRow + 1)))/2 * (index + 1))),
+                this.getY()/2 + this.getHeight()/4);
         c.setSize(20,20);
         c.setStrokeColor(new Color(100,100,100));
         c.setEnabled(true);
@@ -46,9 +48,16 @@ public class Table extends GameObject implements DaltonicListener {
 
     private Tracks createTrack(int index){
         Tracks t = new Tracks(this.getScene());
-
-        t.setPosition((this.getWidth()/(tamRow + 2) * ((tamRow + 2)/2)), this.getY()/2 + this.getHeight()/4);
-        t.setSize(7,7);
+//(this.getWidth()/(tamRow + 2) * ((tamRow + 2)/2))) * index
+        int fila = 0;
+        int colum = index + 1;
+        if((index + 1) > tamRow/2)  {
+            fila = this.getY() + (this.getHeight()/4);
+            colum -= tamRow/2;
+        }
+        else fila = this.getY() + (this.getHeight()/4)*3;
+        t.setPosition(this.getWidth() - (((this.getWidth()/(tamRow + 2))/2) * (int)(colum)), fila);
+        t.setSize(5,5);
         t.setStrokeColor(new Color(255, 0, 0));
         t.setEnabled(true);
 
