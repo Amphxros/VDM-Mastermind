@@ -10,6 +10,7 @@ import vdm.mastermind.engine.interfaces.objects.ISound;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
 import vdm.mastermind.logic.buttons.DaltonicButton;
+import vdm.mastermind.logic.gameobjects.ColorTable;
 import vdm.mastermind.logic.gameobjects.GameObject;
 import vdm.mastermind.logic.gameobjects.Table;
 
@@ -40,6 +41,7 @@ public class GameScene extends Scene{
         ISound eyeSound= getEngine().getAudio().createSound("sounds/2.wav");
         IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",30,true,true);
 
+        int maxHeight= getEngine().getGraphics().getHeight();
         this.solution= new Password(this.tamPassword,1,this.numColors, this.numColors==4);
         this.solution.generateRandom();
 
@@ -58,6 +60,14 @@ public class GameScene extends Scene{
             this.tables[i] = createTable(i+1,0,50 + (45 * i));
             addGameObject((GameObject)this.tables[i]);
         }
+        generateColors(this.numColors);
+
+        ColorTable colorTable = new ColorTable(this, this.numColors, colors);
+        colorTable.setPosition(0,maxHeight-50);
+        colorTable.setSize(300,50);
+        colorTable.setStrokeColor(new Color(100,100,100));
+        addGameObject(colorTable);
+
         super.init();
 
     }
@@ -109,5 +119,9 @@ public class GameScene extends Scene{
         t.setPosition(posX,posY);
 
         return t;
+    }
+
+    public void onColorClicked(int index){
+
     }
 }

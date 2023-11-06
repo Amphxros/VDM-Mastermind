@@ -48,7 +48,7 @@ public class Table extends GameObject implements DaltonicListener {
 
     private Tracks createTrack(int index){
         Tracks t = new Tracks(this.getScene());
-//(this.getWidth()/(tamRow + 2) * ((tamRow + 2)/2))) * index
+        //(this.getWidth()/(tamRow + 2) * ((tamRow + 2)/2))) * index
         int fila = 0;
         int colum = index;
         if((index + 1) > (tamRow)/2)  {
@@ -74,6 +74,7 @@ public class Table extends GameObject implements DaltonicListener {
             //create Tracks
             this.myTracks.add(createTrack(i));
         }
+
 
 
 
