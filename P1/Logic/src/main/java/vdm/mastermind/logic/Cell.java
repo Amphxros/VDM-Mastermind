@@ -35,7 +35,7 @@ public final class Cell  extends GameObject implements DaltonicListener {
     public void render(IGraphics graphics) {
         super.render(graphics);
         graphics.setColor(strokeColor);
-        graphics.drawCircle(2*getX(),2*getY(),(getWidth()/2));
+        graphics.drawCircle(getX(),getY(),getWidth());
 
         if(daltonic){
             graphics.drawText(String.valueOf(index),getX(),getY(),getWidth(), HorizontalAlignment.NONE);
