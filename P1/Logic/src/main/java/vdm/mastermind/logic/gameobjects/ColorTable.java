@@ -28,7 +28,7 @@ public class ColorTable extends GameObject implements DaltonicListener {
     @Override
     public void init() {
         for(int i= 0; i<this.numColors;i++){
-            this.coloringButtons.add( createButton(i, this.colors[i], 20 * (i + 1)));
+            this.coloringButtons.add( createButton(i, this.colors[i], getX() +25*(i+1)));
         }
         super.init();
     }
@@ -36,15 +36,17 @@ public class ColorTable extends GameObject implements DaltonicListener {
     private ColoringButton createButton(int index, Color c, int posX)
     {
         ColoringButton coloringButton= new ColoringButton(getScene(), index, c);
-        coloringButton.setPosition(posX, getY()- getHeight()/2);
+        coloringButton.setPosition(posX, getY() + getHeight()/4);
+        coloringButton.setSize(15,25);
         return coloringButton;
     }
 
     @Override
     public void render(IGraphics graphics) {
-        super.render(graphics);
+
         graphics.setColor(strokeColor);
-        graphics.drawRoundRectangle(getX(), getY(),getWidth(), getHeight(),50);
+        graphics.fillRoundRectangle(getX(), getY(),getWidth(), getHeight(),20);
+
         for(ColoringButton c: coloringButtons){
             c.render(graphics);
         }

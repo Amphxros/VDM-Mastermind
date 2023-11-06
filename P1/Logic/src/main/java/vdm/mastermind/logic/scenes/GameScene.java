@@ -63,10 +63,11 @@ public class GameScene extends Scene{
         generateColors(this.numColors);
 
         ColorTable colorTable = new ColorTable(this, this.numColors, colors);
-        colorTable.setPosition(0,maxHeight-50);
+        colorTable.setPosition(10,500);
         colorTable.setSize(300,50);
         colorTable.setStrokeColor(new Color(100,100,100));
         addGameObject(colorTable);
+        daltonicListeners.add(colorTable);
 
         super.init();
 
@@ -108,6 +109,12 @@ public class GameScene extends Scene{
                 case 8:
                     colors[i]= new Color(143,184,222);
                     break;
+                case 9:
+                    colors[i]= new Color(143,184,222);
+                    break;
+                case 10:
+                    colors[i]= new Color(143,184,222);
+                    break;
 
             }
         }
@@ -122,6 +129,6 @@ public class GameScene extends Scene{
     }
 
     public void onColorClicked(int index){
-
+        System.out.println("clickado color " + index);
     }
 }
