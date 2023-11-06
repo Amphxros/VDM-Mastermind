@@ -53,7 +53,7 @@ public class WinScene extends Scene{
         levelScene.setSize(2*buttonW, 50);
         levelScene.setStrokeColor(new Color(0,200,200));
         addGameObject(levelScene);
-
+        super.init();
 
 
 

@@ -17,6 +17,13 @@ public abstract class Scene implements IScene {
         this.engine=engine;
         gameObjects= new ArrayList<>();
     }
+
+    @Override
+    public void init(){
+        for(GameObject g: gameObjects)
+            g.init();
+    }
+
     @Override
     public void render(IGraphics graphics) {
         for(GameObject g : gameObjects){
@@ -48,8 +55,7 @@ public abstract class Scene implements IScene {
         }
     }
 
-    @Override
-    public abstract void init();
+
 
     @Override
     public void release() {

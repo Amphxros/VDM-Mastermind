@@ -29,17 +29,14 @@ public class Table extends GameObject implements DaltonicListener {
         this.maxValue=numColors;
         this.password= new Password(this.tamRow, 1,numColors,false);
 
-        cells= new ArrayList<>(this.tamRow);
-        for(int i=0;i<this.tamRow;i++){
-            cells.add(createCell(i));
-        }
+
 
     }
 
       private Cell createCell(int index){
         Cell c= new Cell(getScene());
-        c.setPosition(20*(index+1),2*getY() + getHeight());
-        c.setSize(10,10);
+        c.setPosition(15+ 15*(index+1),getY()/2 + getHeight()/4);
+        c.setSize(20,20);
         c.setStrokeColor(new Color(0,0,0));
         c.setEnabled(true);
 
@@ -48,7 +45,10 @@ public class Table extends GameObject implements DaltonicListener {
 
     @Override
     public void init() {
-
+        cells= new ArrayList<>(this.tamRow);
+        for(int i=0;i<this.tamRow;i++){
+            cells.add(createCell(i));
+        }
     }
 
     @Override

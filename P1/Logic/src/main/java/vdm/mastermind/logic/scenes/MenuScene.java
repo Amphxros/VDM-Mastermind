@@ -42,7 +42,7 @@ public class MenuScene extends Scene{
 
         addGameObject(toChooseLevelScene);
         addGameObject(button);
-
+        super.init();
 
 
     }

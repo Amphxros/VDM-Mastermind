@@ -58,8 +58,7 @@ public class GameScene extends Scene{
             this.tables[i] = createTable(i+1,10,50 + (40 * i));
             addGameObject((GameObject)this.tables[i]);
         }
-        //addGameObject(createTable(1,0,50));
-        //addGameObject(createTable(1,0,105));
+        super.init();
 
     }
     public void onDaltonicMode(boolean act){

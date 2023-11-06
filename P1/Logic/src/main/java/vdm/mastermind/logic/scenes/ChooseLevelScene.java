@@ -51,7 +51,7 @@ public class ChooseLevelScene extends Scene{
         addGameObject(createText("Medio",font,new Color(0,0,0),buttonX + buttonW/3, 190));
         addGameObject(createText("Dificil",font,new Color(0,0,0),buttonX + buttonW/3, 240));
         addGameObject(createText("Imposible",font,new Color(0,0,0),buttonX + buttonW/3, 290));
-
+        super.init();
     }
 
     private GoToGameScene createButton(int colors, int tries, int tamPassword, Color c, int posX, int posY, int width, int height){
