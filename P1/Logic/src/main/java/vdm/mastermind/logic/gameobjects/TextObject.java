@@ -23,8 +23,6 @@ public class TextObject extends GameObject {
         super.render(graphics);
         graphics.setFont(renderingFont);
         graphics.setColor(strokeColor);
-
-
         graphics.drawText(text, getX(),getY() + getHeight()/2,getWidth()/2,HorizontalAlignment.LEFT);
 
     }

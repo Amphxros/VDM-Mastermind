@@ -15,7 +15,7 @@ public abstract class GameObject {
     private Vector2D position = new Vector2D(0, 0);
     private Vector2D size = new Vector2D(0, 0);
     private boolean enabled = true;
-    private Color strokeColor = null;
+    protected Color strokeColor = null;
     private GameObject parent = null;
 
     public GameObject(IScene scene) {
@@ -122,11 +122,6 @@ public abstract class GameObject {
     }
 
     public void render(IGraphics graphics) {
-        if (strokeColor != null) {
-            graphics.setColor(strokeColor);
-            graphics.drawRectangle(getX(), getY(), getWidth(), getHeight());
-        }
-
         for (GameObject child : getChildren()) {
             if (child.isEnabled()) {
                 child.render(graphics);

@@ -15,9 +15,11 @@ public final class AndroidEngine extends Engine implements Runnable {
         AndroidInput androidInput= new AndroidInput();
         AndroidAudio androidAudio= new AndroidAudio(context);
         view.setOnTouchListener(androidInput);
+
         setInput(androidInput);
         setGraphics(androidGraphics);
         setAudio(androidAudio);
+
         assert (androidGraphics!=null);
         assert (androidInput!=null);
         assert (androidAudio!=null);

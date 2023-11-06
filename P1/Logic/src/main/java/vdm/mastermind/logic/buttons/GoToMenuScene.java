@@ -7,10 +7,10 @@ import vdm.mastermind.logic.scenes.MenuScene;
 import vdm.mastermind.logic.scenes.Scene;
 
 public class GoToMenuScene extends GoToSceneButton{
-    IImage image;
-    public GoToMenuScene(IScene scene, IImage image) {
+
+    public GoToMenuScene(IScene scene) {
         super(scene);
-        this.image=image;
+
     }
 
     @Override
@@ -20,6 +20,6 @@ public class GoToMenuScene extends GoToSceneButton{
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.drawRectangle(getX(),getY(), getWidth(), getHeight());
+        graphics.drawCircle(2*getX(),2*getY(), getWidth()/2);
     }
 }

@@ -19,12 +19,6 @@ public class Logic implements ILogic {
         super();
         this.engine=engine;
 
-
-    }
-
-    @Override
-    public void init(){
-        setCurrentScene(new MenuScene(getEngine()));
     }
     public void setCurrentScene(IScene scene){
         assert (scene!=null);
@@ -33,6 +27,12 @@ public class Logic implements ILogic {
         }
         currentScene=scene;
         currentScene.init();
+    }
+
+    @Override
+    public void init() {
+
+        setCurrentScene(new MenuScene(getEngine()));
     }
 
     @Override

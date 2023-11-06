@@ -2,14 +2,13 @@ package vdm.mastermind.androidengine;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.graphics.drawable.shapes.PathShape;
-import android.graphics.drawable.shapes.Shape;
+
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 

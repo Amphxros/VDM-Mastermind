@@ -3,9 +3,12 @@ package vdm.mastermind.logic.scenes;
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.IEngine;
 import vdm.mastermind.engine.interfaces.objects.IFont;
+import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.logic.buttons.GoToChooseLevelScene;
 import vdm.mastermind.logic.buttons.GoToGameScene;
+import vdm.mastermind.logic.buttons.GoToMenuScene;
 import vdm.mastermind.logic.gameobjects.GameObject;
+import vdm.mastermind.logic.gameobjects.ImageObject;
 import vdm.mastermind.logic.gameobjects.TextObject;
 
 public class ChooseLevelScene extends Scene{
@@ -18,62 +21,53 @@ public class ChooseLevelScene extends Scene{
         IFont font= getEngine().getGraphics().newFont("fonts/Shade June Free Trial.ttf",30,true,true);
         IFont fontTittle= getEngine().getGraphics().newFont("fonts/Falling For Autumn.ttf",20,true,true);
 
+        IImage back= getEngine().getGraphics().newImage("images/back_button.png");
+
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
-        int buttonW = (int) (maxWidth/4);
-        int buttonX = center -(int)(maxWidth * 0.9) / 2;
+        int buttonW = (int) (maxWidth/3);
+        int buttonX = 20;
 
-        // Title
-        GameObject tittle=(GameObject)new TextObject(this, fontTittle,"¿En que dificultad quiere jugar?");
-        tittle.setPosition(buttonX/2, 100);
-        tittle.setSize(buttonW,100);
-        addGameObject(tittle);
+        addGameObject(createText("¿En que dificultad quiere jugar?",fontTittle,new Color(0,0,0),70, 50));
 
-        GoToGameScene chooseDifficultyA= new GoToGameScene(this,4,5,4);
-        chooseDifficultyA.setStrokeColor(new Color(200,200,120));
-        chooseDifficultyA.setPosition(buttonX, 210);
-        chooseDifficultyA.setSize(buttonW,45);
+        ImageObject img= new ImageObject(this,back);
+        img.setPosition(buttonX,20);
+        img.setStrokeColor(new Color(0,0,0));
+        img.setSize(50,50);
+        addGameObject(img);
 
-        addGameObject(chooseDifficultyA);
+        GoToMenuScene menuScene= new GoToMenuScene(this);
+        menuScene.setPosition(buttonX,20);
+        menuScene.setSize(60,50);
+        menuScene.setStrokeColor(new Color(0,0,0));
+        addGameObject(menuScene);
 
-        GoToGameScene chooseDifficultyB= new  GoToGameScene(this,6,5,4);
-        chooseDifficultyB.setStrokeColor(new Color(249,231,132));
-        chooseDifficultyB.setPosition(buttonX, 260);
-        chooseDifficultyB.setSize(buttonW,45);
+        addGameObject(createButton(4,5,4,new Color(200,200,120),buttonX, 110,buttonW, 45));
+        addGameObject(createButton(6,5,4,new Color(249,231,132),buttonX,160,buttonW,45));
+        addGameObject(createButton(6,6,6,new Color(229,145,101),buttonX,210,buttonW,45));
+        addGameObject(createButton(10,10,5,new Color(208,83,83),buttonX,260,buttonW,45));
 
-        addGameObject(chooseDifficultyB);
+        addGameObject(createText("Facil",font,new Color(0,0,0),buttonX + buttonW/3, 140));
+        addGameObject(createText("Medio",font,new Color(0,0,0),buttonX + buttonW/3, 190));
+        addGameObject(createText("Dificil",font,new Color(0,0,0),buttonX + buttonW/3, 240));
+        addGameObject(createText("Imposible",font,new Color(0,0,0),buttonX + buttonW/3, 290));
 
-        GoToGameScene chooseDifficultyC= new GoToGameScene(this,6,6,6);
-        chooseDifficultyC.setStrokeColor(new Color(229,145,101));
-        chooseDifficultyC.setPosition(buttonX, 310);
-        chooseDifficultyC.setSize(buttonW,45);
+    }
 
-        addGameObject(chooseDifficultyC);
-
-        GoToGameScene chooseDifficultyD= new GoToGameScene(this,10,10,5);
-        chooseDifficultyD.setStrokeColor(new Color(208,83,83));
-        chooseDifficultyD.setPosition(buttonX, 360);
-        chooseDifficultyD.setSize(buttonW,45);
-
-        addGameObject(chooseDifficultyD);
-
-        TextObject textObject= new TextObject(this,font,"Facil");
-        textObject.setPosition(buttonX , 230);
-        addGameObject(textObject);
-
-        textObject= new TextObject(this,font,"Medio");
-        textObject.setPosition(buttonX , 280);
-        addGameObject(textObject);
-
-        textObject= new TextObject(this,font,"Dificil");
-        textObject.setPosition(buttonX, 330);
-        addGameObject(textObject);
-
-        textObject= new TextObject(this,font,"Imposible");
-        textObject.setPosition(buttonX, 380);
-        addGameObject(textObject);
+    private GoToGameScene createButton(int colors, int tries, int tamPassword, Color c, int posX, int posY, int width, int height){
+        GoToGameScene chooseDifficultyA= new GoToGameScene(this,colors,tries,tamPassword);
+        chooseDifficultyA.setStrokeColor(c);
+        chooseDifficultyA.setPosition(posX, posY);
+        chooseDifficultyA.setSize(width,height);
 
 
+        return chooseDifficultyA;
+    }
 
+    private TextObject createText(String tittle, IFont font, Color c,int posX, int posY){
+        TextObject textObject= new TextObject(this,font,tittle);
+        textObject.setPosition(posX , posY);
+        textObject.setStrokeColor(c);
+        return textObject;
     }
 }

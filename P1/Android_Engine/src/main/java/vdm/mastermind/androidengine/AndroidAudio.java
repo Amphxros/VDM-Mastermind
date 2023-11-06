@@ -14,20 +14,10 @@ public final class AndroidAudio implements IAudio {
         this.context = context;
     }
 
+    //TODO implements with sound pool
     @Override
     public ISound createSound(String filename) {
-        MediaPlayer player = new MediaPlayer();
-        try {
-            AssetFileDescriptor afd = context.getAssets().openFd(filename + ".ogg");
-            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-            player.prepare();
-        } catch (Exception e) { // Error reading file
-            e.printStackTrace();
-            return null;
-        }
-
-        return new AndroidSound(player);
+        return null;
     }
 
     @Override
