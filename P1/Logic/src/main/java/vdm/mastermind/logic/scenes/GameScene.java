@@ -9,7 +9,6 @@ import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.engine.interfaces.objects.ISound;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
-import vdm.mastermind.logic.buttons.ChooseColors;
 import vdm.mastermind.logic.buttons.DaltonicButton;
 import vdm.mastermind.logic.gameobjects.ColorTable;
 import vdm.mastermind.logic.gameobjects.GameObject;
@@ -24,7 +23,7 @@ public class GameScene extends Scene{
     Password solution;
     Color[] colors;
     Table[] tables;
-    ChooseColors[] chooseColors;
+    ColorTable colorTable;
     ArrayList<DaltonicListener> daltonicListeners;
     public GameScene(IEngine engine, int numColors, int numIntentos, int tamPassword) {
         super(engine);
@@ -46,13 +45,6 @@ public class GameScene extends Scene{
         this.solution= new Password(this.tamPassword,1,this.numColors, this.numColors==4);
         this.solution.generateRandom();
 
-        //Colors
-        generateColors();
-        this.chooseColors = new ChooseColors[this.tamPassword];
-        for(int i = 0; i < this.numColors; ++i){
-            this.chooseColors[i] = createChooseColors(i);
-            addGameObject((GameObject)this.chooseColors[i]);
-        }
 
         //Create an array to save the tables
         this.tables = new Table[this.numIntentos];
@@ -67,13 +59,13 @@ public class GameScene extends Scene{
             this.tables[i] = createTable(i+1,0,50 + (45 * i));
             addGameObject((GameObject)this.tables[i]);
         }
-        generateColors(this.numColors);
+        generateColors();
 
-        ColorTable colorTable = new ColorTable(this, this.numColors, colors);
-        colorTable.setPosition(0,maxHeight-50);
-        colorTable.setSize(300,50);
-        colorTable.setStrokeColor(new Color(100,100,100));
-        addGameObject(colorTable);
+        this.colorTable = new ColorTable(this, this.numColors, colors);
+        this.colorTable.setPosition(0,maxHeight-100);
+        this.colorTable.setSize(300,50);
+        this.colorTable.setStrokeColor(new Color(100,100,100));
+        addGameObject((GameObject)this.colorTable);
 
         super.init();
 
@@ -84,15 +76,6 @@ public class GameScene extends Scene{
             g.setDaltonicMode(act);
             g.onDaltonicMode();
         }
-    }
-
-    private ChooseColors createChooseColors(int index){
-        ChooseColors c = new ChooseColors(this);
-        c.setSize(15,15);
-        c.setPosition( 100,50 + (45 * (this.numIntentos)));
-        c.setStrokeColor(colors[index]);
-        c.setEnabled(true);
-        return c;
     }
 
     private void generateColors(){

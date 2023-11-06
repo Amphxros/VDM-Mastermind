@@ -2,8 +2,6 @@ package vdm.mastermind.logic.gameobjects;
 
 import java.util.ArrayList;
 
-import javax.swing.Renderer;
-
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
@@ -11,8 +9,6 @@ import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.Cell;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
-import vdm.mastermind.logic.buttons.ChooseColors;
-import vdm.mastermind.logic.scenes.Scene;
 
 public class Table extends GameObject implements DaltonicListener {
 
