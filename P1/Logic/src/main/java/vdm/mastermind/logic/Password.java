@@ -32,4 +32,8 @@ public class Password {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
+    public int getIntPassword( int index ) {
+        return password[index];
+    }
 }

@@ -45,4 +45,11 @@ public final class Cell  extends Button implements DaltonicListener {
 
     }
 
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
 }
