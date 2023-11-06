@@ -11,6 +11,7 @@ import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.Cell;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
+import vdm.mastermind.logic.buttons.ChooseColors;
 import vdm.mastermind.logic.scenes.Scene;
 
 public class Table extends GameObject implements DaltonicListener {
@@ -21,7 +22,6 @@ public class Table extends GameObject implements DaltonicListener {
     int maxValue;
     Password password;
     ArrayList<Cell> cells;
-
     ArrayList<Tracks> myTracks;
     public Table(IScene scene, int index, int tamRow, int numColors) {
         super(scene);
@@ -74,9 +74,6 @@ public class Table extends GameObject implements DaltonicListener {
             //create Tracks
             this.myTracks.add(createTrack(i));
         }
-
-
-
     }
 
     @Override
@@ -84,7 +81,7 @@ public class Table extends GameObject implements DaltonicListener {
 
         graphics.setColor(new Color(200,200,200));
         graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),10);
-        graphics.setColor(new Color(0,0,0));
+        //graphics.setColor(new Color(0,0,0));
         graphics.drawText(String.valueOf(index),getX() + 1*getHeight()/4, getY() + 3*getHeight()/4, getWidth(), HorizontalAlignment.NONE);
 
         for(int i=0;i<this.tamRow;i++){

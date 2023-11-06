@@ -9,6 +9,7 @@ import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.engine.interfaces.objects.ISound;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
+import vdm.mastermind.logic.buttons.ChooseColors;
 import vdm.mastermind.logic.buttons.DaltonicButton;
 import vdm.mastermind.logic.gameobjects.GameObject;
 import vdm.mastermind.logic.gameobjects.Table;
@@ -22,7 +23,7 @@ public class GameScene extends Scene{
     Password solution;
     Color[] colors;
     Table[] tables;
-
+    ChooseColors[] chooseColors;
     ArrayList<DaltonicListener> daltonicListeners;
     public GameScene(IEngine engine, int numColors, int numIntentos, int tamPassword) {
         super(engine);
@@ -43,7 +44,13 @@ public class GameScene extends Scene{
         this.solution= new Password(this.tamPassword,1,this.numColors, this.numColors==4);
         this.solution.generateRandom();
 
-        this.colors= new Color[this.numColors];
+        //Colors
+        generateColors();
+        this.chooseColors = new ChooseColors[this.tamPassword];
+        for(int i = 0; i < this.numColors; ++i){
+            this.chooseColors[i] = createChooseColors(i);
+            addGameObject((GameObject)this.chooseColors[i]);
+        }
 
         //Create an array to save the tables
         this.tables = new Table[this.numIntentos];
@@ -68,7 +75,18 @@ public class GameScene extends Scene{
             g.onDaltonicMode();
         }
     }
-    private void generateColors(int numColors){
+
+    private ChooseColors createChooseColors(int index){
+        ChooseColors c = new ChooseColors(this);
+        c.setSize(15,15);
+        c.setPosition( 100,50 + (45 * (this.numIntentos)));
+        c.setStrokeColor(colors[index]);
+        c.setEnabled(true);
+        return c;
+    }
+
+    private void generateColors(){
+        this.colors= new Color[this.numColors];
         for(int i=0;i<this.numColors;i++){
             switch (i){
                 case 0:
@@ -97,6 +115,9 @@ public class GameScene extends Scene{
                     break;
                 case 8:
                     colors[i]= new Color(143,184,222);
+                    break;
+                case 9:
+                    colors[i]= new Color(255,184,222);
                     break;
 
             }

@@ -1,25 +1,18 @@
-package vdm.mastermind.logic;
+package vdm.mastermind.logic.buttons;
 
+import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
-import vdm.mastermind.engine.classes.Color;
-import vdm.mastermind.logic.buttons.Button;
-import vdm.mastermind.logic.gameobjects.GameObject;
+import vdm.mastermind.logic.DaltonicListener;
 
-public final class Cell  extends Button implements DaltonicListener {
+public class ChooseColors extends Button implements DaltonicListener {
 
-    private final CellState currentState = CellState.EMPTY;
-    private final Color currentColor = new Color(0,0,0);
-    private boolean daltonic;
+    boolean daltonic = false;
     private int index;
-    public Cell(IScene scene) {
+    private Color currentColor;
+    public ChooseColors(IScene scene) {
         super(scene);
-    }
-
-
-    public CellState getState(){
-        return currentState;
     }
 
     @Override
@@ -29,10 +22,9 @@ public final class Cell  extends Button implements DaltonicListener {
 
     @Override
     public void setDaltonicMode(boolean mode) {
-        daltonic=mode;
+
     }
 
-    @Override
     public void render(IGraphics graphics) {
         super.render(graphics);
         graphics.setColor(strokeColor);
