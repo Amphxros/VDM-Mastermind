@@ -24,14 +24,15 @@ public class GameScene extends Scene{
     Color[] colors;
     Table[] tables;
 
+    int currentTries;
     ArrayList<DaltonicListener> daltonicListeners;
     public GameScene(IEngine engine, int numColors, int numIntentos, int tamPassword) {
         super(engine);
-        this.numColors=numColors;
-        this.numIntentos= numIntentos;
-        this.tamPassword= tamPassword;
-
-        this.daltonicListeners= new ArrayList<>();
+        this.numColors = numColors;
+        this.numIntentos = numIntentos;
+        this.tamPassword = tamPassword;
+        this.currentTries = 0;
+        this.daltonicListeners = new ArrayList<>();
     }
 
     @Override
@@ -128,7 +129,17 @@ public class GameScene extends Scene{
         return t;
     }
 
-    public void onColorClicked(int index){
+    public void onColorClicked(int index) {
         System.out.println("clickado color " + index);
+        if(currentTries < numIntentos){
+            if(this.tables[currentTries].onColorSelected(colors[index], index)){
+                currentTries++;
+                //SE DA LA PISTA
+
+                if(currentTries >=numIntentos/*&& y no has acertado*/){
+                    //PIERDES TODO
+                }
+            };
+        }
     }
 }

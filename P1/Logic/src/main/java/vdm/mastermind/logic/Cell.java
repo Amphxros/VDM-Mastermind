@@ -9,7 +9,7 @@ import vdm.mastermind.logic.gameobjects.GameObject;
 
 public final class Cell  extends Button implements DaltonicListener {
 
-    private final CellState currentState = CellState.EMPTY;
+    private CellState currentState = CellState.EMPTY;
     private final Color currentColor = new Color(0,0,0);
     private boolean daltonic;
     private int index;
@@ -21,6 +21,7 @@ public final class Cell  extends Button implements DaltonicListener {
     public CellState getState(){
         return currentState;
     }
+    public void setState(CellState newState) { currentState = newState; };
 
     @Override
     public void onDaltonicMode() {
@@ -42,5 +43,13 @@ public final class Cell  extends Button implements DaltonicListener {
             graphics.drawText(String.valueOf(index),getX(),getY(),getWidth(), HorizontalAlignment.NONE);
         }
 
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

@@ -7,6 +7,7 @@ import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.Cell;
+import vdm.mastermind.logic.CellState;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.Password;
 
@@ -27,7 +28,6 @@ public class Table extends GameObject implements DaltonicListener {
         this.maxValue=numColors;
         this.password= new Password(this.tamRow, 1,numColors,false);
 
-
     }
 
       private Cell createCell(int index){
@@ -36,7 +36,7 @@ public class Table extends GameObject implements DaltonicListener {
         c.setPosition( this.getX() + ((((this.getWidth()/(tamRow + 2))) * (index + 1))) + ((this.getWidth()/(tamRow + 2)/2)),
                 this.getY() + this.getHeight()/2);
         c.setSize(15,15);
-        c.setStrokeColor(new Color(100,100,100));
+        c.setStrokeColor(new Color(180,180,180));
         c.setEnabled(true);
 
         return c;
@@ -54,10 +54,22 @@ public class Table extends GameObject implements DaltonicListener {
         else fila = this.getY() + (this.getHeight()/4)*3;
         t.setPosition((this.getWidth() - (this.getWidth()/(tamRow + 2)) + (((this.getWidth()/(tamRow + 2))/((tamRow + 1)/2))*colum)), fila);
         t.setSize(5,5);
-        t.setStrokeColor(new Color(255, 0, 0));
+        t.setStrokeColor(new Color(180,180,180));
         t.setEnabled(true);
 
         return t;
+    }
+
+    private void doTrack(){
+        int currentElem = 0;
+        for(int i = 0; i < myTracks.size(); ++i) {
+            if(cells.get(i).getIndex() == password.getIntPassword(i)){
+
+                myTracks.get(currentElem).setState(CellState.CORRECT);
+            }
+        }
+
+        //TODO
     }
 
     @Override
@@ -84,12 +96,21 @@ public class Table extends GameObject implements DaltonicListener {
             this.cells.get(i).render(graphics);
             this.myTracks.get(i).render(graphics);
         }
-
-        //super.render(graphics);
     }
 
-    public void onColorSelected(int color){
+    public boolean onColorSelected(Color color, int index){
+        int i = 0;
 
+        for(; i < cells.size(); ++i){
+            if(cells.get(i).getState() == CellState.EMPTY){
+                cells.get(i).setState(CellState.FILLED);
+                cells.get(i).setStrokeColor(color);
+                cells.get(i).setIndex(index);
+                return false;
+            }
+        }
+        doTrack();
+        return true;
     }
 
     @Override

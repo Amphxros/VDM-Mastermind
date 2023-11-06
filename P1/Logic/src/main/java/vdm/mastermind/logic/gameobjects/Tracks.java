@@ -29,4 +29,11 @@ public final class Tracks extends GameObject{
         graphics.drawCircle(getX(),getY(),(getWidth()));
     }
 
+    public void setState(CellState state) {
+        this.state = state;
+    }
+
+    public CellState getState() {
+        return state;
+    }
 }
