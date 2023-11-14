@@ -8,14 +8,17 @@ import vdm.mastermind.engine.interfaces.objects.IFont;
 
 public class TextObject extends GameObject {
     private String text;
-    private float size;
-    private IFont renderingFont;
+    private final IFont renderingFont;
 
     public TextObject(IScene scene, IFont font,String text) {
         super(scene);
         this.text=text;
         this.renderingFont=font;
 
+    }
+
+    public void setText(String text){
+        this.text=text;
     }
 
     @Override

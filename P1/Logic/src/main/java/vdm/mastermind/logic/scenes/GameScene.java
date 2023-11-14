@@ -59,12 +59,13 @@ public class GameScene extends Scene{
         addGameObject(daltonicButton);
 
         for(int i = 0; i < this.numIntentos; ++i){
-            this.tables[i] = createTable(i+1,0,50 + (45 * i));
+            this.tables[i] = createTable(i+1,font,0,50 + (45 * i));
             addGameObject((GameObject)this.tables[i]);
+            daltonicListeners.add(this.tables[i]);
         }
         generateColors(this.numColors);
 
-        ColorTable colorTable = new ColorTable(this, this.numColors, colors);
+        ColorTable colorTable = new ColorTable(this, font,this.numColors, colors);
         colorTable.setPosition(10,500);
         colorTable.setSize(300,50);
         colorTable.setStrokeColor(new Color(100,100,100));
@@ -76,7 +77,6 @@ public class GameScene extends Scene{
     }
     public void onDaltonicMode(boolean act){
         for(DaltonicListener g: daltonicListeners){
-            //set daltonicMode
             g.setDaltonicMode(act);
             g.onDaltonicMode();
         }
@@ -122,8 +122,8 @@ public class GameScene extends Scene{
         }
     }
 
-    private Table createTable(int index,int posX, int posY){
-        Table t= new Table(this, index, this.tamPassword,this.numColors);
+    private Table createTable(int index,IFont font,int posX, int posY){
+        Table t= new Table(this,index,font,this.tamPassword,this.numColors);
         t.setSize(300,40);
         t.setPosition(posX,posY);
 

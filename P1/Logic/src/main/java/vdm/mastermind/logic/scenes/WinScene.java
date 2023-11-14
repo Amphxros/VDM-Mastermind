@@ -49,8 +49,8 @@ public class WinScene extends Scene{
         }
 
 
-        Table t= createTable(tries, 20, 150,tamPassword,colors.length);
-        t.FillWithPassword(this.password);
+        Table t= createTable(tries,font, 20, 150,tamPassword,colors.length);
+
         t.setSize(300,100);
 
         addGameObject(t);
@@ -68,8 +68,8 @@ public class WinScene extends Scene{
         return text;
     }
 
-    private Table createTable(int index,int posX, int posY, int tamPassword, int numColors){
-        Table t= new Table(this, index, tamPassword,numColors);
+    private Table createTable(int index,IFont font,int posX, int posY, int tamPassword, int numColors){
+        Table t= new Table(this, index, font,tamPassword,numColors);
         t.setSize(300,40);
         t.setStrokeColor(new Color(0,0,0));
         t.setPosition(posX,posY);

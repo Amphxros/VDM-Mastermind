@@ -5,6 +5,9 @@ import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.logic.scenes.GameScene;
 import vdm.mastermind.logic.scenes.Scene;
 
+/**
+ * Button to go from a scene to another scene on click
+ */
 public class GoToGameScene extends GoToSceneButton{
     int colors;
     int intentos;

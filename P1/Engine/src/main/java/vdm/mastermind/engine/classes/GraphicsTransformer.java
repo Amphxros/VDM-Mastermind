@@ -2,6 +2,9 @@ package vdm.mastermind.engine.classes;
 
 import vdm.mastermind.engine.interfaces.IGraphics;
 
+/**
+ * Reescalates the logic screen to the real screen
+ */
 public final class GraphicsTransformer {
     private int width = 600;
     private int height = 800;

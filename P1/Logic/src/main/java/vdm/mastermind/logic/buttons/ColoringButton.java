@@ -5,6 +5,7 @@ import vdm.mastermind.engine.classes.TouchEvent;
 import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
+import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.logic.DaltonicListener;
 import vdm.mastermind.logic.scenes.GameScene;
 
@@ -12,10 +13,12 @@ public class ColoringButton extends Button implements DaltonicListener {
 
     int index;
     boolean daltonic;
-    public ColoringButton(IScene scene, int index, Color color) {
+    private final IFont font;
+    public ColoringButton(IScene scene, IFont font, int index, Color color) {
         super(scene);
         setStrokeColor(color);
         this.index=index;
+        this.font=font;
     }
 
     @Override
@@ -42,9 +45,10 @@ public class ColoringButton extends Button implements DaltonicListener {
     public void render(IGraphics graphics) {
         super.render(graphics);
         graphics.setColor(strokeColor);
-        graphics.drawCircle(getX()+ getWidth()/2,getY() + getHeight()/2,getWidth());
+        graphics.fillCircle(getX()+ getWidth()/2,getY() + getHeight()/2,getWidth());
         graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
         if(daltonic){
+            graphics.setFont(font);
             graphics.setColor(new Color(0,0,0));
             graphics.drawText(String.valueOf(index+1),getX(),getY() + getHeight(),getWidth(), HorizontalAlignment.NONE);
         }

@@ -31,7 +31,6 @@ public class Logic implements ILogic {
 
     @Override
     public void init() {
-
         setCurrentScene(new MenuScene(getEngine()));
     }
 

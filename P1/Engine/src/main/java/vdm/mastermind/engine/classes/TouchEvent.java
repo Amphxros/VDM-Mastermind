@@ -5,10 +5,9 @@ import vdm.mastermind.engine.enums.EventType;
 import vdm.mastermind.engine.interfaces.IGraphics;
 
 public class TouchEvent {
-    private final int posX, posY;
-    private int X, Y;
-
-    private final EventType eventType;
+    private final int posX, posY; //screen position
+    private int X, Y; //logic position
+    private final EventType eventType; //Type of event
     public TouchEvent(int x, int y, EventType eventType){
         this.posX=x;
         this.posY=y;
@@ -47,6 +46,11 @@ public class TouchEvent {
         return posX != -1 && posY != -1;
     }
 
+    /**
+     * Transforms the screen position in the logic position
+     * @param graphics {@link IGraphics} that we use
+     * but we use the {@link GraphicsTransformer} defined on it
+     */
     public void defineLogicCoordinates(IGraphics graphics) {
         X = graphics.getLogicPointX(posX);
         Y = graphics.getLogicPointY(posY);

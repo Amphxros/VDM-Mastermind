@@ -3,27 +3,28 @@ package vdm.mastermind.logic;
 
 import java.util.Random;
 
+/**
+ * Class that represents the solution
+ * in an array of ints where each index
+ * represents a color
+ */
 public class Password {
     private int [] password;
-    private final int min;
-    private final int max;
+
+    //range of the solution
+    private final int min, max;
     boolean isRepeating;
     public Password(int size,int min,int max, boolean isRepeating){
         password= new int[size];
         this.min=min;
         this.max=max;
+        this.isRepeating=isRepeating;
     }
 
     public void generateRandom(){
-
-        //BORRAR Y CAMBIAR
-
-        int num = 0;
+        Random random= new Random();
         for(int i = 0; i < password.length; ++i){
-            password[i] = num;
-            System.out.println(num + ", ");
-            num++;
-            if(num > 3) num = 0;
+            password[i]=random.nextInt(min,max+1);
         }
     }
 
@@ -33,13 +34,27 @@ public class Password {
         }
     }
 
+    /**
+     * @return The content of the password
+     */
     public int[] getPassword(){
         return this.password;
     }
 
+    /**
+     * @param obj Other password to compare to
+     * @return Whether is equal of not
+     */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        Password p = (Password) obj;
+        if(p==null) return false;
+        int i=0;
+        while(i<this.password.length &&p.password[i]==this.password[i]){
+            i++;
+        }
+
+        return i==this.password.length - 1;
     }
 
     public int getIntPassword( int index ) {

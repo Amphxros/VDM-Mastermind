@@ -6,6 +6,7 @@ import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.enums.HorizontalAlignment;
 import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
+import vdm.mastermind.engine.interfaces.objects.IFont;
 import vdm.mastermind.logic.Cell;
 import vdm.mastermind.logic.CellState;
 import vdm.mastermind.logic.DaltonicListener;
@@ -20,17 +21,19 @@ public class Table extends GameObject implements DaltonicListener {
     Password password;
     ArrayList<Cell> cells;
     ArrayList<Tracks> myTracks;
-    public Table(IScene scene, int index, int tamRow, int numColors) {
+    IFont font;
+    public Table(IScene scene, int index,IFont font, int tamRow, int numColors) {
         super(scene);
         this.index=index;
         this.tamRow=tamRow;
         this.currElem=0;
         this.maxValue=numColors;
+        this.font=font;
 
     }
 
       private Cell createCell(int index){
-        Cell c= new Cell(getScene());
+        Cell c= new Cell(getScene(),font);
         //((index/2) + 1) * (this.getWidth()/(tamRow + 2))
         c.setPosition( this.getX() + ((((this.getWidth()/(tamRow + 2))) * (index + 1))) + ((this.getWidth()/(tamRow + 2)/2)),
                 this.getY() + this.getHeight()/2);
@@ -39,6 +42,17 @@ public class Table extends GameObject implements DaltonicListener {
         c.setEnabled(true);
 
         return c;
+    }
+
+    @Override
+    public void update(double delta) {
+        int i=0;
+        while (i<cells.size() && cells.get(i).getState()==CellState.FILLED)
+            i++;
+
+        if(i==cells.size()-1){
+            //si esta completo
+        }
     }
 
     private Tracks createTrack(int index){
@@ -98,6 +112,7 @@ public class Table extends GameObject implements DaltonicListener {
             //create Tracks
             this.myTracks.add(createTrack(i));
         }
+        super.init();
     }
 
     @Override
@@ -115,9 +130,7 @@ public class Table extends GameObject implements DaltonicListener {
     }
 
     public boolean onColorSelected(Color color, int index){
-        int i = 0;
-
-        for(; i < cells.size(); ++i){
+        for(int i=0; i < cells.size(); ++i){
             if(cells.get(i).getState() == CellState.EMPTY){
                 cells.get(i).setState(CellState.FILLED);
                 cells.get(i).setStrokeColor(color);
@@ -140,9 +153,5 @@ public class Table extends GameObject implements DaltonicListener {
             c.setDaltonicMode(mode);
     }
 
-    public void FillWithPassword(Password p){
-        for(int i=0; i<cells.size();i++){
-            cells.get(i).setIndex(p.getIntPassword(i));
-        }
-    }
+
 }

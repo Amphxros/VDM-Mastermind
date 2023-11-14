@@ -18,8 +18,4 @@ public class GoToMenuScene extends GoToSceneButton{
         return new MenuScene(getEngine());
     }
 
-    @Override
-    public void render(IGraphics graphics) {
-        graphics.drawCircle(2*getX(),2*getY(), getWidth()/2);
-    }
 }
