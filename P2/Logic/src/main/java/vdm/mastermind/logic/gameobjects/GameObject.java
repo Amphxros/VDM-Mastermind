@@ -15,7 +15,7 @@ public abstract class GameObject {
     private Vector2D position = new Vector2D(0, 0);
     private Vector2D size = new Vector2D(0, 0);
     private boolean enabled = true;
-    protected Color strokeColor = null;
+    protected Color strokeColor = new Color(0,0,0);
     private GameObject parent = null;
 
     public GameObject(IScene scene) {

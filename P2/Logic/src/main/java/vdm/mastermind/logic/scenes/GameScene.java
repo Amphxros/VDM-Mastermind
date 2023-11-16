@@ -25,5 +25,8 @@ public class GameScene extends Scene{
     public void init() {
         super.init();
     }
+
+    public void onDaltonicMode(boolean datonicMode) {
+    }
 }
 

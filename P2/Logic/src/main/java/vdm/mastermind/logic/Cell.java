@@ -5,6 +5,7 @@ import vdm.mastermind.engine.interfaces.IGraphics;
 import vdm.mastermind.engine.interfaces.IScene;
 import vdm.mastermind.engine.classes.Color;
 import vdm.mastermind.engine.interfaces.objects.IFont;
+import vdm.mastermind.engine.interfaces.objects.IImage;
 import vdm.mastermind.logic.buttons.Button;
 import vdm.mastermind.logic.gameobjects.GameObject;
 
@@ -14,6 +15,7 @@ public final class Cell  extends Button implements DaltonicListener {
     private boolean daltonic;
     private int index=-1; //value of the index
     IFont font;
+    IImage image;
     public Cell(IScene scene, IFont font) {
         super(scene);
         this.font=font;

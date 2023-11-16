@@ -22,14 +22,14 @@ public class Table extends GameObject implements DaltonicListener {
     ArrayList<Cell> cells;
     ArrayList<Tracks> myTracks;
     IFont font;
-    public Table(IScene scene, int index,IFont font, int tamRow, int numColors, Password solution) {
+    public Table(IScene scene, int index,IFont font, int tamRow, int numColors) {
         super(scene);
         this.index=index;
         this.tamRow=tamRow;
         this.currElem=0;
         this.maxValue=numColors;
         this.font=font;
-        this.password=solution;
+        this.password=new Password(tamRow,0,numColors,false);
 
     }
 

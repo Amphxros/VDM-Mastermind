@@ -23,14 +23,26 @@ public class Password {
 
     public void generateRandom(){
         Random random= new Random();
-        for(int i = 0; i < password.length; ++i){
-            password[i]=random.nextInt(min,max+1);
+        if(isRepeating){
+            for(int i = 0; i < password.length; ++i){
+                password[i]=random.nextInt(min,max+1);
+            }
         }
-    }
+        else{
+            boolean[] isThere= new boolean[password.length];
+            for(int i = 0; i < password.length; ++i){
+               isThere[i]=false;
+            }
 
-    public void generateCopy(int[] password){
-        for(int i=0;i< password.length;i++){
-            this.password[i]=password[i];
+            for(int i=0;i<password.length;i++){
+                int r;
+                do {
+                    r=random.nextInt(min,max+1);
+
+                }while(isThere[r]);
+                isThere[r]=true;
+            }
+
         }
     }
 

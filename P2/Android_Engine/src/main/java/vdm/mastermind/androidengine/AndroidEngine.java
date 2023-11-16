@@ -38,7 +38,6 @@ public final class AndroidEngine extends Engine implements Runnable {
         long lastFrameTime = System.nanoTime();
         //this is for avoiding screen width=0
         getLogic().init();
-        System.out.println("Entering");
         while (running) {
             long currentTime = System.nanoTime();
             long nanoElapsedTime = currentTime - lastFrameTime;
