@@ -131,16 +131,11 @@ public class GameScene extends Scene{
     }
 
     public void onColorClicked(int index) {
-        System.out.println("clickado color " + index);
-        if(currentTries < numIntentos){
-            if(this.tables[currentTries].onColorSelected(colors[index], index)){
-                currentTries++;
-                //SE DA LA PISTA
+        if(this.tables[currentTries].onColorSelected(colors[index], index)){
+            this.tables[currentTries].doTrack();
 
-                if(currentTries >=numIntentos/*&& y no has acertado*/){
-                    //PIERDES TODO
-                }
-            };
+
         }
     }
 }
+

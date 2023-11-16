@@ -23,7 +23,6 @@ public class ColoringButton extends Button implements DaltonicListener {
 
     @Override
     public boolean onTouchDown(TouchEvent event) {
-        System.out.println("AAA" + index);
         GameScene scene= (GameScene) getScene();
         if(scene!=null){
             scene.onColorClicked(index);
