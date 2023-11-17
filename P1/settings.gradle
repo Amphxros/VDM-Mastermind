@@ -15,9 +15,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Mastermind"
 include ':app'
-include ':Logic'
+include ':AndroidEngine'
 include ':Engine'
-include ':Android_Engine'
-include ':Android_Engine'
-include ':PC_Engine'
-include ':PC_Launcher'
+include ':Logic'
+include ':PCEngine'
+include ':PCLauncher'
