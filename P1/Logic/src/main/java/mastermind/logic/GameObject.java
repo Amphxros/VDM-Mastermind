@@ -14,7 +14,7 @@ public class GameObject {
     private Vector2D position = new Vector2D(0, 0);
     private Vector2D size = new Vector2D(0, 0);
     private boolean enabled = true;
-    private Color strokeColor = null;
+    protected Color strokeColor = Color.BLACK;
     private GameObject parent = null;
 
     public GameObject(IScene scene) {
@@ -107,6 +107,7 @@ public class GameObject {
         }
 
         gameObject.parent = this;
+        gameObject.setPosition(getX() + gameObject.getX(), getY() + gameObject.getY());
         children.add(gameObject);
         return this;
     }

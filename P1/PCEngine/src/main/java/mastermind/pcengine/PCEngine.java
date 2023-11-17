@@ -39,6 +39,8 @@ public class PCEngine extends Engine implements Runnable {
     @Override
     public void run() {
         long lastFrameTime = System.nanoTime();
+
+        getLogic().init();
         while (running) {
             long currentTime = System.nanoTime();
             long nanoElapsedTime = currentTime - lastFrameTime;
@@ -50,7 +52,7 @@ public class PCEngine extends Engine implements Runnable {
             getLogic().handleEvents(getInput());
             getLogic().update(elapsedTime);
 
-            getGraphics().clear(Color.WHITE);
+            getGraphics().clear(Color.WHITE.getARGB());
             getLogic().render(getGraphics());
             getGraphics().present();
         }

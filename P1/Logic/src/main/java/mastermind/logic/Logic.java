@@ -5,6 +5,7 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
 import mastermind.engine.ILogic;
 import mastermind.engine.IScene;
+import mastermind.logic.scene.MenuScene;
 
 public class Logic implements ILogic {
     IEngine engine;
@@ -23,17 +24,27 @@ public class Logic implements ILogic {
     }
 
     @Override
+    public void init() {
+        setScene(new MenuScene(getEngine()));
+
+    }
+
+    @Override
     public void update(double t) {
+        if(currentScene!=null)
         currentScene.update(t);
     }
 
     @Override
-    public void render(IGraphics graphics) {
+    public void render(IGraphics graphics)
+    {
+        if(currentScene!=null)
         currentScene.render(graphics);
     }
 
     @Override
     public void handleEvents(IInput input) {
+        if (currentScene!=null)
         currentScene.handleInput(input);
     }
 

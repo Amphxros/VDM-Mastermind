@@ -28,4 +28,16 @@ public class AndroidLauncher extends AppCompatActivity{
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        engine.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        engine.pause();
+    }
 }

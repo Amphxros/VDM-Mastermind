@@ -170,7 +170,8 @@ public class PCGraphics implements IGraphics {
     }
     @Override
     public void setFont(IFont font) {
-        canvas.setFont(((PCFont) font).getUnderlyingFont());
+
+        canvas.setFont(((PCFont) font).getUnderlyingFont().deriveFont((float) font.getSize()));
     }
 
     @Override
@@ -181,23 +182,7 @@ public class PCGraphics implements IGraphics {
         canvas = (Graphics2D) buffer.getDrawGraphics();
     }
 
-    @Override
-    public void clear(mastermind.engine.Color color) {
-        setColor(color);
-        canvas.fillRect(0, 0, window.getWidth(), window.getHeight());
-        updateTransformParameters();
-    }
 
-    @Override
-    public void clear(Color color) {
-        setColor(color);
-        canvas.fillRect(0, 0, window.getWidth(), window.getHeight());
-        updateTransformParameters();
-    }
-
-    private void setColor(Color color) {
-        canvas.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
-    }
 
     @Override
     public void clear(int color) {

@@ -68,11 +68,6 @@ public final class AndroidGraphics implements IGraphics {
         surfaceHolder.unlockCanvasAndPost(canvas);
     }
 
-    @Override
-    public void clear(Color color) {
-        clear(color.getARGB());
-    }
-
     public boolean surfaceValid() {
         return surfaceHolder.getSurface().isValid();
     }
@@ -204,7 +199,7 @@ public final class AndroidGraphics implements IGraphics {
     }
 
     @Override
-    public void setColor(mastermind.engine.Color color) {
+    public void setColor(Color color) {
         paint.setColor(color.getARGB());
     }
 
@@ -213,6 +208,7 @@ public final class AndroidGraphics implements IGraphics {
         AndroidFont aFont = (AndroidFont) font;
         paint.setTypeface(aFont.getFont());
         paint.setTextSize(aFont.getSize());
+
     }
 
 
@@ -267,7 +263,6 @@ public final class AndroidGraphics implements IGraphics {
      */
     @Override
     public int getLogicPointY(int y) {
-
         return transformer.getTransformedY(y);
     }
 

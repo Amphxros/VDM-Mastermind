@@ -144,7 +144,6 @@ public interface IGraphics {
 
     void present();
 
-    void clear(Color color);
 
     void clear(int color);
 
