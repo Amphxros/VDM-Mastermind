@@ -32,17 +32,17 @@ public class ChooseLevelScene extends Scene {
                 .setSize(center, center)
                 .setStrokeColor(new Color(150,150,150,0))
 
-                .addChild(createGameButton(0,0,center,center/4,new Color(200,200,120),"facil",font,4,6,4))
-                .addChild(createGameButton(0,center/3,center,center/4,new Color(249,231,132),"Medio",font,6,6,5))
-                .addChild(createGameButton(0,2*center/3,center,center/4,new Color(229,145,101),"Dificil",font,6,6,6))
-                .addChild(createGameButton(0,center,center,center/4,new Color(208,83,83),"Imposible",font,6,10,6))
+                .addChild(createGameButton(0,0,center,center/4,new Color(200,200,120),"facil",font,4,6,4,false))
+                .addChild(createGameButton(0,center/3,center,center/4,new Color(249,231,132),"Medio",font,6,6,5,false))
+                .addChild(createGameButton(0,2*center/3,center,center/4,new Color(229,145,101),"Dificil",font,6,6,6,true))
+                .addChild(createGameButton(0,center,center,center/4,new Color(208,83,83),"Imposible",font,6,10,6,true))
         );
     }
 
     private GameObject createGameButton(int x, int y, int w, int h,
                                         Color color, String text, IFont font,
-                                        int numColors, int numIntentos, int tamPassword ){
-        return new GoToGameScene(this,numColors,numIntentos,tamPassword)
+                                        int numColors, int numIntentos, int tamPassword,boolean repeating ){
+        return new GoToGameScene(this,numColors,numIntentos,tamPassword,repeating)
                 .setPosition(x,y)
                 .setSize(w,h)
                 .setStrokeColor(color)
