@@ -9,8 +9,8 @@ import mastermind.engine.IScene;
 public class Text extends GameObject{
     private final IFont font;
     private String text;
-    private Color color = Color.BLACK;
-    private final HorizontalAlignment alignment;
+
+    private HorizontalAlignment alignment;
 
     public Text(IScene scene, String text, IFont font) {
         this(scene, text, font, HorizontalAlignment.CENTRE);
@@ -23,15 +23,12 @@ public class Text extends GameObject{
         this.alignment = alignment;
     }
 
-    public Text setColor(Color color) {
-        this.color = color;
-        setStrokeColor(color);
-        return this;
-    }
-
     public Text setText(String text) {
         this.text = text;
         return this;
+    }
+    public void setAlignment(HorizontalAlignment alignment){
+        this.alignment=alignment;
     }
 
     @Override

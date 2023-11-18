@@ -1,10 +1,12 @@
 package mastermind.logic.scene;
 
 import mastermind.engine.Color;
+import mastermind.engine.HorizontalAlignment;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
+import mastermind.logic.button.GoToChooseLevel;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -14,6 +16,7 @@ public class MenuScene extends Scene {
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
+        IFont fonty = getEngine().getGraphics().newFont("fonts/handwriting.ttf",25,false);
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
@@ -21,11 +24,24 @@ public class MenuScene extends Scene {
         int buttonW = (int) (maxWidth * 0.8);
         int buttonX = center - buttonW / 2;
         // Title
-        addGameObject(new Text(this, "Mastermind", font).setPosition(center, 150)
+        addGameObject(new Text(this, "Mastermind", font)
+                .setPosition(center, 150)
                 .setStrokeColor(new Color(100,100,100))
-                .addChild(new Text(this, "Partida Rapida", font).setPosition(0, 150))
-                .addChild(new Text(this, "Partida Rapida", font).setPosition(0, 250))
+
         );
+        Text t= new Text(this, "partida rapida",fonty);
+        t.setPosition(center-50,25);
+        t.setAlignment(HorizontalAlignment.CENTRE);
+
+
+        addGameObject(new GoToChooseLevel(this)
+                .setPosition(center/3,250)
+                .setSize(300,50)
+                .setStrokeColor(new Color(150,150,150))
+
+                .addChild(t)
+        );
+
 
 
     }
