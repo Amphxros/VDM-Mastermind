@@ -8,10 +8,12 @@ public class TouchEvent {
     private final EventType type; //type of event
     private int x = -1, y = -1;
 
-    public TouchEvent(int windowX, int windowY, EventType event) {
+    boolean scroll;
+    public TouchEvent(int windowX, int windowY, EventType event, boolean scroll) {
         this.windowX = windowX;
         this.windowY = windowY;
         this.type = event;
+        this.scroll=scroll;
     }
 
     /**
@@ -39,6 +41,9 @@ public class TouchEvent {
      */
     public boolean isValid() {
         return x != -1 && y != -1;
+    }
+    public boolean isScroll() {
+        return scroll;
     }
 
     /**

@@ -11,50 +11,53 @@ public class Table extends GameObject implements DaltonicListener{
     int numElems;
 
     int[] solution;
-    ArrayList<Cell> cells;
+    Cell [] cells;
     IFont font;
     public Table(IScene scene, int numElems, IFont font) {
         super(scene);
         this.numElems=numElems;
         this.solution= new int[this.numElems];
         this.font=font;
+        this.cells= new Cell[this.numElems];
 
     }
 
     @Override
     public void init() {
-        super.init();
         for(int i=0;i<this.numElems;i++){
             Cell c= new Cell(getScene(),font);
+            addCell(c,i);
+            addChild(c);
         }
+        super.init();
     }
-    public void addCell(Cell c){
-        cells.add(c);
-        c.setPosition(0,getHeight()/4);
+    public void addCell(Cell c, int ind){
+        cells[ind]=c;
+        c.setPosition((ind+1)*50,getHeight()/4);
         addChild(c);
     }
 
     /**
      *
-     * @return if the table is completed
+     * @return true if the table is completed
      */
     public boolean isComplete(){
        int i=0;
-       while(i< cells.size() && cells.get(i).getState()!=CellState.Empty)
+       while(i< cells.length && cells[i].getState()!=CellState.Empty)
            i++;
 
        for(int j=0;j<this.numElems;j++){
-           solution[j]=cells.get(j).getValue();
+           solution[j]=cells[j].getValue();
        }
-       return i==cells.size()-1;
+       return i==cells.length-1;
     }
 
     public void fillCell(Color c, int value){
         int i=0;
-        while(i< cells.size() && cells.get(i).getState()!=CellState.Empty)
+        while(i< cells.length && cells[i].getState()!=CellState.Empty)
             i++;
 
-        cells.get(i).fillCell(c,value);
+        cells[i].fillCell(c,value);
     }
 
     @Override
@@ -67,6 +70,8 @@ public class Table extends GameObject implements DaltonicListener{
 
     @Override
     public void setDaltonicMode(boolean mode) {
+        for(Cell c: cells)
+            c.setDaltonicMode(mode);
 
     }
 

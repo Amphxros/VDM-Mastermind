@@ -22,6 +22,11 @@ public class Input implements IInput{
         return tmp;
     }
 
+    @Override
+    public boolean isScrolling() {
+        return scrolling;
+    }
+
     protected synchronized void addEvent(TouchEvent event) {
         events.add(event);
     }

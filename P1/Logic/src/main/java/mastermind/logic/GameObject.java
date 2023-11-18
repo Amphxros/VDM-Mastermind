@@ -35,6 +35,12 @@ public class GameObject {
         return this;
     }
 
+    public void onScroll(int diff){
+        setPosition(getX(), getY() + diff*10);
+        for(GameObject g: children)
+            g.setPosition(g.getX(), g.getY() + diff);
+    }
+
     public int getX() {
         return position.getX();
     }
@@ -102,9 +108,6 @@ public class GameObject {
      * @throws RuntimeException When the given object already has a parent.
      */
     public GameObject addChild(GameObject gameObject) {
-        if (gameObject.parent != null) {
-            throw new RuntimeException("The given GameObject already has a parent");
-        }
 
         gameObject.parent = this;
         gameObject.setPosition(getX() + gameObject.getX(), getY() + gameObject.getY());
@@ -122,11 +125,6 @@ public class GameObject {
     }
 
     public void render(IGraphics graphics) {
-        if (strokeColor != null) {
-            graphics.setColor(strokeColor);
-            graphics.drawRectangle(getX(), getY(), getWidth(), getHeight());
-        }
-
         for (GameObject child : getChildren()) {
             if (child.isEnabled()) {
                 child.render(graphics);
