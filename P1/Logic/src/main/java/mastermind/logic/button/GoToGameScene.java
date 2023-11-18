@@ -19,6 +19,6 @@ public class GoToGameScene extends GoToScene{
 
     @Override
     protected Scene createScene() {
-        return new GameScene(getEngine());
+        return new GameScene(getEngine(),numColores,numIntentos,numPassword);
     }
 }

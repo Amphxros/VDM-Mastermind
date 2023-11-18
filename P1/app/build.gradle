@@ -11,7 +11,6 @@ task copyData( type: Copy) {
 }
 preBuild.dependsOn copyData
 
-preBuild.dependsOn copyData
 
 android {
     namespace 'vdm.mastermind'
