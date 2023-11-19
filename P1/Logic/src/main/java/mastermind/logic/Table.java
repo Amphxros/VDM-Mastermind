@@ -25,11 +25,11 @@ public class Table extends GameObject implements DaltonicListener{
     @Override
     public void init() {
         for(int i=0;i<this.numElems;i++){
-            this.addChild(new Cell(getScene(),font)
-                    .setSize(30,30)
+            this.cells[i]=(new Cell(getScene(),font));
+            this.cells[i].setSize(30,30)
                     .setStrokeColor(new Color(150,150,150))
-                    .setPosition(20 + 40*(i),10)
-            );
+                    .setPosition(20 + 40*(i),10);
+            this.addChild(cells[i]);
         }
 
         this.addChild(new HintObject(getScene())
@@ -45,20 +45,21 @@ public class Table extends GameObject implements DaltonicListener{
      */
     public boolean isComplete(){
        int i=0;
-       while(i< cells.length && cells[i].getState()!=CellState.Empty)
+       while(i< cells.length && cells[i].getState()!=CellState.Empty) {
            i++;
-
-       for(int j=0;j<this.numElems;j++){
-           solution[j]=cells[j].getValue();
        }
-       return i==cells.length-1;
+
+       for(int j=0;j<this.cells.length;j++){
+            this.solution[j]=cells[j].getValue();
+       }
+       return i==cells.length;
     }
 
     public void fillCell(Color c, int value){
         int i=0;
-        while(i< cells.length && cells[i].getState()!=CellState.Empty)
+        while(i< cells.length && cells[i].getState()!=CellState.Empty) {
             i++;
-
+        }
         cells[i].fillCell(c,value);
     }
 

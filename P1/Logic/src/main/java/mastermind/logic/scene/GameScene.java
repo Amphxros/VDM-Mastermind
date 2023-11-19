@@ -164,6 +164,8 @@ public class GameScene extends Scene {
                 ;
     }
 
+
+
     @Override
     public void handleInput(IInput input) {
         super.handleInput(input);
@@ -176,5 +178,16 @@ public class GameScene extends Scene {
 
     public void onColouringCellSelected(Color c,int value){
         System.out.println("Click " + value);
+        tables[currTable].fillCell(c,value);
+        if(tables[currTable].isComplete()){
+            currTable++;
+            numIntentos--;
+            if(numIntentos>0){
+            tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
+            }
+            else{
+                getEngine().getLogic().setScene(new MenuScene(getEngine()));
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ public class Cell extends Button implements DaltonicListener{
     public Cell(IScene scene, IFont font) {
         super(scene);
         this.font=font;
+        this.state=CellState.Empty;
 
     }
 
