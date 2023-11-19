@@ -34,7 +34,7 @@ public class Cell extends Button implements DaltonicListener{
         else {
             graphics.setColor(strokeColor);
         }
-        graphics.fillCircle(getX(), getY(), getWidth() / 2);
+        graphics.fillCircle(getX() + getWidth()/2,getY()+ getHeight()/2, getWidth()/2);
         drawDaltonicInfo(graphics);
 
         super.render(graphics);

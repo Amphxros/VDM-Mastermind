@@ -25,18 +25,20 @@ public class Table extends GameObject implements DaltonicListener{
     @Override
     public void init() {
         for(int i=0;i<this.numElems;i++){
-            Cell c= new Cell(getScene(),font);
-            addCell(c,i);
-            addChild(c);
+            this.addChild(new Cell(getScene(),font)
+                    .setSize(30,30)
+                    .setStrokeColor(new Color(150,150,150))
+                    .setPosition(20 + 40*(i),10)
+            );
         }
+
+        this.addChild(new HintObject(getScene())
+                .setPosition(getWidth()-90, 2)
+                .setSize(70,40)
+                .setStrokeColor(new Color(50,50,50))
+        );
         super.init();
     }
-    public void addCell(Cell c, int ind){
-        cells[ind]=c;
-        c.setPosition((ind+1)*50,getHeight()/4);
-        addChild(c);
-    }
-
     /**
      *
      * @return true if the table is completed

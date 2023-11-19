@@ -78,24 +78,24 @@ public class GameScene extends Scene {
         );
 
         addGameObject(new DaltonicButton(this, open, close)
-                .setPosition(330,15)
+                .setPosition(330,20)
                 .setSize(50,50)
                 .setStrokeColor(Color.BLACK)
         );
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,50,100 + 50* (i+1), 300, 45, Color.BLACK,fonty);
+            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,fonty);
             addGameObject(t);
             daltonicObservers.add(t);
             tables[i]=t;
         }
 
-        addGameObject(new ColouringTable(this, this.numColores,this.colors)
-                .setPosition(0,600)
-                .setSize(400,70)
-                .setStrokeColor(new Color(200,200,200))
-
-        );
+        ColouringTable c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
+        .setPosition(0,500)
+        .setSize(400,70)
+        .setStrokeColor(new Color(200,200,200));
+        addGameObject(c);
+        daltonicObservers.add(c);
 
 
 

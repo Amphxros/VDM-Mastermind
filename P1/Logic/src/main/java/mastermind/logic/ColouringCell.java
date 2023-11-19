@@ -10,7 +10,7 @@ import mastermind.logic.scene.GameScene;
 public class ColouringCell extends Button implements DaltonicListener{
 
     int value;
-    boolean daltonic_mode;
+    boolean daltonic_mode=false;
     public ColouringCell(IScene scene, int value) {
         super(scene);
         this.value=value;
@@ -27,7 +27,8 @@ public class ColouringCell extends Button implements DaltonicListener{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.fillCircle(getX(),getY(), getWidth()/2);
+        graphics.fillCircle(getX() + getWidth()/2,getY()+ getHeight()/2, getWidth()/2);
+        //graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
         drawDaltonicInfo(graphics);
         super.render(graphics);
     }
