@@ -1,5 +1,6 @@
 package mastermind.logic.scene;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
@@ -10,6 +11,10 @@ import mastermind.engine.IFont;
 import mastermind.engine.IImage;
 import mastermind.engine.IInput;
 import mastermind.engine.TouchEvent;
+import mastermind.logic.ColouringCell;
+import mastermind.logic.ColouringTable;
+import mastermind.logic.Container;
+import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
 import mastermind.logic.Scene;
@@ -27,7 +32,7 @@ public class GameScene extends Scene {
     Color[] colors;
     Table[] tables;
     int [] solution;
-
+    ArrayList<DaltonicListener> daltonicObservers;
     boolean isRepeating;
     Text tryText;
     public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating) {
@@ -41,6 +46,8 @@ public class GameScene extends Scene {
         this.colors= new Color[this.numColores];
         this.currTable=0;
         this.isRepeating=isRepeating;
+
+        this.daltonicObservers= new ArrayList<>();
     }
 
     @Override
@@ -55,12 +62,12 @@ public class GameScene extends Scene {
         generateData();
 
         tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",fonty)
-                .setPosition(200,100)
+                .setPosition(200,50)
                 .setStrokeColor(Color.BLACK);
         addGameObject(tryText);
 
         addGameObject(new GoToChooseLevel(this)
-                .setPosition(0,10)
+                .setPosition(0,20)
                 .setSize(50,50)
                 .setStrokeColor(new Color(200,200,200))
 
@@ -70,19 +77,32 @@ public class GameScene extends Scene {
 
         );
 
-        addGameObject(new DaltonicButton(this, open, close));
-
+        addGameObject(new DaltonicButton(this, open, close)
+                .setPosition(330,15)
+                .setSize(50,50)
+                .setStrokeColor(Color.BLACK)
+        );
 
         for(int i=0;i<this.numIntentos; i++){
             Table t= (Table) createTable(i,50,100 + 50* (i+1), 300, 45, Color.BLACK,fonty);
             addGameObject(t);
+            daltonicObservers.add(t);
             tables[i]=t;
         }
+
+        addGameObject(new ColouringTable(this, this.numColores,this.colors)
+                .setPosition(0,600)
+                .setSize(400,70)
+                .setStrokeColor(new Color(200,200,200))
+
+        );
+
+
+
 
 
 
         super.init();
-
 
     }
 
@@ -147,5 +167,14 @@ public class GameScene extends Scene {
     @Override
     public void handleInput(IInput input) {
         super.handleInput(input);
+    }
+
+    public void onDaltonicMode(boolean mode){
+        for(DaltonicListener d : daltonicObservers)
+            d.setDaltonicMode(mode);
+    }
+
+    public void onColouringCellSelected(Color c,int value){
+        System.out.println("Click " + value);
     }
 }
