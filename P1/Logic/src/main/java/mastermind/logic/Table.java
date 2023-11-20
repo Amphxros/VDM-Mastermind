@@ -32,7 +32,7 @@ public class Table extends GameObject implements DaltonicListener{
             this.addChild(cells[i]);
         }
 
-        this.addChild(new HintObject(getScene())
+        this.addChild(new HintObject(getScene(),this.numElems)
                 .setPosition(getWidth()-90, 2)
                 .setSize(70,40)
                 .setStrokeColor(new Color(50,50,50))

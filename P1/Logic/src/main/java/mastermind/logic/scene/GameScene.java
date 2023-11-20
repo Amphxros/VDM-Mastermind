@@ -160,11 +160,9 @@ public class GameScene extends Scene {
                 .setStrokeColor(color)
 
                 .addChild(new Text(this,String.valueOf(index+1),font)
-                        .setPosition(10,3*h/4))
-                ;
+                        .setPosition(10,3*h/4)
+                );
     }
-
-
 
     @Override
     public void handleInput(IInput input) {
