@@ -13,6 +13,8 @@ public class Table extends GameObject implements DaltonicListener{
     int[] solution;
     Cell [] cells;
     IFont font;
+    HintObject hintObject;
+
     public Table(IScene scene, int numElems, IFont font) {
         super(scene);
         this.numElems=numElems;
@@ -31,12 +33,12 @@ public class Table extends GameObject implements DaltonicListener{
                     .setPosition(20 + 40*(i),10);
             this.addChild(cells[i]);
         }
+        hintObject= new HintObject(getScene(),this.numElems);
+        hintObject.setPosition(getWidth()-90, 2);
+        hintObject.setSize(70,40);
+        hintObject.setStrokeColor(new Color(50,50,50));
 
-        this.addChild(new HintObject(getScene(),this.numElems)
-                .setPosition(getWidth()-90, 2)
-                .setSize(70,40)
-                .setStrokeColor(new Color(50,50,50))
-        );
+        this.addChild(hintObject);
         super.init();
     }
     /**
@@ -82,5 +84,10 @@ public class Table extends GameObject implements DaltonicListener{
     public void drawDaltonicInfo(IGraphics graphics) {
         for(Cell c: cells)
             c.drawDaltonicInfo(graphics);
+    }
+
+    public boolean correctHints(int[] solution){
+        hintObject.showHints(solution, this.solution);
+        return false;
     }
 }
