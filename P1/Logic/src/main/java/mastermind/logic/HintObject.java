@@ -46,7 +46,27 @@ public class HintObject extends GameObject{
         super.render(graphics);
     }
 
-    public void showHints(int[] solution, int[] tableSolution){
+    public boolean showHints(int[] solution, int[] tableSolution){
+        int correctElems=0;
+        for(int i=0;i<this.numCells;i++){
+            for(int j=0;j<this.numCells;j++){
+                if(i==j && solution[i]==tableSolution[j]){
+                    this.hintElems[i].setCellState(CellState.Correct);
+                    correctElems++;
+                }
+                else if(i!=j && solution[i]==tableSolution[j] &&this.hintElems[i].getCellState()==CellState.Empty){
+                    this.hintElems[i].setCellState(CellState.Misplaced);
+                }
+            }
+        }
 
+        for(int i=0;i<this.numCells;i++){
+            if(this.hintElems[i].getCellState()==CellState.Empty){
+                this.hintElems[i].setCellState(CellState.Wrong);
+            }
+        }
+
+
+        return correctElems==this.numCells;
     }
 }

@@ -87,7 +87,6 @@ public class Table extends GameObject implements DaltonicListener{
     }
 
     public boolean correctHints(int[] solution){
-        hintObject.showHints(solution, this.solution);
-        return false;
+        return hintObject.showHints(solution, this.solution);
     }
 }

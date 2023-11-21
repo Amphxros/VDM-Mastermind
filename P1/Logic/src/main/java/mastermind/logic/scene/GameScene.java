@@ -178,14 +178,20 @@ public class GameScene extends Scene {
         System.out.println("Click " + value);
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
+           if(tables[currTable].correctHints(this.solution)){
+               
+           }
+           else
+           {
             currTable++;
             numIntentos--;
             if(numIntentos>0){
             tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
             }
             else{
-                getEngine().getLogic().setScene(new MenuScene(getEngine()));
-            }
+                    getEngine().getLogic().setScene(new MenuScene(getEngine()));
+                }
+           }
         }
     }
 }

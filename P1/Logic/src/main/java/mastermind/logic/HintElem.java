@@ -15,6 +15,8 @@ public class HintElem extends GameObject {
     public void setCellState(CellState cellState) {
         this.cellState = cellState;
     }
+
+    public CellState getCellState(){return this.cellState;}
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
