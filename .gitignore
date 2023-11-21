@@ -1,2 +1,4 @@
 P1/local.properties
 P2/local.properties
+*.properties
+P1/local.properties
