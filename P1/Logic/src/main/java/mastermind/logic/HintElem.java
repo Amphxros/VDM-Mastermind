@@ -25,7 +25,7 @@ public class HintElem extends GameObject {
             graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Misplaced){
-            graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+            graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Correct){
             graphics.setColor(Color.GREEN);
@@ -33,7 +33,7 @@ public class HintElem extends GameObject {
         }
         else{
             graphics.setColor(Color.RED);
-            graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+            graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
 
         super.render(graphics);
