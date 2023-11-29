@@ -48,15 +48,15 @@ public class Table extends GameObject implements DaltonicListener{
      * @return true if the table is completed
      */
     public boolean isComplete(){
-        int i=0;
-        while(i< cells.length && cells[i].getState()!=CellState.Empty) {
-            i++;
-        }
+       int i=0;
+       while(i< cells.length && cells[i].getState()!=CellState.Empty) {
+           i++;
+       }
 
-        for(int j=0;j<this.cells.length;j++){
+       for(int j=0;j<this.cells.length;j++){
             this.solution[j]=cells[j].getValue();
-        }
-        return i==cells.length;
+       }
+       return i==cells.length;
     }
 
     public void fillCell(Color c, int value){

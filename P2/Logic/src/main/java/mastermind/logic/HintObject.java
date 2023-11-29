@@ -51,14 +51,9 @@ public class HintObject extends GameObject{
         for(int i=0;i<this.numCells;i++){
             if(tableSolution[i]==solution[i]){
                 this.hintElems[i].setCellState(CellState.Correct);
+                correctElems++;
             }
-            else{
-                for(int j=0;j<this.numCells;j++){
-                    if(tableSolution[i]==solution[j]){
-                        this.hintElems[i].setCellState(CellState.Misplaced);
-                    }
-                }
-            }
+
         }
 
         for(int i=0;i<this.numCells;i++){

@@ -21,7 +21,6 @@ public class HintElem extends GameObject {
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
         if(cellState==CellState.Empty) {
-            graphics.setColor(Color.BLACK);
             graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Misplaced){

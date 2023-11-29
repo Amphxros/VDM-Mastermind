@@ -22,13 +22,15 @@ public class WinScene extends Scene {
 
     @Override
     public void init() {
-        IFont font= getEngine().getGraphics().newFont("fonts/handwriting_draft.ttf",30,false);
+        IFont font= getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
         Table t= new Table(this,this.solution.length,font,false);
         t.setPosition(100,200);
         t.setSize(200,50);
         t.setStrokeColor(new Color(200,200,200));
 
         t.init();
+
+        //fills with the password
         for(int i=0;i<this.solution.length;i++){
             t.fillCell(colors[solution[i]],solution[i]);
         }
@@ -60,6 +62,6 @@ public class WinScene extends Scene {
 
         );
         super.init();
-        addGameObject(t);
+        addGameObject(t); //added after so it doesnt add new cells (init table)
     }
 }

@@ -91,9 +91,9 @@ public class GameScene extends Scene {
         }
 
         ColouringTable c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
-                .setPosition(0,500)
-                .setSize(400,70)
-                .setStrokeColor(new Color(200,200,200));
+        .setPosition(0,500)
+        .setSize(400,70)
+        .setStrokeColor(new Color(200,200,200));
         addGameObject(c);
         daltonicObservers.add(c);
 
@@ -122,7 +122,7 @@ public class GameScene extends Scene {
         else{
             boolean[] repetition= new boolean[this.numColores+1];
             for(int i=0;i<this.tamPassword;i++){
-                repetition[i]=false;
+               repetition[i]=false;
             }
             int i=0;
             int r= (int)Math.floor(Math.random() * (this.numColores));
@@ -178,20 +178,20 @@ public class GameScene extends Scene {
         System.out.println("Click " + value);
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
-            if(tables[currTable].correctHints(this.solution)){
-                getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
-            }
-            else
-            {
-                currTable++;
-                numIntentos--;
-                if(numIntentos>0){
-                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
-                }
-                else{
-                    getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
-                }
-            }
+           if(tables[currTable].correctHints(this.solution)){
+               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
+           }
+           else
+           {
+               currTable++;
+               numIntentos--;
+               if(numIntentos>0){
+                   tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
+               }
+               else{
+                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
+               }
+           }
         }
     }
 }

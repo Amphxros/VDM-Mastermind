@@ -22,10 +22,10 @@ public class WinScene extends Scene {
 
     @Override
     public void init() {
-        IFont font= getEngine().getGraphics().newFont("fonts/handwriting_draft.ttf",30,false);
+        IFont font= getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
         Table t= new Table(this,this.solution.length,font,false);
-        t.setPosition(100,200);
-        t.setSize(200,50);
+        t.setPosition(30,200);
+        t.setSize(50 *this.solution.length,50);
         t.setStrokeColor(new Color(200,200,200));
 
         t.init();
@@ -34,7 +34,7 @@ public class WinScene extends Scene {
         }
 
         Text text= new Text(this,"Game over",font);
-        text.setPosition(200,10);
+        text.setPosition(200,110);
         text.setStrokeColor(new Color(20,20,20));
         if(hasWon){
             text.setText("You Won");
@@ -50,9 +50,9 @@ public class WinScene extends Scene {
 
 
         addGameObject(new GoToChooseLevel(this)
-                .setPosition(50,450)
-                .setStrokeColor(colors[0])
-                .setSize(300,50)
+            .setPosition(50,450)
+            .setStrokeColor(colors[0])
+            .setSize(300,50)
                 .addChild(new Text(this,"Go to other levels",font)
                         .setPosition(150,40)
                         .setStrokeColor(Color.BLACK)
