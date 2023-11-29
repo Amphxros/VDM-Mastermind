@@ -1,0 +1,123 @@
+package mastermind.androidengine;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorListener;
+import android.hardware.SensorManager;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import mastermind.engine.ISensorListener;
+import mastermind.engine.ISensorsManager;
+import mastermind.engine.SensorType;
+
+public class SensorsManager implements ISensorsManager, SensorEventListener {
+    SensorManager androidSensorManager;
+    Sensor sensor;
+
+    ArrayList<ISensorListener> sensorAccelListeners;
+    ArrayList<ISensorListener> sensorTmpListeners;
+    ArrayList<ISensorListener> sensorLightListeners;
+
+    public SensorsManager(Context context){
+        super();
+        this.androidSensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        if(this.androidSensorManager==null){
+            System.out.println("Sensor service not found");
+            Toast.makeText(context, "Sensor not found", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            register();
+        }
+    }
+
+    @Override
+    public boolean register() {
+        if (androidSensorManager == null) {
+            System.err.println("Could not detect a sensor service to register into");
+            return false;
+        }
+        /**
+         * Register accelerometer
+         */
+        sensor = androidSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        if (sensor == null) {
+            System.err.println("Could not get the accelerometer sensor");
+            return false;
+        }
+        androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        /**
+         * Register temperature
+         */
+        sensor= androidSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        if (sensor == null) {
+            System.err.println("Could not get the accelerometer sensor");
+            return false;
+        }
+        androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        /**
+         * Register Light
+         */
+        sensor= androidSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if (sensor == null) {
+            System.err.println("Could not get the accelerometer sensor");
+            return false;
+        }
+        androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+
+        return true;
+    }
+
+    @Override
+    public boolean unregister() {
+        return false;
+    }
+
+    @Override
+    public void registerAccelerometerListener(ISensorListener listener) {
+
+    }
+
+    @Override
+    public void unregisterAccelerometerListener(ISensorListener listener) {
+
+    }
+
+    @Override
+    public void registerTemperatureListener(ISensorListener listener) {
+        
+    }
+
+    @Override
+    public void unregisterTemperatureListener(ISensorListener listener) {
+
+    }
+
+    @Override
+    public void registerLightListener(ISensorListener listener) {
+
+    }
+
+    @Override
+    public void unregisterLightListener(ISensorListener listener) {
+
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        switch (event.sensor.getType()){
+            case Sensor.TYPE_ACCELEROMETER:
+                break;
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+}

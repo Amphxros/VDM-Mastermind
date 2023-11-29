@@ -17,9 +17,7 @@ public class HintObject extends GameObject{
     @Override
     public void init() {
         for(int i=0;i<this.numCells;i++){
-
             hintElems[i]= new HintElem(getScene());
-
 
             if(i>=this.numCells/2){
                 hintElems[i].setPosition(10+(i-this.numCells/2 )* (getWidth() / numCells), getHeight()/2 +10);
@@ -53,6 +51,7 @@ public class HintObject extends GameObject{
                 this.hintElems[i].setCellState(CellState.Correct);
                 correctElems++;
             }
+
 
         }
 
