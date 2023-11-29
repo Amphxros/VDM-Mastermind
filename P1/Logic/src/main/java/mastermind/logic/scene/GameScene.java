@@ -125,7 +125,7 @@ public class GameScene extends Scene {
                repetition[i]=false;
             }
             int i=0;
-            int r= (int)Math.floor(Math.random() * (this.numColores + 1));
+            int r= (int)Math.floor(Math.random() * (this.numColores));
 
             while (i<this.tamPassword){
                 if(!repetition[r]){
@@ -134,7 +134,7 @@ public class GameScene extends Scene {
                     i++;
                     System.out.println(r);
                 }
-                r=(int)Math.floor(Math.random() * (this.numColores + 1));
+                r=(int)Math.floor(Math.random() * (this.numColores));
             }
 
 
@@ -154,7 +154,7 @@ public class GameScene extends Scene {
     }
 
     private GameObject createTable(int index, int x, int y, int w, int h, Color color, IFont font){
-        return new Table(this, this.tamPassword,font)
+        return new Table(this, this.tamPassword,font,true)
                 .setPosition(x,y)
                 .setSize(w,h)
                 .setStrokeColor(color)
@@ -179,18 +179,18 @@ public class GameScene extends Scene {
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
-               
+               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
            }
            else
            {
-            currTable++;
-            numIntentos--;
-            if(numIntentos>0){
-            tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
-            }
-            else{
-                    getEngine().getLogic().setScene(new MenuScene(getEngine()));
-                }
+               currTable++;
+               numIntentos--;
+               if(numIntentos>0){
+                   tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
+               }
+               else{
+                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
+               }
            }
         }
     }

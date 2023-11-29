@@ -183,7 +183,7 @@ public final class AndroidGraphics implements IGraphics {
 
     @Override
     public void drawCircle(float cx, float cy, float radius) {
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(cx,cy,radius,paint);
         paint.setStyle(Paint.Style.FILL);
     }
