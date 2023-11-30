@@ -13,6 +13,7 @@ public class AndroidEngine extends Engine implements Runnable {
     public AndroidEngine(SurfaceView surfaceView, Context context) {
         setGraphics(new AndroidGraphics(surfaceView, context));
         setAudio(new AndroidAudio(context));
+        setSensorsManager(new SensorsManager(context));
 
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);

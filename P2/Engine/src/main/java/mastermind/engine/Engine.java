@@ -5,6 +5,7 @@ public abstract class Engine implements IEngine {
     private IAudio audio;
     private Input input;
     private ILogic logic;
+    private  ISensorsManager sensorsManager;
 
     /**
      * @return An {@link ILogic} instance.
@@ -56,5 +57,18 @@ public abstract class Engine implements IEngine {
     @Override
     public void setAudio(IAudio audio) {
         this.audio = audio;
+    }
+
+    /**
+     * @return An {@link ISensorsManager}
+     */
+    @Override
+    public ISensorsManager getSensorsManager() {
+        return sensorsManager;
+    }
+
+    @Override
+    public void setSensorsManager(ISensorsManager sensorsManager) {
+        this.sensorsManager = sensorsManager;
     }
 }

@@ -19,12 +19,11 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
     Sensor sensor;
 
     ArrayList<ISensorListener> sensorAccelListeners;
-    ArrayList<ISensorListener> sensorTmpListeners;
-    ArrayList<ISensorListener> sensorLightListeners;
 
     public SensorsManager(Context context){
         super();
         this.androidSensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        this.sensorAccelListeners= new ArrayList<>();
         if(this.androidSensorManager==null){
             System.out.println("Sensor service not found");
             Toast.makeText(context, "Sensor not found", Toast.LENGTH_SHORT).show();
@@ -49,25 +48,6 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
             return false;
         }
         androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        /**
-         * Register temperature
-         */
-        sensor= androidSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        if (sensor == null) {
-            System.err.println("Could not get the accelerometer sensor");
-            return false;
-        }
-        androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        /**
-         * Register Light
-         */
-        sensor= androidSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        if (sensor == null) {
-            System.err.println("Could not get the accelerometer sensor");
-            return false;
-        }
-        androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-
 
         return true;
     }
@@ -79,39 +59,24 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
 
     @Override
     public void registerAccelerometerListener(ISensorListener listener) {
-
+        assert (androidSensorManager!=null);
+        sensorAccelListeners.add(listener);
     }
 
     @Override
     public void unregisterAccelerometerListener(ISensorListener listener) {
-
+        sensorAccelListeners.remove(listener);
     }
 
-    @Override
-    public void registerTemperatureListener(ISensorListener listener) {
-        
-    }
-
-    @Override
-    public void unregisterTemperatureListener(ISensorListener listener) {
-
-    }
-
-    @Override
-    public void registerLightListener(ISensorListener listener) {
-
-    }
-
-    @Override
-    public void unregisterLightListener(ISensorListener listener) {
-
-    }
 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         switch (event.sensor.getType()){
             case Sensor.TYPE_ACCELEROMETER:
+                for(ISensorListener listener: sensorAccelListeners){
+                    listener.onSense();
+                }
                 break;
         }
     }
