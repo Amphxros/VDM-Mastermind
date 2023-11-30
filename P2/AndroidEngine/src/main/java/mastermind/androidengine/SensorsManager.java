@@ -18,7 +18,20 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
     SensorManager androidSensorManager;
     Sensor sensor;
 
+    /**
+     * Accelerometer data
+     */
     ArrayList<ISensorListener> sensorAccelListeners;
+    /**
+     * The acceleration in m/s² for an acceleration to be considered a shake.
+     */
+    private static final float SHAKE_THRESHOLD = 3.25f;
+    /**
+     * The minimum amount of time between shakes, in milliseconds.
+     */
+    private static final long SHAKE_PERIOD = 1000;
+    private long lastShakeTime = System.currentTimeMillis();
+
 
     public SensorsManager(Context context){
         super();
@@ -74,10 +87,20 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         switch (event.sensor.getType()){
             case Sensor.TYPE_ACCELEROMETER:
-                System.out.println("Accelerometer");
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastShakeTime < SHAKE_PERIOD) return;
 
-                for(ISensorListener listener: sensorAccelListeners){
-                    listener.onSense();
+                //casts the event in the Accelerometer one
+                float x = event.values[0];
+                float y = event.values[1];
+                float z = event.values[2];
+
+                double acceleration = Math.sqrt(x * x + y * y + z * z) - SensorManager.GRAVITY_EARTH;
+                if (acceleration > SHAKE_THRESHOLD) {
+                    System.out.println("Me agito");
+                    for(ISensorListener listener: sensorAccelListeners){
+                        listener.onSense();
+                    }
                 }
                 break;
         }
