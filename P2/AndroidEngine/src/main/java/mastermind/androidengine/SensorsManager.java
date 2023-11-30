@@ -74,6 +74,8 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         switch (event.sensor.getType()){
             case Sensor.TYPE_ACCELEROMETER:
+                System.out.println("Accelerometer");
+
                 for(ISensorListener listener: sensorAccelListeners){
                     listener.onSense();
                 }
