@@ -53,7 +53,7 @@ public class GameScene extends Scene {
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
-        IFont fonty = getEngine().getGraphics().newFont("fonts/handwriting.ttf",15,false);
+        IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",15,false);
 
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
@@ -112,7 +112,7 @@ public class GameScene extends Scene {
          */
         if(isRepeating){
             for(int i=0;i<this.tamPassword;i++){
-                this.solution[i]= (int)Math.floor(Math.random() * (this.numColores + 1));
+                this.solution[i]= (int)Math.floor(Math.random() * (this.numColores));
                 System.out.println( this.solution[i]);
             }
         }

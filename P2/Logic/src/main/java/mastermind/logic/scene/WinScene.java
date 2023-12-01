@@ -24,7 +24,7 @@ public class WinScene extends Scene {
     public void init() {
         IFont font= getEngine().getGraphics().newFont("fonts/KIN668.ttf",30,false);
         Table t= new Table(this,this.solution.length,font,false);
-        t.setPosition(30,200);
+        t.setPosition(50,200);
         t.setSize(50 *this.solution.length,50);
         t.setStrokeColor(new Color(200,200,200));
 

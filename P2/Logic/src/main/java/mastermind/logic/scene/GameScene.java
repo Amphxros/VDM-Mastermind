@@ -112,7 +112,7 @@ public class GameScene extends Scene {
          */
         if(isRepeating){
             for(int i=0;i<this.tamPassword;i++){
-                this.solution[i]= (int)Math.floor(Math.random() * (this.numColores + 1));
+                this.solution[i]= (int)Math.floor(Math.random() * (this.numColores));
                 System.out.println( this.solution[i]);
             }
         }
