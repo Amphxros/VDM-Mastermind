@@ -90,7 +90,7 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - lastShakeTime < SHAKE_PERIOD) return;
 
-                //casts the event in the Accelerometer one
+                //get the axis
                 float x = event.values[0];
                 float y = event.values[1];
                 float z = event.values[2];

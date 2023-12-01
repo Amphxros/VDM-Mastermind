@@ -10,17 +10,18 @@ public class GoToGameScene extends GoToScene{
     int numIntentos;
     int numPassword;
     boolean repeating;
-
-    public GoToGameScene(IScene scene, int colores, int intentos, int tamPassword, boolean repeating) {
+    boolean colors;
+    public GoToGameScene(IScene scene, int colores, int intentos, int tamPassword, boolean repeating,boolean colors) {
         super(scene);
         this.numColores=colores;
         this.numIntentos=intentos;
         this.numPassword=tamPassword;
         this.repeating=repeating;
+        this.colors=colors;
     }
 
     @Override
     protected Scene createScene() {
-        return new GameScene(getEngine(),numColores,numIntentos,numPassword,repeating);
+        return new GameScene(getEngine(),numColores,numIntentos,numPassword,repeating,colors);
     }
 }
