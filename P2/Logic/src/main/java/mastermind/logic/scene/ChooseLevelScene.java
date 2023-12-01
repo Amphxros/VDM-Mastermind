@@ -16,7 +16,7 @@ public class ChooseLevelScene extends Scene {
 
     @Override
     public void init() {
-        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
+        IFont font = getEngine().getGraphics().newFont("fonts/KIN668.ttf",20,false);
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
