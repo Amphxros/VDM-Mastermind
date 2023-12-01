@@ -57,7 +57,7 @@ public class ColouringCell extends Button implements DaltonicListener{
     public void drawDaltonicInfo(IGraphics graphics) {
         if(daltonic_mode){
             graphics.setColor(Color.BLACK);
-            graphics.drawText(String.valueOf(value + 1),getX() + getWidth()/2, getY() + getHeight()/2);
+            graphics.drawText(String.valueOf(value + 1),getX() + getWidth()/2, getY() + (getHeight()/2)+5);
         }
     }
 }
