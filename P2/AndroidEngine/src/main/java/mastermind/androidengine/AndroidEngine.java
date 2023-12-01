@@ -8,11 +8,12 @@ import mastermind.engine.Engine;
 
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
-    private boolean running;
+    private volatile boolean running;
 
     public AndroidEngine(SurfaceView surfaceView, Context context) {
         setGraphics(new AndroidGraphics(surfaceView, context));
         setAudio(new AndroidAudio(context));
+        setSensorsManager(new SensorsManager(context));
 
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);

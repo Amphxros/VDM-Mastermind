@@ -7,6 +7,7 @@ import mastermind.engine.IFont;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToShopScene;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -15,8 +16,8 @@ public class MenuScene extends Scene {
 
     @Override
     public void init() {
-        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
-        IFont fonty = getEngine().getGraphics().newFont("fonts/handwriting.ttf",25,false);
+        IFont font = getEngine().getGraphics().newFont("fonts/KIN668.ttf",40,false);
+        IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",25,false);
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
@@ -40,6 +41,19 @@ public class MenuScene extends Scene {
                 .setStrokeColor(new Color(150,150,150))
 
                 .addChild(t)
+        );
+
+        addGameObject(new GoToShopScene(this)
+                .setPosition(center/3,500)
+                .setSize(300,50)
+                .setStrokeColor(Color.BLACK)
+
+                .addChild(new Text(this,"Personalizar",fonty)
+                        .setPosition(center-50,25)
+                        .setStrokeColor(new Color(100,120,250))
+                )
+
+
         );
 
 
