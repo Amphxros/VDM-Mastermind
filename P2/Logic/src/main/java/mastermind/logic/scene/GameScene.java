@@ -1,19 +1,13 @@
 package mastermind.logic.scene;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.random.RandomGenerator;
 
 import mastermind.engine.Color;
-import mastermind.engine.EventType;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
 import mastermind.engine.IInput;
-import mastermind.engine.TouchEvent;
-import mastermind.logic.ColouringCell;
 import mastermind.logic.ColouringTable;
-import mastermind.logic.Container;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
@@ -22,7 +16,6 @@ import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
-import mastermind.logic.button.GoToModeExplore;
 
 public class GameScene extends Scene {
 
@@ -78,16 +71,6 @@ public class GameScene extends Scene {
 
         );
 
-        addGameObject(new GoToModeExplore(this)
-                .setPosition(0,50)
-                .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200))
-
-                .addChild(new Image(this, back)
-                        .setSize(50,50)
-                )
-
-        );
 
         addGameObject(new DaltonicButton(this, open, close)
                 .setPosition(330,20)

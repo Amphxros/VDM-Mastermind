@@ -7,6 +7,7 @@ import mastermind.engine.IFont;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToModeExplore;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -29,9 +30,13 @@ public class MenuScene extends Scene {
                 .setStrokeColor(new Color(100,100,100))
 
         );
-        Text t= new Text(this, "partida rapida",fonty);
-        t.setPosition(center-50,25);
-        t.setAlignment(HorizontalAlignment.CENTRE);
+        Text t1= new Text(this, "partida rapida",fonty);
+        t1.setPosition(center-50,25);
+        t1.setAlignment(HorizontalAlignment.CENTRE);
+
+        Text t2= new Text(this, "explorar mundos",fonty);
+        t2.setPosition(center-50,25);
+        t2.setAlignment(HorizontalAlignment.CENTRE);
 
 
         addGameObject(new GoToChooseLevel(this)
@@ -39,10 +44,15 @@ public class MenuScene extends Scene {
                 .setSize(300,50)
                 .setStrokeColor(new Color(150,150,150))
 
-                .addChild(t)
+                .addChild(t1)
         );
 
+        addGameObject(new GoToModeExplore(this)
+                .setPosition(center/3,350)
+                .setSize(300,50)
+                .setStrokeColor(new Color(150,150,150))
 
-
+                .addChild(t2)
+        );
     }
 }
