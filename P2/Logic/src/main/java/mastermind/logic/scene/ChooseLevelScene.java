@@ -21,8 +21,6 @@ public class ChooseLevelScene extends Scene {
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
 
-        int buttonW = (int) (maxWidth * 0.8);
-        int buttonX = center - buttonW / 2;
         // Title
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
                 .setPosition(center, 20));

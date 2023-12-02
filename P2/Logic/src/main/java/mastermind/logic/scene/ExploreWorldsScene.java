@@ -11,6 +11,7 @@ public class ExploreWorldsScene extends Scene {
 
     @Override
     public void init() {
-
+        int maxWidth = getEngine().getGraphics().getWidth();
+        int centerX = maxWidth / 2;
     }
 }

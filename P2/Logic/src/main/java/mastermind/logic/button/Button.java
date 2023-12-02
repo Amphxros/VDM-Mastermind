@@ -45,6 +45,4 @@ public abstract class Button extends GameObject {
     public boolean onScroll(TouchEvent event){
         return false;
     }
-
-    protected abstract Scene createScene();
 }

@@ -22,6 +22,7 @@ import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToModeExplore;
 
 public class GameScene extends Scene {
 
@@ -68,6 +69,17 @@ public class GameScene extends Scene {
 
         addGameObject(new GoToChooseLevel(this)
                 .setPosition(0,20)
+                .setSize(50,50)
+                .setStrokeColor(new Color(200,200,200))
+
+                .addChild(new Image(this, back)
+                        .setSize(50,50)
+                )
+
+        );
+
+        addGameObject(new GoToModeExplore(this)
+                .setPosition(0,50)
                 .setSize(50,50)
                 .setStrokeColor(new Color(200,200,200))
 
