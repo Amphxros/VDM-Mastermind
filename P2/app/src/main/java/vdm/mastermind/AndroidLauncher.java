@@ -1,7 +1,10 @@
 package vdm.mastermind;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.SurfaceView;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -16,8 +19,12 @@ public class AndroidLauncher extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Creamos el SurfaceView que "contendrá" nuestra escena
-        SurfaceView renderView = new SurfaceView(this);
-        setContentView(renderView);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.layout, null, false);
+        SurfaceView renderView = layout.findViewById(R.id.surfaceView);
+        //AdView adView = layout.findViewById(R.id.adView);
+        setContentView(layout);
+
 
         engine = new AndroidEngine(renderView, this);
         engine.getGraphics().setResolution(400, 600);
