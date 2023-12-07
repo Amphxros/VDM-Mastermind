@@ -61,7 +61,13 @@ public interface IEngine {
      */
     void setSensorsManager(ISensorsManager sensorsManager);
 
+    /**
+     *
+     * @return
+     */
+    IAdsManager getAdsManager();
 
+    void setAdsManager(IAdsManager adsManager);
 
 
     /**

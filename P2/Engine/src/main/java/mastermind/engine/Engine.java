@@ -6,6 +6,7 @@ public abstract class Engine implements IEngine {
     private Input input;
     private ILogic logic;
     private  ISensorsManager sensorsManager;
+    private IAdsManager adsManager;
 
     /**
      * @return An {@link ILogic} instance.
@@ -70,5 +71,15 @@ public abstract class Engine implements IEngine {
     @Override
     public void setSensorsManager(ISensorsManager sensorsManager) {
         this.sensorsManager = sensorsManager;
+    }
+
+    @Override
+    public IAdsManager getAdsManager() {
+        return adsManager;
+    }
+
+    @Override
+    public void setAdsManager(IAdsManager adsManager) {
+        this.adsManager = adsManager;
     }
 }

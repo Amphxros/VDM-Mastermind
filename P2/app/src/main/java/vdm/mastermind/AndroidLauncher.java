@@ -28,9 +28,9 @@ public class AndroidLauncher extends AppCompatActivity{
         AdView adView = layout.findViewById(R.id.adView);
         setContentView(layout);
 
-        MobileAds.initialize(this);
 
-        engine = new AndroidEngine(renderView, this);
+
+        engine = new AndroidEngine(this,renderView,adView, this);
         engine.getGraphics().setResolution(400, 600);
 
         Logic logic = new Logic(engine);
