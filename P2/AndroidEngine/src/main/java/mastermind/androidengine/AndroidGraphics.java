@@ -38,6 +38,8 @@ public final class AndroidGraphics implements IGraphics {
         this.surfaceHolder = surfaceView.getHolder();
         this.paint = new Paint();
         this.assetManager = context.getAssets();
+
+        setResolution(600,400);
         setColor(Color.WHITE);
     }
 
