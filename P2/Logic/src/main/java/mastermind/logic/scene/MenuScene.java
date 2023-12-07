@@ -8,6 +8,7 @@ import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToShopScene;
+import mastermind.logic.button.ShowRewardedAdButton;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -49,6 +50,18 @@ public class MenuScene extends Scene {
                 .setStrokeColor(Color.BLACK)
 
                 .addChild(new Text(this,"Personalizar",fonty)
+                        .setPosition(center-50,25)
+                        .setStrokeColor(new Color(100,120,250))
+                )
+
+
+        );
+        addGameObject(new ShowRewardedAdButton(this)
+                .setPosition(center/3,400)
+                .setSize(300,50)
+                .setStrokeColor(Color.BLACK)
+
+                .addChild(new Text(this,"Anuncio",fonty)
                         .setPosition(center-50,25)
                         .setStrokeColor(new Color(100,120,250))
                 )

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.widget.Toast;
 
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 
 import mastermind.engine.ISensorListener;
 import mastermind.engine.ISensorsManager;
-import mastermind.engine.SensorType;
 
 public class SensorsManager implements ISensorsManager, SensorEventListener {
     SensorManager androidSensorManager;

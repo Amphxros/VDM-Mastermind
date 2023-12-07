@@ -1,22 +1,16 @@
 package mastermind.logic.scene;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.random.RandomGenerator;
 
 import mastermind.engine.Color;
-import mastermind.engine.EventType;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
 import mastermind.engine.IInput;
 import mastermind.engine.ISensorListener;
 import mastermind.engine.ISensorsManager;
-import mastermind.engine.SensorType;
-import mastermind.engine.TouchEvent;
 import mastermind.logic.ColouringCell;
 import mastermind.logic.ColouringTable;
-import mastermind.logic.Container;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
