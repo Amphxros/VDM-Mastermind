@@ -20,15 +20,7 @@ public class WorldObject extends Button {
 
         //CARGA DE NIVELES CON EL TITULO DEL MUNDO
 
-
     }
 
-    /*public List<Level> readJsonStream(InputStream in) throws IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-        try {
-            return readMessagesArray(reader);
-        } finally {
-            reader.close();
-        }
-    }*/
+
 }
