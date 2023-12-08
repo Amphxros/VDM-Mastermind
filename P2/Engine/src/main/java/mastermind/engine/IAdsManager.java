@@ -1,12 +1,11 @@
 package mastermind.engine;
 
 public interface IAdsManager {
-    void showBanner();
-    void hideBanner();
+    boolean onAdRewardShown();
 
-    void launchRewardedAd();
-    boolean hasRewardAdShown();
-    void onRewardAdShown();
+    void showRewardAd();
+
+    void showBanner(boolean visible);
 
 
 }

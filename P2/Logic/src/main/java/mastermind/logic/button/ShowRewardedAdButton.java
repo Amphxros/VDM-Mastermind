@@ -14,7 +14,7 @@ public class ShowRewardedAdButton extends Button{
     public boolean onTouchDown(TouchEvent event) {
         IAdsManager adsManager=getEngine().getAdsManager();
         if(adsManager!=null){
-            adsManager.launchRewardedAd();
+            adsManager.showRewardAd();
         }
         return super.onTouchDown(event);
     }
