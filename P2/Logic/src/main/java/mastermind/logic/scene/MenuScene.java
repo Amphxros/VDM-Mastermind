@@ -43,7 +43,6 @@ public class MenuScene extends Scene {
                 .setPosition(center/3,250)
                 .setSize(300,50)
                 .setStrokeColor(new Color(150,150,150))
-
                 .addChild(t1)
         );
 
@@ -51,7 +50,6 @@ public class MenuScene extends Scene {
                 .setPosition(center/3,350)
                 .setSize(300,50)
                 .setStrokeColor(new Color(150,150,150))
-
                 .addChild(t2)
         );
     }
