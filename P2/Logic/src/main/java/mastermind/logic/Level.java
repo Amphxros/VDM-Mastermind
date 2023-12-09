@@ -1,5 +1,7 @@
 package mastermind.logic;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,8 +19,14 @@ public class Level extends Button {
     public Level(IScene scene, String fileJSON) {
         super(scene);
 
+        String jsonString = readFile(fileJSON);
 
+        JSONObject jsonObject = new JSONObject(jsonString);
 
+        mCodeSize = jsonObject.getInt("codeSize");
+        mCodeOpt = jsonObject.getInt("codeOpt");
+        mRepeat = jsonObject.getBoolean("repeat");
+        mAttempts = jsonObject.getInt("attempts");
     }
 
     public String readFile(String fileJSON){
