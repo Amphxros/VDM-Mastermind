@@ -35,20 +35,23 @@ public class ShopScene extends Scene {
         for(int i = 0; i<AnimalID.Num_Animals.ordinal(); i++){
             IImage image= getEngine().getGraphics().newImage("images/buttons/buttons-"+i+".png");
 
-            addGameObject(new SetAnimalButton(this,image,AnimalID.values()[i])
-                    .setSize(50,50)
+            addGameObject(new SetAnimalButton(this,AnimalID.values()[i])
+                    .setSize(300,60)
                     .setPosition(50,  140 +70*(i))
                     .setStrokeColor(Color.BLACK)
-
+                    .addChild(new Image(this,image)
+                            .setPosition(20,10)
+                            .setSize(40,40)
+                    )
                     .addChild(new Text(this,"Animalito " + i,font)
                             .setPosition(100,30)
                     )
                     .addChild(new Image(this,coin)
-                            .setPosition(170,10)
+                            .setPosition(200,10)
                             .setSize(30,30)
                     )
                     .addChild(new Text(this, String.valueOf(100*i),font)
-                            .setPosition(230,30)
+                            .setPosition(250,30)
                     )
             );
         }

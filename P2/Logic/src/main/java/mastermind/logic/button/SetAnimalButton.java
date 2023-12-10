@@ -8,17 +8,16 @@ import mastermind.logic.AnimalID;
 
 
 public class SetAnimalButton extends Button{
-    IImage image;
     AnimalID animalID;
-    public SetAnimalButton(IScene scene, IImage image, AnimalID animalID) {
+    public SetAnimalButton(IScene scene, AnimalID animalID) {
         super(scene);
-        this.image=image;
         this.animalID=animalID;
     }
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.drawImage(image,getX(), getY(), getWidth(), getHeight());
+        graphics.setColor(strokeColor);
+        graphics.drawRoundRectangle(getX(), getY(), getWidth(), getHeight(),30);
         super.render(graphics);
     }
 
