@@ -50,6 +50,27 @@ public interface IEngine {
     void setAudio(IAudio audio);
 
     /**
+     *
+     * @return The {@link ISensorsManager} instance.
+     */
+    ISensorsManager getSensorsManager();
+
+    /**
+     *
+     * @param sensorsManager
+     */
+    void setSensorsManager(ISensorsManager sensorsManager);
+
+    /**
+     *
+     * @return
+     */
+    IAdsManager getAdsManager();
+
+    void setAdsManager(IAdsManager adsManager);
+
+
+    /**
      * @return The application's window width.
      */
     int getWidth();

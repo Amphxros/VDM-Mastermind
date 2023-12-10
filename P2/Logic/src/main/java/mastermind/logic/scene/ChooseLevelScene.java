@@ -16,7 +16,7 @@ public class ChooseLevelScene extends Scene {
 
     @Override
     public void init() {
-        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
+        IFont font = getEngine().getGraphics().newFont("fonts/KIN668.ttf",20,false);
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
@@ -40,7 +40,7 @@ public class ChooseLevelScene extends Scene {
     private GameObject createGameButton(int x, int y, int w, int h,
                                         Color color, String text, IFont font,
                                         int numColors, int numIntentos, int tamPassword,boolean repeating ){
-        return new GoToGameScene(this,numColors,numIntentos,tamPassword,repeating)
+        return new GoToGameScene(this,numColors,numIntentos,tamPassword,repeating,true)
                 .setPosition(x,y)
                 .setSize(w,h)
                 .setStrokeColor(color)

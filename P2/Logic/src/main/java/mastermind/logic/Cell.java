@@ -71,7 +71,7 @@ public class Cell extends Button implements DaltonicListener{
             graphics.setColor(Color.BLACK);
             graphics.setFont(font);
 
-            graphics.drawText(String.valueOf(value), getX(), getY());
+            graphics.drawText(String.valueOf(value+1), getX() + getWidth()/2, getY() + (getHeight()/2)+5);
         }
     }
 }

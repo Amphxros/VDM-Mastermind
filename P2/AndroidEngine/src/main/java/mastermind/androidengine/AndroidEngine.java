@@ -3,17 +3,22 @@ package mastermind.androidengine;
 import android.content.Context;
 import android.view.SurfaceView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.ads.AdView;
+
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
 
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
-    private boolean running;
+    private volatile boolean running;
 
-    public AndroidEngine(SurfaceView surfaceView, Context context) {
+    public AndroidEngine(AppCompatActivity activity, SurfaceView surfaceView, AdView adView , Context context) {
         setGraphics(new AndroidGraphics(surfaceView, context));
         setAudio(new AndroidAudio(context));
-
+        setSensorsManager(new SensorsManager(context));
+        setAdsManager(new AdsManager(activity,adView,context));
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
         setInput(input);
