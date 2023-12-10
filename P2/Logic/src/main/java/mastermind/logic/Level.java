@@ -15,7 +15,6 @@ public class Level extends Button {
 
         IJSON mJson = getEngine().newJSON(fileJSON);
 
-
         mCodeSize = mJson.getIntKey("codeSize");
         mCodeOpt = mJson.getIntKey("codeOpt");
         mRepeat = mJson.getBoleanKey("repeat");
