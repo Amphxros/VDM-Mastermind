@@ -35,6 +35,11 @@ public class AndroidEngine extends Engine implements Runnable {
     }
 
     @Override
+    public AndroidJSON newJSON(String name) {
+        return new AndroidJSON(name);
+    }
+
+    @Override
     public void run() {
         if (thread != Thread.currentThread()) {
             // (Defensive Programming)
@@ -106,4 +111,6 @@ public class AndroidEngine extends Engine implements Runnable {
             }
         }
     }
+
+
 }

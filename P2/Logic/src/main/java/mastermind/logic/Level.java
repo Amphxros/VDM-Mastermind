@@ -1,12 +1,6 @@
 package mastermind.logic;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
+import mastermind.engine.IJSON;
 import mastermind.engine.IScene;
 import mastermind.logic.button.Button;
 
@@ -19,40 +13,12 @@ public class Level extends Button {
     public Level(IScene scene, String fileJSON) {
         super(scene);
 
-        String jsonString = readFile(fileJSON);
+        IJSON mJson = getEngine().newJSON(fileJSON);
 
-        JSONObject jsonObject = new JSONObject(jsonString);
 
-        mCodeSize = jsonObject.getInt("codeSize");
-        mCodeOpt = jsonObject.getInt("codeOpt");
-        mRepeat = jsonObject.getBoolean("repeat");
-        mAttempts = jsonObject.getInt("attempts");
-    }
-
-    public String readFile(String fileJSON){
-        String line = "";
-        FileInputStream in;
-        try {
-            in = new FileInputStream(fileJSON);
-
-            InputStreamReader inputStreamReader = new InputStreamReader(in);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuilder sb = new StringBuilder();
-
-            while (true) {
-                try {
-                    if (!((line = bufferedReader.readLine()) != null)) break;
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                sb.append(line);
-            }
-            inputStreamReader.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return line;
+        mCodeSize = mJson.getIntKey("codeSize");
+        mCodeOpt = mJson.getIntKey("codeOpt");
+        mRepeat = mJson.getBoleanKey("repeat");
+        mAttempts = mJson.getIntKey("attempts");
     }
 }

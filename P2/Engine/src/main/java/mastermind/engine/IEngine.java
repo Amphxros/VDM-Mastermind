@@ -58,4 +58,6 @@ public interface IEngine {
      * @return The application's window height.
      */
     int getHeight();
+
+    IJSON newJSON(String name);
 }
