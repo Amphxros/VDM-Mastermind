@@ -10,6 +10,8 @@ import mastermind.logic.scene.MenuScene;
 public class Logic implements ILogic {
     IEngine engine;
     IScene currentScene;
+
+    PlayerData playerData;
     public Logic(IEngine engine) {
         this.engine=engine;
     }
@@ -52,4 +54,6 @@ public class Logic implements ILogic {
     public IEngine getEngine() {
         return this.engine;
     }
+
+    public PlayerData getPlayerData(){return this.playerData;}
 }
