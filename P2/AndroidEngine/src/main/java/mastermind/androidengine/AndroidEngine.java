@@ -72,7 +72,7 @@ public class AndroidEngine extends Engine implements Runnable {
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;
 
-        graphics.clear(Color.WHITE.getARGB());
+
         getLogic().render(graphics);
         graphics.present();
     }

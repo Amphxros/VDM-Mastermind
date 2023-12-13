@@ -26,4 +26,5 @@ public class Vector2D {
     public int getY() {
         return y;
     }
+
 }

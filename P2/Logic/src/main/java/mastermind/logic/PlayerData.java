@@ -3,31 +3,76 @@ package mastermind.logic;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import mastermind.engine.Color;
 import mastermind.engine.IEngine;
+import mastermind.engine.ILogicData;
 
-public class PlayerData {
-    AnimalID currentAnimalID;
-    HashMap<AnimalID, Boolean> unlockedAnimals;
+public class PlayerData implements ILogicData {
+    int coins;
 
-    IEngine engine;
-    public PlayerData(IEngine engine){
-        this.engine=engine;
-        currentAnimalID =AnimalID.None;
-    }
+    Color background;
+    Color font;
+    Color tittle;
+    Color buttons;
 
-    public void saveData(){
 
-    }
-
-    public void loadData(){
-
-    }
-
-    public void buyAnimal(AnimalID animalID){
+    public PlayerData(){
+        this.background= Color.WHITE;
+        this.buttons=new Color(100,100,100);
+        this.font=Color.BLACK;
+        this.tittle= new Color(30,30,50);
+        this.coins=0;
 
     }
 
-    public void setAnimal(AnimalID animalID){
+    @Override
+    public void loadData(String route) {
 
+    }
+
+    @Override
+    public void saveData() {
+
+    }
+
+    public int getCoins(){
+        return this.coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public Color getBackground() {
+        return background;
+    }
+
+    public void setBackground(Color background) {
+        this.background = background;
+    }
+
+
+    public Color getButtons() {
+        return buttons;
+    }
+
+    public void setButtons(Color buttons) {
+        this.buttons = buttons;
+    }
+
+    public Color getFont() {
+        return font;
+    }
+
+    public void setFont(Color font) {
+        this.font = font;
+    }
+
+    public Color getTittle() {
+        return tittle;
+    }
+
+    public void setTittle(Color tittle) {
+        this.tittle = tittle;
     }
 }

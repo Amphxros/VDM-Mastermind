@@ -12,4 +12,7 @@ public interface ILogic {
     void handleEvents(IInput input);
 
     IEngine getEngine();
+
+    ILogicData getLogicData();
+    void setLogicData(ILogicData logicData);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import mastermind.engine.IEngine;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
+import mastermind.engine.ILogicData;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 
@@ -96,4 +97,8 @@ public abstract class Scene implements IScene {
     public void dispose() {
     }
 
+    @Override
+    public PlayerData getLogicData() {
+        return (PlayerData) getEngine().getLogic().getLogicData();
+    }
 }
