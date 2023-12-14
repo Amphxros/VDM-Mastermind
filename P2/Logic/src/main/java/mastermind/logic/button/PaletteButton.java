@@ -6,15 +6,21 @@ import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
-import mastermind.logic.AnimalID;
 import mastermind.logic.PlayerData;
 
+public class PaletteButton extends BuyItemButton{
+    Color background;
+    Color buttons;
+    Color font;
+    Color tittle;
 
-public class SetAnimalButton extends BuyItemButton{
-    AnimalID animalID;
-    public SetAnimalButton(IScene scene, AnimalID animalID, int price, boolean isLocked, ISound sound) {
+    public PaletteButton(IScene scene, Color background, Color buttons, Color tittle, Color font, boolean isLocked, ISound sound, int price) {
         super(scene,price,isLocked,sound);
-        this.animalID=animalID;
+        this.background=background;
+        this.buttons=buttons;
+        this.font=font;
+        this.tittle=tittle;
+
     }
 
     @Override
@@ -27,18 +33,22 @@ public class SetAnimalButton extends BuyItemButton{
         }
 
         graphics.fillRoundRectangle(getX(), getY(), getWidth(), getHeight(),30);
+
         super.render(graphics);
+
     }
 
     @Override
     public void setElem() {
         PlayerData p= (PlayerData)getEngine().getLogic().getLogicData();
-        p.setCurrentAnimalID(this.animalID);
+        p.setBackground(background);
+        p.setButtons(buttons);
+        p.setFont(font);
+        p.setTittle(tittle);
     }
 
     @Override
     public void unlockElem() {
-        PlayerData p= (PlayerData)getEngine().getLogic().getLogicData();
 
     }
 }

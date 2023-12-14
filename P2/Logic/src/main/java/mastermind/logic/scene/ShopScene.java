@@ -6,12 +6,15 @@ import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
+import mastermind.engine.ISound;
 import mastermind.logic.AnimalID;
 import mastermind.logic.Container;
 import mastermind.logic.Image;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
+import mastermind.logic.button.BackgroundButton;
 import mastermind.logic.button.GoToMenuScene;
+import mastermind.logic.button.PaletteButton;
 import mastermind.logic.button.SetAnimalButton;
 import mastermind.logic.button.ShopButtons;
 
@@ -34,18 +37,35 @@ public class ShopScene extends Scene {
         IFont tittle = getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
         IImage coin= getEngine().getGraphics().newImage("images/coin.png");
+        ISound sound= getEngine().getAudio().createSound("sounds/01");
+        addGameObject(new Container(this)
+                .setPosition(300,0)
+                .setStrokeColor(getLogicData().getButtons())
+
+                .addChild(new Text(this,String.valueOf(getLogicData().getCoins()),tittle)
+                        .setPosition(-10,50)
+
+                )
+                .addChild(new Image(this,coin)
+                        .setPosition(50,10)
+                        .setSize(50,50)
+                )
+
+
+
+        );
 
         addGameObject(new ShopButtons(this,-1)
                 .setPosition(40,70)
                 .setSize(50,50)
-                .setStrokeColor(new Color(230,230,230))
+                .setStrokeColor(getLogicData().getButtons())
 
 
         );
-            addGameObject(new ShopButtons(this,1)
+        addGameObject(new ShopButtons(this,1)
                 .setPosition(300,70)
                 .setSize(50,50)
-                .setStrokeColor(new Color(230,230,230))
+                .setStrokeColor(getLogicData().getButtons())
 
 
         );
@@ -53,7 +73,7 @@ public class ShopScene extends Scene {
         addGameObject(new GoToMenuScene(this)
                 .setPosition(10,10)
                 .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200))
+                .setStrokeColor(getLogicData().getButtons())
 
                 .addChild(new Image(this, back)
                         .setPosition(5,5)
@@ -65,22 +85,24 @@ public class ShopScene extends Scene {
          */
         containers.get(0).addChild(new Text(this,"Skins",tittle)
                 .setPosition(200,100)
+                .setStrokeColor(getLogicData().getTittle())
 
         );
         for(int i = 0; i<AnimalID.Num_Animals.ordinal(); i++){
             IImage image= getEngine().getGraphics().newImage("images/buttons/buttons-"+i+".png");
 
             containers.get(0).addChild(
-                    (new SetAnimalButton(this,AnimalID.values()[i])
+                    (new SetAnimalButton(this,AnimalID.values()[i],i*100,true,sound)
                     .setSize(300,60)
                     .setPosition(50,  140 +70*(i))
-                    .setStrokeColor(Color.BLACK)
+                    .setStrokeColor(getLogicData().getButtons())
                     .addChild(new Image(this,image)
                             .setPosition(20,10)
                             .setSize(40,40)
                     )
                     .addChild(new Text(this,"Animalito " + i,font)
                             .setPosition(100,30)
+                            .setStrokeColor(getLogicData().getFont())
                     )
                     .addChild(new Image(this,coin)
                             .setPosition(200,10)
@@ -88,6 +110,7 @@ public class ShopScene extends Scene {
                     )
                     .addChild(new Text(this, String.valueOf(100*i),font)
                             .setPosition(250,30)
+                            .setStrokeColor(getLogicData().getFont())
                     )
                 )
             );
@@ -95,17 +118,19 @@ public class ShopScene extends Scene {
 
         containers.get(1).addChild(new Text(this,"Backgrounds",tittle)
                 .setPosition(200,100)
+                .setStrokeColor(getLogicData().getTittle())
 
 
         );
         for(int i=0;i<4;i++){
             containers.get(1).addChild(
-              new Container(this)
+              new BackgroundButton(this,i*100,true,sound)
                       .setPosition(30, 250 + 100*i)
                       .setSize(300,70)
-                      .setStrokeColor(new Color(200,200,200))
+                      .setStrokeColor(getLogicData().getButtons())
                       .addChild(new Text(this,"Fondo " + i,font)
                               .setPosition(100,30)
+                              .setStrokeColor(getLogicData().getFont())
                       )
                       .addChild(new Image(this,coin)
                               .setPosition(200,10)
@@ -113,7 +138,36 @@ public class ShopScene extends Scene {
                       )
                       .addChild(new Text(this, String.valueOf(100*i),font)
                               .setPosition(250,30)
+                              .setStrokeColor(getLogicData().getFont())
                       )
+
+            );
+        }
+
+        containers.get(2).addChild(new Text(this,"Palettes",tittle)
+                .setPosition(200,100)
+                .setStrokeColor(getLogicData().getTittle())
+
+
+        );
+        for(int i=0;i<4;i++){
+            containers.get(2).addChild(
+                    new PaletteButton(this,Color.WHITE,Color.BLACK,Color.WHITE,Color.RED,true,sound,100*i)
+                            .setPosition(30, 250 + 100*i)
+                            .setSize(300,70)
+                            .setStrokeColor(getLogicData().getButtons())
+                            .addChild(new Text(this,"Palettes" + i,font)
+                                    .setPosition(100,30)
+                                    .setStrokeColor(getLogicData().getFont())
+                            )
+                            .addChild(new Image(this,coin)
+                                    .setPosition(200,10)
+                                    .setSize(30,30)
+                            )
+                            .addChild(new Text(this, String.valueOf(100*i),font)
+                                    .setPosition(250,30)
+                                    .setStrokeColor(getLogicData().getFont())
+                            )
 
             );
         }
@@ -129,5 +183,10 @@ public class ShopScene extends Scene {
             c.hide();
 
         containers.get(this.id).show();
+    }
+
+    @Override
+    public void update(double delta) {
+        super.update(delta);
     }
 }

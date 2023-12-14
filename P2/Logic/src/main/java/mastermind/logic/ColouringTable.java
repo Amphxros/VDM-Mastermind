@@ -2,12 +2,14 @@ package mastermind.logic;
 
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
+import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 
 public class ColouringTable extends GameObject implements DaltonicListener{
     boolean daltonic;
 
     Color[] colors;
+    IImage[]images;
     int numCells;
     public ColouringTable(IScene scene, int numCells, Color[] colors) {
         super(scene);
@@ -15,14 +17,32 @@ public class ColouringTable extends GameObject implements DaltonicListener{
         this.colors=colors.clone();
     }
 
+
+    public ColouringTable(IScene scene, int numCells, IImage[] images) {
+        super(scene);
+        this.numCells=numCells;
+        this.colors=null;
+        this.images=images.clone();
+    }
+
     @Override
     public void init() {
-        for(int i=0;i<this.numCells;i++){
-            this.addChild(new ColouringCell(getScene(),i)
+        if(colors!=null){
+            for(int i=0;i<this.numCells;i++){
+                this.addChild(new ColouringCell(getScene(),i)
                     .setSize(30,30)
                     .setStrokeColor(colors[i])
                     .setPosition(20 + 40*(i),20)
-            );
+                );
+            }
+        }
+        else{
+            for(int i=0;i<this.numCells;i++){
+                this.addChild(new ColouringCell(getScene(),i,images[i])
+                        .setSize(30,30)
+                        .setPosition(20 + 40*(i),20)
+                );
+            }
         }
         super.init();
     }

@@ -3,6 +3,7 @@ package mastermind.logic;
 import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
+import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.button.Button;
@@ -14,10 +15,20 @@ public class Cell extends Button implements DaltonicListener{
     boolean daltonic_mode;
 
     IFont font;
+
+    IImage image;
     public Cell(IScene scene, IFont font) {
         super(scene);
         this.font=font;
         this.state=CellState.Empty;
+
+    }
+
+    public Cell(IScene scene, IFont font, IImage image) {
+        super(scene);
+        this.font=font;
+        this.state=CellState.Empty;
+        this.image=image;
 
     }
 
@@ -29,13 +40,18 @@ public class Cell extends Button implements DaltonicListener{
 
     @Override
     public void render(IGraphics graphics) {
-        if(state ==CellState.Empty) {
-            graphics.setColor(initialColor);
+        if(image==null) {
+            if (state == CellState.Empty) {
+                graphics.setColor(initialColor);
+            } else {
+                graphics.setColor(strokeColor);
+            }
+            graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
-        else {
-            graphics.setColor(strokeColor);
+        else{
+            graphics.drawImage(image,getX(),getY(),getWidth(),getHeight());
         }
-        graphics.fillCircle(getX() + getWidth()/2,getY()+ getHeight()/2, getWidth()/2);
+
         drawDaltonicInfo(graphics);
 
         super.render(graphics);

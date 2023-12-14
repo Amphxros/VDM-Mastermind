@@ -190,7 +190,7 @@ public class GameScene extends Scene implements ISensorListener {
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
-               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
+               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos)));
            }
            else
            {
@@ -200,7 +200,7 @@ public class GameScene extends Scene implements ISensorListener {
                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
                }
                else{
-                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
+                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false,0));
                }
            }
         }

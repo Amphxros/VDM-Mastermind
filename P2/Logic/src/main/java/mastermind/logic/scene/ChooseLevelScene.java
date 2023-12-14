@@ -8,6 +8,7 @@ import mastermind.logic.GameObject;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToGameScene;
+import mastermind.logic.button.GoToMenuScene;
 
 public class ChooseLevelScene extends Scene {
     public ChooseLevelScene(IEngine engine) {
@@ -25,17 +26,25 @@ public class ChooseLevelScene extends Scene {
         int buttonX = center - buttonW / 2;
         // Title
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
-                .setPosition(center, 20));
+                .setPosition(center +30, 40)
+                .setStrokeColor(getLogicData().getFont())
+        );
+
+        addGameObject(new GoToMenuScene(this)
+                .setPosition(10,10)
+                .setSize(50,50)
+                .setStrokeColor(getLogicData().getButtons())
+        );
 
         addGameObject(new Container(this)
                 .setPosition(100, 100)
                 .setSize(center, center)
                 .setStrokeColor(new Color(150,150,150,0))
 
-                .addChild(createGameButton(0,0,center,center/4,new Color(200,200,120),"facil",font,4,6,4,false))
-                .addChild(createGameButton(0,center/3,center,center/4,new Color(249,231,132),"Medio",font,6,6,5,false))
-                .addChild(createGameButton(0,2*center/3,center,center/4,new Color(229,145,101),"Dificil",font,6,6,6,true))
-                .addChild(createGameButton(0,center,center,center/4,new Color(208,83,83),"Imposible",font,6,10,6,true))
+                .addChild(createGameButton(0,0,center,center/4,getLogicData().getButtons(),"facil",font,4,6,4,false))
+                .addChild(createGameButton(0,center/3,center,center/4,getLogicData().getButtons(),"Medio",font,6,6,5,false))
+                .addChild(createGameButton(0,2*center/3,center,center/4,getLogicData().getButtons(),"Dificil",font,6,6,6,true))
+                .addChild(createGameButton(0,center,center,center/4,getLogicData().getButtons(),"Imposible",font,6,10,6,true))
         );
     }
 
@@ -48,7 +57,7 @@ public class ChooseLevelScene extends Scene {
                 .setStrokeColor(color)
                 .addChild(new Text(this,text,font)
                         .setPosition(w,3*h - h/3)
-                        .setStrokeColor(Color.BLACK)
+                        .setStrokeColor(getLogicData().getFont())
 
                 );
     }

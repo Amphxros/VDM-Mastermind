@@ -30,6 +30,7 @@ public class Table extends GameObject implements DaltonicListener{
             this.cells[i]=(new Cell(getScene(),font));
             this.cells[i].setSize(30,30)
                     .setStrokeColor(new Color(150,150,150))
+
                     .setPosition(20 + 40*(i),10);
             this.addChild(cells[i]);
         }

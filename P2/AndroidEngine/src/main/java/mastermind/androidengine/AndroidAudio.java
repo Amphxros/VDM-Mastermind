@@ -6,7 +6,9 @@ import mastermind.engine.IAudio;
 import mastermind.engine.ISound;
 
 public class AndroidAudio implements IAudio {
+    Context context;
     public AndroidAudio(Context context) {
+        this.context=context;
     }
 
     @Override

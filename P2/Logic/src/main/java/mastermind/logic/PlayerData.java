@@ -15,13 +15,19 @@ public class PlayerData implements ILogicData {
     Color tittle;
     Color buttons;
 
+    ArrayList<AnimalID> unlockedAnimals;
+    AnimalID currentAnimalID;
+
 
     public PlayerData(){
         this.background= Color.WHITE;
         this.buttons=new Color(100,100,100);
         this.font=Color.BLACK;
         this.tittle= new Color(30,30,50);
-        this.coins=0;
+        this.coins=999;
+        this.currentAnimalID=AnimalID.None;
+        this.unlockedAnimals= new ArrayList<>();
+
 
     }
 
@@ -74,5 +80,9 @@ public class PlayerData implements ILogicData {
 
     public void setTittle(Color tittle) {
         this.tittle = tittle;
+    }
+
+    public void setCurrentAnimalID(AnimalID currentAnimalID) {
+        this.currentAnimalID = currentAnimalID;
     }
 }

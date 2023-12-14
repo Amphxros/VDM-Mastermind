@@ -12,13 +12,16 @@ public class WinScene extends Scene {
     Color[] colors;
     int[] solution;
     boolean hasWon;
+    int coinsAmount;
 
-    public WinScene(IEngine engine, Color[] colors, int[] solution, boolean hasWon) {
+    public WinScene(IEngine engine, Color[] colors, int[] solution, boolean hasWon, int coinsAmount) {
         super(engine);
         this.colors=colors.clone();
         this.solution=solution.clone();
         this.hasWon=hasWon;
+        this.coinsAmount=coinsAmount;
     }
+
 
     @Override
     public void init() {
@@ -38,6 +41,7 @@ public class WinScene extends Scene {
         text.setStrokeColor(new Color(20,20,20));
         if(hasWon){
             text.setText("You Won");
+            getLogicData().setCoins(getLogicData().getCoins() + this.coinsAmount);
         }
 
         addGameObject(text);
