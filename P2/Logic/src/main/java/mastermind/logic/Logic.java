@@ -15,7 +15,7 @@ public class Logic implements ILogic {
     PlayerData playerData;
     public Logic(IEngine engine) {
         this.engine=engine;
-        this.playerData= new PlayerData();
+        this.playerData= new PlayerData(engine);
         setLogicData(this.playerData);
     }
 

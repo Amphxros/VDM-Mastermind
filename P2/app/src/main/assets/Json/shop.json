@@ -1,0 +1,29 @@
+{
+    "Animals":
+        [
+            "images/buttons/buttons-0.png",
+            "images/buttons/buttons-1.png",
+            "images/buttons/buttons-6.png",
+            "images/buttons/buttons-3.png",
+            "images/buttons/buttons-4.png",
+            "images/buttons/buttons-2.png",
+            "images/buttons/buttons-5.png"
+        ],
+    "Backgrounds":[
+        "images/backgrounds/background-0.png",
+        "images/backgrounds/background-1.png",
+        "images/backgrounds/background-2.png",
+        "images/backgrounds/background-3.png"
+
+    ],
+    "Palettes":[
+        "images/palettes/palette-0.png",       
+        "images/palettes/palette-1.png",
+        "images/palettes/palette-2.png",
+        "images/palettes/palette-3.png",
+        "images/palettes/palette-4.png",
+        "images/palettes/palette-5.png"
+
+
+    ]
+}

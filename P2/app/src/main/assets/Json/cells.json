@@ -1,0 +1,56 @@
+{
+    "Animals":{
+        "None":{
+            
+        },
+        "Fish":{
+            "basic":"image/fish/basic-",
+            "fruity":"image/fish/fruity-",
+            "halloween":"image/fish/halloween-",
+            "xmas":"image/fish/xmas-"
+        },
+        
+        "Armadillo":{
+            "basic":"image/armadillo/basic-",
+            "fruity":"image/armadillo/fruity-",
+            "halloween":"image/armadillo/halloween-",
+            "xmas":"image/armadillo/xmas-"
+        },
+        
+        "Bird": {
+            "basic":"image/bird/basic-",
+            "fruity":"image/bird/fruity-",
+            "halloween":"image/bird/halloween-",
+            "xmas":"image/armadillo/xmas-"
+        },
+        
+        "Frog": {
+            "basic":"image/frog/basic-",
+            "fruity":"image/frog/fruity-",
+            "halloween":"image/frog/halloween-",
+            "xmas":"image/frog/xmas-"
+        },
+        
+        "Capybara": {
+            "basic":"image/capybara/basic-",
+            "fruity":"image/capybara/fruity-",
+            "halloween":"image/capybara/halloween-",
+            "xmas":"image/capybara/xmas-"
+        },
+        "Cat": {
+            "basic":"image/cat/basic-",
+            "fruity":"image/cat/fruity-",
+            "halloween":"image/cat/halloween-",
+            "xmas":"image/cat/xmas-"
+        }
+
+
+    },
+    "Backgrounds":{
+        "basic":"",
+        "fruity":"",
+        "halloween":"",
+        "xmas":""
+        
+    }
+}

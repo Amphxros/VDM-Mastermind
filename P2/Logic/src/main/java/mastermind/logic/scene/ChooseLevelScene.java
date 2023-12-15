@@ -3,10 +3,13 @@ package mastermind.logic.scene;
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
+import mastermind.engine.IImage;
 import mastermind.logic.Container;
 import mastermind.logic.GameObject;
+import mastermind.logic.Image;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
+import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToGameScene;
 import mastermind.logic.button.GoToMenuScene;
 
@@ -18,12 +21,15 @@ public class ChooseLevelScene extends Scene {
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/KIN668.ttf",20,false);
+        IImage back= getEngine().getGraphics().newImage("images/back_button.png");
+
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
 
         int buttonW = (int) (maxWidth * 0.8);
         int buttonX = center - buttonW / 2;
+
         // Title
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
                 .setPosition(center +30, 40)
@@ -31,15 +37,21 @@ public class ChooseLevelScene extends Scene {
         );
 
         addGameObject(new GoToMenuScene(this)
-                .setPosition(10,10)
+                .setPosition(20,20)
                 .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
+                .setStrokeColor(new Color(200,200,200,50))
+
+                .addChild(new Image(this, back)
+                                .setSize(50,50)
+                )
+
+
         );
 
         addGameObject(new Container(this)
                 .setPosition(100, 100)
-                .setSize(center, center)
-                .setStrokeColor(new Color(150,150,150,0))
+
+                .setStrokeColor(new Color(150,150,150))
 
                 .addChild(createGameButton(0,0,center,center/4,getLogicData().getButtons(),"facil",font,4,6,4,false))
                 .addChild(createGameButton(0,center/3,center,center/4,getLogicData().getButtons(),"Medio",font,6,6,5,false))

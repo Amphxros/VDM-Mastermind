@@ -18,13 +18,16 @@ public class PlayerData implements ILogicData {
     ArrayList<AnimalID> unlockedAnimals;
     AnimalID currentAnimalID;
 
+    IEngine engine;
 
-    public PlayerData(){
+
+    public PlayerData(IEngine engine){
+        this.engine=engine;
         this.background= Color.WHITE;
         this.buttons=new Color(100,100,100);
         this.font=Color.BLACK;
         this.tittle= new Color(30,30,50);
-        this.coins=999;
+        this.coins=999; //TODO change this THIS IS ONLY FOR DEBUG THE SHOP
         this.currentAnimalID=AnimalID.None;
         this.unlockedAnimals= new ArrayList<>();
 
@@ -33,11 +36,15 @@ public class PlayerData implements ILogicData {
 
     @Override
     public void loadData(String route) {
-
+        //TODO need file manager :(
+        //TODO load checksum
+        //TODO compare with checksum
     }
 
     @Override
     public void saveData() {
+        //TODO need file manager :(
+        //TODO need NDK, checksum and that shit
 
     }
 

@@ -71,7 +71,7 @@ public class Table extends GameObject implements DaltonicListener{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.drawRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
+        graphics.fillRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
         super.render(graphics);
     }
 

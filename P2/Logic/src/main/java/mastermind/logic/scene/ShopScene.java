@@ -20,6 +20,9 @@ import mastermind.logic.button.ShopButtons;
 
 public class ShopScene extends Scene {
     ArrayList<Container> containers;
+
+    Text t;
+
     int id=0;
     public ShopScene(IEngine engine) {
         super(engine);
@@ -38,13 +41,14 @@ public class ShopScene extends Scene {
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
         IImage coin= getEngine().getGraphics().newImage("images/coin.png");
         ISound sound= getEngine().getAudio().createSound("sounds/01");
+
+       t= new Text(this,String.valueOf(getLogicData().getCoins()),tittle);
+       t.setPosition(-10,50);
         addGameObject(new Container(this)
                 .setPosition(300,0)
                 .setStrokeColor(getLogicData().getButtons())
 
-                .addChild(new Text(this,String.valueOf(getLogicData().getCoins()),tittle)
-                        .setPosition(-10,50)
-
+                .addChild(t
                 )
                 .addChild(new Image(this,coin)
                         .setPosition(50,10)
@@ -152,7 +156,7 @@ public class ShopScene extends Scene {
         );
         for(int i=0;i<4;i++){
             containers.get(2).addChild(
-                    new PaletteButton(this,Color.WHITE,Color.BLACK,Color.WHITE,Color.RED,true,sound,100*i)
+                    new PaletteButton(this,Color.WHITE,Color.BLACK,Color.RED,Color.RED,true,sound,100*i)
                             .setPosition(30, 250 + 100*i)
                             .setSize(300,70)
                             .setStrokeColor(getLogicData().getButtons())
@@ -187,6 +191,7 @@ public class ShopScene extends Scene {
 
     @Override
     public void update(double delta) {
+        t.setText(String.valueOf(getLogicData().getCoins()));
         super.update(delta);
     }
 }
