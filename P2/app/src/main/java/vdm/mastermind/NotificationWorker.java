@@ -31,8 +31,9 @@ public class NotificationWorker extends Worker {
         final String biggerText = getInputData().getString(INPUT_BIGGER_TEXT);
         final String channelId = getInputData().getString(INPUT_CHANNEL_ID);
         final boolean autoCancel = getInputData().getBoolean(INPUT_AUTO_CANCEL, true);
+        send(title, contentText, biggerText, channelId, autoCancel);
         return Result.success();
-    }        send(title, contentText, biggerText, channelId, autoCancel);
+    }
 
 
     public void send(String tittle, String content, String bigger,String channelID, boolean autoCancel){
