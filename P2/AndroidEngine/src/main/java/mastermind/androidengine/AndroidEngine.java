@@ -22,6 +22,8 @@ public class AndroidEngine extends Engine implements Runnable {
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
         setInput(input);
+
+        setNotificationHandler(new AndroidNotificationHandler(context));
     }
 
     @Override
