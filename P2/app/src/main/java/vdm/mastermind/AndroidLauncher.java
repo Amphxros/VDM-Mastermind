@@ -65,7 +65,7 @@ public class AndroidLauncher extends AppCompatActivity{
     protected void onPause() {
         super.onPause();
         engine.pause();
-        handleNotifications();
+        //handleNotifications();
 
     }
 
@@ -74,21 +74,7 @@ public class AndroidLauncher extends AppCompatActivity{
         if(notificationHandler!=null){
             ArrayList<Notification> notifications= notificationHandler.getPendingEntries();
             for(Notification n: notifications){
-                Data input= new Data.Builder()
-                        .putString(NotificationWorker.INPUT_CHANNEL_ID, notificationHandler.getChannelID())
-                        .putString(NotificationWorker.INPUT_TITLE, n.getTitle())
-                        .putString(NotificationWorker.INPUT_CONTENT, n.getContent())
-                        .putString(NotificationWorker.INPUT_BIGGER_TEXT, n.getSubtitle())
-                        .putBoolean(NotificationWorker.INPUT_AUTO_CANCEL, true)
 
-                        .build();
-
-                OneTimeWorkRequest notificationWork = new OneTimeWorkRequest.Builder(NotificationWorker.class)
-                        .setInitialDelay(n.getDelay(), TimeUnit.SECONDS)
-                        .setInputData(input)
-                        .build();
-
-                WorkManager.getInstance(this).enqueue(notificationWork);
             }
 
             notifications.clear();
