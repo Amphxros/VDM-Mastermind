@@ -17,6 +17,7 @@ public class AndroidNotificationHandler implements INotificationHandler {
     private final ArrayList<Notification> notifications = new ArrayList<>();
     public AndroidNotificationHandler(Context context){
         this.context=context;
+        createNotificationChannel();
     }
 
     public void createNotificationChannel(){
@@ -32,7 +33,7 @@ public class AndroidNotificationHandler implements INotificationHandler {
 
     @Override
     public String getChannelID() {
-        return null;
+        return CHANNEL_ID;
     }
 
     @Override

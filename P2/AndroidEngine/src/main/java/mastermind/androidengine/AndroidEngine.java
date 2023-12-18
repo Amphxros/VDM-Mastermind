@@ -9,6 +9,7 @@ import com.google.android.gms.ads.AdView;
 
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
+import mastermind.engine.Notification;
 
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
@@ -54,6 +55,7 @@ public class AndroidEngine extends Engine implements Runnable {
 
         long lastFrameTime = System.nanoTime();
         getLogic().init();
+        getNotificationHandler().add(new Notification("Daily sub","Check in for money","",20));
         while (running) {
             long currentTime = System.nanoTime();
             long nanoElapsedTime = currentTime - lastFrameTime;
@@ -106,6 +108,7 @@ public class AndroidEngine extends Engine implements Runnable {
                 try {
                     thread.join();
                     thread = null;
+
                     break;
                 } catch (InterruptedException ie) {
                     // Something went REALLY wrong

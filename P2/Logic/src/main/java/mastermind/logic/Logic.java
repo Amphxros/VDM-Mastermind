@@ -32,20 +32,25 @@ public class Logic implements ILogic {
     @Override
     public void update(double t) {
         if(currentScene!=null)
-        currentScene.update(t);
+            currentScene.update(t);
     }
 
     @Override
     public void render(IGraphics graphics)
     {
         if(currentScene!=null)
-        currentScene.render(graphics);
+            currentScene.render(graphics);
     }
 
     @Override
     public void handleEvents(IInput input) {
         if (currentScene!=null)
-        currentScene.handleInput(input);
+            currentScene.handleInput(input);
+    }
+
+    @Override
+    public void onNotificationClicked() {
+
     }
 
     @Override

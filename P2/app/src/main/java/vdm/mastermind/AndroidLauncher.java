@@ -48,7 +48,7 @@ public class AndroidLauncher extends AppCompatActivity{
         //if the user enters by a notification
         Intent intent = getIntent();
         if (intent.getExtras() != null && intent.getExtras().containsKey("notification")) {
-
+            logic.onNotificationClicked();
         }
 
         ActionBar actionBar = getSupportActionBar();
