@@ -20,14 +20,11 @@ public class AndroidFile implements IFile {
     File mFile;
     String infoFileString;
 
-    public AndroidFile(Context context) {
-        this.assetManager = context.getAssets();;
-    }
+    public AndroidFile(Context context, String path) throws Exception {
+        this.assetManager = context.getAssets();
 
-    void AndroidFile(String path) throws Exception {
         InputStream in = assetManager.open(path);
         this.mFile = new File(path);
-
         this.infoFileString = AndroidFileToString(mFile);
     }
 
