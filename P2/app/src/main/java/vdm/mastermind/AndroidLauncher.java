@@ -27,6 +27,9 @@ import mastermind.logic.Logic;
 
 public class AndroidLauncher extends AppCompatActivity{
     AndroidEngine engine;
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile = "MySharedPreferences";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,6 @@ public class AndroidLauncher extends AppCompatActivity{
         SurfaceView renderView = layout.findViewById(R.id.surfaceView);
         AdView adView = layout.findViewById(R.id.adView);
         setContentView(layout);
-
 
 
         engine = new AndroidEngine(this,renderView,adView, this);
@@ -53,20 +55,31 @@ public class AndroidLauncher extends AppCompatActivity{
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
         engine.resume();
+
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        engine.pause();
-        //handleNotifications();
+        // Editor object is mandatory for the changes on the SharedPreferences object
+        SharedPreferences mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
 
+        // PREFERENCES SAVING
+        preferencesEditor.apply(); // APPLIES ALL CHANGED PREFERENCES
+
+        engine.pause();
+        handleNotifications();
     }
 
     private void handleNotifications(){
@@ -74,7 +87,21 @@ public class AndroidLauncher extends AppCompatActivity{
         if(notificationHandler!=null){
             ArrayList<Notification> notifications= notificationHandler.getPendingEntries();
             for(Notification n: notifications){
+                Data input = new Data.Builder()
+                        .putString(NotificationWorker.INPUT_CHANNEL_ID, notificationHandler.getChannelID())
+                        .putString(NotificationWorker.INPUT_TITLE, n.getTitle())
+                        .putString(NotificationWorker.INPUT_CONTENT, n.getContent())
+                        .putString(NotificationWorker.INPUT_BIGGER_TEXT, n.getSubtitle())
+                        .putBoolean(NotificationWorker.INPUT_AUTO_CANCEL, true)
+                        .build();
 
+                OneTimeWorkRequest notificationWork = new OneTimeWorkRequest.Builder(NotificationWorker.class)
+                        .setInitialDelay(n.getDelay(), TimeUnit.SECONDS)
+                        .setInputData(input)
+                        .build();
+                System.out.println("notification sending to worker");
+                WorkManager.getInstance(this).enqueue(notificationWork);
+                System.out.println("notification enqueue");
             }
 
             notifications.clear();

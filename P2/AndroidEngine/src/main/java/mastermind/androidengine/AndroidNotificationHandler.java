@@ -21,14 +21,9 @@ public class AndroidNotificationHandler implements INotificationHandler {
     }
 
     public void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "notifications", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            manager.createNotificationChannel(channel);
-        }
-        else{
-            Toast.makeText(context, "Can't create notification channel", Toast.LENGTH_SHORT).show();
-        }
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "notifications", NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(channel);
     }
 
     @Override
