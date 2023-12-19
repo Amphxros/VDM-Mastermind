@@ -23,6 +23,7 @@ public class AndroidNotificationHandler implements INotificationHandler {
     public void createNotificationChannel(){
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "notifications", NotificationManager.IMPORTANCE_DEFAULT);
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
         manager.createNotificationChannel(channel);
     }
 

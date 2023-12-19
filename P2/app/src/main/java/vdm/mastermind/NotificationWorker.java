@@ -27,7 +27,6 @@ public class NotificationWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        System.out.println("Receiving notification ");
         final String title = getInputData().getString(INPUT_TITLE);
         final String contentText = getInputData().getString(INPUT_CONTENT);
         final String biggerText = getInputData().getString(INPUT_BIGGER_TEXT);
@@ -38,13 +37,7 @@ public class NotificationWorker extends Worker {
     }
 
     protected void postNotification(String title, String contentText, String biggerText, String channelId, boolean autoCancel) {
-
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            System.out.println("Bad gateway, bad");
-            return;
-        }
-
-        System.out.println("Receiving notification " + title);
+ System.out.println("Receiving notification " + title);
         NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), channelId)
                 .setSmallIcon(R.drawable.mastermind)
                 .setContentTitle(title)
@@ -63,6 +56,10 @@ public class NotificationWorker extends Worker {
 
         // Launches the notification:
         NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            System.out.println("Bad gateway, bad");
+            return;
+        }
         manager.notify(NOTIFICATION_ID, notification.build());
     }
 }
