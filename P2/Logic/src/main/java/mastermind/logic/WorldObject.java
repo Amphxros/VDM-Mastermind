@@ -24,8 +24,12 @@ public class WorldObject extends Button {
         //CARGA DE NIVELES CON EL TITULO DEL MUNDO
         for(int i = 0; i < mNumLevels; ++i){
             String s = String.format("%02d", (i + 1));
-            arrayLevels[i] = new Level(scene, "levels/worls" + numWorld + "/level_" + numWorld + s + ".json");
+            arrayLevels[i] = new Level(scene, "levels/world" + numWorld + "/level_" + numWorld + s + ".json");
         }
+    }
+
+    public void init(){
+
     }
 
 

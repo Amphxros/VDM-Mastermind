@@ -41,7 +41,8 @@ public class AndroidEngine extends Engine implements Runnable {
 
     @Override
     public AndroidJSON newJSON(String name) {
-        return new AndroidJSON(name);
+        AndroidFile aFile = new AndroidFile(name);
+        return new AndroidJSON(aFile);
     }
 
     @Override
