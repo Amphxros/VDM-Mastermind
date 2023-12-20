@@ -9,6 +9,7 @@ import com.google.android.gms.ads.AdView;
 
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
+import mastermind.engine.IJSON;
 
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
@@ -25,11 +26,6 @@ public class AndroidEngine extends Engine implements Runnable {
     }
 
     @Override
-    public AndroidGraphics getGraphics() {
-        return (AndroidGraphics) super.getGraphics();
-    }
-
-    @Override
     public int getWidth() {
         return getGraphics().getWidth();
     }
@@ -37,12 +33,6 @@ public class AndroidEngine extends Engine implements Runnable {
     @Override
     public int getHeight() {
         return getGraphics().getHeight();
-    }
-
-    @Override
-    public AndroidJSON newJSON(Context context, String name) {
-        AndroidFile aFile = new AndroidFile(context, name);
-        return new AndroidJSON(aFile);
     }
 
     @Override
@@ -73,7 +63,7 @@ public class AndroidEngine extends Engine implements Runnable {
     }
 
     private void render() {
-        AndroidGraphics graphics = getGraphics();
+        AndroidGraphics graphics = (AndroidGraphics)getGraphics();
 
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;

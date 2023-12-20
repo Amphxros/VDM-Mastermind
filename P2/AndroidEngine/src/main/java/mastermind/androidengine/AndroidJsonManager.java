@@ -1,7 +1,6 @@
 package mastermind.androidengine;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -12,20 +11,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import mastermind.engine.IFile;
+public class AndroidJsonManager {
+    Context context;
+    public AndroidJsonManager(Context context){
+        this.context=context;
 
-public class AndroidFile implements IFile {
+    }
 
-    private final AssetManager assetManager;
-    File mFile;
-    String infoFileString;
-
-    public AndroidFile(Context context, String path) throws Exception {
-        this.assetManager = context.getAssets();
-
-        InputStream in = assetManager.open(path);
-        this.mFile = new File(path);
-        this.infoFileString = AndroidFileToString(mFile);
+    public AndroidJSON newJSON(String name){
+        File file;
+        String infoFileString;
+        try {
+            InputStream in = context.getAssets().open(name);
+            file= new File(name);
+            infoFileString = AndroidFileToString(file);
+            return new AndroidJSON(file, infoFileString);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private String AndroidFileToString(File file) throws Exception {
@@ -44,7 +49,6 @@ public class AndroidFile implements IFile {
         }
         return ret;
     }
-
     private String convertStreamToString(InputStream is) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
@@ -84,21 +88,5 @@ public class AndroidFile implements IFile {
             //result = new String(buffer);
         }
         return result;
-    }
-    public File getFile(){
-        return  this.mFile;
-    }
-
-    public String getInfoFileString(){
-        return this.infoFileString;
-    }
-    @Override
-    public boolean isDirectory() {
-        return this.mFile.isDirectory();
-    }
-
-    @Override
-    public String[] list() {
-        return this.mFile.list();
     }
 }

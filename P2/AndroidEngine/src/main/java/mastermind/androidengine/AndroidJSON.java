@@ -3,15 +3,19 @@ package mastermind.androidengine;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+
+import mastermind.engine.IFile;
 import mastermind.engine.IJSON;
 
-public class AndroidJSON implements IJSON {
+public class AndroidJSON implements IJSON, IFile {
 
     JSONObject mJsonObject;
     private String infoString;
-    public AndroidJSON(AndroidFile fileJSON){
-
-        this.infoString = fileJSON.getInfoFileString();
+    File file;
+    public AndroidJSON(File file, String info){
+        this.file= file;
+        this.infoString = info;
 
         try {
             this.mJsonObject = new JSONObject(this.infoString);
@@ -49,6 +53,17 @@ public class AndroidJSON implements IJSON {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    @Override
+    public boolean isDirectory() {
+        return this.file.isDirectory();
+    }
+
+    @Override
+    public String[] list() {
+        return this.file.list();
     }
 
 

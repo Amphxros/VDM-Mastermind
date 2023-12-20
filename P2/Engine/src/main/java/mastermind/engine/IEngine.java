@@ -80,5 +80,5 @@ public interface IEngine {
      */
     int getHeight();
 
-    IJSON newJSON(String name);
+
 }

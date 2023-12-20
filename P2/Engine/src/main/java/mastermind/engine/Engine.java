@@ -82,4 +82,5 @@ public abstract class Engine implements IEngine {
     public void setAdsManager(IAdsManager adsManager) {
         this.adsManager = adsManager;
     }
+
 }

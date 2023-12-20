@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
+import mastermind.engine.IJSON;
 
 public class PCEngine extends Engine implements Runnable {
     private final JFrame renderView;
@@ -34,6 +35,11 @@ public class PCEngine extends Engine implements Runnable {
     @Override
     public int getHeight() {
         return renderView.getHeight();
+    }
+
+    @Override
+    public IJSON newJSON(String name) {
+        return null;
     }
 
     @Override

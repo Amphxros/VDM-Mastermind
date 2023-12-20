@@ -13,11 +13,15 @@ public class Level extends Button {
     public Level(IScene scene, String fileJSON) {
         super(scene);
 
+        /**
+         *
+
         IJSON mJson = getEngine().newJSON(fileJSON);
 
         mCodeSize = mJson.getIntKey("codeSize");
         mCodeOpt = mJson.getIntKey("codeOpt");
         mRepeat = mJson.getBoleanKey("repeat");
         mAttempts = mJson.getIntKey("attempts");
+         */
     }
 }
