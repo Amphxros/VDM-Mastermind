@@ -99,9 +99,7 @@ public class AndroidLauncher extends AppCompatActivity{
                         .setInitialDelay(n.getDelay(), TimeUnit.SECONDS)
                         .setInputData(input)
                         .build();
-                System.out.println("notification sending to worker");
                 WorkManager.getInstance(this).enqueue(notificationWork);
-                System.out.println("notification enqueue");
             }
 
             notifications.clear();

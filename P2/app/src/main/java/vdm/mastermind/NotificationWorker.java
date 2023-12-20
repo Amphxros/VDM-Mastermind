@@ -32,12 +32,12 @@ public class NotificationWorker extends Worker {
         final String biggerText = getInputData().getString(INPUT_BIGGER_TEXT);
         final String channelId = getInputData().getString(INPUT_CHANNEL_ID);
         final boolean autoCancel = getInputData().getBoolean(INPUT_AUTO_CANCEL, true);
+
         postNotification(title, contentText, biggerText, channelId, autoCancel);
         return Result.success();
     }
 
     protected void postNotification(String title, String contentText, String biggerText, String channelId, boolean autoCancel) {
- System.out.println("Receiving notification " + title);
         NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), channelId)
                 .setSmallIcon(R.drawable.mastermind)
                 .setContentTitle(title)
@@ -57,7 +57,6 @@ public class NotificationWorker extends Worker {
         // Launches the notification:
         NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            System.out.println("Bad gateway, bad");
             return;
         }
         manager.notify(NOTIFICATION_ID, notification.build());
