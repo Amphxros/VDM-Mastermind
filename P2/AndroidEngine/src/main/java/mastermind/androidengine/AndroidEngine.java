@@ -20,16 +20,12 @@ public class AndroidEngine extends Engine implements Runnable {
         setAudio(new AndroidAudio(context));
         setSensorsManager(new SensorsManager(context));
         setAdsManager(new AdsManager(activity,adView,context));
+        setFileManager(new AndroidFileManager(context));
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
         setInput(input);
 
         setNotificationHandler(new AndroidNotificationHandler(context));
-    }
-
-    @Override
-    public AndroidGraphics getGraphics() {
-        return (AndroidGraphics) super.getGraphics();
     }
 
     @Override
@@ -71,7 +67,7 @@ public class AndroidEngine extends Engine implements Runnable {
     }
 
     private void render() {
-        AndroidGraphics graphics = getGraphics();
+        AndroidGraphics graphics = (AndroidGraphics)getGraphics();
 
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;
@@ -116,4 +112,6 @@ public class AndroidEngine extends Engine implements Runnable {
             }
         }
     }
+
+
 }

@@ -10,6 +10,7 @@ import mastermind.engine.IInput;
 import mastermind.engine.ISensorListener;
 import mastermind.engine.ISensorsManager;
 import mastermind.logic.ColouringCell;
+
 import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
@@ -86,6 +87,7 @@ public class GameScene extends Scene implements ISensorListener {
                 )
 
         );
+
 
         addGameObject(new DaltonicButton(this, open, close)
                 .setPosition(330,20)
