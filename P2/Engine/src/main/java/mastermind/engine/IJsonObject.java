@@ -1,10 +1,9 @@
 package mastermind.engine;
 
-public interface IJSON {
-
+public interface IJsonObject {
     String getInfoJSON();
     int getIntKey(String s);
     String getStringKey(String s);
 
-    Boolean getBoleanKey(String s);
+    boolean getBooleanKey(String s);
 }

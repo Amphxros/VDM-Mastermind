@@ -9,7 +9,6 @@ import com.google.android.gms.ads.AdView;
 
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
-import mastermind.engine.IJSON;
 
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
@@ -20,6 +19,7 @@ public class AndroidEngine extends Engine implements Runnable {
         setAudio(new AndroidAudio(context));
         setSensorsManager(new SensorsManager(context));
         setAdsManager(new AdsManager(activity,adView,context));
+        setFileManager(new AndroidFileManager(context));
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
         setInput(input);

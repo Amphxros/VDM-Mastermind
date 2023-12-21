@@ -1,6 +1,5 @@
 package mastermind.logic;
 
-import mastermind.engine.IJSON;
 import mastermind.engine.IScene;
 import mastermind.logic.button.Button;
 

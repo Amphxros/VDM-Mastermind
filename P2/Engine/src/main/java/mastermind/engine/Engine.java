@@ -8,6 +8,8 @@ public abstract class Engine implements IEngine {
     private  ISensorsManager sensorsManager;
     private IAdsManager adsManager;
 
+    private IFileManager fileManager;
+
     /**
      * @return An {@link ILogic} instance.
      */
@@ -83,4 +85,13 @@ public abstract class Engine implements IEngine {
         this.adsManager = adsManager;
     }
 
+    @Override
+    public IFileManager getFileManager() {
+        return fileManager;
+    }
+
+    @Override
+    public void setFileManager(IFileManager fileManager) {
+        this.fileManager = fileManager;
+    }
 }

@@ -69,6 +69,8 @@ public interface IEngine {
 
     void setAdsManager(IAdsManager adsManager);
 
+    IFileManager getFileManager();
+    void setFileManager(IFileManager fileManager);
 
     /**
      * @return The application's window width.
