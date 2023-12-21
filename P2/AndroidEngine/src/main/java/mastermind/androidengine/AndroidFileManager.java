@@ -56,19 +56,13 @@ public class AndroidFileManager implements IFileManager {
 
     @Override
     public IJsonObject readJSON(String path) {
-        StringBuilder result = new StringBuilder();
-
-        try (InputStreamReader is = new InputStreamReader(context.getAssets().open(path))) {
-            BufferedReader buffer = new BufferedReader(is);
-            do {
-                result.append(buffer.readLine());
-                result.append('\n');
-            } while (buffer.ready());
-            is.close();
-            return new AndroidJSONObject(result.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
+        try {
+            return new AndroidJSONObject(readFile(path));
         }
-        return null;
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
