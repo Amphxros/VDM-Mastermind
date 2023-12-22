@@ -1,16 +1,17 @@
 {
-  "numRows":"3",
-  "numCols":"3",
-  "numLevels":"9",
-  "skin":"xmas",
+    "name": "Tropical beach",
+    "numRows":"3",
+    "numCols":"3",
+    "numLevels":"9",
+    "skin":"fruity",
 
-  "1":"level-1.json",
-  "2":"level-1.json",
-  "3":"level-1.json",
-  "4":"level-1.json",
-  "5":"level-1.json",
-  "6":"level-1.json",
-  "7":"level-1.json",
-  "8":"level-1.json",
-  "9":"level-1.json"
+    "1": "Json/world2/level-1.json",
+    "2": "Json/world2/level-1.json",
+    "3": "Json/world2/level-1.json",
+    "4": "Json/world2/level-1.json", 
+    "5": "Json/world2/level-1.json", 
+    "6": "Json/world2/level-1.json",
+    "7": "Json/world2/level-1.json",
+    "8": "Json/world2/level-1.json",
+    "9": "Json/world2/level-1.json"
 }

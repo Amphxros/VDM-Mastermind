@@ -16,7 +16,7 @@ import mastermind.logic.button.BackgroundButton;
 import mastermind.logic.button.GoToMenuScene;
 import mastermind.logic.button.PaletteButton;
 import mastermind.logic.button.SetAnimalButton;
-import mastermind.logic.button.ContainerButtons;
+import mastermind.logic.button.ShopButtons;
 
 public class ShopScene extends Scene {
     ArrayList<Container> containers;
@@ -59,14 +59,14 @@ public class ShopScene extends Scene {
 
         );
 
-        addGameObject(new ContainerButtons(this,-1)
+        addGameObject(new ShopButtons(this,-1)
                 .setPosition(40,70)
                 .setSize(50,50)
                 .setStrokeColor(getLogicData().getButtons())
 
 
         );
-        addGameObject(new ContainerButtons(this,1)
+        addGameObject(new ShopButtons(this,1)
                 .setPosition(300,70)
                 .setSize(50,50)
                 .setStrokeColor(getLogicData().getButtons())

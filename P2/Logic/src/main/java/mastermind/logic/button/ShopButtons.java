@@ -6,24 +6,24 @@ import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.ExploreWorldsScene;
 import mastermind.logic.scene.ShopScene;
 
-public class ContainerButtons extends Button{
+public class ShopButtons extends Button{
 
     int id;
-    public ContainerButtons(IScene scene, int id) {
+    public ShopButtons(IScene scene, int id) {
         super(scene);
         this.id=id;
     }
 
     @Override
     public boolean onTouchDown(TouchEvent event) {
+
         ShopScene shop= (ShopScene) getScene();
-        ExploreWorldsScene scene= (ExploreWorldsScene) getScene();
+
         if(shop!=null){
             shop.onClick(id);
+            return super.onTouchDown(event);
         }
-        else if (scene!=null){
 
-        }
         return super.onTouchDown(event);
     }
 
