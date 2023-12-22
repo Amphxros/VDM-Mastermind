@@ -1,0 +1,9 @@
+{
+    "numWorlds": "4",
+    
+    "world1":"Json/levels/world1/world1.json",
+    "world2":"Json/levels/world2/world2.json",
+    "world3":"Json/levels/world3/world3.json",
+    "world4":"Json/levels/world4/world4.json"
+
+}

@@ -3,12 +3,13 @@ package mastermind.logic.button;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
+import mastermind.logic.scene.ExploreWorldsScene;
 import mastermind.logic.scene.ShopScene;
 
-public class ShopButtons extends Button{
+public class ContainerButtons extends Button{
 
     int id;
-    public ShopButtons(IScene scene, int id) {
+    public ContainerButtons(IScene scene, int id) {
         super(scene);
         this.id=id;
     }
@@ -16,8 +17,12 @@ public class ShopButtons extends Button{
     @Override
     public boolean onTouchDown(TouchEvent event) {
         ShopScene shop= (ShopScene) getScene();
+        ExploreWorldsScene scene= (ExploreWorldsScene) getScene();
         if(shop!=null){
             shop.onClick(id);
+        }
+        else if (scene!=null){
+
         }
         return super.onTouchDown(event);
     }
