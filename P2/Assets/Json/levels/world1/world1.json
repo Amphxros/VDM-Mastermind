@@ -5,10 +5,10 @@
     "numLevels": "6",
     "skin": "basic",
 
-    "1": "Json/world1/level-1.json",
-    "2": "Json/world1/level-1.json",
-    "3": "Json/world1/level-1.json",
-    "4": "Json/world1/level-1.json", 
-    "5": "Json/world1/level-1.json", 
-    "6": "Json/world1/level-1.json"
+    "1": "Json/levels/world1/level-1.json",
+    "2": "Json/levels/world1/level-1.json",
+    "3": "Json/levels/world1/level-1.json",
+    "4": "Json/levels/world1/level-1.json", 
+    "5": "Json/levels/world1/level-1.json", 
+    "6": "Json/levels/world1/level-1.json"
 }

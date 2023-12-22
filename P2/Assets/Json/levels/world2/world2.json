@@ -5,13 +5,13 @@
     "numLevels":"9",
     "skin":"fruity",
 
-    "1": "Json/world2/level-1.json",
-    "2": "Json/world2/level-1.json",
-    "3": "Json/world2/level-1.json",
-    "4": "Json/world2/level-1.json", 
-    "5": "Json/world2/level-1.json", 
-    "6": "Json/world2/level-1.json",
-    "7": "Json/world2/level-1.json",
-    "8": "Json/world2/level-1.json",
-    "9": "Json/world2/level-1.json"
+    "1": "Json/levels/world2/level-1.json",
+    "2": "Json/levels/world2/level-1.json",
+    "3": "Json/levels/world2/level-1.json",
+    "4": "Json/levels/world2/level-1.json", 
+    "5": "Json/levels/world2/level-1.json", 
+    "6": "Json/levels/world2/level-1.json",
+    "7": "Json/levels/world2/level-1.json",
+    "8": "Json/levels/world2/level-1.json",
+    "9": "Json/levels/world2/level-1.json"
 }

@@ -94,9 +94,15 @@ public class ExploreWorldsScene extends Scene {
             for(int j=0;j<cols;j++){
 
                 int value= (i*cols+j) + 1;
+                String s= object.getStringKey(String.valueOf(value));
+                IJsonObject worldFile= getEngine().getFileManager().readJSON(s);
 
+                int colors= worldFile.getIntKey("numColors");
+                int numAttempts= worldFile.getIntKey("numAttempts");
+                boolean rep= worldFile.getBooleanKey("repeat");
+                int codeSize= worldFile.getIntKey("codeSize");
 
-                GoToGameScene game= new GoToGameScene(this,1,1,1,false,false);
+                GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true);
                         game.setPosition(50 +(100*j), 100*i);
                         game.setSize(80, 80);
                         game.setStrokeColor(getLogicData().getButtons());
