@@ -1,8 +1,8 @@
 {
     "name": "Beginning",
     "numRows": "3",
-    "numCols": "3",
-    "numLevels": "9",
+    "numCols": "2",
+    "numLevels": "6",
     "skin": "basic",
 
     "1": "Json/world1/level-1.json",
@@ -10,8 +10,5 @@
     "3": "Json/world1/level-1.json",
     "4": "Json/world1/level-1.json", 
     "5": "Json/world1/level-1.json", 
-    "6": "Json/world1/level-1.json",
-    "7": "Json/world1/level-1.json",
-    "8": "Json/world1/level-1.json",
-    "9": "Json/world1/level-1.json"
+    "6": "Json/world1/level-1.json"
 }

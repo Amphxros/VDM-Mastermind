@@ -1,19 +1,55 @@
 [
     {
-        "background":[250,250,250],
-        "buttons":[250,250,250],
-        "font":[250,250,250],
-        "tittle":[250,250,250]
+        "background":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
+        "buttons":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
+        "font":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
+        "tittle":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        }
     },
     {
-        "background":[250,250,250],
-        "buttons":[250,250,250],
-        "font":[250,250,250],
-        "tittle":[250,250,250]
+        "background":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
+        "buttons":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
+        "font":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
+        "tittle":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        }
     },
     
     {
-        "background":[250,250,250],
+        "background":{
+            "red": "250",
+            "green":"250",
+            "blue": "250"
+        },
         "buttons":[250,250,250],
         "font":[250,250,250],
         "tittle":[250,250,250]
