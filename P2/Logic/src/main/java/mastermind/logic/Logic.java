@@ -52,9 +52,13 @@ public class Logic implements ILogic {
 
     @Override
     public void handleEvents(IInput input) {
-        if (currentScene!=null){
+        if (currentScene!=null)
             currentScene.handleInput(input);
-        }
+    }
+
+    @Override
+    public void onNotificationClicked() {
+
     }
 
     @Override

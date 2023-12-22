@@ -11,6 +11,8 @@ public interface ILogic {
 
     void handleEvents(IInput input);
 
+    void onNotificationClicked();
+
     IEngine getEngine();
 
     ILogicData getLogicData();

@@ -69,7 +69,13 @@ public interface IEngine {
 
     void setAdsManager(IAdsManager adsManager);
 
-
+    IFileManager getFileManager();
+    
+    void setFileManager(IFileManager fileManager);
+    
+    INotificationHandler getNotificationHandler();
+    
+    void setNotificationHandler(INotificationHandler notificationHandler);
     /**
      * @return The application's window width.
      */
@@ -79,4 +85,6 @@ public interface IEngine {
      * @return The application's window height.
      */
     int getHeight();
+
+
 }

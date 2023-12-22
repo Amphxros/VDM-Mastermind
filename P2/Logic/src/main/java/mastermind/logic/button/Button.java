@@ -4,8 +4,9 @@ import mastermind.engine.EventType;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.GameObject;
+import mastermind.logic.Scene;
 
-public class Button extends GameObject {
+public abstract class Button extends GameObject {
     public Button(IScene scene) {
         super(scene);
     }

@@ -4,6 +4,7 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
+import mastermind.logic.Scene;
 import mastermind.logic.scene.GameScene;
 
 public class DaltonicButton extends Button{

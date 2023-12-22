@@ -7,6 +7,8 @@ import mastermind.engine.IFont;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToModeExplore;
+
 import mastermind.logic.button.GoToShopScene;
 import mastermind.logic.button.ShowRewardedAdButton;
 
@@ -36,6 +38,10 @@ public class MenuScene extends Scene {
         t.setAlignment(HorizontalAlignment.CENTRE);
         t.setStrokeColor(getLogicData().getFont());
 
+        Text t2= new Text(this, "explorar mundos",fonty);
+        t2.setPosition(center-50,25);
+        t2.setAlignment(HorizontalAlignment.CENTRE);
+
 
         addGameObject(new GoToChooseLevel(this)
                 .setPosition(center/3,250)
@@ -43,6 +49,14 @@ public class MenuScene extends Scene {
                 .setStrokeColor(getLogicData().getButtons())
 
                 .addChild(t)
+        );
+
+
+        addGameObject(new GoToModeExplore(this)
+                .setPosition(center/3,350)
+                .setSize(300,50)
+                .setStrokeColor(new Color(150,150,150))
+                .addChild(t2)
         );
 
         addGameObject(new GoToShopScene(this)
@@ -57,6 +71,17 @@ public class MenuScene extends Scene {
 
 
         );
+        addGameObject(new ShowRewardedAdButton(this)
+                .setPosition(center/3,400)
+                .setSize(300,50)
+                .setStrokeColor(Color.BLACK)
 
+                .addChild(new Text(this,"Anuncio",fonty)
+                        .setPosition(center-50,25)
+                        .setStrokeColor(new Color(100,120,250))
+                )
+
+
+        );
     }
 }
