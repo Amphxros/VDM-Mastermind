@@ -5,6 +5,7 @@ public final class Color {
     public static final Color BLACK = new Color(0, 0, 0);
     public static final Color RED = new Color(200, 50, 50);
     public static final Color GREEN = new Color(60, 200, 150);
+    public static final Color YELLOW= new Color(200, 180, 10);
     private final int r, g, b, a;
 
     /**

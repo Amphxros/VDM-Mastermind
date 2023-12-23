@@ -3,6 +3,9 @@ package mastermind.logic;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,13 +15,14 @@ import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IJsonObject;
 import mastermind.engine.ILogicData;
+import mastermind.engine.Input;
 
-public class PlayerData implements ILogicData, Serializable {
+public final class PlayerData implements ILogicData, Serializable {
     int coins;
-    Color background;
-    Color font;
-    Color tittle;
-    Color buttons;
+    transient Color background;
+    transient Color font;
+    transient Color tittle;
+    transient Color buttons;
 
     String currentScene;
     boolean[] unlockedAnimals;
@@ -45,6 +49,28 @@ public class PlayerData implements ILogicData, Serializable {
         this.lastWorld=1;
 
 
+    }
+    public static PlayerData load(IEngine engine){
+        PlayerData playerData;
+        InputStream stream = null;
+        try {
+             stream = engine.getFileManager().openInputFile("save");
+        }
+        catch (Exception e){
+            return new PlayerData(engine);
+
+        }
+        playerData=null;
+
+        try {
+            ObjectInputStream objectInputStream= new ObjectInputStream(stream); 
+            playerData= (PlayerData) objectInputStream.readObject();
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+
+        return playerData;
     }
 
     @Override
@@ -99,7 +125,9 @@ public class PlayerData implements ILogicData, Serializable {
     public void setTittle(Color tittle) {
         this.tittle = tittle;
     }
-
+    public AnimalID getCurrentAnimalID(){
+        return this.currentAnimalID;
+    }
     public void setCurrentAnimalID(AnimalID currentAnimalID) {
         this.currentAnimalID = currentAnimalID;
     }

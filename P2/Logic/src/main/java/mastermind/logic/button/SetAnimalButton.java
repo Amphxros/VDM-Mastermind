@@ -19,16 +19,23 @@ public class SetAnimalButton extends BuyItemButton{
 
     @Override
     public void render(IGraphics graphics) {
+        PlayerData p= (PlayerData)getEngine().getLogic().getLogicData();
         if(isLocked){
             graphics.setColor(Color.RED);
+        }
+        else if(p.getCurrentAnimalID()==this.animalID){
+            graphics.setColor(Color.YELLOW);
         }
         else{
             graphics.setColor(Color.GREEN);
         }
 
+
         graphics.fillRoundRectangle(getX(), getY(), getWidth(), getHeight(),30);
         super.render(graphics);
     }
+
+
 
     @Override
     public void setElem() {
