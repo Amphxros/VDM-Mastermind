@@ -1,0 +1,15 @@
+{
+    "frog": "images/frog/",
+    "bird": "images/bird/",
+    "capybara": "images/capybara/",
+    "cat": "images/cat/",
+    "armadillo":"images/armadillo/",
+    "fish":"images/fish/",
+    
+    "basic":"basic-",
+    "fruity":"fruity-",
+    "halloween": "halloween-",
+    "xmas": "xmas-",
+    "format":".png"
+
+}

@@ -188,6 +188,7 @@ public class PCGraphics implements IGraphics {
     public void clear(int color) {
         setColor(color);
         canvas.fillRect(0, 0, window.getWidth(), window.getHeight());
+        updateTransformParameters();
     }
 
     @Override

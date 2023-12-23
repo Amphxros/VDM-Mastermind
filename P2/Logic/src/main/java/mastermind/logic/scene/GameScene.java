@@ -60,7 +60,9 @@ public class GameScene extends Scene implements ISensorListener {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
         IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",15,false);
 
+        IImage background= getEngine().getGraphics().newImage("images/backgrounds/background-0.png");
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
+
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
@@ -69,6 +71,10 @@ public class GameScene extends Scene implements ISensorListener {
             sensors.registerAccelerometerListener(this);
         }
 
+        addGameObject(new Image(this,background)
+                .setSize(getEngine().getWidth(), getEngine().getHeight())
+
+        );
 
         generateData();
 
@@ -78,9 +84,9 @@ public class GameScene extends Scene implements ISensorListener {
         addGameObject(tryText);
 
         addGameObject(new GoToChooseLevel(this)
-                .setPosition(0,20)
+                .setPosition(20,20)
                 .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200))
+                .setStrokeColor(new Color(200,200,200,50))
 
                 .addChild(new Image(this, back)
                         .setSize(50,50)
@@ -96,7 +102,7 @@ public class GameScene extends Scene implements ISensorListener {
         );
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,fonty);
+            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, getLogicData().getBackground(),fonty);
             addGameObject(t);
             daltonicObservers.add(t);
             tables[i]=t;
@@ -192,7 +198,7 @@ public class GameScene extends Scene implements ISensorListener {
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
-               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
+               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos)));
            }
            else
            {
@@ -202,7 +208,7 @@ public class GameScene extends Scene implements ISensorListener {
                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
                }
                else{
-                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
+                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false,0));
                }
            }
         }

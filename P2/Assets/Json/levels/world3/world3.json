@@ -1,0 +1,17 @@
+{
+    "name": "Scary tower",
+    "numRows":"3",
+    "numCols":"3",
+    "numLevels":"9",
+    "skin":"halloween",
+
+    "1": "Json/levels/world3/level-1.json",
+    "2": "Json/levels/world3/level-1.json",
+    "3": "Json/levels/world3/level-1.json",
+    "4": "Json/levels/world3/level-1.json", 
+    "5": "Json/levels/world3/level-1.json", 
+    "6": "Json/levels/world3/level-1.json",
+    "7": "Json/levels/world3/level-1.json",
+    "8": "Json/levels/world3/level-1.json",
+    "9": "Json/levels/world3/level-1.json"
+}

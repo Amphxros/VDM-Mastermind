@@ -1,17 +1,22 @@
 package mastermind.logic;
 
+import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
 import mastermind.engine.ILogic;
+import mastermind.engine.ILogicData;
 import mastermind.engine.IScene;
 import mastermind.logic.scene.MenuScene;
 
 public class Logic implements ILogic {
     IEngine engine;
     IScene currentScene;
+    PlayerData playerData;
     public Logic(IEngine engine) {
         this.engine=engine;
+        this.playerData= new PlayerData(engine);
+        setLogicData(this.playerData);
     }
 
     @Override
@@ -31,15 +36,18 @@ public class Logic implements ILogic {
 
     @Override
     public void update(double t) {
-        if(currentScene!=null)
+        if(currentScene!=null) {
             currentScene.update(t);
+        }
     }
 
     @Override
     public void render(IGraphics graphics)
     {
-        if(currentScene!=null)
+        graphics.clear(playerData.getBackground().getARGB());
+        if(currentScene!=null){
             currentScene.render(graphics);
+        }
     }
 
     @Override
@@ -57,4 +65,15 @@ public class Logic implements ILogic {
     public IEngine getEngine() {
         return this.engine;
     }
+
+    @Override
+    public PlayerData getLogicData() {
+        return this.playerData;
+    }
+
+    @Override
+    public void setLogicData(ILogicData logicData) {
+
+    }
+
 }

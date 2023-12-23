@@ -1,0 +1,16 @@
+{
+    "circles":"images/buttons/buttons-0.png",
+    "fish":"images/buttons/buttons-1.png",
+    "capybara": "images/buttons/buttons-2.png",
+    "bird": "images/buttons/buttons-3.png",
+    "frog": "images/buttons/buttons-4.png",
+    "cat": "images/buttons/buttons-5.png",
+    
+    "armadillo":"images/buttons/buttons-6.png",
+    "default-palette":"images/palettes/palette-0.png",       
+    "crow-palette":"images/palettes/palette-1.png",
+    "crab-palette":"images/palettes/palette-2.png",
+    "tokyo-palette":"images/palettes/palette-3.png",
+    "bubblegum-palette":"images/palettes/palette-4.png",
+    "angelfish":"images/palettes/palette-5.png"
+}

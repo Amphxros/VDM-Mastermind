@@ -30,6 +30,7 @@ public class Table extends GameObject implements DaltonicListener{
             this.cells[i]=(new Cell(getScene(),font));
             this.cells[i].setSize(30,30)
                     .setStrokeColor(new Color(150,150,150))
+
                     .setPosition(20 + 40*(i),10);
             this.addChild(cells[i]);
         }
@@ -70,7 +71,7 @@ public class Table extends GameObject implements DaltonicListener{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.drawRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
+        graphics.fillRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
         super.render(graphics);
     }
 

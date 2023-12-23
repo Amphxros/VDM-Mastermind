@@ -14,8 +14,6 @@ import mastermind.engine.TouchEvent;
 public class AndroidInput extends Input implements View.OnTouchListener {
     private int x,y;
     EventType eventType;
-    TouchEvent scrollEvent=null;
-    int scrollYa, scrollYb;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         TouchEvent t = null;
@@ -25,7 +23,7 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
-
+                scrolling=true;
                 t= new TouchEvent(x,y,eventType,false);
                 addEvent(t);
                 break;

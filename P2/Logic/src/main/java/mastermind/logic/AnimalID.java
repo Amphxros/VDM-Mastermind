@@ -1,10 +1,13 @@
 package mastermind.logic;
 
 public enum AnimalID {
+    None, //circles
     frog,
     bird,
     armadillo,
     capybara,
     fish,
-    cat
+    cat,
+
+    Num_Animals
 }

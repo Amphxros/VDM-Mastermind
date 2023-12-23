@@ -14,4 +14,7 @@ public interface ILogic {
     void onNotificationClicked();
 
     IEngine getEngine();
+
+    ILogicData getLogicData();
+    void setLogicData(ILogicData logicData);
 }
