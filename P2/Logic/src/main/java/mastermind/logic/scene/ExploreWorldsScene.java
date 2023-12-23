@@ -119,8 +119,9 @@ public class ExploreWorldsScene extends Scene {
             int numAttempts= worldFile.getIntKey("numAttempts");
             boolean rep= worldFile.getBooleanKey("repeat");
             int codeSize= worldFile.getIntKey("codeSize");
+            boolean locked= playerData.getLastWorld() <=numWorld;
 
-            GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true);
+            GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked);
             game.setPosition(50 +(100*columna), 100*fila);
             game.setSize(80, 80);
             game.setStrokeColor(getLogicData().getButtons());
@@ -128,6 +129,16 @@ public class ExploreWorldsScene extends Scene {
                     .setPosition(70,200)
                     .setStrokeColor(getLogicData().getFont())
             );
+            if(locked){
+                IImage img= getEngine().getGraphics().newImage("images/lock.png");
+                game.addChild(new Image(this,img)
+                        .setPosition(50,160)
+                        .setSize(50,50)
+
+                );
+
+            }
+
             container.addChild(game);
             columna = columna + 1;
             if(columna >= numCols)

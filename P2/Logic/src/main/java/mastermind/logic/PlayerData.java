@@ -159,4 +159,12 @@ public final class PlayerData implements ILogicData, Serializable {
     public void setCurrentSkin(SkinID currentSkin) {
         this.currentSkin = currentSkin;
     }
+
+    public int getLastLevel() {
+        return lastLevel;
+    }
+
+    public int getLastWorld() {
+        return lastWorld;
+    }
 }
