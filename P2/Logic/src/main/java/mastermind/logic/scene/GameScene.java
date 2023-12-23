@@ -210,9 +210,9 @@ public class GameScene extends Scene implements ISensorListener {
             d.setDaltonicMode(mode);
     }
 
-    public void onColouringCellSelected(Color c,int value){
+    public void onColouringCellSelected(Color c,int value, IImage image){
         System.out.println("Click " + value);
-        tables[currTable].fillCell(c,value);
+        tables[currTable].fillCell(c,value,image);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
                getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos),fileScene));

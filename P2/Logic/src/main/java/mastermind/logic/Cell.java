@@ -17,6 +17,8 @@ public class Cell extends Button implements DaltonicListener{
     IFont font;
 
     IImage image;
+
+    IImage initialImage;
     public Cell(IScene scene, IFont font) {
         super(scene);
         this.font=font;
@@ -35,6 +37,7 @@ public class Cell extends Button implements DaltonicListener{
     @Override
     public void init() {
         initialColor=strokeColor;
+        initialImage= image;
         super.init();
     }
 
@@ -60,12 +63,14 @@ public class Cell extends Button implements DaltonicListener{
     @Override
     public boolean onTouchDown(TouchEvent event) {
         state= CellState.Empty;
+        image=initialImage;
         return true;
     }
 
-    public void fillCell(Color c, int value){
+    public void fillCell(Color c, int value, IImage image){
         strokeColor=c;
         this.value=value;
+        this.image=image;
         state=CellState.Filled;
     }
 

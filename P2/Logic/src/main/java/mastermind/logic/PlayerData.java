@@ -129,7 +129,7 @@ public final class PlayerData implements ILogicData, Serializable {
         return this.currentAnimalID;
     }
     public void setCurrentAnimalID(AnimalID currentAnimalID) {
-        this.currentAnimalID = currentAnimalID;
+         this.currentAnimalID = currentAnimalID;
     }
 
     public boolean isAnimalUnlocked(int id){

@@ -133,7 +133,7 @@ public class ShopScene extends Scene {
 
 
         );
-        for(int i=0;i<4;i++){
+        for(int i=0;i<getEngine().getFileManager().getFileListDirectory("images/backgrounds").length;i++){
             IImage image= getEngine().getGraphics().newImage("images/backgrounds/background-"+i+".png");
             containers.get(1).addChild(
             new BackgroundButton(this,i*100,true,sound)
