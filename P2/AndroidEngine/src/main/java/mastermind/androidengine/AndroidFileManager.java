@@ -2,8 +2,6 @@ package mastermind.androidengine;
 
 import android.content.Context;
 
-import org.json.JSONException;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -64,5 +62,13 @@ public class AndroidFileManager implements IFileManager {
             return null;
         }
 
+    }
+
+    public String [] getFileListDirectory(String path){
+        try {
+            return context.getAssets().list(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
