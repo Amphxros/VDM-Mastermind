@@ -80,7 +80,7 @@ public class ExploreWorldsScene extends Scene {
            System.out.println(s + "  " + route);
 
            String[] auxWorld = this.listLevels.get(i);
-           containers.add((Container) createContainer(nameWorlds[i],auxWorld,font));
+           containers.add((Container) createContainer(i, nameWorlds[i],auxWorld,font));
            addGameObject(containers.get(i));
 
         }
@@ -91,24 +91,25 @@ public class ExploreWorldsScene extends Scene {
     }
 
 
-    private GameObject createContainer(String name, String[] arrayStringLevels,IFont font){
-        //int rows= object.getIntKey("numRows");
-        //int cols= object.getIntKey("numCols");
-        //int numLevels= object.getIntKey("numLevels");
-        //String name= object.getStringKey("name");
+    private GameObject createContainer(int numWorld, String name, String[] arrayStringLevels,IFont font){
         Container container= new Container(this);
+        String pathAux = "images/worlds/world" + (numWorld + 1) + ".png";
+        IImage background= getEngine().getGraphics().newImage("images/worlds/world-" + (numWorld + 1) + ".png");
+
+
         container.setPosition(30,150);
         container.setSize(350,400);
         container.setStrokeColor(Color.RED);
         container.addChild(new Text(this,name,font)
-                .setPosition(150,-50)
-        );
+                .setPosition(150,-50));
+        container.addChild(new Image(this,background)
+                .setPosition(0,0)
+                .setSize(350,400));
 
         int fila = 0;
         int columna = 0;
 
         for(int i = 0; i < arrayStringLevels.length; ++i){
-            String auxPath = rootLevels + name + "/" + arrayStringLevels[i];
             IJsonObject worldFile= getEngine().getFileManager().readJSON(rootLevels + name + "/" + arrayStringLevels[i]);
             int colors= worldFile.getIntKey("numColors");
             int numAttempts= worldFile.getIntKey("numAttempts");
