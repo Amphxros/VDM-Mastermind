@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdView;
 
+import java.io.IOException;
+
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
 import mastermind.engine.Notification;
@@ -100,18 +102,18 @@ public class AndroidEngine extends Engine implements Runnable {
     public void pause() {
         if (running) {
             running = false;
+
             while (true) {
                 try {
                     thread.join();
                     thread = null;
-
+                    getLogic().getLogicData().saveData();
                     break;
-                } catch (InterruptedException ie) {
+                } catch (Exception e) {
                     // Something went REALLY wrong
+                    e.printStackTrace();
                 }
             }
         }
     }
-
-
 }

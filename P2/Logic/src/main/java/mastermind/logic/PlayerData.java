@@ -36,70 +36,63 @@ public class PlayerData implements ILogicData {
         IJsonObject jsonObject= this.engine.getFileManager().readJSON(route);
         if(jsonObject!=null){
             IJsonObject checksum= this.engine.getFileManager().readJSON("checksum.json");
-            //TODO compare with checksum : CHANGE THIS
+            this.coins= jsonObject.getIntKey("coins");
+            int animal= jsonObject.getIntKey("currentAnimal");
+            this.currentAnimalID= AnimalID.values()[animal];
+            this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
 
-            if(checksum!=null && checksum.getStringKey("checksum")=="0"){
-                this.coins= jsonObject.getIntKey("coins");
-                int animal= jsonObject.getIntKey("currentAnimal");
-                this.currentAnimalID= AnimalID.values()[animal];
-                this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
-                for(int i=0;i<AnimalID.Num_Animals.ordinal();i++){
-                    this.unlockedAnimals[i]=jsonObject.getBooleanKey("animal "+i);
-                }
+            for(int i=0;i<AnimalID.Num_Animals.ordinal();i++){
+                this.unlockedAnimals[i]=jsonObject.getBooleanKey("animal "+i);
+            }
 
             }
-            else{
-                this.background= Color.WHITE;
-                this.buttons=new Color(100,100,100);
-                this.font=Color.BLACK;
-                this.tittle= new Color(30,30,50);
-                this.currentAnimalID=AnimalID.None;
-                this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
-                for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
-                    this.unlockedAnimals[i]=i==0; //unlock only the default
-
-                this.coins=999;
-
-            }
-        }
         else{
             this.background= Color.WHITE;
             this.buttons=new Color(100,100,100);
             this.font=Color.BLACK;
             this.tittle= new Color(30,30,50);
             this.currentAnimalID=AnimalID.None;
-            this.coins=999;
             this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
             for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
                 this.unlockedAnimals[i]=i==0; //unlock only the default
 
-        }
+            this.coins=9999;
 
-
-
-
+            }
     }
+
 
     @Override
     public void saveData() throws IOException {
         JSONObject jsonObject= new JSONObject();
-
-
+        String s="";
         try {
-            jsonObject.put("coins", this.coins);
+            jsonObject.clear();
+            s+="{";
             jsonObject.put("currentAnimal", currentAnimalID.ordinal());
+            s+= jsonObject.toString();
+            s+="},\n";
 
             for(int i=0;i<AnimalID.Num_Animals.ordinal();i++){
+                s+="{";
+                jsonObject.clear();
                 jsonObject.put("animal "+i, this.unlockedAnimals[i]);
+                s+="},\n";
             }
+            jsonObject.clear();
+            s+="{";
+            jsonObject.put("coins", String.valueOf(this.coins));
+            s+= jsonObject.toString();
+            s+="}\n";
 
+            s+="}\n";
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        String content= jsonObject.toString();
-
+        String content= s;
+        System.out.println(content);
         OutputStream save= engine.getFileManager().openOutputFile("Json/save.json");
         save.flush();
         save.write(content.getBytes());
