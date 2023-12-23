@@ -1,21 +1,26 @@
 package mastermind.logic;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
+import mastermind.engine.IJsonObject;
 import mastermind.engine.ILogicData;
 
 public class PlayerData implements ILogicData {
     int coins;
-
     Color background;
     Color font;
     Color tittle;
     Color buttons;
 
-    ArrayList<AnimalID> unlockedAnimals;
+    String currentScene;
+    boolean[] unlockedAnimals;
     AnimalID currentAnimalID;
 
     IEngine engine;
@@ -23,29 +28,88 @@ public class PlayerData implements ILogicData {
 
     public PlayerData(IEngine engine){
         this.engine=engine;
-        this.background= Color.WHITE;
-        this.buttons=new Color(100,100,100);
-        this.font=Color.BLACK;
-        this.tittle= new Color(30,30,50);
-        this.coins=999; //TODO change this THIS IS ONLY FOR DEBUG THE SHOP
-        this.currentAnimalID=AnimalID.None;
-        this.unlockedAnimals= new ArrayList<>();
-
-
+        loadData("Json/save.json");
     }
 
     @Override
     public void loadData(String route) {
-        //TODO need file manager :(
-        //TODO load checksum
-        //TODO compare with checksum
+        IJsonObject jsonObject= this.engine.getFileManager().readJSON(route);
+        if(jsonObject!=null){
+            IJsonObject checksum= this.engine.getFileManager().readJSON("checksum.json");
+            //TODO compare with checksum : CHANGE THIS
+
+            if(checksum!=null && checksum.getStringKey("checksum")=="0"){
+                this.coins= jsonObject.getIntKey("coins");
+                int animal= jsonObject.getIntKey("currentAnimal");
+                this.currentAnimalID= AnimalID.values()[animal];
+                this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
+                for(int i=0;i<AnimalID.Num_Animals.ordinal();i++){
+                    this.unlockedAnimals[i]=jsonObject.getBooleanKey("animal "+i);
+                }
+
+            }
+            else{
+                this.background= Color.WHITE;
+                this.buttons=new Color(100,100,100);
+                this.font=Color.BLACK;
+                this.tittle= new Color(30,30,50);
+                this.currentAnimalID=AnimalID.None;
+                this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
+                for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
+                    this.unlockedAnimals[i]=i==0; //unlock only the default
+
+                this.coins=999;
+
+            }
+        }
+        else{
+            this.background= Color.WHITE;
+            this.buttons=new Color(100,100,100);
+            this.font=Color.BLACK;
+            this.tittle= new Color(30,30,50);
+            this.currentAnimalID=AnimalID.None;
+            this.coins=999;
+            this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
+            for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
+                this.unlockedAnimals[i]=i==0; //unlock only the default
+
+        }
+
+
+
+
     }
 
     @Override
-    public void saveData() {
-        //TODO need file manager :(
-        //TODO need NDK, checksum and that shit
+    public void saveData() throws IOException {
+        JSONObject jsonObject= new JSONObject();
 
+
+        try {
+            jsonObject.put("coins", this.coins);
+            jsonObject.put("currentAnimal", currentAnimalID.ordinal());
+
+            for(int i=0;i<AnimalID.Num_Animals.ordinal();i++){
+                jsonObject.put("animal "+i, this.unlockedAnimals[i]);
+            }
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        String content= jsonObject.toString();
+
+        OutputStream save= engine.getFileManager().openOutputFile("Json/save.json");
+        save.flush();
+        save.write(content.getBytes());
+        save.close();
+        //TODO need NDK, checksum and that shit
+        OutputStream checksum= engine.getFileManager().openOutputFile("Json/checksum.json");
+        JSONObject check=new JSONObject();
+        String encriptedContent="";
+        check.put("checksum",encriptedContent );
+        checksum.close();
     }
 
     public int getCoins(){
@@ -55,6 +119,8 @@ public class PlayerData implements ILogicData {
     public void setCoins(int coins) {
         this.coins = coins;
     }
+
+
 
     public Color getBackground() {
         return background;
@@ -91,5 +157,13 @@ public class PlayerData implements ILogicData {
 
     public void setCurrentAnimalID(AnimalID currentAnimalID) {
         this.currentAnimalID = currentAnimalID;
+    }
+
+    public boolean isAnimalUnlocked(int id){
+        return this.unlockedAnimals[id];
+    }
+
+    public void unlockedAnimal(int id){
+        this.unlockedAnimals[id]=true;
     }
 }

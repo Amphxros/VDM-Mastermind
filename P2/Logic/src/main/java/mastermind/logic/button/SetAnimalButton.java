@@ -39,6 +39,7 @@ public class SetAnimalButton extends BuyItemButton{
     @Override
     public void unlockElem() {
         PlayerData p= (PlayerData)getEngine().getLogic().getLogicData();
+        p.unlockedAnimal(this.animalID.ordinal());
 
     }
 }

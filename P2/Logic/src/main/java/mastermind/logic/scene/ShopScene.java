@@ -96,7 +96,7 @@ public class ShopScene extends Scene {
             IImage image= getEngine().getGraphics().newImage("images/buttons/buttons-"+i+".png");
 
             containers.get(0).addChild(
-                    (new SetAnimalButton(this,AnimalID.values()[i],i*100,true,sound)
+                    (new SetAnimalButton(this,AnimalID.values()[i],i*100, !getLogicData().isAnimalUnlocked(i), sound)
                     .setSize(300,60)
                     .setPosition(50,  140 +70*(i))
                     .setStrokeColor(getLogicData().getButtons())
