@@ -95,6 +95,7 @@ public abstract class Engine implements IEngine {
     @Override
     public void setNotificationHandler(INotificationHandler notificationHandler) {
         this.notificationHandler = notificationHandler;
+    }
  
     public IFileManager getFileManager() {
         return fileManager;
