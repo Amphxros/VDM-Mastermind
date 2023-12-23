@@ -10,7 +10,9 @@ import mastermind.engine.IJsonObject;
 import mastermind.logic.Container;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
+import mastermind.logic.PlayerData;
 import mastermind.logic.Scene;
+import mastermind.logic.SkinID;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToGameScene;
 import mastermind.logic.button.GoToMenuScene;
@@ -25,12 +27,14 @@ public class ExploreWorldsScene extends Scene {
     String rootLevels;
     String[] nameWorlds;
     ArrayList<String[]> listLevels;
+    PlayerData playerData;
     public ExploreWorldsScene(IEngine engine) {
         super(engine);
     }
 
     @Override
     public void init() {
+        playerData= getLogicData();
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
         IJsonObject levels= getEngine().getFileManager().readJSON("Json/levels/levels.json");
@@ -142,6 +146,7 @@ public class ExploreWorldsScene extends Scene {
         for(Container c: containers)
             c.hide();
 
+        playerData.setCurrentSkin(SkinID.values()[this.id]);
         containers.get(this.id).show();
     }
 

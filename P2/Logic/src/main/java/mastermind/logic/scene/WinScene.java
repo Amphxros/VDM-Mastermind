@@ -8,6 +8,7 @@ import mastermind.engine.IJsonObject;
 import mastermind.logic.AnimalID;
 import mastermind.logic.PlayerData;
 import mastermind.logic.Scene;
+import mastermind.logic.SkinID;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
@@ -31,7 +32,7 @@ public class WinScene extends Scene {
     @Override
     public void init() {
         IFont font= getEngine().getGraphics().newFont("fonts/KIN668.ttf",30,false);
-        IJsonObject cells= getEngine().getFileManager().readJSON("Json/cells.json");
+        IJsonObject jsonObject= getEngine().getFileManager().readJSON("Json/cells.json");
         PlayerData playerData= (PlayerData) getLogicData();
         Table t= new Table(this,this.solution.length,font,false);
         t.setPosition(50,200);
@@ -46,8 +47,11 @@ public class WinScene extends Scene {
         }
         else{
             AnimalID animalID= playerData.getCurrentAnimalID();
+            SkinID skinID= playerData.getCurrentSkin();
             for (int i = 0; i < this.solution.length; i++) {
-                t.fillCell(colors[solution[i]], solution[i], null);
+                String s= jsonObject.getStringKey(animalID.name()) +jsonObject.getStringKey(skinID.name())+(solution[i] +1)+".png";
+                IImage image= getEngine().getGraphics().newImage(s);
+                t.fillCell(colors[solution[i]], solution[i], image);
             }
         }
         Text text= new Text(this,"Game over",font);

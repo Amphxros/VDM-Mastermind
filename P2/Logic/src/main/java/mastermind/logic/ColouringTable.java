@@ -25,9 +25,10 @@ public class ColouringTable extends GameObject implements DaltonicListener{
             this.colors=null;
             this.images=new IImage[9];
             AnimalID animalID= playerData.getCurrentAnimalID();
+            SkinID skinID= playerData.getCurrentSkin();
             for (int i = 0; i < 9; i++) {
 
-                String s= jsonObject.getStringKey(animalID.name()) +"basic-"+(i+1)+".png";
+                String s= jsonObject.getStringKey(animalID.name()) +jsonObject.getStringKey(skinID.name())+(i+1)+".png";
                 System.out.println(s);
                 images[i] = getEngine().getGraphics().newImage(s);
             }

@@ -24,9 +24,9 @@ public final class PlayerData implements ILogicData, Serializable {
     transient Color tittle;
     transient Color buttons;
 
-    String currentScene;
     boolean[] unlockedAnimals;
     AnimalID currentAnimalID;
+    SkinID currentSkin;
 
     IEngine engine;
     int lastLevel;
@@ -40,6 +40,7 @@ public final class PlayerData implements ILogicData, Serializable {
         this.font=Color.BLACK;
         this.tittle= new Color(30,30,50);
         this.currentAnimalID=AnimalID.None;
+        this.currentSkin=SkinID.basic;
         this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
         for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
             this.unlockedAnimals[i]=i==0; //unlock only the default
@@ -149,5 +150,13 @@ public final class PlayerData implements ILogicData, Serializable {
         }
 
         //saveData()
+    }
+
+    public SkinID getCurrentSkin() {
+        return currentSkin;
+    }
+
+    public void setCurrentSkin(SkinID currentSkin) {
+        this.currentSkin = currentSkin;
     }
 }
