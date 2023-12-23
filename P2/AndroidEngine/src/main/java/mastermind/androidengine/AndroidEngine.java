@@ -53,7 +53,7 @@ public class AndroidEngine extends Engine implements Runnable {
 
         long lastFrameTime = System.nanoTime();
         getLogic().init();
-        getNotificationHandler().add(new Notification("Daily sub","Check in for money","content",20));
+        getNotificationHandler().add(new Notification("Daily sub","Check in for money","content",1));
         while (running) {
             long currentTime = System.nanoTime();
             long nanoElapsedTime = currentTime - lastFrameTime;

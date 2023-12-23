@@ -28,6 +28,7 @@ public class PaletteButton extends BuyItemButton{
         if(isLocked){
             graphics.setColor(Color.RED);
         }
+
         else{
             graphics.setColor(Color.GREEN);
         }

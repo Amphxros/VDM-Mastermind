@@ -6,6 +6,7 @@ import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
+import mastermind.engine.IJsonObject;
 import mastermind.engine.ISound;
 import mastermind.logic.AnimalID;
 import mastermind.logic.Container;
@@ -42,7 +43,12 @@ public class ShopScene extends Scene {
         IImage coin= getEngine().getGraphics().newImage("images/coin.png");
         ISound sound= getEngine().getAudio().createSound("sounds/01");
 
-       t= new Text(this,String.valueOf(getLogicData().getCoins()),tittle);
+        IJsonObject prices= getEngine().getFileManager().readJSON("Json/shop-prices.json");
+        IJsonObject images= getEngine().getFileManager().readJSON("Json/shop-images.json");
+
+
+
+        t= new Text(this,String.valueOf(getLogicData().getCoins()),tittle);
        t.setPosition(-10,50);
         addGameObject(new Container(this)
                 .setPosition(300,0)
@@ -96,7 +102,7 @@ public class ShopScene extends Scene {
             IImage image= getEngine().getGraphics().newImage("images/buttons/buttons-"+i+".png");
 
             containers.get(0).addChild(
-                    (new SetAnimalButton(this,AnimalID.values()[i],i*100, !getLogicData().isAnimalUnlocked(i), sound)
+                    (new SetAnimalButton(this,AnimalID.values()[i],prices.getIntKey("Skin "+ i), !getLogicData().isAnimalUnlocked(i), sound)
                     .setSize(300,60)
                     .setPosition(50,  140 +70*(i))
                     .setStrokeColor(getLogicData().getButtons())
@@ -104,7 +110,8 @@ public class ShopScene extends Scene {
                             .setPosition(20,10)
                             .setSize(40,40)
                     )
-                    .addChild(new Text(this,"Animalito " + i,font)
+                    .addChild(new Text(this,AnimalID.values()[i].name()
+                            ,font)
                             .setPosition(100,30)
                             .setStrokeColor(getLogicData().getFont())
                     )
@@ -112,7 +119,7 @@ public class ShopScene extends Scene {
                             .setPosition(200,10)
                             .setSize(30,30)
                     )
-                    .addChild(new Text(this, String.valueOf(100*i),font)
+                    .addChild(new Text(this, String.valueOf(prices.getIntKey("Skin "+ i)),font)
                             .setPosition(250,30)
                             .setStrokeColor(getLogicData().getFont())
                     )
@@ -127,11 +134,16 @@ public class ShopScene extends Scene {
 
         );
         for(int i=0;i<4;i++){
+            IImage image= getEngine().getGraphics().newImage("images/backgrounds/background-"+i+".png");
             containers.get(1).addChild(
-              new BackgroundButton(this,i*100,true,sound)
-                      .setPosition(30, 250 + 100*i)
-                      .setSize(300,70)
+            new BackgroundButton(this,i*100,true,sound)
+                      .setSize(300,60)
+                      .setPosition(50,  140 +70*(i))
                       .setStrokeColor(getLogicData().getButtons())
+                      .addChild(new Image(this,image)
+                              .setPosition(20,10)
+                              .setSize(40,40)
+                      )
                       .addChild(new Text(this,"Fondo " + i,font)
                               .setPosition(100,30)
                               .setStrokeColor(getLogicData().getFont())
@@ -154,12 +166,18 @@ public class ShopScene extends Scene {
 
 
         );
-        for(int i=0;i<4;i++){
+        for(int i=0;i<6;i++){
+            IImage image= getEngine().getGraphics().newImage("images/palettes/palettes-"+i+".png");
             containers.get(2).addChild(
                     new PaletteButton(this,Color.WHITE,Color.BLACK,Color.RED,Color.RED,true,sound,100*i)
-                            .setPosition(30, 250 + 100*i)
-                            .setSize(300,70)
+                            .setSize(300,60)
+                            .setPosition(50,  140 +70*(i))
                             .setStrokeColor(getLogicData().getButtons())
+
+                            .addChild(new Image(this,image)
+                                    .setPosition(20,10)
+                                    .setSize(40,40)
+                            )
                             .addChild(new Text(this,"Palettes" + i,font)
                                     .setPosition(100,30)
                                     .setStrokeColor(getLogicData().getFont())
