@@ -1,7 +1,6 @@
 package mastermind.engine;
 
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,4 +33,5 @@ public interface IFileManager {
 
     IJsonObject readJSON(String path);
 
+    String[] getFileListDirectory(String path);
 }
