@@ -13,13 +13,14 @@ public class WinScene extends Scene {
     int[] solution;
     boolean hasWon;
     int coinsAmount;
-
-    public WinScene(IEngine engine, Color[] colors, int[] solution, boolean hasWon, int coinsAmount) {
+    boolean fileLevel;
+    public WinScene(IEngine engine, Color[] colors, int[] solution, boolean hasWon, int coinsAmount, boolean fileLevel) {
         super(engine);
         this.colors=colors.clone();
         this.solution=solution.clone();
         this.hasWon=hasWon;
         this.coinsAmount=coinsAmount;
+        this.fileLevel=fileLevel;
     }
 
 
@@ -41,7 +42,10 @@ public class WinScene extends Scene {
         text.setStrokeColor(new Color(20,20,20));
         if(hasWon){
             text.setText("You Won");
-            getLogicData().setCoins(getLogicData().getCoins() + this.coinsAmount);
+            if(fileLevel) {
+                getLogicData().setCoins(getLogicData().getCoins() + this.coinsAmount);
+                getLogicData().onLevelCompleted();
+            }
         }
 
         addGameObject(text);

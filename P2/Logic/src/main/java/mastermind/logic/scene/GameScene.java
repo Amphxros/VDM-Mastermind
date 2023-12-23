@@ -20,6 +20,7 @@ import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToModeExplore;
 
 public class GameScene extends Scene implements ISensorListener {
 
@@ -36,8 +37,9 @@ public class GameScene extends Scene implements ISensorListener {
     ArrayList<DaltonicListener> daltonicObservers;
     boolean isRepeating;
     boolean colorsEnable;
+    boolean fileScene;
     Text tryText;
-    public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles) {
+    public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles, boolean fileScene) {
         super(engine);
         this.numColores=numColores;
         this.numIntentos=numIntentos;
@@ -51,6 +53,7 @@ public class GameScene extends Scene implements ISensorListener {
         this.colorsEnable=circles;
 
         this.daltonicObservers= new ArrayList<>();
+        this.fileScene=fileScene;
 
 
     }
@@ -83,6 +86,19 @@ public class GameScene extends Scene implements ISensorListener {
                 .setStrokeColor(Color.BLACK);
         addGameObject(tryText);
 
+        if(fileScene){
+            addGameObject(new GoToModeExplore(this)
+                    .setPosition(20,20)
+                    .setSize(50,50)
+                    .setStrokeColor(new Color(200,200,200,50))
+
+                    .addChild(new Image(this, back)
+                            .setSize(50,50)
+                    )
+
+            );
+        }
+        else{
         addGameObject(new GoToChooseLevel(this)
                 .setPosition(20,20)
                 .setSize(50,50)
@@ -93,6 +109,7 @@ public class GameScene extends Scene implements ISensorListener {
                 )
 
         );
+        }
 
 
         addGameObject(new DaltonicButton(this, open, close)
@@ -198,7 +215,7 @@ public class GameScene extends Scene implements ISensorListener {
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
-               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos)));
+               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos),fileScene));
            }
            else
            {
@@ -208,7 +225,7 @@ public class GameScene extends Scene implements ISensorListener {
                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
                }
                else{
-                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false,0));
+                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false,0,fileScene));
                }
            }
         }

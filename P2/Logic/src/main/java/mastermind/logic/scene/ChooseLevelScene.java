@@ -63,7 +63,7 @@ public class ChooseLevelScene extends Scene {
     private GameObject createGameButton(int x, int y, int w, int h,
                                         Color color, String text, IFont font,
                                         int numColors, int numIntentos, int tamPassword,boolean repeating ){
-        return new GoToGameScene(this,numColors,numIntentos,tamPassword,repeating,true)
+        return new GoToGameScene(this,numColors,numIntentos,tamPassword,repeating,true,false)
                 .setPosition(x,y)
                 .setSize(w,h)
                 .setStrokeColor(color)

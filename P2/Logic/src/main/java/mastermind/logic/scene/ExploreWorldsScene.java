@@ -115,7 +115,7 @@ public class ExploreWorldsScene extends Scene {
             boolean rep= worldFile.getBooleanKey("repeat");
             int codeSize= worldFile.getIntKey("codeSize");
 
-            GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true);
+            GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true);
             game.setPosition(50 +(100*columna), 100*fila);
             game.setSize(80, 80);
             game.setStrokeColor(getLogicData().getButtons());

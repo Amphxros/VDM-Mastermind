@@ -107,7 +107,6 @@ public class AndroidEngine extends Engine implements Runnable {
                 try {
                     thread.join();
                     thread = null;
-                    getLogic().getLogicData().saveData();
                     break;
                 } catch (Exception e) {
                     // Something went REALLY wrong
