@@ -3,6 +3,7 @@ package mastermind.logic;
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
+import mastermind.engine.IJsonObject;
 import mastermind.engine.IScene;
 
 public class ColouringTable extends GameObject implements DaltonicListener{
@@ -14,16 +15,25 @@ public class ColouringTable extends GameObject implements DaltonicListener{
     public ColouringTable(IScene scene, int numCells, Color[] colors) {
         super(scene);
         this.numCells=numCells;
-        this.colors=colors.clone();
+
+        IJsonObject jsonObject= getEngine().getFileManager().readJSON("Json/cells.json");
+        PlayerData playerData= (PlayerData) scene.getLogicData();
+        if(playerData.getCurrentAnimalID()==AnimalID.None){
+            this.colors=colors.clone();
+        }
+        else {
+            this.colors=null;
+            this.images=new IImage[9];
+            AnimalID animalID= playerData.getCurrentAnimalID();
+            for (int i = 0; i < 9; i++) {
+
+                String s= jsonObject.getStringKey(animalID.name()) +"basic-"+(i+1)+".png";
+                System.out.println(s);
+                images[i] = getEngine().getGraphics().newImage(s);
+            }
+        }
     }
 
-
-    public ColouringTable(IScene scene, int numCells, IImage[] images) {
-        super(scene);
-        this.numCells=numCells;
-        this.colors=null;
-        this.images=images.clone();
-    }
 
     @Override
     public void init() {
