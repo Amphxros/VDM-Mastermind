@@ -12,6 +12,7 @@ import mastermind.logic.SkinID;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.ShowRewardedAdButton;
 
 public class WinScene extends Scene {
     Color[] colors;
@@ -63,6 +64,22 @@ public class WinScene extends Scene {
                 getLogicData().setCoins(getLogicData().getCoins() + this.coinsAmount);
                 getLogicData().onLevelCompleted();
             }
+        }else{
+            //metes anuncio:
+            addGameObject(new ShowRewardedAdButton(this)
+                    .setPosition(200,200)
+                    .setSize(300,50)
+                    .setStrokeColor(Color.BLACK)
+
+                    .addChild(new Text(this,"Anuncio",font)
+                            .setPosition(50,25)
+                            .setStrokeColor(new Color(100,120,250))
+                    )
+
+
+            );
+            //if clickas en el anuncio --> +2 intentos
+            //else no clickas pierdes
         }
 
         addGameObject(text);

@@ -10,7 +10,6 @@ import mastermind.engine.IInput;
 import mastermind.engine.ISensorListener;
 import mastermind.engine.ISensorsManager;
 import mastermind.logic.ColouringCell;
-
 import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
@@ -170,7 +169,11 @@ public class GameScene extends Scene implements ISensorListener {
 
         }
         generateColors();
-
+        String aux = "";
+        for(int i = 0; i < solution.length; i++){
+            aux = aux + solution[i] + ", ";
+        }
+        System.out.println("Passwprd: " + aux);
     }
 
     /**
