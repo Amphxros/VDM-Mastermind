@@ -1,5 +1,7 @@
 package mastermind.logic;
 
+import java.util.Arrays;
+
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
@@ -45,8 +47,39 @@ public class HintObject extends GameObject{
     }
 
     public boolean showHints(int[] solution, int[] tableSolution){
-        int correctElems=0;
-        for(int i=0;i<this.numCells;i++){
+        int correctElems = 0;
+        int wrongPosition = 0;
+        boolean [] visto = new boolean[solution.length];
+        Arrays.fill(visto,false);
+        for(int i = 0; i < solution.length; i++){
+            if(tableSolution[i]==solution[i]){
+                visto[i] = true;
+                correctElems++;
+            }else{
+                boolean encontrado = false;
+                int j = 0;
+                while (!encontrado && j < visto.length){
+                    if(!visto[j] && tableSolution[i] == solution[j]){
+                        visto[j] = true;
+                        wrongPosition++;
+                        encontrado = true;
+                    }
+                    j++;
+                }
+            }
+        }
+        int n = 0;
+        for (int i = 0; i < correctElems; i++) {
+            this.hintElems[n].setCellState(CellState.Correct);
+            n++;
+        }
+
+        for (int i = 0; i < wrongPosition; i++) {
+            this.hintElems[n].setCellState(CellState.Misplaced);
+            n++;
+        }
+
+        /*for(int i=0;i<this.numCells;i++){
             if(tableSolution[i]==solution[i]){
                 this.hintElems[i].setCellState(CellState.Correct);
                 correctElems++;
@@ -66,9 +99,8 @@ public class HintObject extends GameObject{
             if(this.hintElems[i].getCellState()==CellState.Empty){
                 this.hintElems[i].setCellState(CellState.Wrong);
             }
-        }
+        }*/
 
-
-        return correctElems==this.numCells;
+        return correctElems == this.numCells;
     }
 }
