@@ -14,7 +14,7 @@ import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
-import mastermind.logic.Scene;
+
 import mastermind.logic.ScrollEventListener;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
@@ -22,7 +22,7 @@ import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToModeExplore;
 
-public class GameScene extends Scene implements ISensorListener {
+public class GameScene extends Scene implements ISensorListener, ScrollEventListener {
 
     ColouringTable c;
     private int numColores;
@@ -137,7 +137,8 @@ public class GameScene extends Scene implements ISensorListener {
     }
 
     // Método para manejar el evento de scroll y notificar a los oyentes
-    public void manejarScroll(int deltaY) {
+    @Override
+    public void onScroll(int deltaY) {
         for (ScrollEventListener listener : scrollEventListeners) {
             listener.onScroll(deltaY);
         }

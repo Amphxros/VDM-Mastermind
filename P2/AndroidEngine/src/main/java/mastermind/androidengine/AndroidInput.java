@@ -1,19 +1,15 @@
 package mastermind.androidengine;
 
-import android.os.Handler;
-import android.os.Looper;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 
 import mastermind.engine.EventType;
-import mastermind.engine.IInput;
 import mastermind.engine.Input;
 import mastermind.engine.TouchEvent;
 
 public class AndroidInput extends Input implements View.OnTouchListener {
-    private int x,y;
-
+    private float x,y, lastX, lastY;
     EventType eventType;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -24,9 +20,8 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
-                lastX = (int) motionEvent.getX();
-                lastY = (int) motionEvent.getY();
-                t= new TouchEvent(x,y,eventType,false);
+                scrolling=true;
+                t= new TouchEvent((int)x,(int)y,eventType,false);
                 addEvent(t);
                 break;
             case MotionEvent.ACTION_UP:
@@ -34,7 +29,8 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
 
-                t= new TouchEvent(x,y,eventType,true);
+                t= new TouchEvent((int)x,(int)y,eventType,true);
+                scrolling=false;
                 addEvent(t);
 
                 break;
@@ -43,11 +39,11 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                     deltaY = (int) (motionEvent.getY() - lastY);
 
                 // Realizar acciones según el desplazamiento (puedes imprimir o almacenar valores, etc.).
-                System.out.println("Touch" +"DeltaX: " + deltaX + ", DeltaY: " + deltaY);
+                Log.d("Touch", "DeltaX: " + deltaX + ", DeltaY: " + deltaY);
 
                 // Actualizar las coordenadas anteriores.
-                lastX = (int) motionEvent.getX();
-                lastY = (int) motionEvent.getY();
+                lastX = motionEvent.getX();
+                lastY = motionEvent.getY();
                 break;
 
         }
