@@ -55,12 +55,32 @@ public class HintObject extends GameObject{
             if(tableSolution[i]==solution[i]){
                 visto[i] = true;
                 correctElems++;
-            }else{
+            }/*else{
+
                 boolean encontrado = false;
                 int j = 0;
                 while (!encontrado && j < visto.length){
-                    if(!visto[j] && tableSolution[i] == solution[j]){
+                    if(!visto[j] && tableSolution[j] == solution[i]){
                         visto[j] = true;
+                        wrongPosition++;
+                        encontrado = true;
+                    }
+                    j++;
+                }
+            }*/
+        }
+
+        if (correctElems == this.numCells) return true;
+
+        else { //buscar los que estan en una mala posicion
+            for(int i = 0; i < tableSolution.length; i++){
+                boolean encontrado = false;
+                int j = 0;
+                while (!encontrado && j < visto.length){
+                    if(visto[i]){
+                        encontrado = true;
+                    }else if(tableSolution[j] == solution[i]){
+                        visto[i] = true;
                         wrongPosition++;
                         encontrado = true;
                     }
@@ -68,6 +88,8 @@ public class HintObject extends GameObject{
                 }
             }
         }
+
+
         int n = 0;
         for (int i = 0; i < correctElems; i++) {
             this.hintElems[n].setCellState(CellState.Correct);

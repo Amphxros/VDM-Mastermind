@@ -31,7 +31,6 @@ public class HintElem extends GameObject {
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else{
-            graphics.setColor(strokeColor);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
 
