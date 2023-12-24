@@ -14,7 +14,6 @@ import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
-import mastermind.logic.Scene;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
@@ -206,6 +205,11 @@ public class GameScene extends Scene implements ISensorListener {
     @Override
     public void handleInput(IInput input) {
         super.handleInput(input);
+    }
+
+    @Override
+    public String getID() {
+        return "Game";
     }
 
     public void onDaltonicMode(boolean mode){

@@ -4,13 +4,11 @@ import mastermind.engine.Color;
 import mastermind.engine.HorizontalAlignment;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
-import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToModeExplore;
 
 import mastermind.logic.button.GoToShopScene;
-import mastermind.logic.button.ShowRewardedAdButton;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -72,5 +70,10 @@ public class MenuScene extends Scene {
 
         );
 
+    }
+
+    @Override
+    public String getID() {
+        return "Menu";
     }
 }

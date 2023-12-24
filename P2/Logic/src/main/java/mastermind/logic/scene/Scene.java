@@ -1,4 +1,4 @@
-package mastermind.logic;
+package mastermind.logic.scene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,8 @@ import mastermind.engine.IInput;
 import mastermind.engine.ILogicData;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
+import mastermind.logic.GameObject;
+import mastermind.logic.PlayerData;
 
 public abstract class Scene implements IScene {
     private final IEngine engine;

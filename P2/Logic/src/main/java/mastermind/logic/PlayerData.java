@@ -4,6 +4,7 @@ package mastermind.logic;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInput;
 import java.io.OutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,10 +14,15 @@ import java.io.Serializable;
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.ILogicData;
+import mastermind.engine.IScene;
+import mastermind.logic.scene.ChooseLevelScene;
+import mastermind.logic.scene.ExploreWorldsScene;
+import mastermind.logic.scene.GameScene;
+import mastermind.logic.scene.ShopScene;
+import mastermind.logic.scene.WinScene;
 
 public final class PlayerData implements ILogicData, Serializable {
     int coins;
-
     boolean[] unlockedAnimals;
     boolean[] paletteItemsUnlocked;
     AnimalID currentAnimalID;
@@ -44,7 +50,7 @@ public final class PlayerData implements ILogicData, Serializable {
         }
 
         loadPalettes();
-        this.coins=9999;
+        this.coins=0;
         this.lastLevel=1;
         this.lastWorld=1;
 
@@ -140,6 +146,7 @@ public final class PlayerData implements ILogicData, Serializable {
         }
     }
 
+
     public int getCoins(){
         return this.coins;
     }
@@ -219,7 +226,58 @@ public final class PlayerData implements ILogicData, Serializable {
         paletteItemsUnlocked[id]=true;
     }
 
+
     public boolean isPaletteUnlock(int id){
         return paletteItemsUnlocked[id];
     }
+
+
+    public void loadGameState(ObjectInputStream outputStream) throws IOException, ClassNotFoundException {
+
+        String scene= (String) outputStream.readObject();
+
+        if(scene!=null){
+            switch (scene){
+                case "WinScene":
+                    boolean hasWon= (boolean) outputStream.readObject();
+                    int tamPassword=(int) outputStream.readObject();
+
+                    break;
+                case "ChooseLevel":
+                    break;
+                case "Shop":
+                    break;
+                case "Explore":
+                    break;
+                case "Game":
+                    break;
+            }
+        }
+
+    }
+
+    public void saveGameState(ObjectOutputStream objectOutputStream, IScene currentScene){
+        String id= currentScene.getID();
+            switch (id){
+                case "WinScene":
+                    WinScene winScene= (WinScene) currentScene;
+                    break;
+                case "ChooseLevel":
+                    ChooseLevelScene chooseScene= (ChooseLevelScene) currentScene;
+                    break;
+                case "Shop":
+                    ShopScene shopScene= (ShopScene) currentScene;
+                    break;
+                case "Explore":
+                    ExploreWorldsScene exploreWorldsScene= (ExploreWorldsScene) currentScene;
+                    break;
+                case "Game":
+                    GameScene gameScene= (GameScene) currentScene;
+                    break;
+            }
+    }
+
+
+
+
 }

@@ -11,7 +11,6 @@ import mastermind.logic.Container;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
 import mastermind.logic.PlayerData;
-import mastermind.logic.Scene;
 import mastermind.logic.SkinID;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToGameScene;
@@ -92,6 +91,11 @@ public class ExploreWorldsScene extends Scene {
         onClick(id);
 
 
+    }
+
+    @Override
+    public String getID() {
+        return null;
     }
 
 

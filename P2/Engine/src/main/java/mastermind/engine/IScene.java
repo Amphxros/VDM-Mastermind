@@ -38,4 +38,5 @@ public interface IScene {
      */
     IEngine getEngine();
     ILogicData getLogicData();
+    String getID();
 }

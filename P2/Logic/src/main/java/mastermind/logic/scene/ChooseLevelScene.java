@@ -7,9 +7,7 @@ import mastermind.engine.IImage;
 import mastermind.logic.Container;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
-import mastermind.logic.Scene;
 import mastermind.logic.Text;
-import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToGameScene;
 import mastermind.logic.button.GoToMenuScene;
 
@@ -58,6 +56,11 @@ public class ChooseLevelScene extends Scene {
                 .addChild(createGameButton(0,2*center/3,center,center/4,getLogicData().getButtons(),"Dificil",font,6,6,6,true))
                 .addChild(createGameButton(0,center,center,center/4,getLogicData().getButtons(),"Imposible",font,6,10,6,true))
         );
+    }
+
+    @Override
+    public String getID() {
+        return null;
     }
 
     private GameObject createGameButton(int x, int y, int w, int h,

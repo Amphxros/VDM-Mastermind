@@ -1,11 +1,9 @@
 package mastermind.logic.button;
 
-import mastermind.engine.IGraphics;
-import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.Image;
-import mastermind.logic.Scene;
+import mastermind.logic.scene.Scene;
 import mastermind.logic.scene.GameScene;
 
 public class GoToGameScene extends GoToScene{

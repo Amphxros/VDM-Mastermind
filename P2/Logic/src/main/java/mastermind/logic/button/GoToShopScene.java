@@ -1,7 +1,7 @@
 package mastermind.logic.button;
 
 import mastermind.engine.IScene;
-import mastermind.logic.Scene;
+import mastermind.logic.scene.Scene;
 import mastermind.logic.scene.ShopScene;
 
 public class GoToShopScene extends GoToScene{

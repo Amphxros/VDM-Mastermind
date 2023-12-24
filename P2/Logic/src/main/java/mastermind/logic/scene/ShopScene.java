@@ -2,7 +2,6 @@ package mastermind.logic.scene;
 
 import java.util.ArrayList;
 
-import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
@@ -12,9 +11,7 @@ import mastermind.logic.AnimalID;
 import mastermind.logic.Container;
 import mastermind.logic.Image;
 import mastermind.logic.PaletteID;
-import mastermind.logic.Scene;
 import mastermind.logic.Text;
-import mastermind.logic.button.BackgroundButton;
 import mastermind.logic.button.GoToMenuScene;
 import mastermind.logic.button.PaletteButton;
 import mastermind.logic.button.SetAnimalButton;
@@ -181,5 +178,10 @@ public class ShopScene extends Scene {
     public void update(double delta) {
         t.setText(String.valueOf(getLogicData().getCoins()));
         super.update(delta);
+    }
+
+    @Override
+    public String getID() {
+        return "Shop";
     }
 }

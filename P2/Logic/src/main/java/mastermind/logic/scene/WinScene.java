@@ -7,13 +7,11 @@ import mastermind.engine.IImage;
 import mastermind.engine.IJsonObject;
 import mastermind.logic.AnimalID;
 import mastermind.logic.PlayerData;
-import mastermind.logic.Scene;
 import mastermind.logic.SkinID;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DoubleCoinsButton;
 import mastermind.logic.button.GoToChooseLevel;
-import mastermind.logic.button.ShowRewardedAdButton;
 
 public class WinScene extends Scene {
     Color[] colors;
@@ -105,5 +103,10 @@ public class WinScene extends Scene {
         );
         super.init();
         addGameObject(t);
+    }
+
+    @Override
+    public String getID() {
+        return "Win";
     }
 }
