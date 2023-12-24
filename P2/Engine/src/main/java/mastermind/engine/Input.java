@@ -6,7 +6,7 @@ import java.util.List;
 public class Input implements IInput{
     protected final LinkedList<TouchEvent> events = new LinkedList<>();
     protected int lastX, lastY;
-
+    protected int deltaX, deltaY;
     /**
      * @return Returns a list of all the queued events, clears the queue upon call.
      */
@@ -21,6 +21,26 @@ public class Input implements IInput{
         }
 
         return tmp;
+    }
+
+    @Override
+    public int getDeltaX() {
+        return deltaX;
+    }
+
+    @Override
+    public int getDeltaY() {
+        return deltaY;
+    }
+
+    @Override
+    public void setDeltaX(int deltaX) {
+        this.deltaX=deltaX;
+    }
+
+    @Override
+    public void setDeltaY(int deltaY) {
+        this.deltaY=deltaY;
     }
 
 

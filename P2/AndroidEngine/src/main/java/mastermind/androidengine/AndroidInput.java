@@ -39,8 +39,8 @@ public class AndroidInput extends Input implements View.OnTouchListener {
 
                 break;
                 case MotionEvent.ACTION_MOVE:
-                float deltaX = motionEvent.getX() - lastX;
-                float deltaY = motionEvent.getY() - lastY;
+                    deltaX = (int) (motionEvent.getX() - lastX);
+                    deltaY = (int) (motionEvent.getY() - lastY);
 
                 // Realizar acciones según el desplazamiento (puedes imprimir o almacenar valores, etc.).
                 System.out.println("Touch" +"DeltaX: " + deltaX + ", DeltaY: " + deltaY);
