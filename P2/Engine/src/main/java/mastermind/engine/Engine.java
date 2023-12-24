@@ -7,6 +7,9 @@ public abstract class Engine implements IEngine {
     private ILogic logic;
     private  ISensorsManager sensorsManager;
     private IAdsManager adsManager;
+    private INotificationHandler notificationHandler;
+
+    private IFileManager fileManager;
 
     /**
      * @return An {@link ILogic} instance.
@@ -75,11 +78,32 @@ public abstract class Engine implements IEngine {
 
     @Override
     public IAdsManager getAdsManager() {
+
         return adsManager;
     }
 
     @Override
     public void setAdsManager(IAdsManager adsManager) {
+
         this.adsManager = adsManager;
+    }
+
+    @Override
+    public INotificationHandler getNotificationHandler() {
+        return notificationHandler;
+    }
+    @Override
+    public void setNotificationHandler(INotificationHandler notificationHandler) {
+        this.notificationHandler = notificationHandler;
+    }
+
+    @Override
+    public IFileManager getFileManager() {
+        return fileManager;
+    }
+
+    @Override
+    public void setFileManager(IFileManager fileManager) {
+        this.fileManager = fileManager;
     }
 }

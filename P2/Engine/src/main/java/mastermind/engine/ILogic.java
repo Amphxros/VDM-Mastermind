@@ -11,5 +11,12 @@ public interface ILogic {
 
     void handleEvents(IInput input);
 
+    void onNotificationClicked();
+
+    void onApplicationExit();
+
     IEngine getEngine();
+
+    ILogicData getLogicData();
+    void setLogicData(ILogicData logicData);
 }

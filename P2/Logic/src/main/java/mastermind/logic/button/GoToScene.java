@@ -3,7 +3,7 @@ package mastermind.logic.button;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
-import mastermind.logic.Scene;
+import mastermind.logic.scene.Scene;
 
 public abstract class GoToScene extends Button{
     public GoToScene(IScene scene) {

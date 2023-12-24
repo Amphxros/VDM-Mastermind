@@ -11,6 +11,18 @@ public class Container extends GameObject{
         super(scene);
     }
 
+    public void show(){
+        this.setEnabled(true);
+        for(GameObject g: getChildren())
+            g.setEnabled(true);
+    }
+
+
+    public void hide(){
+        this.setEnabled(false);
+        for(GameObject g: getChildren())
+            g.setEnabled(false);
+    }
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);

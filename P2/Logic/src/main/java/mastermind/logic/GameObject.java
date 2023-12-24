@@ -125,6 +125,7 @@ public class GameObject {
     }
 
     public void render(IGraphics graphics) {
+        if(!this.enabled) return;
         for (GameObject child : getChildren()) {
             if (child.isEnabled()) {
                 child.render(graphics);

@@ -15,15 +15,16 @@ import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
 import mastermind.logic.Scene;
+import mastermind.logic.ScrollEventListener;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToModeExplore;
 
 public class GameScene extends Scene implements ISensorListener {
 
     ColouringTable c;
-
     private int numColores;
     private int numIntentos;
     private int tamPassword;
@@ -33,10 +34,12 @@ public class GameScene extends Scene implements ISensorListener {
     Table[] tables;
     int [] solution;
     ArrayList<DaltonicListener> daltonicObservers;
+    private ArrayList<ScrollEventListener> scrollEventListeners;
     boolean isRepeating;
     boolean colorsEnable;
+    boolean fileScene;
     Text tryText;
-    public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles) {
+    public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles, boolean fileScene) {
         super(engine);
         this.numColores=numColores;
         this.numIntentos=numIntentos;
@@ -50,8 +53,8 @@ public class GameScene extends Scene implements ISensorListener {
         this.colorsEnable=circles;
 
         this.daltonicObservers= new ArrayList<>();
-
-
+        this.scrollEventListeners = new ArrayList<>();
+        this.fileScene=fileScene;
     }
 
     @Override
@@ -59,7 +62,9 @@ public class GameScene extends Scene implements ISensorListener {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
         IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",15,false);
 
+        IImage background= getEngine().getGraphics().newImage("images/backgrounds/background-0.png");
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
+
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
@@ -68,6 +73,10 @@ public class GameScene extends Scene implements ISensorListener {
             sensors.registerAccelerometerListener(this);
         }
 
+        addGameObject(new Image(this,background)
+                .setSize(getEngine().getWidth(), getEngine().getHeight())
+
+        );
 
         generateData();
 
@@ -76,16 +85,31 @@ public class GameScene extends Scene implements ISensorListener {
                 .setStrokeColor(Color.BLACK);
         addGameObject(tryText);
 
+        if(fileScene){
+            addGameObject(new GoToModeExplore(this)
+                    .setPosition(20,20)
+                    .setSize(50,50)
+                    .setStrokeColor(new Color(200,200,200,50))
+
+                    .addChild(new Image(this, back)
+                            .setSize(50,50)
+                    )
+
+            );
+        }
+        else{
         addGameObject(new GoToChooseLevel(this)
-                .setPosition(0,20)
+                .setPosition(20,20)
                 .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200))
+                .setStrokeColor(new Color(200,200,200,50))
 
                 .addChild(new Image(this, back)
                         .setSize(50,50)
                 )
 
         );
+        }
+
 
         addGameObject(new DaltonicButton(this, open, close)
                 .setPosition(330,20)
@@ -94,9 +118,10 @@ public class GameScene extends Scene implements ISensorListener {
         );
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,fonty);
+            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, getLogicData().getBackground(),fonty);
             addGameObject(t);
             daltonicObservers.add(t);
+            scrollEventListeners.add(t);
             tables[i]=t;
         }
 
@@ -109,6 +134,13 @@ public class GameScene extends Scene implements ISensorListener {
 
         super.init();
 
+    }
+
+    // Método para manejar el evento de scroll y notificar a los oyentes
+    public void manejarScroll(int deltaY) {
+        for (ScrollEventListener listener : scrollEventListeners) {
+            listener.onScroll(deltaY);
+        }
     }
 
     private void generateData(){
@@ -145,7 +177,11 @@ public class GameScene extends Scene implements ISensorListener {
 
         }
         generateColors();
-
+        String aux = "";
+        for(int i = 0; i < solution.length; i++){
+            aux = aux + solution[i] + ", ";
+        }
+        System.out.println("Password: " + aux);
     }
 
     /**
@@ -180,17 +216,22 @@ public class GameScene extends Scene implements ISensorListener {
         super.handleInput(input);
     }
 
+    @Override
+    public String getID() {
+        return "Game";
+    }
+
     public void onDaltonicMode(boolean mode){
         for(DaltonicListener d : daltonicObservers)
             d.setDaltonicMode(mode);
     }
 
-    public void onColouringCellSelected(Color c,int value){
+    public void onColouringCellSelected(Color c,int value, IImage image){
         System.out.println("Click " + value);
-        tables[currTable].fillCell(c,value);
+        tables[currTable].fillCell(c,value,image);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
-               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
+               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos),fileScene));
            }
            else
            {
@@ -200,7 +241,7 @@ public class GameScene extends Scene implements ISensorListener {
                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
                }
                else{
-                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
+                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false,0,fileScene));
                }
            }
         }

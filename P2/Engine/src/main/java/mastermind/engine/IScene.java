@@ -37,4 +37,6 @@ public interface IScene {
      * @return The {@link IEngine} that instantiated this scene.
      */
     IEngine getEngine();
+    ILogicData getLogicData();
+    String getID();
 }

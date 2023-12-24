@@ -3,7 +3,6 @@ package mastermind.logic;
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
-import mastermind.logic.GameObject;
 
 public class HintElem extends GameObject {
     private CellState cellState;
@@ -24,6 +23,7 @@ public class HintElem extends GameObject {
             graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Misplaced){
+            graphics.setColor(Color.YELLOW);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Correct){
@@ -31,7 +31,6 @@ public class HintElem extends GameObject {
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else{
-            graphics.setColor(Color.RED);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
 

@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdView;
 
+import java.io.IOException;
+
 import mastermind.engine.Color;
 import mastermind.engine.Engine;
+import mastermind.engine.Notification;
 
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
@@ -19,14 +22,12 @@ public class AndroidEngine extends Engine implements Runnable {
         setAudio(new AndroidAudio(context));
         setSensorsManager(new SensorsManager(context));
         setAdsManager(new AdsManager(activity,adView,context));
+        setFileManager(new AndroidFileManager(context));
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
         setInput(input);
-    }
 
-    @Override
-    public AndroidGraphics getGraphics() {
-        return (AndroidGraphics) super.getGraphics();
+        setNotificationHandler(new AndroidNotificationHandler(context));
     }
 
     @Override
@@ -52,6 +53,7 @@ public class AndroidEngine extends Engine implements Runnable {
 
         long lastFrameTime = System.nanoTime();
         getLogic().init();
+        getNotificationHandler().add(new Notification("Daily sub","Check in for money","content",1));
         while (running) {
             long currentTime = System.nanoTime();
             long nanoElapsedTime = currentTime - lastFrameTime;
@@ -67,12 +69,12 @@ public class AndroidEngine extends Engine implements Runnable {
     }
 
     private void render() {
-        AndroidGraphics graphics = getGraphics();
+        AndroidGraphics graphics = (AndroidGraphics)getGraphics();
 
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;
 
-        graphics.clear(Color.WHITE.getARGB());
+
         getLogic().render(graphics);
         graphics.present();
     }
@@ -100,13 +102,15 @@ public class AndroidEngine extends Engine implements Runnable {
     public void pause() {
         if (running) {
             running = false;
+
             while (true) {
                 try {
                     thread.join();
                     thread = null;
                     break;
-                } catch (InterruptedException ie) {
+                } catch (Exception e) {
                     // Something went REALLY wrong
+                    e.printStackTrace();
                 }
             }
         }

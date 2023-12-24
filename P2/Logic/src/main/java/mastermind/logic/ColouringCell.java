@@ -30,18 +30,17 @@ public class ColouringCell extends Button implements DaltonicListener{
     public boolean onTouchDown(TouchEvent event) {
         GameScene scene= (GameScene) getScene();
         if(scene!=null)
-            scene.onColouringCellSelected(strokeColor,value);
+            scene.onColouringCellSelected(strokeColor,value,image);
         return true;
     }
 
     @Override
     public void render(IGraphics graphics) {
+        graphics.setColor(strokeColor);
         if(this.image==null) { //circles
-            graphics.setColor(strokeColor);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else{ //images
-            graphics.setColor(Color.BLACK);
             graphics.drawImage(this.image, getX(),getY(),getWidth(),getHeight());
         }
         drawDaltonicInfo(graphics);

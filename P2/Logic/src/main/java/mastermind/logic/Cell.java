@@ -3,6 +3,7 @@ package mastermind.logic;
 import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
+import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.button.Button;
@@ -14,6 +15,10 @@ public class Cell extends Button implements DaltonicListener{
     boolean daltonic_mode;
 
     IFont font;
+
+    IImage image;
+
+    IImage initialImage;
     public Cell(IScene scene, IFont font) {
         super(scene);
         this.font=font;
@@ -21,21 +26,35 @@ public class Cell extends Button implements DaltonicListener{
 
     }
 
+    public Cell(IScene scene, IFont font, IImage image) {
+        super(scene);
+        this.font=font;
+        this.state=CellState.Empty;
+        this.image=image;
+
+    }
+
     @Override
     public void init() {
         initialColor=strokeColor;
+        initialImage= image;
         super.init();
     }
 
     @Override
     public void render(IGraphics graphics) {
-        if(state ==CellState.Empty) {
-            graphics.setColor(initialColor);
+        if(image==null) {
+            if (state == CellState.Empty) {
+                graphics.setColor(initialColor);
+            } else {
+                graphics.setColor(strokeColor);
+            }
+            graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
-        else {
-            graphics.setColor(strokeColor);
+        else{
+            graphics.drawImage(image,getX(),getY(),getWidth(),getHeight());
         }
-        graphics.fillCircle(getX() + getWidth()/2,getY()+ getHeight()/2, getWidth()/2);
+
         drawDaltonicInfo(graphics);
 
         super.render(graphics);
@@ -44,12 +63,14 @@ public class Cell extends Button implements DaltonicListener{
     @Override
     public boolean onTouchDown(TouchEvent event) {
         state= CellState.Empty;
+        image=initialImage;
         return true;
     }
 
-    public void fillCell(Color c, int value){
+    public void fillCell(Color c, int value, IImage image){
         strokeColor=c;
         this.value=value;
+        this.image=image;
         state=CellState.Filled;
     }
 

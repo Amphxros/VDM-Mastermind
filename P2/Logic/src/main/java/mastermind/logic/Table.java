@@ -1,13 +1,13 @@
 package mastermind.logic;
 
-import java.util.ArrayList;
-
 import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
+import mastermind.engine.IImage;
+import mastermind.engine.IJsonObject;
 import mastermind.engine.IScene;
 
-public class Table extends GameObject implements DaltonicListener{
+public class Table extends GameObject implements DaltonicListener, ScrollEventListener{
     int numElems;
 
     int[] solution;
@@ -26,12 +26,29 @@ public class Table extends GameObject implements DaltonicListener{
 
     @Override
     public void init() {
-        for(int i=0;i<this.numElems;i++){
-            this.cells[i]=(new Cell(getScene(),font));
-            this.cells[i].setSize(30,30)
+        PlayerData p= (PlayerData) getEngine().getLogic().getLogicData();
+        IJsonObject jsonObject= getEngine().getFileManager().readJSON("Json/cells.json");
+        if(p.getCurrentAnimalID()==AnimalID.None){
+            for(int i=0;i<this.numElems;i++){
+                this.cells[i]=(new Cell(getScene(),font));
+                this.cells[i].setSize(30,30)
                     .setStrokeColor(new Color(150,150,150))
+
                     .setPosition(20 + 40*(i),10);
-            this.addChild(cells[i]);
+                this.addChild(cells[i]);
+            }
+        }
+        else {
+            AnimalID animalID= p.getCurrentAnimalID();
+            for(int i=0;i<this.numElems;i++){
+                IImage image= getEngine().getGraphics().newImage(jsonObject.getStringKey(animalID.name()) +"default"+".png" );
+                this.cells[i]=(new Cell(getScene(),font,image));
+                this.cells[i].setSize(30,30)
+                        .setStrokeColor(new Color(150,150,150))
+
+                        .setPosition(20 + 40*(i),10);
+                this.addChild(cells[i]);
+            }
         }
         if(showHints) {
             hintObject = new HintObject(getScene(), this.numElems);
@@ -59,18 +76,18 @@ public class Table extends GameObject implements DaltonicListener{
        return i==cells.length;
     }
 
-    public void fillCell(Color c, int value){
+    public void fillCell(Color c, int value,IImage image){
         int i=0;
         while(i< cells.length && cells[i].getState()!=CellState.Empty) {
             i++;
         }
-        cells[i].fillCell(c,value);
+        cells[i].fillCell(c,value,image);
     }
 
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.drawRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
+        graphics.fillRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
         super.render(graphics);
     }
 
@@ -88,7 +105,28 @@ public class Table extends GameObject implements DaltonicListener{
             c.drawDaltonicInfo(graphics);
     }
 
+    @Override
+    public void onScroll(int deltaY){
+        // Ajustar la posición Y del objeto en función del desplazamiento
+        int posicionY = getY();
+
+        posicionY += deltaY;
+
+        // Puedes agregar lógica adicional aquí, como limitar la posición Y dentro de ciertos límites.
+
+        // Por ejemplo, para evitar que el objeto se salga de la pantalla hacia arriba:
+        if (posicionY < 0) {
+            posicionY = 0;
+        }
+
+        setPosition(getX(), posicionY);
+    }
+
     public boolean correctHints(int[] solution){
         return hintObject.showHints(solution, this.solution);
+    }
+
+    public boolean getDone(){
+        return showHints;
     }
 }
