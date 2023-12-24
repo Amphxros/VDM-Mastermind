@@ -1,15 +1,3 @@
-#ifndef MASTERMIND_SHA_H
-#define MASTERMIND_SHA_H
-
-#include <jni.h>
-#include <string>
-
-
-// The implementation of the SHA algorithm comes from the example repository https://github.com/jeziellago/jni-android-sha-256
-class SHA {
-#ifndef JNITEST_NATIVE_LIB_H
-#define JNITEST_NATIVE_LIB_H
-
 /*
 The MIT License (MIT)
 
@@ -387,10 +375,3 @@ namespace picosha2 {
     }
 }// namespace picosha2
 #endif  // PICOSHA2_H
-
-
-#endif //JNITEST_NATIVE_LIB_H
-};
-
-
-#endif //MASTERMIND_SHA_H
