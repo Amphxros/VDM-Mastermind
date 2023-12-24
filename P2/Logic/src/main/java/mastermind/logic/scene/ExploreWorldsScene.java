@@ -36,7 +36,7 @@ public class ExploreWorldsScene extends Scene {
     public void init() {
         playerData= getLogicData();
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
-        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
+        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
         IJsonObject levels= getEngine().getFileManager().readJSON("Json/levels/levels.json");
 
         this.numCols = 3;
@@ -105,7 +105,7 @@ public class ExploreWorldsScene extends Scene {
         container.setSize(350,400);
         container.setStrokeColor(Color.RED);
         container.addChild(new Text(this,name,font)
-                .setPosition(150,-50));
+                .setPosition(150,-100));
         container.addChild(new Image(this,background)
                 .setPosition(0,0)
                 .setSize(350,400));

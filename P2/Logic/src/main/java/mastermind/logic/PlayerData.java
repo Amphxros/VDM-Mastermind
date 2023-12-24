@@ -61,13 +61,30 @@ public final class PlayerData implements ILogicData, Serializable {
             return new PlayerData(engine);
 
         }
-        playerData=null;
+        playerData=new PlayerData(engine);
 
         try {
             ObjectInputStream objectInputStream= new ObjectInputStream(stream);
 
-            playerData= (PlayerData) objectInputStream.readObject();
+            int coins=-1;
+            coins= (int) objectInputStream.readObject();
+            if(coins!=-1)
+                playerData.setCoins(coins);
+
             playerData.loadPalettes();
+            for(int i=0;i< playerData.paletteItems.length;i++){
+                playerData.paletteItemsUnlocked[i]=(boolean) objectInputStream.readObject();
+            }
+
+            for(int i=0;i< playerData.unlockedAnimals.length;i++){
+               playerData.unlockedAnimals[i]=(boolean) objectInputStream.readObject();
+            }
+
+            playerData.currentPalette=(PaletteID) objectInputStream.readObject();
+            playerData.currentAnimalID=(AnimalID) objectInputStream.readObject();
+
+            playerData.lastWorld=(int)objectInputStream.readObject();
+            playerData.lastLevel=(int) objectInputStream.readObject();
         
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +111,33 @@ public final class PlayerData implements ILogicData, Serializable {
 
     @Override
     public void saveData() throws IOException {
+        OutputStream stream = engine.getFileManager().openOutputFile("save");
+        if (stream == null)
+            return;
 
+        try {
+            ObjectOutputStream objectStream = new ObjectOutputStream(stream);
+            objectStream.writeObject(this.coins);
+            for(int i=0;i< paletteItems.length;i++){
+                objectStream.writeObject(paletteItemsUnlocked[i]);
+            }
+
+            for(int i=0;i< unlockedAnimals.length;i++){
+                objectStream.writeObject(unlockedAnimals[i]);
+            }
+
+            objectStream.writeObject(currentPalette);
+            objectStream.writeObject(currentAnimalID);
+
+            objectStream.writeObject(lastWorld);
+            objectStream.writeObject(lastLevel);
+
+            objectStream.flush();
+            objectStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public int getCoins(){
