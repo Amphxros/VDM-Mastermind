@@ -27,6 +27,7 @@ import mastermind.logic.Logic;
 
 public class AndroidLauncher extends AppCompatActivity{
     AndroidEngine engine;
+    Logic logic;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "MySharedPreferences";
 
@@ -44,7 +45,7 @@ public class AndroidLauncher extends AppCompatActivity{
         engine = new AndroidEngine(this,renderView,adView, this);
         engine.getGraphics().setResolution(400, 600);
 
-        Logic logic = new Logic(engine);
+        logic = new Logic(engine);
         engine.setLogic(logic);
 
         //if the user enters by a notification
@@ -77,8 +78,9 @@ public class AndroidLauncher extends AppCompatActivity{
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         // PREFERENCES SAVING
         preferencesEditor.apply(); // APPLIES ALL CHANGED PREFERENCES
-
+        logic.onApplicationExit();
         engine.pause();
+
         handleNotifications();
     }
 

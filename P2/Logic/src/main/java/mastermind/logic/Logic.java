@@ -12,7 +12,6 @@ import mastermind.logic.scene.MenuScene;
 public class Logic implements ILogic {
     IEngine engine;
     IScene currentScene;
-    IScene onPauseScene;
     PlayerData playerData;
     public Logic(IEngine engine) {
         this.engine=engine;
@@ -22,6 +21,9 @@ public class Logic implements ILogic {
 
     @Override
     public void setScene(IScene scene) {
+        while(this.playerData==null){
+            //wait
+        }
         assert (scene!=null);
         if(this.currentScene!=null)
             this.currentScene.dispose();
@@ -31,12 +33,8 @@ public class Logic implements ILogic {
 
     @Override
     public void init() {
-        if(onPauseScene==null) {
-            setScene(new MenuScene(getEngine()));
-        }
-        else{
-            setScene(onPauseScene);
-        }
+       setScene(new MenuScene(getEngine()));
+
     }
 
     @Override
@@ -63,7 +61,18 @@ public class Logic implements ILogic {
 
     @Override
     public void onNotificationClicked() {
+        getLogicData().setCoins(getLogicData().getCoins() + 100);
+    }
 
+    @Override
+    public void onApplicationExit() {
+        try {
+
+            getLogicData().saveData();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

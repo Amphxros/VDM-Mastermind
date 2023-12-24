@@ -6,6 +6,6 @@ public enum PaletteID {
     CrabOnSnow,
     TokyoCity,
     CherryBubble,
-    Angelfish,
+    CelesteMountain,
     NumPalettes
 }

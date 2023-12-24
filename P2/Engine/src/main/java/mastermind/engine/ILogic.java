@@ -13,6 +13,8 @@ public interface ILogic {
 
     void onNotificationClicked();
 
+    void onApplicationExit();
+
     IEngine getEngine();
 
     ILogicData getLogicData();

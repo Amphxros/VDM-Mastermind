@@ -169,8 +169,9 @@ public class ShopScene extends Scene {
         );
         for(int i=0;i<6;i++){
             IImage image= getEngine().getGraphics().newImage("images/palettes/palettes-"+i+".png");
+
             containers.get(2).addChild(
-                    new PaletteButton(this,PaletteID.values()[i] ,null,100,true)
+                    new PaletteButton(this,PaletteID.values()[i] ,null,prices.getIntKey("Palette "+ i), !getLogicData().isPaletteUnlock(i))
                             .setSize(300,60)
                             .setPosition(50,  140 +70*(i))
                             .setStrokeColor(getLogicData().getButtons())
@@ -179,15 +180,15 @@ public class ShopScene extends Scene {
                                     .setPosition(20,10)
                                     .setSize(40,40)
                             )
-                            .addChild(new Text(this,"Palettes" + i,font)
-                                    .setPosition(100,30)
+                            .addChild(new Text(this,PaletteID.values()[i].name(),font)
+                                    .setPosition(130,30)
                                     .setStrokeColor(getLogicData().getFont())
                             )
                             .addChild(new Image(this,coin)
                                     .setPosition(200,10)
                                     .setSize(30,30)
                             )
-                            .addChild(new Text(this, String.valueOf(100*i),font)
+                            .addChild(new Text(this, String.valueOf(prices.getIntKey("Palette "+ i)),font)
                                     .setPosition(250,30)
                                     .setStrokeColor(getLogicData().getFont())
                             )

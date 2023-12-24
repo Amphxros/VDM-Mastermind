@@ -48,6 +48,6 @@ public class PaletteButton extends BuyItemButton{
     @Override
     public void unlockElem() {
         PlayerData p= (PlayerData) getScene().getLogicData();
-
+        p.unlockPalette(this.paletteID.ordinal());
     }
 }

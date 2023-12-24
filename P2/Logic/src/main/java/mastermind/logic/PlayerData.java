@@ -1,27 +1,24 @@
 package mastermind.logic;
 
-import org.json.JSONObject;
+
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
-import mastermind.engine.IJsonObject;
 import mastermind.engine.ILogicData;
-import mastermind.engine.Input;
 
 public final class PlayerData implements ILogicData, Serializable {
     int coins;
 
     boolean[] unlockedAnimals;
-    ArrayList<Integer> paletteItemsUnlocked;
+    boolean[] paletteItemsUnlocked;
     AnimalID currentAnimalID;
     SkinID currentSkin;
     PaletteID currentPalette;
@@ -36,10 +33,15 @@ public final class PlayerData implements ILogicData, Serializable {
         this.engine=engine;
         this.currentAnimalID=AnimalID.None;
         this.currentSkin=SkinID.basic;
-        this.currentPalette= PaletteID.CrabOnSnow;
+        this.currentPalette= PaletteID.Default;
         this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
         for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
             this.unlockedAnimals[i]=i==0; //unlock only the default
+
+        this.paletteItemsUnlocked= new boolean[PaletteID.NumPalettes.ordinal()];
+        for(int i=0;i<this.paletteItemsUnlocked.length;i++){
+            this.paletteItemsUnlocked[i]=i==0;
+        }
 
         loadPalettes();
         this.coins=9999;
@@ -65,6 +67,7 @@ public final class PlayerData implements ILogicData, Serializable {
             ObjectInputStream objectInputStream= new ObjectInputStream(stream);
 
             playerData= (PlayerData) objectInputStream.readObject();
+            playerData.loadPalettes();
         
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,18 +84,12 @@ public final class PlayerData implements ILogicData, Serializable {
 
     public void loadPalettes(){
         paletteItems= new PaletteItem[PaletteID.NumPalettes.ordinal()];
-
         paletteItems[0]= new PaletteItem(Color.WHITE, new Color(200,200,200), Color.BLACK,Color.BLACK);
         paletteItems[1]= new PaletteItem(new Color(99,155,255), new Color(172,50,50), new Color(253,202,60),Color.BLACK);
         paletteItems[2]= new PaletteItem(Color.WHITE, new Color(95,205,255), Color.BLACK,new Color(217,87,99));
         paletteItems[3]= new PaletteItem(new Color(84,154,171), new Color(241,128,45), Color.WHITE,new Color(18,55,64));
-
         paletteItems[4]= new PaletteItem(new Color(245,202,195),new Color(246,189,90),new Color(132,165,157),new Color(208,148,137));
-
         paletteItems[5]= new PaletteItem(new Color(231,109,88), new Color(38,162,174), new Color(174,58,67),new Color(32,125,140));
-
-
-
     }
 
     @Override
@@ -107,8 +104,6 @@ public final class PlayerData implements ILogicData, Serializable {
     public void setCoins(int coins) {
         this.coins = coins;
     }
-
-
 
     public Color getBackground() {
         return paletteItems[currentPalette.ordinal()].colors[0];
@@ -175,5 +170,13 @@ public final class PlayerData implements ILogicData, Serializable {
 
     public void setCurrentPalette(PaletteID currentPalette) {
         this.currentPalette = currentPalette;
+    }
+
+    public void unlockPalette(int id){
+        paletteItemsUnlocked[id]=true;
+    }
+
+    public boolean isPaletteUnlock(int id){
+        return paletteItemsUnlocked[id];
     }
 }
