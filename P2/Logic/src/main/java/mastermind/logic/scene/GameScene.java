@@ -14,6 +14,8 @@ import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
+import mastermind.logic.Scene;
+import mastermind.logic.ScrollEventListener;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
@@ -23,7 +25,6 @@ import mastermind.logic.button.GoToModeExplore;
 public class GameScene extends Scene implements ISensorListener {
 
     ColouringTable c;
-
     private int numColores;
     private int numIntentos;
     private int tamPassword;
@@ -33,6 +34,7 @@ public class GameScene extends Scene implements ISensorListener {
     Table[] tables;
     int [] solution;
     ArrayList<DaltonicListener> daltonicObservers;
+    private ArrayList<ScrollEventListener> scrollEventListeners;
     boolean isRepeating;
     boolean colorsEnable;
     boolean fileScene;
@@ -51,9 +53,8 @@ public class GameScene extends Scene implements ISensorListener {
         this.colorsEnable=circles;
 
         this.daltonicObservers= new ArrayList<>();
+        this.scrollEventListeners = new ArrayList<>();
         this.fileScene=fileScene;
-
-
     }
 
     @Override
@@ -120,6 +121,7 @@ public class GameScene extends Scene implements ISensorListener {
             Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, getLogicData().getBackground(),fonty);
             addGameObject(t);
             daltonicObservers.add(t);
+            scrollEventListeners.add(t);
             tables[i]=t;
         }
 
@@ -132,6 +134,13 @@ public class GameScene extends Scene implements ISensorListener {
 
         super.init();
 
+    }
+
+    // Método para manejar el evento de scroll y notificar a los oyentes
+    public void manejarScroll(int deltaY) {
+        for (ScrollEventListener listener : scrollEventListeners) {
+            listener.onScroll(deltaY);
+        }
     }
 
     private void generateData(){
@@ -172,7 +181,7 @@ public class GameScene extends Scene implements ISensorListener {
         for(int i = 0; i < solution.length; i++){
             aux = aux + solution[i] + ", ";
         }
-        System.out.println("Passwprd: " + aux);
+        System.out.println("Password: " + aux);
     }
 
     /**

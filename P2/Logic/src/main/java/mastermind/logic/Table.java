@@ -1,7 +1,5 @@
 package mastermind.logic;
 
-import java.util.ArrayList;
-
 import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
@@ -9,7 +7,7 @@ import mastermind.engine.IImage;
 import mastermind.engine.IJsonObject;
 import mastermind.engine.IScene;
 
-public class Table extends GameObject implements DaltonicListener{
+public class Table extends GameObject implements DaltonicListener, ScrollEventListener{
     int numElems;
 
     int[] solution;
@@ -107,7 +105,28 @@ public class Table extends GameObject implements DaltonicListener{
             c.drawDaltonicInfo(graphics);
     }
 
+    @Override
+    public void onScroll(int deltaY){
+        // Ajustar la posición Y del objeto en función del desplazamiento
+        int posicionY = getY();
+
+        posicionY += deltaY;
+
+        // Puedes agregar lógica adicional aquí, como limitar la posición Y dentro de ciertos límites.
+
+        // Por ejemplo, para evitar que el objeto se salga de la pantalla hacia arriba:
+        if (posicionY < 0) {
+            posicionY = 0;
+        }
+
+        setPosition(getX(), posicionY);
+    }
+
     public boolean correctHints(int[] solution){
         return hintObject.showHints(solution, this.solution);
+    }
+
+    public boolean getDone(){
+        return showHints;
     }
 }
