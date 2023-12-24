@@ -19,32 +19,29 @@ import mastermind.engine.Input;
 
 public final class PlayerData implements ILogicData, Serializable {
     int coins;
-    transient Color background;
-    transient Color font;
-    transient Color tittle;
-    transient Color buttons;
 
     boolean[] unlockedAnimals;
+    ArrayList<Integer> paletteItemsUnlocked;
     AnimalID currentAnimalID;
     SkinID currentSkin;
+    PaletteID currentPalette;
 
     IEngine engine;
     int lastLevel;
     int lastWorld;
 
+    PaletteItem[] paletteItems;
+
     public PlayerData(IEngine engine){
         this.engine=engine;
-
-        this.background= Color.WHITE;
-        this.buttons=new Color(100,100,100);
-        this.font=Color.BLACK;
-        this.tittle= new Color(30,30,50);
         this.currentAnimalID=AnimalID.None;
         this.currentSkin=SkinID.basic;
+        this.currentPalette= PaletteID.CrabOnSnow;
         this.unlockedAnimals= new boolean[AnimalID.Num_Animals.ordinal()];
         for(int i=0;i<AnimalID.Num_Animals.ordinal();i++)
             this.unlockedAnimals[i]=i==0; //unlock only the default
 
+        loadPalettes();
         this.coins=9999;
         this.lastLevel=1;
         this.lastWorld=1;
@@ -56,6 +53,7 @@ public final class PlayerData implements ILogicData, Serializable {
         InputStream stream = null;
         try {
              stream = engine.getFileManager().openInputFile("save");
+             System.out.println(stream!=null);
         }
         catch (Exception e){
             return new PlayerData(engine);
@@ -64,7 +62,8 @@ public final class PlayerData implements ILogicData, Serializable {
         playerData=null;
 
         try {
-            ObjectInputStream objectInputStream= new ObjectInputStream(stream); 
+            ObjectInputStream objectInputStream= new ObjectInputStream(stream);
+
             playerData= (PlayerData) objectInputStream.readObject();
         
         } catch (Exception e) {
@@ -76,6 +75,23 @@ public final class PlayerData implements ILogicData, Serializable {
 
     @Override
     public void loadData(String route) {
+
+    }
+
+
+    public void loadPalettes(){
+        paletteItems= new PaletteItem[PaletteID.NumPalettes.ordinal()];
+
+        paletteItems[0]= new PaletteItem(Color.WHITE, new Color(200,200,200), Color.BLACK,Color.BLACK);
+        paletteItems[1]= new PaletteItem(new Color(99,155,255), new Color(172,50,50), new Color(253,202,60),Color.BLACK);
+        paletteItems[2]= new PaletteItem(Color.WHITE, new Color(95,205,255), Color.BLACK,new Color(217,87,99));
+        paletteItems[3]= new PaletteItem(new Color(84,154,171), new Color(241,128,45), Color.WHITE,new Color(18,55,64));
+
+        paletteItems[4]= new PaletteItem(new Color(245,202,195),new Color(246,189,90),new Color(132,165,157),new Color(208,148,137));
+
+        paletteItems[5]= new PaletteItem(new Color(231,109,88), new Color(38,162,174), new Color(174,58,67),new Color(32,125,140));
+
+
 
     }
 
@@ -95,37 +111,22 @@ public final class PlayerData implements ILogicData, Serializable {
 
 
     public Color getBackground() {
-        return background;
-    }
-
-    public void setBackground(Color background) {
-        this.background = background;
+        return paletteItems[currentPalette.ordinal()].colors[0];
     }
 
 
     public Color getButtons() {
-        return buttons;
-    }
-
-    public void setButtons(Color buttons) {
-        this.buttons = buttons;
+        return paletteItems[currentPalette.ordinal()].colors[1];
     }
 
     public Color getFont() {
-        return font;
-    }
-
-    public void setFont(Color font) {
-        this.font = font;
+        return paletteItems[currentPalette.ordinal()].colors[2];
     }
 
     public Color getTittle() {
-        return tittle;
+        return paletteItems[currentPalette.ordinal()].colors[3];
     }
 
-    public void setTittle(Color tittle) {
-        this.tittle = tittle;
-    }
     public AnimalID getCurrentAnimalID(){
         return this.currentAnimalID;
     }
@@ -166,5 +167,13 @@ public final class PlayerData implements ILogicData, Serializable {
 
     public int getLastWorld() {
         return lastWorld;
+    }
+
+    public PaletteID getCurrentPalette() {
+        return currentPalette;
+    }
+
+    public void setCurrentPalette(PaletteID currentPalette) {
+        this.currentPalette = currentPalette;
     }
 }

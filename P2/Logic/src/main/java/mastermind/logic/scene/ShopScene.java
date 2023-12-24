@@ -11,6 +11,7 @@ import mastermind.engine.ISound;
 import mastermind.logic.AnimalID;
 import mastermind.logic.Container;
 import mastermind.logic.Image;
+import mastermind.logic.PaletteID;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
 import mastermind.logic.button.BackgroundButton;
@@ -169,7 +170,7 @@ public class ShopScene extends Scene {
         for(int i=0;i<6;i++){
             IImage image= getEngine().getGraphics().newImage("images/palettes/palettes-"+i+".png");
             containers.get(2).addChild(
-                    new PaletteButton(this,Color.WHITE,Color.BLACK,Color.RED,Color.RED,true,sound,100*i)
+                    new PaletteButton(this,PaletteID.values()[i] ,null,100,true)
                             .setSize(300,60)
                             .setPosition(50,  140 +70*(i))
                             .setStrokeColor(getLogicData().getButtons())

@@ -73,8 +73,8 @@ public class AndroidLauncher extends AppCompatActivity{
         super.onPause();
         // Editor object is mandatory for the changes on the SharedPreferences object
         SharedPreferences mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
 
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         // PREFERENCES SAVING
         preferencesEditor.apply(); // APPLIES ALL CHANGED PREFERENCES
 

@@ -6,29 +6,28 @@ import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
+import mastermind.logic.PaletteID;
 import mastermind.logic.PlayerData;
 
 public class PaletteButton extends BuyItemButton{
-    Color background;
-    Color buttons;
-    Color font;
-    Color tittle;
+    PaletteID paletteID;
 
-    public PaletteButton(IScene scene, Color background, Color buttons, Color tittle, Color font, boolean isLocked, ISound sound, int price) {
+    public PaletteButton(IScene scene, PaletteID paletteID, ISound sound, int price, boolean isLocked) {
         super(scene,price,isLocked,sound);
-        this.background=background;
-        this.buttons=buttons;
-        this.font=font;
-        this.tittle=tittle;
+        this.paletteID=paletteID;
 
     }
 
     @Override
     public void render(IGraphics graphics) {
+        PlayerData playerData= (PlayerData) getScene().getLogicData();
+
         if(isLocked){
             graphics.setColor(Color.RED);
         }
-
+        else if(playerData.getCurrentPalette()==paletteID){
+            graphics.setColor(Color.YELLOW);
+        }
         else{
             graphics.setColor(Color.GREEN);
         }
@@ -41,15 +40,14 @@ public class PaletteButton extends BuyItemButton{
 
     @Override
     public void setElem() {
-        PlayerData p= (PlayerData)getEngine().getLogic().getLogicData();
-        p.setBackground(background);
-        p.setButtons(buttons);
-        p.setFont(font);
-        p.setTittle(tittle);
+        PlayerData p= (PlayerData) getScene().getLogicData();
+        p.setCurrentPalette(this.paletteID);
+
     }
 
     @Override
     public void unlockElem() {
+        PlayerData p= (PlayerData) getScene().getLogicData();
 
     }
 }

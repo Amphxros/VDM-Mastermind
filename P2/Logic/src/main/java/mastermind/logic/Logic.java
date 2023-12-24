@@ -12,6 +12,7 @@ import mastermind.logic.scene.MenuScene;
 public class Logic implements ILogic {
     IEngine engine;
     IScene currentScene;
+    IScene onPauseScene;
     PlayerData playerData;
     public Logic(IEngine engine) {
         this.engine=engine;
@@ -30,8 +31,12 @@ public class Logic implements ILogic {
 
     @Override
     public void init() {
-        setScene(new MenuScene(getEngine()));
-
+        if(onPauseScene==null) {
+            setScene(new MenuScene(getEngine()));
+        }
+        else{
+            setScene(onPauseScene);
+        }
     }
 
     @Override
@@ -73,7 +78,7 @@ public class Logic implements ILogic {
 
     @Override
     public void setLogicData(ILogicData logicData) {
-
+        this.playerData= (PlayerData) logicData;
     }
 
 }
