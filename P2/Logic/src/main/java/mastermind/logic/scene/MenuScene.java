@@ -71,17 +71,6 @@ public class MenuScene extends Scene {
 
 
         );
-        addGameObject(new ShowRewardedAdButton(this)
-                .setPosition(center/3,400)
-                .setSize(300,50)
-                .setStrokeColor(Color.BLACK)
 
-                .addChild(new Text(this,"Anuncio",fonty)
-                        .setPosition(center-50,25)
-                        .setStrokeColor(new Color(100,120,250))
-                )
-
-
-        );
     }
 }

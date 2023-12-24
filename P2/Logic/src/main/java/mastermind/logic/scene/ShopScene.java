@@ -55,8 +55,7 @@ public class ShopScene extends Scene {
                 .setPosition(300,0)
                 .setStrokeColor(getLogicData().getButtons())
 
-                .addChild(t
-                )
+                .addChild(t)
                 .addChild(new Image(this,coin)
                         .setPosition(50,10)
                         .setSize(50,50)
@@ -128,40 +127,9 @@ public class ShopScene extends Scene {
             );
         }
 
-        containers.get(1).addChild(new Text(this,"Backgrounds",tittle)
-                .setPosition(200,100)
-                .setStrokeColor(getLogicData().getTittle())
 
 
-        );
-        for(int i=0;i<getEngine().getFileManager().getFileListDirectory("images/backgrounds").length;i++){
-            IImage image= getEngine().getGraphics().newImage("images/backgrounds/background-"+i+".png");
-            containers.get(1).addChild(
-            new BackgroundButton(this,i*100,true,sound)
-                      .setSize(300,60)
-                      .setPosition(50,  140 +70*(i))
-                      .setStrokeColor(getLogicData().getButtons())
-                      .addChild(new Image(this,image)
-                              .setPosition(20,10)
-                              .setSize(40,40)
-                      )
-                      .addChild(new Text(this,"Fondo " + i,font)
-                              .setPosition(100,30)
-                              .setStrokeColor(getLogicData().getFont())
-                      )
-                      .addChild(new Image(this,coin)
-                              .setPosition(200,10)
-                              .setSize(30,30)
-                      )
-                      .addChild(new Text(this, String.valueOf(100*i),font)
-                              .setPosition(250,30)
-                              .setStrokeColor(getLogicData().getFont())
-                      )
-
-            );
-        }
-
-        containers.get(2).addChild(new Text(this,"Palettes",tittle)
+        containers.get(1).addChild(new Text(this,"Palettes",tittle)
                 .setPosition(200,100)
                 .setStrokeColor(getLogicData().getTittle())
 
@@ -170,7 +138,7 @@ public class ShopScene extends Scene {
         for(int i=0;i<6;i++){
             IImage image= getEngine().getGraphics().newImage("images/palettes/palettes-"+i+".png");
 
-            containers.get(2).addChild(
+            containers.get(1).addChild(
                     new PaletteButton(this,PaletteID.values()[i] ,null,prices.getIntKey("Palette "+ i), !getLogicData().isPaletteUnlock(i))
                             .setSize(300,60)
                             .setPosition(50,  140 +70*(i))
@@ -201,8 +169,8 @@ public class ShopScene extends Scene {
     }
 
     public void onClick(int id){
-        this.id=(this.id + id)%3;
-        if (this.id<0) this.id += 3;
+        this.id=(this.id + id)%2;
+        if (this.id<0) this.id += 2;
         for(Container c: containers)
             c.hide();
 

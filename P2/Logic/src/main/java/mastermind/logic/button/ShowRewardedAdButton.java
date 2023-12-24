@@ -5,7 +5,7 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 
-public class ShowRewardedAdButton extends Button{
+public abstract class ShowRewardedAdButton extends Button{
     public ShowRewardedAdButton(IScene scene) {
         super(scene);
     }
@@ -25,4 +25,15 @@ public class ShowRewardedAdButton extends Button{
         graphics.fillRoundRectangle(getX(),getY(),getWidth(), getHeight(),30);
         super.render(graphics);
     }
+
+    @Override
+    public void update(double delta) {
+        if(getEngine().getAdsManager()!=null &&
+        getEngine().getAdsManager().onAdRewardShown()){
+            giveReward();
+        }
+        super.update(delta);
+    }
+
+    protected abstract void giveReward();
 }

@@ -11,6 +11,7 @@ import mastermind.logic.Scene;
 import mastermind.logic.SkinID;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
+import mastermind.logic.button.DoubleCoinsButton;
 import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.ShowRewardedAdButton;
 
@@ -66,12 +67,13 @@ public class WinScene extends Scene {
             }
         }else{
             //metes anuncio:
-            addGameObject(new ShowRewardedAdButton(this)
+
+            addGameObject(new DoubleCoinsButton(this,coinsAmount)
                     .setPosition(200,200)
                     .setSize(300,50)
                     .setStrokeColor(Color.BLACK)
 
-                    .addChild(new Text(this,"Anuncio",font)
+                    .addChild(new Text(this,"Coins x 2",font)
                             .setPosition(50,25)
                             .setStrokeColor(new Color(100,120,250))
                     )
