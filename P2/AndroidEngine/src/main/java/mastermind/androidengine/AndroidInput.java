@@ -1,18 +1,15 @@
 package mastermind.androidengine;
 
-import android.os.Handler;
-import android.os.Looper;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 
 import mastermind.engine.EventType;
-import mastermind.engine.IInput;
 import mastermind.engine.Input;
 import mastermind.engine.TouchEvent;
 
 public class AndroidInput extends Input implements View.OnTouchListener {
-    private int x,y;
+    private float x,y, lastX, lastY;
     EventType eventType;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -24,7 +21,7 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
                 scrolling=true;
-                t= new TouchEvent(x,y,eventType,false);
+                t= new TouchEvent((int)x,(int)y,eventType,false);
                 addEvent(t);
                 break;
             case MotionEvent.ACTION_UP:
@@ -32,20 +29,22 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
 
-                t= new TouchEvent(x,y,eventType,true);
+                t= new TouchEvent((int)x,(int)y,eventType,true);
                 scrolling=false;
                 addEvent(t);
 
                 break;
-                case MotionEvent.ACTION_MOVE:
-                    eventType=EventType.MOVE;
-                    x = (int) motionEvent.getX();
-                    y = (int) motionEvent.getY();
-                    scrolling=true;
+            case MotionEvent.ACTION_MOVE:
+                float deltaX = motionEvent.getX() - lastX;
+                float deltaY = motionEvent.getY() - lastY;
 
-                    t= new TouchEvent(x,y,eventType,true);
-                    addEvent(t);
-                    break;
+                // Realizar acciones según el desplazamiento (puedes imprimir o almacenar valores, etc.).
+                Log.d("Touch", "DeltaX: " + deltaX + ", DeltaY: " + deltaY);
+
+                // Actualizar las coordenadas anteriores.
+                lastX = motionEvent.getX();
+                lastY = motionEvent.getY();
+                break;
 
         }
         return t != null;
