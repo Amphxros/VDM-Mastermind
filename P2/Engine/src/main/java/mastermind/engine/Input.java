@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Input implements IInput{
     protected final LinkedList<TouchEvent> events = new LinkedList<>();
-    protected boolean scrolling;
+    protected int lastX, lastY;
+
     /**
      * @return Returns a list of all the queued events, clears the queue upon call.
      */
@@ -22,10 +23,6 @@ public class Input implements IInput{
         return tmp;
     }
 
-    @Override
-    public boolean isScrolling() {
-        return scrolling;
-    }
 
     protected synchronized void addEvent(TouchEvent event) {
         events.add(event);

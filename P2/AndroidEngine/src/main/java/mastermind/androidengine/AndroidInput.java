@@ -13,6 +13,7 @@ import mastermind.engine.TouchEvent;
 
 public class AndroidInput extends Input implements View.OnTouchListener {
     private int x,y;
+
     EventType eventType;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -23,7 +24,8 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
-                scrolling=true;
+                lastX = (int) motionEvent.getX();
+                lastY = (int) motionEvent.getY();
                 t= new TouchEvent(x,y,eventType,false);
                 addEvent(t);
                 break;
@@ -33,19 +35,20 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 y = (int) motionEvent.getY();
 
                 t= new TouchEvent(x,y,eventType,true);
-                scrolling=false;
                 addEvent(t);
 
                 break;
                 case MotionEvent.ACTION_MOVE:
-                    eventType=EventType.MOVE;
-                    x = (int) motionEvent.getX();
-                    y = (int) motionEvent.getY();
-                    scrolling=true;
+                float deltaX = motionEvent.getX() - lastX;
+                float deltaY = motionEvent.getY() - lastY;
 
-                    t= new TouchEvent(x,y,eventType,true);
-                    addEvent(t);
-                    break;
+                // Realizar acciones según el desplazamiento (puedes imprimir o almacenar valores, etc.).
+                System.out.println("Touch" +"DeltaX: " + deltaX + ", DeltaY: " + deltaY);
+
+                // Actualizar las coordenadas anteriores.
+                lastX = (int) motionEvent.getX();
+                lastY = (int) motionEvent.getY();
+                break;
 
         }
         return t != null;
