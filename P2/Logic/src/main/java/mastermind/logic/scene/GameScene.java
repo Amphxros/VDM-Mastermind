@@ -39,6 +39,7 @@ public class GameScene extends Scene implements ISensorListener {
     boolean colorsEnable;
     boolean fileScene;
     Text tryText;
+    ISound sonidoWin, sonidoGameover;
     public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles, boolean fileScene) {
         super(engine);
         this.numColores=numColores;
@@ -72,6 +73,8 @@ public class GameScene extends Scene implements ISensorListener {
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
         ISound sonidoDaltonic = getEngine().getAudio().createSound("sonido/button_click.mp3");
+        this.sonidoWin = getEngine().getAudio().createSound("sonido/street_fighter_you_win.mp3");
+        this.sonidoGameover = getEngine().getAudio().createSound("sonido/gameover.mp3");
 
         ISensorsManager sensors= getEngine().getSensorsManager();
         if(sensors!=null){
@@ -226,6 +229,7 @@ public class GameScene extends Scene implements ISensorListener {
         tables[currTable].fillCell(c,value,image);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
+               this.sonidoWin.play();
                getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos),fileScene));
            }
            else
@@ -236,6 +240,7 @@ public class GameScene extends Scene implements ISensorListener {
                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
                }
                else{
+                   this.sonidoGameover.play();
                    getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false,0,fileScene));
                }
            }
