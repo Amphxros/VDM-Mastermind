@@ -136,7 +136,7 @@ public class Table extends Button implements DaltonicListener, ScrollEventListen
         scrolling=true;
         GameScene scene= (GameScene) getScene();
         if(scene!=null){
-            scene.onScroll(event.getY());
+            scene.onScroll(1);
 
         }
         return scrolling;

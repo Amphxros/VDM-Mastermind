@@ -1,7 +1,7 @@
 {
-    "codeSize":"4",
-    "numAttempts":"4",
-    "numColors":"4",
-    "repeat":false,
+    "codeSize":"9",
+    "numAttempts":"13",
+    "numColors":"8",
+    "repeat":true,
     "maxCoins":"40"
 }
