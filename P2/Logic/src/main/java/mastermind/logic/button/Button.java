@@ -29,7 +29,7 @@ public abstract class Button extends GameObject {
     public boolean onAction(TouchEvent event) {
         if (event.getType() == EventType.DOWN) return onTouchDown(event);
         if (event.getType() == EventType.UP) return onTouchUp(event);
-        if(event.getType()==EventType.MOVE) return onScroll(event);
+
         return false;
     }
 

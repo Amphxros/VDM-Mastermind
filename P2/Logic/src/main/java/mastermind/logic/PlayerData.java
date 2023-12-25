@@ -233,27 +233,70 @@ public final class PlayerData implements ILogicData, Serializable {
 
 
     public void loadGameState(ObjectInputStream outputStream) throws IOException, ClassNotFoundException {
-
         String scene= (String) outputStream.readObject();
-
         if(scene!=null){
-            switch (scene){
-                case "WinScene":
-                    boolean hasWon= (boolean) outputStream.readObject();
-                    int tamPassword=(int) outputStream.readObject();
+            Color[] colors;
+            int colorsSize;
 
-                    break;
+            int[] solution;
+            int solutionSize;
+
+            int tries;
+
+            switch (scene){
                 case "ChooseLevel":
+                    engine.getLogic().setScene(new ChooseLevelScene(engine));
                     break;
                 case "Shop":
+                    engine.getLogic().setScene(new ShopScene(engine));
+
                     break;
                 case "Explore":
+                    engine.getLogic().setScene(new ExploreWorldsScene(engine));
                     break;
+                case "WinScene":
+                    boolean hasWon= (boolean) outputStream.readObject();
+
+                   solutionSize=(int) outputStream.readObject();
+                   colorsSize=(int) outputStream.readObject();
+                   tries= (int) outputStream.readObject();
+
+                    colors= new Color[colorsSize];
+                    for(Color c: colors){
+                        c= (Color) outputStream.readObject();
+                    }
+
+                    solution= new int[solutionSize];
+                    for(int i: solution){
+                        i=(int) outputStream.readObject();
+                    }
+                    int coinsAmount= (int) outputStream.readObject();
+                    boolean file= (boolean) outputStream.readObject();
+
+                    engine.getLogic().setScene(new WinScene(engine,colors,solution,hasWon,coinsAmount,file));
+
+                    break;
+
+
                 case "Game":
+                    solutionSize=(int) outputStream.readObject();
+                    colorsSize=(int) outputStream.readObject();
+                    tries =(int)outputStream.readObject();
+                    int currentTries= (int) outputStream.readObject();
+                    colors= new Color[colorsSize];
+                    for(Color c: colors){
+                        c= (Color) outputStream.readObject();
+                    }
+
+                    int[] sol= new int[solutionSize];
+                    for(int i: sol){
+                        i=(int) outputStream.readObject();
+                    }
+
+
                     break;
             }
         }
-
     }
 
     public void saveGameState(ObjectOutputStream objectOutputStream, IScene currentScene){

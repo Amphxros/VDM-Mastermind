@@ -30,16 +30,20 @@ public class GameObject {
         return this;
     }
 
-    public GameObject setPosition(int x, int y) {
-        setPosition(new Vector2D(x, y));
+    public GameObject moveChildren(Vector2D position){
+        for(GameObject g: getChildren()){
+            g.setPosition(g.getX() + position.getX(), g.getY() + position.getY());
+            g.moveChildren(position);
+        }
         return this;
     }
 
-    public void onScroll(int diff){
-        setPosition(getX(), getY() + diff*10);
-        for(GameObject g: children)
-            g.setPosition(g.getX(), g.getY() + diff);
+    public GameObject setPosition(int x, int y) {
+        setPosition(new Vector2D(x, y));
+
+        return this;
     }
+
 
     public int getX() {
         return position.getX();

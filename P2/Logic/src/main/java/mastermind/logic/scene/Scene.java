@@ -11,10 +11,13 @@ import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.GameObject;
 import mastermind.logic.PlayerData;
+import mastermind.logic.ScrollEventListener;
 
 public abstract class Scene implements IScene {
     private final IEngine engine;
     private final ArrayList<GameObject> objects = new ArrayList<>();
+
+    private final ArrayList<ScrollEventListener> scrollEventListeners= new ArrayList<>();
 
     public Scene(IEngine engine) {
         this.engine = engine;
@@ -36,6 +39,7 @@ public abstract class Scene implements IScene {
         return objects;
     }
 
+    public void addScrollListener(ScrollEventListener scrollEventListener){scrollEventListeners.add(scrollEventListener);}
     /**
      * Signal the scene's {@link GameObject}s to render given a {@link IGraphics} engine.
      *
@@ -78,6 +82,13 @@ public abstract class Scene implements IScene {
             for (GameObject object : objects) {
                 if (object.isEnabled()) object.handleInput(event);
             }
+        }
+
+        for(ScrollEventListener scrollEventListener: scrollEventListeners){
+
+            GameObject g= (GameObject) scrollEventListener;
+            System.out.println("Log + " + g.getY());
+            scrollEventListener.onScroll(input.getDeltaY());
         }
     }
 
