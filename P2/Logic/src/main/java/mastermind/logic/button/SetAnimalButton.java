@@ -2,10 +2,8 @@ package mastermind.logic.button;
 
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.ISound;
-import mastermind.engine.TouchEvent;
 import mastermind.logic.AnimalID;
 import mastermind.logic.PlayerData;
 
@@ -49,4 +47,5 @@ public class SetAnimalButton extends BuyItemButton{
         p.unlockedAnimal(this.animalID.ordinal());
 
     }
+
 }

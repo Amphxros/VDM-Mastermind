@@ -23,6 +23,7 @@ public class ShopScene extends Scene {
     Text t;
 
     int id=0;
+    //ISound sonidoDinero;
     public ShopScene(IEngine engine) {
         super(engine);
         this.containers= new ArrayList<>(3);
@@ -47,7 +48,7 @@ public class ShopScene extends Scene {
         IJsonObject prices= getEngine().getFileManager().readJSON("Json/shop-prices.json");
         IJsonObject images= getEngine().getFileManager().readJSON("Json/shop-images.json");
 
-
+        ISound moneySound = getEngine().getAudio().createSound("sonido/dinero.mp3");
 
         t= new Text(this,String.valueOf(getLogicData().getCoins()),tittle);
        t.setPosition(-10,50);
@@ -102,7 +103,7 @@ public class ShopScene extends Scene {
             IImage image= getEngine().getGraphics().newImage("images/buttons/buttons-"+i+".png");
 
             containers.get(0).addChild(
-                    (new SetAnimalButton(this,AnimalID.values()[i],prices.getIntKey("Skin "+ i), !getLogicData().isAnimalUnlocked(i), sound)
+                    (new SetAnimalButton(this,AnimalID.values()[i],prices.getIntKey("Skin "+ i), !getLogicData().isAnimalUnlocked(i), moneySound)
                     .setSize(300,60)
                     .setPosition(50,  140 +70*(i))
                     .setStrokeColor(getLogicData().getButtons())
@@ -139,7 +140,7 @@ public class ShopScene extends Scene {
             IImage image= getEngine().getGraphics().newImage("images/palettes/palettes-"+i+".png");
 
             containers.get(1).addChild(
-                    new PaletteButton(this,PaletteID.values()[i] ,null,prices.getIntKey("Palette "+ i), !getLogicData().isPaletteUnlock(i))
+                    new PaletteButton(this,PaletteID.values()[i] ,moneySound,prices.getIntKey("Palette "+ i), !getLogicData().isPaletteUnlock(i))
                             .setSize(300,60)
                             .setPosition(50,  140 +70*(i))
                             .setStrokeColor(getLogicData().getButtons())

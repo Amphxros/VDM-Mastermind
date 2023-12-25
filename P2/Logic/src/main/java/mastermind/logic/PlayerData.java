@@ -2,13 +2,10 @@ package mastermind.logic;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.OutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
-import java.io.ByteArrayInputStream;
-
 
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
@@ -49,7 +46,7 @@ public final class PlayerData implements ILogicData, Serializable {
         }
 
         loadPalettes();
-        this.coins=0;
+        this.coins=900;
         this.lastLevel=1;
         this.lastWorld=1;
     }

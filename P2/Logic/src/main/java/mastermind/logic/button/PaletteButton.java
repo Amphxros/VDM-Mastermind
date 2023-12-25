@@ -2,15 +2,14 @@ package mastermind.logic.button;
 
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IImage;
 import mastermind.engine.IScene;
 import mastermind.engine.ISound;
-import mastermind.engine.TouchEvent;
 import mastermind.logic.PaletteID;
 import mastermind.logic.PlayerData;
 
 public class PaletteButton extends BuyItemButton{
     PaletteID paletteID;
+    ISound sonido;
 
     public PaletteButton(IScene scene, PaletteID paletteID, ISound sound, int price, boolean isLocked) {
         super(scene,price,isLocked,sound);

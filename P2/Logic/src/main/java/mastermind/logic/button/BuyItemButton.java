@@ -24,6 +24,7 @@ public abstract class BuyItemButton extends Button{
             p.setCoins(p.getCoins() - this.price);
             isLocked=false;
             unlockElem();
+            this.sound.play();
             System.out.println("buy");
         }
         else if (!isLocked){
