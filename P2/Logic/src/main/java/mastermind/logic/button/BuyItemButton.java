@@ -26,7 +26,7 @@ public abstract class BuyItemButton extends Button{
             unlockElem();
             System.out.println("buy");
         }
-        else{
+        else if (!isLocked){
             setElem();
         }
         return super.onTouchDown(event);

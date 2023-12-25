@@ -118,17 +118,16 @@ public class GameScene extends Scene implements ISensorListener, ScrollEventList
         );
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, getLogicData().getBackground(),fonty);
+            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, getLogicData().getButtons(),fonty);
             addGameObject(t);
             daltonicObservers.add(t);
-            scrollEventListeners.add(t);
             tables[i]=t;
         }
 
         c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
         .setPosition(0,500)
         .setSize(400,70)
-        .setStrokeColor(new Color(200,200,200));
+        .setStrokeColor(getLogicData().getFont());
         addGameObject(c);
         daltonicObservers.add(c);
 
