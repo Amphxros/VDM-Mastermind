@@ -32,7 +32,10 @@ public class ShopScene extends Scene {
             this.containers.add(c);
         }
     }
-
+    @Override
+    public String getID() {
+        return "Shop";
+    }
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",10,false);
@@ -180,8 +183,5 @@ public class ShopScene extends Scene {
         super.update(delta);
     }
 
-    @Override
-    public String getID() {
-        return "Shop";
-    }
+
 }

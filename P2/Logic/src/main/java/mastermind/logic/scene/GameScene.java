@@ -22,7 +22,7 @@ import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToModeExplore;
 
-public class GameScene extends Scene implements ISensorListener, ScrollEventListener {
+public class GameScene extends Scene implements ISensorListener {
 
     ColouringTable c;
     private int numColores;
@@ -56,7 +56,10 @@ public class GameScene extends Scene implements ISensorListener, ScrollEventList
         this.scrollEventListeners = new ArrayList<>();
         this.fileScene=fileScene;
     }
-
+    @Override
+    public String getID() {
+        return "Game";
+    }
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
@@ -135,13 +138,6 @@ public class GameScene extends Scene implements ISensorListener, ScrollEventList
 
     }
 
-    // Método para manejar el evento de scroll y notificar a los oyentes
-    @Override
-    public void onScroll(int deltaY) {
-        for (ScrollEventListener listener : scrollEventListeners) {
-            listener.onScroll(deltaY);
-        }
-    }
 
     private void generateData(){
         /**
@@ -216,10 +212,7 @@ public class GameScene extends Scene implements ISensorListener, ScrollEventList
         super.handleInput(input);
     }
 
-    @Override
-    public String getID() {
-        return "Game";
-    }
+
 
     public void onDaltonicMode(boolean mode){
         for(DaltonicListener d : daltonicObservers)

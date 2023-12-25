@@ -12,6 +12,7 @@ import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DoubleCoinsButton;
 import mastermind.logic.button.GoToChooseLevel;
+import mastermind.logic.button.GoToModeExplore;
 
 public class WinScene extends Scene {
     Color[] colors;
@@ -27,7 +28,10 @@ public class WinScene extends Scene {
         this.coinsAmount=coinsAmount;
         this.fileLevel=fileLevel;
     }
-
+    @Override
+    public String getID() {
+        return "Win";
+    }
 
     @Override
     public void init() {
@@ -90,23 +94,34 @@ public class WinScene extends Scene {
         addGameObject(text);
 
 
+        if(fileLevel){
+            addGameObject(new GoToModeExplore(this)
+                    .setPosition(30, 450)
+                    .setStrokeColor(getLogicData().getButtons())
+                    .setSize(350, 50)
+                    .addChild(new Text(this, "Go to other levels", font)
+                            .setPosition(170, 40)
+                            .setStrokeColor(getLogicData().getFont())
+                    )
 
-        addGameObject(new GoToChooseLevel(this)
-            .setPosition(30,450)
-            .setStrokeColor(colors[0])
-            .setSize(350,50)
-                .addChild(new Text(this,"Go to other levels",font)
-                        .setPosition(170,40)
-                        .setStrokeColor(Color.BLACK)
-                )
+            );
 
-        );
+        }
+        else {
+            addGameObject(new GoToChooseLevel(this)
+                    .setPosition(30, 450)
+                    .setStrokeColor(getLogicData().getFont())
+                    .setSize(350, 50)
+                    .addChild(new Text(this, "Go to other levels", font)
+                            .setPosition(170, 40)
+                            .setStrokeColor(getLogicData().getFont())
+                    )
+
+            );
+        }
         super.init();
         addGameObject(t);
     }
 
-    @Override
-    public String getID() {
-        return "Win";
-    }
+
 }

@@ -15,7 +15,10 @@ public class ChooseLevelScene extends Scene {
     public ChooseLevelScene(IEngine engine) {
         super(engine);
     }
-
+    @Override
+    public String getID() {
+        return "Choose";
+    }
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/KIN668.ttf",20,false);
@@ -58,10 +61,7 @@ public class ChooseLevelScene extends Scene {
         );
     }
 
-    @Override
-    public String getID() {
-        return null;
-    }
+
 
     private GameObject createGameButton(int x, int y, int w, int h,
                                         Color color, String text, IFont font,

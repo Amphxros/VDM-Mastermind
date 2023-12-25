@@ -30,7 +30,10 @@ public class ExploreWorldsScene extends Scene {
     public ExploreWorldsScene(IEngine engine) {
         super(engine);
     }
-
+    @Override
+    public String getID() {
+        return "Explore";
+    }
     @Override
     public void init() {
         playerData= getLogicData();
@@ -93,10 +96,7 @@ public class ExploreWorldsScene extends Scene {
 
     }
 
-    @Override
-    public String getID() {
-        return null;
-    }
+
 
 
     private GameObject createContainer(int numWorld, String name, String[] arrayStringLevels,IFont font){
@@ -111,8 +111,8 @@ public class ExploreWorldsScene extends Scene {
         container.addChild(new Text(this,name,font)
                 .setPosition(150,-100));
         container.addChild(new Image(this,background)
-                .setPosition(0,0)
-                .setSize(350,400));
+                .setPosition(-30,0)
+                .setSize(400,600));
 
         int fila = 0;
         int columna = 0;
@@ -123,10 +123,10 @@ public class ExploreWorldsScene extends Scene {
             int numAttempts= worldFile.getIntKey("numAttempts");
             boolean rep= worldFile.getBooleanKey("repeat");
             int codeSize= worldFile.getIntKey("codeSize");
-            boolean locked= playerData.getLastWorld() <=numWorld;
+            boolean locked= playerData.getLastWorld() <=numWorld || playerData.getLastLevel()<i;
 
             GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked);
-            game.setPosition(50 +(100*columna), 100*fila);
+            game.setPosition(30 +(100*columna), 50 +(100*fila));
             game.setSize(80, 80);
             game.setStrokeColor(getLogicData().getButtons());
             game.addChild(new Text(this, String.valueOf(i),font)

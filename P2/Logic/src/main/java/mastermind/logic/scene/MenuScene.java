@@ -16,6 +16,10 @@ public class MenuScene extends Scene {
     }
 
     @Override
+    public String getID() {
+        return "Menu";
+    }
+    @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
         IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",25,false);
@@ -72,8 +76,4 @@ public class MenuScene extends Scene {
 
     }
 
-    @Override
-    public String getID() {
-        return "Menu";
-    }
 }

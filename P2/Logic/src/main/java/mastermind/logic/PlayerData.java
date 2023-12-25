@@ -46,7 +46,7 @@ public final class PlayerData implements ILogicData, Serializable {
 
         this.paletteItemsUnlocked= new boolean[PaletteID.NumPalettes.ordinal()];
         for(int i=0;i<this.paletteItemsUnlocked.length;i++){
-            this.paletteItemsUnlocked[i]=i==0;
+            this.paletteItemsUnlocked[i]=i==0; //unlock only the default
         }
 
         loadPalettes();
@@ -91,6 +91,8 @@ public final class PlayerData implements ILogicData, Serializable {
 
             playerData.lastWorld=(int)objectInputStream.readObject();
             playerData.lastLevel=(int) objectInputStream.readObject();
+
+            playerData.loadGameState(objectInputStream);
         
         } catch (Exception e) {
             e.printStackTrace();
@@ -244,7 +246,7 @@ public final class PlayerData implements ILogicData, Serializable {
             int tries;
 
             switch (scene){
-                case "ChooseLevel":
+                case "Choose":
                     engine.getLogic().setScene(new ChooseLevelScene(engine));
                     break;
                 case "Shop":
@@ -254,58 +256,27 @@ public final class PlayerData implements ILogicData, Serializable {
                 case "Explore":
                     engine.getLogic().setScene(new ExploreWorldsScene(engine));
                     break;
-                case "WinScene":
-                    boolean hasWon= (boolean) outputStream.readObject();
-
-                   solutionSize=(int) outputStream.readObject();
-                   colorsSize=(int) outputStream.readObject();
-                   tries= (int) outputStream.readObject();
-
-                    colors= new Color[colorsSize];
-                    for(Color c: colors){
-                        c= (Color) outputStream.readObject();
-                    }
-
-                    solution= new int[solutionSize];
-                    for(int i: solution){
-                        i=(int) outputStream.readObject();
-                    }
-                    int coinsAmount= (int) outputStream.readObject();
-                    boolean file= (boolean) outputStream.readObject();
-
-                    engine.getLogic().setScene(new WinScene(engine,colors,solution,hasWon,coinsAmount,file));
+                case "Win":
 
                     break;
 
 
                 case "Game":
-                    solutionSize=(int) outputStream.readObject();
-                    colorsSize=(int) outputStream.readObject();
-                    tries =(int)outputStream.readObject();
-                    int currentTries= (int) outputStream.readObject();
-                    colors= new Color[colorsSize];
-                    for(Color c: colors){
-                        c= (Color) outputStream.readObject();
-                    }
-
-                    int[] sol= new int[solutionSize];
-                    for(int i: sol){
-                        i=(int) outputStream.readObject();
-                    }
-
 
                     break;
             }
         }
     }
 
-    public void saveGameState(ObjectOutputStream objectOutputStream, IScene currentScene){
+    public void saveGameState(ObjectOutputStream objectOutputStream, IScene currentScene) throws IOException {
         String id= currentScene.getID();
+        objectOutputStream.writeObject(id);
             switch (id){
-                case "WinScene":
+                case "Win":
                     WinScene winScene= (WinScene) currentScene;
+                    objectOutputStream.writeObject(winScene);
                     break;
-                case "ChooseLevel":
+                case "Choose":
                     ChooseLevelScene chooseScene= (ChooseLevelScene) currentScene;
                     break;
                 case "Shop":

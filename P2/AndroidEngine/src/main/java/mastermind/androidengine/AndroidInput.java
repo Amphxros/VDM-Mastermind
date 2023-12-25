@@ -21,13 +21,16 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
                 t= new TouchEvent((int)x,(int)y,eventType,false);
+                lastX = motionEvent.getX();
+                lastY = motionEvent.getY();
                 addEvent(t);
                 break;
             case MotionEvent.ACTION_UP:
                 eventType=EventType.UP;
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
-
+                lastX = motionEvent.getX();
+                lastY = motionEvent.getY();
                 t= new TouchEvent((int)x,(int)y,eventType,true);
                 addEvent(t);
 
