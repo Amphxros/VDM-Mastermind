@@ -20,7 +20,6 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
-                scrolling=true;
                 t= new TouchEvent((int)x,(int)y,eventType,false);
                 addEvent(t);
                 break;
@@ -30,16 +29,20 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 y = (int) motionEvent.getY();
 
                 t= new TouchEvent((int)x,(int)y,eventType,true);
-                scrolling=false;
                 addEvent(t);
 
                 break;
-                case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_MOVE:
+                    eventType=EventType.MOVE;
                     deltaX = (int) (motionEvent.getX() - lastX);
-                    deltaY = (int) (motionEvent.getY() - lastY);
+                    deltaY = (int) motionEvent.getAxisValue(MotionEvent.AXIS_VSCROLL);;
 
                 // Realizar acciones según el desplazamiento (puedes imprimir o almacenar valores, etc.).
                 Log.d("Touch", "DeltaX: " + deltaX + ", DeltaY: " + deltaY);
+
+                t= new TouchEvent((int)motionEvent.getX(),(int)deltaY,eventType,true);
+                //scrolling=false;
+                addEvent(t);
 
                 // Actualizar las coordenadas anteriores.
                 lastX = motionEvent.getX();

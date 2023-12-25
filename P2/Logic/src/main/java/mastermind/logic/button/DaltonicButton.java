@@ -34,8 +34,8 @@ public class DaltonicButton extends Button{
         GameScene scene= (GameScene) getScene();
         if(scene!=null){
             scene.onDaltonicMode(daltonic);
-        }
 
+        }
         return daltonic;
     }
 }

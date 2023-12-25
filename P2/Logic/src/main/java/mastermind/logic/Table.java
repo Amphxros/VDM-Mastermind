@@ -6,10 +6,13 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
 import mastermind.engine.IJsonObject;
 import mastermind.engine.IScene;
+import mastermind.engine.TouchEvent;
+import mastermind.logic.button.Button;
+import mastermind.logic.scene.GameScene;
 
-public class Table extends GameObject implements DaltonicListener, ScrollEventListener{
+public class Table extends Button implements DaltonicListener, ScrollEventListener{
     int numElems;
-
+    boolean scrolling;
     int[] solution;
     Cell [] cells;
     IFont font;
@@ -22,6 +25,7 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
         this.font=font;
         this.cells= new Cell[this.numElems];
         this.showHints=showHints;
+        this.scrolling = false;
     }
 
     @Override
@@ -119,14 +123,27 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
             posicionY = 0;
         }
 
-        setPosition(getX(), posicionY);
+        this.setPosition(getX(), posicionY);
     }
 
     public boolean correctHints(int[] solution){
         return hintObject.showHints(solution, this.solution);
     }
 
-    public boolean getDone(){
-        return showHints;
+
+    @Override
+    public boolean onScroll(TouchEvent event){
+        scrolling=true;
+        GameScene scene= (GameScene) getScene();
+        if(scene!=null){
+            scene.onScroll(event.getY());
+
+        }
+        return scrolling;
+    }
+    @Override
+    public boolean onTouchUp(TouchEvent event){
+        scrolling = false;
+        return true;
     }
 }
