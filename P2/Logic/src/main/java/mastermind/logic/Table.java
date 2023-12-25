@@ -120,7 +120,9 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
 
     @Override
     public void onScroll(int deltaY) {
-        setPosition(getX(), getY() + deltaY);
-        moveChildren(new Vector2D(0, deltaY));
+        if(showHints){
+            setPosition(getX(), getY() + deltaY);
+            moveChildren(new Vector2D(0, deltaY));
+        }
     }
 }

@@ -5,12 +5,13 @@ public abstract class Engine implements IEngine {
     private IAudio audio;
     private Input input;
     private ILogic logic;
+
     private  ISensorsManager sensorsManager;
     private IAdsManager adsManager;
     private INotificationHandler notificationHandler;
-
     private IFileManager fileManager;
 
+    private IShareContentManager shareContentManager;
     /**
      * @return An {@link ILogic} instance.
      */
@@ -105,5 +106,15 @@ public abstract class Engine implements IEngine {
     @Override
     public void setFileManager(IFileManager fileManager) {
         this.fileManager = fileManager;
+    }
+
+    @Override
+    public IShareContentManager getShareContentManager() {
+        return shareContentManager;
+    }
+
+    @Override
+    public void setShareContentManager(IShareContentManager shareContentManager) {
+        this.shareContentManager = shareContentManager;
     }
 }

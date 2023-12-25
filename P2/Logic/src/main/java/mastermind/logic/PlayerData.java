@@ -217,7 +217,7 @@ public final class PlayerData implements ILogicData, Serializable {
     public void onLevelCompleted(){
         lastLevel++;
         int numLevels= engine.getFileManager().getFileListDirectory("levels/world" + lastWorld).length;
-        if(lastLevel>numLevels){
+        if(lastLevel>=numLevels){
             lastLevel=1;
             lastWorld++;
         }

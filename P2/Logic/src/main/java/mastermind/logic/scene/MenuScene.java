@@ -9,6 +9,7 @@ import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToModeExplore;
 
 import mastermind.logic.button.GoToShopScene;
+import mastermind.logic.button.ShareContentButton;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -73,6 +74,9 @@ public class MenuScene extends Scene {
 
 
         );
+
+
+
 
     }
 
