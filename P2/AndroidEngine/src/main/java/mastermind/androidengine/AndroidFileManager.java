@@ -18,10 +18,16 @@ public class AndroidFileManager implements IFileManager {
         this.context=context;
     }
 
-    public static native String generateHash(String data);
-    static{
-        System.loadLibrary("native-sha-lib");
+    // the method calls a c++ function that converts a string to a SHA256 key
+    // will be called with a string containing the WHOLE savefile
+    static{ System.loadLibrary("native-sha-lib"); }
+    public static native String Hash(String data);
+
+    @Override
+    public String generateSHA(String data) {
+        return Hash(data);
     }
+
 
     @Override
     public InputStream openInputFile(String path) throws FileNotFoundException, IOException {
@@ -78,4 +84,5 @@ public class AndroidFileManager implements IFileManager {
             throw new RuntimeException(e);
         }
     }
+
 }

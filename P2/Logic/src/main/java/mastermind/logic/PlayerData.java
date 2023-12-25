@@ -1,7 +1,5 @@
 package mastermind.logic;
 
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInput;
@@ -9,6 +7,7 @@ import java.io.OutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.ByteArrayInputStream;
 
 
 import mastermind.engine.Color;
@@ -53,19 +52,34 @@ public final class PlayerData implements ILogicData, Serializable {
         this.coins=0;
         this.lastLevel=1;
         this.lastWorld=1;
-
-
     }
+
     public static PlayerData load(IEngine engine){
         PlayerData playerData;
         InputStream stream = null;
-        try {
-             stream = engine.getFileManager().openInputFile("save");
-             System.out.println(stream!=null);
-        }
-        catch (Exception e){
-            return new PlayerData(engine);
+        InputStream SHA = null;
+        // Checks existence of a SHA to check if the save was tampered
+        try{
+            SHA = engine.getFileManager().openInputFile("SHA");
+            // Checks existence of save
+            try {
+                ObjectInputStream objectInputStream= new ObjectInputStream(SHA);
+                String readSHA = (String) objectInputStream.readObject();
+                objectInputStream.close();
 
+                stream = engine.getFileManager().openInputFile("save");
+                String save = engine.getFileManager().readFile("save");
+
+                // Generates SHA of the save and checks against the readSHA
+                if (readSHA == engine.getFileManager().generateSHA(save))
+                    System.out.println(stream!=null);
+            }
+            catch (Exception e){    // Save not found exception
+                return new PlayerData(engine);
+            }
+        }
+            catch (Exception e){ // SHA not found exception
+                return new PlayerData(engine);
         }
         playerData=new PlayerData(engine);
 
@@ -93,6 +107,8 @@ public final class PlayerData implements ILogicData, Serializable {
             playerData.lastLevel=(int) objectInputStream.readObject();
 
             playerData.loadGameState(objectInputStream);
+
+            objectInputStream.close();
         
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,6 +158,15 @@ public final class PlayerData implements ILogicData, Serializable {
 
             objectStream.flush();
             objectStream.close();
+
+            String save = engine.getFileManager().readFile("save");
+            String SHA = engine.getFileManager().generateSHA(save);
+
+            OutputStream streamSHA = engine.getFileManager().openOutputFile("SHA");
+            ObjectOutputStream SHAStream = new ObjectOutputStream(streamSHA);
+            SHAStream.writeObject(SHA);
+            SHAStream.flush();
+            SHAStream.close();
 
         } catch (Exception e) {
             e.printStackTrace();

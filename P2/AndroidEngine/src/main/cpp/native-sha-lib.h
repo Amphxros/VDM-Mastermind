@@ -6,6 +6,6 @@
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_mastermind_androidengine_AndroidFileManager_generateHash(JNIEnv *env, jclass clazz,
+Java_mastermind_androidengine_AndroidFileManager_Hash(JNIEnv *env, jclass clazz,
                                                               jstring data);
 #endif

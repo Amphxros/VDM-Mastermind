@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface IFileManager {
+
     /**
      * Creates an input file stream.
      *
@@ -34,4 +35,6 @@ public interface IFileManager {
     IJsonObject readJSON(String path);
 
     String[] getFileListDirectory(String path);
+
+    String generateSHA(String data);
 }
