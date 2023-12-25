@@ -75,7 +75,7 @@ public class WinScene extends Scene {
                     .setStrokeColor(getLogicData().getButtons())
 
                     .addChild(new Text(this,"Compartir",font)
-                            .setPosition(200,30)
+                            .setPosition(100,30)
                             .setStrokeColor(getLogicData().getFont())
                     )
 

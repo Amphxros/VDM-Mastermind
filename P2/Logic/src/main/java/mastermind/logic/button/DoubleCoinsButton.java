@@ -12,7 +12,6 @@ public class DoubleCoinsButton extends ShowRewardedAdButton{
 
     @Override
     protected void giveReward() {
-        PlayerData p = (PlayerData) getEngine().getLogic().getLogicData();
-        p.setCoins(p.getCoins() + amount);
+
     }
 }
