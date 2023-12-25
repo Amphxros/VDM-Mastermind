@@ -23,6 +23,7 @@ public class AndroidEngine extends Engine implements Runnable {
         setSensorsManager(new SensorsManager(context));
         setAdsManager(new AdsManager(activity,adView,context));
         setFileManager(new AndroidFileManager(context));
+        setShareContentManager(new AndroidShareContentManager(context,surfaceView));
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
         setInput(input);

@@ -13,6 +13,7 @@ import mastermind.logic.Text;
 import mastermind.logic.button.DoubleCoinsButton;
 import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToModeExplore;
+import mastermind.logic.button.ShareContentButton;
 
 public class WinScene extends Scene {
     Color[] colors;
@@ -67,13 +68,26 @@ public class WinScene extends Scene {
                 getLogicData().setCoins(getLogicData().getCoins() + this.coinsAmount);
                 getLogicData().onLevelCompleted();
             }
+
+            addGameObject(new ShareContentButton(this)
+                    .setPosition(150,350)
+                    .setSize(200,50)
+                    .setStrokeColor(getLogicData().getButtons())
+
+                    .addChild(new Text(this,"Compartir",font)
+                            .setPosition(200,30)
+                            .setStrokeColor(getLogicData().getFont())
+                    )
+
+
+            );
         }else{
             //metes anuncio:
 
             addGameObject(new DoubleCoinsButton(this,coinsAmount)
                     .setPosition(200,200)
                     .setSize(300,50)
-                    .setStrokeColor(Color.BLACK)
+                    .setStrokeColor(getLogicData().getButtons())
 
                     .addChild(new Text(this,"Coins x 2",font)
                             .setPosition(50,25)
@@ -110,7 +124,7 @@ public class WinScene extends Scene {
         else {
             addGameObject(new GoToChooseLevel(this)
                     .setPosition(30, 450)
-                    .setStrokeColor(getLogicData().getFont())
+                    .setStrokeColor(getLogicData().getButtons())
                     .setSize(350, 50)
                     .addChild(new Text(this, "Go to other levels", font)
                             .setPosition(170, 40)

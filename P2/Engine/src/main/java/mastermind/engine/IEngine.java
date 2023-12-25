@@ -76,6 +76,10 @@ public interface IEngine {
     INotificationHandler getNotificationHandler();
     
     void setNotificationHandler(INotificationHandler notificationHandler);
+
+    IShareContentManager getShareContentManager();
+
+    void setShareContentManager(IShareContentManager shareContentManager);
     /**
      * @return The application's window width.
      */
