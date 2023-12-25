@@ -84,12 +84,11 @@ public abstract class Scene implements IScene {
             }
         }
 
+        if(input.getDeltaY()>10){
+            for(ScrollEventListener scrollEventListener: scrollEventListeners){
+                GameObject g= (GameObject) scrollEventListener;
+                scrollEventListener.onScroll((int)input.getDeltaY());
 
-        for(ScrollEventListener scrollEventListener: scrollEventListeners){
-            if(Math.abs(input.getDeltaY())>10){
-            GameObject g= (GameObject) scrollEventListener;
-            System.out.println("Log + " + g.getY());
-            scrollEventListener.onScroll((int)input.getDeltaY()/4);
             }
         }
     }

@@ -55,21 +55,6 @@ public class ExploreWorldsScene extends Scene {
             this.listLevels.add(auxString);
         }
 
-        addGameObject(new WorldButtons(this,-1)
-                .setPosition(40,70)
-                .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
-
-
-        );
-        addGameObject(new WorldButtons(this,1)
-                .setPosition(300,70)
-                .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
-
-
-        );
-
         addGameObject(new GoToMenuScene(this)
                 .setPosition(10,10)
                 .setSize(50,50)
@@ -90,7 +75,20 @@ public class ExploreWorldsScene extends Scene {
            addGameObject(containers.get(i));
 
         }
+        addGameObject(new WorldButtons(this,-1)
+                .setPosition(40,70)
+                .setSize(50,50)
+                .setStrokeColor(getLogicData().getButtons())
 
+
+        );
+        addGameObject(new WorldButtons(this,1)
+                .setPosition(300,70)
+                .setSize(50,50)
+                .setStrokeColor(getLogicData().getButtons())
+
+
+        );
         onClick(id);
 
 
