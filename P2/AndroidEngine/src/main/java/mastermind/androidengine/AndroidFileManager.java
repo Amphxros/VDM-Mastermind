@@ -17,6 +17,12 @@ public class AndroidFileManager implements IFileManager {
     public AndroidFileManager(Context context){
         this.context=context;
     }
+
+    public static native String generateHash(String data);
+    static{
+        System.loadLibrary("native-sha-lib");
+    }
+
     @Override
     public InputStream openInputFile(String path) throws FileNotFoundException, IOException {
         return context.openFileInput(path);

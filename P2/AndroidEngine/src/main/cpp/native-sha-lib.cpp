@@ -5,17 +5,18 @@ using namespace picosha2;
 
 extern "C" JNIEXPORT jstring JNICALL    // Allows for the code to be called from the java side
 // The JNIEnv variable contains the parameters of the java side
-Java_com_mastermind_androidengine_src_main_cpp_SHA(JNIEnv *env, jobject thiz, jstring file) {
+Java_mastermind_androidengine_AndroidFileManager_generateHash(JNIEnv *env, jclass clazz,
+                                                              jstring data) {
 
     // Convert jstring to const char*
-    const char *convertedValue = env->GetStringUTFChars(file, nullptr);
+    const char *convertedValue = env->GetStringUTFChars(data, nullptr);
 
     // Generate SHA-256 from the input string
     vector<unsigned char> hash(k_digest_size);
     picosha2::hash256(convertedValue, convertedValue + strlen(convertedValue), hash.begin(), hash.end());
 
     // Release the JNI string
-    env->ReleaseStringUTFChars(file, convertedValue);
+    env->ReleaseStringUTFChars(data, convertedValue);
 
     // Convert the hash to a hex string
     string hex_str = picosha2::bytes_to_hex_string(hash.begin(), hash.end());

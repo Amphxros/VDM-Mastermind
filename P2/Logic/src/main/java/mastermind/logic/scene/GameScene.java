@@ -14,7 +14,6 @@ import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
-import mastermind.logic.Scene;
 import mastermind.logic.ScrollEventListener;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
