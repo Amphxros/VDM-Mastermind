@@ -5,7 +5,7 @@ plugins {
 android {
     namespace 'mastermind.androidengine'
     compileSdk 34
-
+    ndkVersion '25.1.8937393'
     defaultConfig {
         minSdk 30
 
@@ -23,6 +23,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+    
     externalNativeBuild {
         cmake {
             path file('CMakeLists.txt')
