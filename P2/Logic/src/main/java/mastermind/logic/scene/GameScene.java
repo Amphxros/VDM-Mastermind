@@ -9,6 +9,7 @@ import mastermind.engine.IImage;
 import mastermind.engine.IInput;
 import mastermind.engine.ISensorListener;
 import mastermind.engine.ISensorsManager;
+import mastermind.engine.ISound;
 import mastermind.logic.ColouringCell;
 import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
@@ -70,6 +71,8 @@ public class GameScene extends Scene implements ISensorListener {
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
+        ISound sonidoDaltonic = getEngine().getAudio().createSound("sonido/button_click.mp3");
+
         ISensorsManager sensors= getEngine().getSensorsManager();
         if(sensors!=null){
             sensors.registerAccelerometerListener(this);
@@ -113,7 +116,7 @@ public class GameScene extends Scene implements ISensorListener {
         }
 
 
-        addGameObject(new DaltonicButton(this, open, close)
+        addGameObject(new DaltonicButton(this, open, close, sonidoDaltonic)
                 .setPosition(330,20)
                 .setSize(50,50)
                 .setStrokeColor(Color.BLACK)

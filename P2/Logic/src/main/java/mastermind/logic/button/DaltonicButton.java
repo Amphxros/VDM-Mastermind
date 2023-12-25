@@ -3,17 +3,19 @@ package mastermind.logic.button;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
 import mastermind.engine.IScene;
+import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.GameScene;
 
 public class DaltonicButton extends Button{
     IImage open, close;
+    ISound sonido;
     boolean daltonic= false;
-    public DaltonicButton(IScene scene, IImage enable, IImage disable) {
+    public DaltonicButton(IScene scene, IImage enable, IImage disable, ISound _sonido) {
         super(scene);
         this.open=enable;
         this.close=disable;
-
+        this.sonido = _sonido;
     }
 
     @Override
@@ -30,6 +32,7 @@ public class DaltonicButton extends Button{
 
     @Override
     public boolean onTouchDown(TouchEvent event) {
+        sonido.play();
         daltonic=!daltonic;
         GameScene scene= (GameScene) getScene();
         if(scene!=null){
