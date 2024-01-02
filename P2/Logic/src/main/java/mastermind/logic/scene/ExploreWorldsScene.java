@@ -7,6 +7,7 @@ import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
 import mastermind.engine.IJsonObject;
+import mastermind.logic.BackgroundImage;
 import mastermind.logic.Container;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
@@ -55,15 +56,7 @@ public class ExploreWorldsScene extends Scene {
             this.listLevels.add(auxString);
         }
 
-        addGameObject(new GoToMenuScene(this)
-                .setPosition(10,10)
-                .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
 
-                .addChild(new Image(this, back)
-                        .setPosition(5,5)
-                        .setSize(40,40))
-        );
 
         for(int i=0;i<this.numWorlds;i++){
            String s= "world" + ""+ String.valueOf(i+1);
@@ -90,7 +83,15 @@ public class ExploreWorldsScene extends Scene {
 
         );
         onClick(id);
+        addGameObject(new GoToMenuScene(this)
+                .setPosition(10,10)
+                .setSize(50,50)
+                .setStrokeColor(getLogicData().getButtons())
 
+                .addChild(new Image(this, back)
+                        .setPosition(5,5)
+                        .setSize(40,40))
+        );
 
     }
 
@@ -106,11 +107,12 @@ public class ExploreWorldsScene extends Scene {
         container.setPosition(30,150);
         container.setSize(350,400);
         container.setStrokeColor(Color.RED);
-        container.addChild(new Text(this,name,font)
-                .setPosition(150,-100));
-        container.addChild(new Image(this,background)
+        container.addChild(new BackgroundImage(this,background)
                 .setPosition(-30,0)
                 .setSize(400,600));
+        container.addChild(new Text(this,name,font)
+                .setPosition(150,-100));
+
 
         int fila = 0;
         int columna = 0;

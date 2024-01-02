@@ -29,6 +29,7 @@ public class GameScene extends Scene {
     private int numIntentos;
     private int tamPassword;
     int currTable;
+
     Color[] colors;
     Table[] tables;
     int [] solution;
@@ -94,11 +95,6 @@ public class GameScene extends Scene {
         .setStrokeColor(new Color(200,200,200));
         addGameObject(c);
         daltonicObservers.add(c);
-
-
-
-
-
 
         super.init();
 
