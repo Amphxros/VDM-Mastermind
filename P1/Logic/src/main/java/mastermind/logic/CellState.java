@@ -5,6 +5,5 @@ public enum CellState {
     Filled,
 
     Correct,
-    Misplaced,
-    Wrong
+    Misplaced
 }

@@ -1,5 +1,7 @@
 package mastermind.logic;
 
+import java.util.Arrays;
+
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
@@ -45,30 +47,42 @@ public class HintObject extends GameObject{
     }
 
     public boolean showHints(int[] solution, int[] tableSolution){
-        int correctElems=0;
-        for(int i=0;i<this.numCells;i++){
+        int correctElems = 0;
+        int wrongPosition = 0;
+        boolean [] visto = new boolean[solution.length];
+        Arrays.fill(visto,false);
+        for(int i = 0; i < solution.length; i++){
             if(tableSolution[i]==solution[i]){
-                this.hintElems[i].setCellState(CellState.Correct);
+                visto[i] = true;
                 correctElems++;
-            }
-            else if(this.hintElems[i].getCellState()==CellState.Empty){
-                for(int j=0;j<this.numCells;j++){
-                    if(tableSolution[i]==solution[j] && i!=j){
-                        this.hintElems[i].setCellState(CellState.Misplaced);
+            }else{
+
+                boolean encontrado = false;
+                int j = 0;
+                while (!encontrado && j < visto.length){
+                    if(visto[i]){
+                        encontrado = true;
+                    }else if(tableSolution[j] == solution[i] && tableSolution[j] != solution[j]){
+                        visto[i] = true;
+                        wrongPosition++;
+                        encontrado = true;
                     }
+                    j++;
                 }
             }
-
-
         }
 
-        for(int i=0;i<this.numCells;i++){
-            if(this.hintElems[i].getCellState()==CellState.Empty){
-                this.hintElems[i].setCellState(CellState.Wrong);
-            }
+        int n = 0;
+        for (int i = 0; i < correctElems; i++) {
+            this.hintElems[n].setCellState(CellState.Correct);
+            n++;
         }
 
+        for (int i = 0; i < wrongPosition; i++) {
+            this.hintElems[n].setCellState(CellState.Misplaced);
+            n++;
+        }
 
-        return correctElems==this.numCells;
+        return correctElems == this.numCells;
     }
 }
