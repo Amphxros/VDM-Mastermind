@@ -52,17 +52,15 @@ public class GameScene extends Scene {
 
     @Override
     public void init() {
-        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
-        IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",15,false);
-
+        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
         generateData();
 
-        tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",fonty)
-                .setPosition(200,50)
+        tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",font)
+                .setPosition(200,75)
                 .setStrokeColor(Color.BLACK);
         addGameObject(tryText);
 
@@ -84,7 +82,7 @@ public class GameScene extends Scene {
         );
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,fonty);
+            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,font);
             addGameObject(t);
             daltonicObservers.add(t);
             tables[i]=t;
