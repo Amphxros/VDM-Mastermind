@@ -63,13 +63,14 @@ public final class PlayerData implements ILogicData, Serializable {
                 ObjectInputStream objectInputStream= new ObjectInputStream(SHA);
                 String readSHA = (String) objectInputStream.readObject();
                 objectInputStream.close();
-
-                stream = engine.getFileManager().openInputFile("save");
                 String save = engine.getFileManager().readFile("save");
 
                 // Generates SHA of the save and checks against the readSHA
-                if (readSHA == engine.getFileManager().generateSHA(save))
-                    System.out.println(stream!=null);
+                if (readSHA != engine.getFileManager().generateSHA(save)){
+                    return new PlayerData(engine); //generates new gamefile if found cheating
+                }
+                stream = engine.getFileManager().openInputFile("save");
+
             }
             catch (Exception e){    // Save not found exception
                 return new PlayerData(engine);
