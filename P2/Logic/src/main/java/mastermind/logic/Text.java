@@ -1,6 +1,5 @@
 package mastermind.logic;
 
-import mastermind.engine.Color;
 import mastermind.engine.HorizontalAlignment;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
@@ -35,7 +34,7 @@ public class Text extends GameObject{
     public void render(IGraphics graphics) {
         super.render(graphics);
 
-        graphics.setColor(strokeColor);
+        graphics.setColor(color);
         graphics.setFont(font);
         graphics.setTextAlignment(alignment);
         graphics.drawText(text, getX(), getY());

@@ -18,7 +18,7 @@ public class HintElem extends GameObject {
     public CellState getCellState(){return this.cellState;}
     @Override
     public void render(IGraphics graphics) {
-        graphics.setColor(strokeColor);
+        graphics.setColor(color);
         if(cellState==CellState.Empty) {
             graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }

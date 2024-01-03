@@ -36,7 +36,7 @@ public class Cell extends Button implements DaltonicListener{
 
     @Override
     public void init() {
-        initialColor=strokeColor;
+        initialColor= color;
         initialImage= image;
         super.init();
     }
@@ -47,7 +47,7 @@ public class Cell extends Button implements DaltonicListener{
             if (state == CellState.Empty) {
                 graphics.setColor(initialColor);
             } else {
-                graphics.setColor(strokeColor);
+                graphics.setColor(color);
             }
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
@@ -64,11 +64,12 @@ public class Cell extends Button implements DaltonicListener{
     public boolean onTouchDown(TouchEvent event) {
         state= CellState.Empty;
         image=initialImage;
+        value=-1;
         return true;
     }
 
     public void fillCell(Color c, int value, IImage image){
-        strokeColor=c;
+        color =c;
         this.value=value;
         this.image=image;
         state=CellState.Filled;
@@ -88,7 +89,7 @@ public class Cell extends Button implements DaltonicListener{
 
     @Override
     public void drawDaltonicInfo(IGraphics graphics) {
-        if(daltonic_mode && value!=-1){
+        if(daltonic_mode && this.value!=-1){
             graphics.setColor(Color.BLACK);
             graphics.setFont(font);
 

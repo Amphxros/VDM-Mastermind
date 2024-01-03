@@ -27,16 +27,9 @@ public class Container extends GameObject implements ScrollEventListener{
             g.setEnabled(false);
     }
     @Override
-    public void render(IGraphics graphics) {
-        graphics.setColor(strokeColor);
-        graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
-        super.render(graphics);
-    }
-
-    @Override
     public void onScroll(int diff) {
         setPosition(getX(), getY() + diff);
-        moveChildren(new Vector2D(0,diff));
+        move(new Vector2D(0,diff));
 
     }
 }

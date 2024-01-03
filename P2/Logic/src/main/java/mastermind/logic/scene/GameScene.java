@@ -90,14 +90,14 @@ public class GameScene extends Scene implements ISensorListener {
 
         tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",fonty)
                 .setPosition(200,50)
-                .setStrokeColor(Color.BLACK);
+                .setColor(Color.BLACK);
         addGameObject(tryText);
 
         if(fileScene){
             addGameObject(new GoToModeExplore(this)
                     .setPosition(20,20)
                     .setSize(50,50)
-                    .setStrokeColor(new Color(200,200,200,50))
+                    .setColor(new Color(200,200,200,50))
 
                     .addChild(new Image(this, back)
                             .setSize(50,50)
@@ -109,7 +109,7 @@ public class GameScene extends Scene implements ISensorListener {
         addGameObject(new GoToChooseLevel(this)
                 .setPosition(20,20)
                 .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200,50))
+                .setColor(new Color(200,200,200,50))
 
                 .addChild(new Image(this, back)
                         .setSize(50,50)
@@ -122,7 +122,7 @@ public class GameScene extends Scene implements ISensorListener {
         addGameObject(new DaltonicButton(this, open, close, sonidoDaltonic)
                 .setPosition(330,20)
                 .setSize(50,50)
-                .setStrokeColor(Color.BLACK)
+                .setColor(Color.BLACK)
         );
 
         for(int i=0;i<this.numIntentos; i++){
@@ -135,7 +135,7 @@ public class GameScene extends Scene implements ISensorListener {
         c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
         .setPosition(0,500)
         .setSize(400,70)
-        .setStrokeColor(getLogicData().getFont());
+        .setColor(getLogicData().getFont());
         addGameObject(c);
         daltonicObservers.add(c);
 
@@ -205,7 +205,7 @@ public class GameScene extends Scene implements ISensorListener {
         return new Table(this, this.tamPassword,font,true)
                 .setPosition(x,y)
                 .setSize(w,h)
-                .setStrokeColor(color)
+                .setColor(color)
 
                 .addChild(new Text(this,String.valueOf(index+1),font)
                         .setPosition(10,3*h/4)
@@ -253,7 +253,7 @@ public class GameScene extends Scene implements ISensorListener {
         int i=0;
         for (GameObject col : c.getChildren()){
             if((ColouringCell) col !=null ){
-                col.setStrokeColor(colors[i]);
+                col.setColor(colors[i]);
                 i++;
             }
         }

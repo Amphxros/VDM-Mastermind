@@ -3,7 +3,6 @@ package mastermind.logic.button;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
-import mastermind.logic.scene.ExploreWorldsScene;
 import mastermind.logic.scene.ShopScene;
 
 public class ShopButtons extends Button{
@@ -29,7 +28,7 @@ public class ShopButtons extends Button{
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.setColor(strokeColor);
+        graphics.setColor(color);
         graphics.fillRoundRectangle(getX(),getY(),getWidth(), getHeight(), 20);
         super.render(graphics);
     }

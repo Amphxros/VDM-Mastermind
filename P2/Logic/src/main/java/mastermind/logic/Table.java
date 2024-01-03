@@ -37,7 +37,7 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
             for (int i = 0; i < this.numElems; i++) {
                 this.cells[i] = (new Cell(getScene(), font));
                 this.cells[i].setSize(30, 30)
-                        .setStrokeColor(new Color(150, 150, 150))
+                        .setColor(new Color(150, 150, 150))
 
                         .setPosition(20 + 40 * (i), 10);
                 this.addChild(cells[i]);
@@ -48,7 +48,7 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
                 IImage image = getEngine().getGraphics().newImage(jsonObject.getStringKey(animalID.name()) + "default" + ".png");
                 this.cells[i] = (new Cell(getScene(), font, image));
                 this.cells[i].setSize(30, 30)
-                        .setStrokeColor(new Color(150, 150, 150))
+                        .setColor(new Color(150, 150, 150))
 
                         .setPosition(20 + 40 * (i), 10);
                 this.addChild(cells[i]);
@@ -58,7 +58,7 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
             hintObject = new HintObject(getScene(), this.numElems);
             hintObject.setPosition(getWidth() - 90, 2);
             hintObject.setSize(70, 40);
-            hintObject.setStrokeColor(new Color(50, 50, 50));
+            hintObject.setColor(new Color(50, 50, 50));
 
             this.addChild(hintObject);
         }
@@ -90,7 +90,7 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.setColor(strokeColor);
+        graphics.setColor(color);
         graphics.fillRoundRectangle(getX(), getY(), getWidth(), getHeight(), 30);
         super.render(graphics);
     }
@@ -122,7 +122,7 @@ public class Table extends GameObject implements DaltonicListener, ScrollEventLi
     public void onScroll(int deltaY) {
         if(showHints){
             setPosition(getX(), getY() + deltaY);
-            moveChildren(new Vector2D(0, deltaY));
+            move(new Vector2D(0, deltaY));
         }
     }
 }

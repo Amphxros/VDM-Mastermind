@@ -34,13 +34,13 @@ public class ChooseLevelScene extends Scene {
         // Title
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
                 .setPosition(center +30, 40)
-                .setStrokeColor(getLogicData().getFont())
+                .setColor(getLogicData().getFont())
         );
 
         addGameObject(new GoToMenuScene(this)
                 .setPosition(20,20)
                 .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200,50))
+                .setColor(new Color(200,200,200,50))
 
                 .addChild(new Image(this, back)
                                 .setSize(50,50)
@@ -52,7 +52,7 @@ public class ChooseLevelScene extends Scene {
         addGameObject(new Container(this)
                 .setPosition(100, 100)
 
-                .setStrokeColor(new Color(150,150,150))
+                .setColor(new Color(150,150,150))
 
                 .addChild(createGameButton(0,0,center,center/4,getLogicData().getButtons(),"facil",font,4,6,4,false))
                 .addChild(createGameButton(0,center/3,center,center/4,getLogicData().getButtons(),"Medio",font,6,6,5,false))
@@ -69,10 +69,10 @@ public class ChooseLevelScene extends Scene {
         return new GoToGameScene(this,numColors,numIntentos,tamPassword,repeating,true,false,false)
                 .setPosition(x,y)
                 .setSize(w,h)
-                .setStrokeColor(color)
+                .setColor(color)
                 .addChild(new Text(this,text,font)
                         .setPosition(w,3*h - h/3)
-                        .setStrokeColor(getLogicData().getFont())
+                        .setColor(getLogicData().getFont())
 
                 );
     }

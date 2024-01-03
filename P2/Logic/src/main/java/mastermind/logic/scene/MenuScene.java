@@ -9,7 +9,6 @@ import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToModeExplore;
 
 import mastermind.logic.button.GoToShopScene;
-import mastermind.logic.button.ShareContentButton;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {
@@ -33,13 +32,13 @@ public class MenuScene extends Scene {
         // Title
         addGameObject(new Text(this, "Mastermind", font)
                 .setPosition(center, 150)
-                .setStrokeColor(getLogicData().getTittle())
+                .setColor(getLogicData().getTittle())
 
         );
         Text t= new Text(this, "Partida Rapida",fonty);
         t.setPosition(center-50,25);
         t.setAlignment(HorizontalAlignment.CENTRE);
-        t.setStrokeColor(getLogicData().getFont());
+        t.setColor(getLogicData().getFont());
 
         Text t2= new Text(this, "explorar mundos",fonty);
         t2.setPosition(center-50,25);
@@ -49,7 +48,7 @@ public class MenuScene extends Scene {
         addGameObject(new GoToChooseLevel(this)
                 .setPosition(center/3,250)
                 .setSize(300,50)
-                .setStrokeColor(getLogicData().getButtons())
+                .setColor(getLogicData().getButtons())
 
                 .addChild(t)
         );
@@ -58,18 +57,18 @@ public class MenuScene extends Scene {
         addGameObject(new GoToModeExplore(this)
                 .setPosition(center/3,350)
                 .setSize(300,50)
-                .setStrokeColor(new Color(150,150,150))
+                .setColor(new Color(150,150,150))
                 .addChild(t2)
         );
 
         addGameObject(new GoToShopScene(this)
                 .setPosition(center/3,500)
                 .setSize(300,50)
-                .setStrokeColor(getLogicData().getButtons())
+                .setColor(getLogicData().getButtons())
 
                 .addChild(new Text(this,"Personalizar",fonty)
                         .setPosition(center-50,25)
-                        .setStrokeColor(getLogicData().getFont())
+                        .setColor(getLogicData().getFont())
                 )
 
 

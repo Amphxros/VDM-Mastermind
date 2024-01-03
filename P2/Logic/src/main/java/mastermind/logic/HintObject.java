@@ -24,13 +24,13 @@ public class HintObject extends GameObject{
             if(i>=this.numCells/2){
                 hintElems[i].setPosition(10+(i-this.numCells/2 )* (getWidth() / numCells), getHeight()/2 +10);
                 hintElems[i].setSize((getWidth() / numCells) - 5, (getWidth() / numCells) - 10);
-                hintElems[i].setStrokeColor(new Color(200, 200, 200));
+                hintElems[i].setColor(new Color(200, 200, 200));
 
             }
             else {
                 hintElems[i].setPosition(15+ i * (getWidth() / numCells), 10);
                 hintElems[i].setSize((getWidth() / numCells) - 5, (getWidth() / numCells) - 10);
-                hintElems[i].setStrokeColor(new Color(200, 200, 200));
+                hintElems[i].setColor(new Color(200, 200, 200));
 
             }
             addChild(hintElems[i]);
@@ -40,7 +40,7 @@ public class HintObject extends GameObject{
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.setColor(strokeColor);
+        graphics.setColor(color);
         graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),30);
 
         super.render(graphics);

@@ -42,7 +42,7 @@ public class WinScene extends Scene {
         Table t= new Table(this,this.solution.length,font,false);
         t.setPosition(50,200);
         t.setSize(50 *this.solution.length,50);
-        t.setStrokeColor(new Color(200,200,200));
+        t.setColor(new Color(200,200,200));
 
         t.init();
         if(playerData.getCurrentAnimalID()== AnimalID.None) {
@@ -61,7 +61,7 @@ public class WinScene extends Scene {
         }
         Text text= new Text(this,"Game over",font);
         text.setPosition(200,110);
-        text.setStrokeColor(new Color(20,20,20));
+        text.setColor(new Color(20,20,20));
         if(hasWon){
             text.setText("You Won");
             if(fileLevel) {
@@ -72,11 +72,11 @@ public class WinScene extends Scene {
             addGameObject(new ShareContentButton(this)
                     .setPosition(150,350)
                     .setSize(200,50)
-                    .setStrokeColor(getLogicData().getButtons())
+                    .setColor(getLogicData().getButtons())
 
                     .addChild(new Text(this,"Compartir",font)
                             .setPosition(100,30)
-                            .setStrokeColor(getLogicData().getFont())
+                            .setColor(getLogicData().getFont())
                     )
 
 
@@ -87,11 +87,11 @@ public class WinScene extends Scene {
             addGameObject(new DoubleCoinsButton(this,coinsAmount)
                     .setPosition(200,200)
                     .setSize(300,50)
-                    .setStrokeColor(getLogicData().getButtons())
+                    .setColor(getLogicData().getButtons())
 
                     .addChild(new Text(this,"Coins x 2",font)
                             .setPosition(50,25)
-                            .setStrokeColor(new Color(100,120,250))
+                            .setColor(new Color(100,120,250))
                     )
 
 
@@ -104,18 +104,18 @@ public class WinScene extends Scene {
 
         text= new Text(this,"Solution:",font);
         text.setPosition(200,150);
-        text.setStrokeColor(new Color(120,120,120));
+        text.setColor(new Color(120,120,120));
         addGameObject(text);
 
 
         if(fileLevel){
             addGameObject(new GoToModeExplore(this)
                     .setPosition(30, 450)
-                    .setStrokeColor(getLogicData().getButtons())
+                    .setColor(getLogicData().getButtons())
                     .setSize(350, 50)
                     .addChild(new Text(this, "Go to other levels", font)
                             .setPosition(170, 40)
-                            .setStrokeColor(getLogicData().getFont())
+                            .setColor(getLogicData().getFont())
                     )
 
             );
@@ -124,11 +124,11 @@ public class WinScene extends Scene {
         else {
             addGameObject(new GoToChooseLevel(this)
                     .setPosition(30, 450)
-                    .setStrokeColor(getLogicData().getButtons())
+                    .setColor(getLogicData().getButtons())
                     .setSize(350, 50)
                     .addChild(new Text(this, "Go to other levels", font)
                             .setPosition(170, 40)
-                            .setStrokeColor(getLogicData().getFont())
+                            .setColor(getLogicData().getFont())
                     )
 
             );

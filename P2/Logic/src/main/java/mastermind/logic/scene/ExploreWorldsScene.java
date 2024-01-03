@@ -71,14 +71,14 @@ public class ExploreWorldsScene extends Scene {
         addGameObject(new WorldButtons(this,-1)
                 .setPosition(40,70)
                 .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
+                .setColor(getLogicData().getButtons())
 
 
         );
         addGameObject(new WorldButtons(this,1)
                 .setPosition(300,70)
                 .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
+                .setColor(getLogicData().getButtons())
 
 
         );
@@ -86,7 +86,7 @@ public class ExploreWorldsScene extends Scene {
         addGameObject(new GoToMenuScene(this)
                 .setPosition(10,10)
                 .setSize(50,50)
-                .setStrokeColor(getLogicData().getButtons())
+                .setColor(getLogicData().getButtons())
 
                 .addChild(new Image(this, back)
                         .setPosition(5,5)
@@ -106,7 +106,7 @@ public class ExploreWorldsScene extends Scene {
 
         container.setPosition(30,150);
         container.setSize(350,400);
-        container.setStrokeColor(Color.RED);
+        container.setColor(Color.RED);
         container.addChild(new BackgroundImage(this,background)
                 .setPosition(-30,0)
                 .setSize(400,600));
@@ -128,10 +128,10 @@ public class ExploreWorldsScene extends Scene {
             GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked);
             game.setPosition(30 +(100*columna), 50 +(100*fila));
             game.setSize(80, 80);
-            game.setStrokeColor(getLogicData().getButtons());
+            game.setColor(getLogicData().getButtons());
             game.addChild(new Text(this, String.valueOf(i),font)
                     .setPosition(70,200)
-                    .setStrokeColor(getLogicData().getFont())
+                    .setColor(getLogicData().getFont())
             );
             if(locked){
                 IImage img= getEngine().getGraphics().newImage("images/lock.png");

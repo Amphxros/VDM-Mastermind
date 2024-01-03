@@ -18,7 +18,7 @@ public abstract class GoToScene extends Button{
 
     @Override
     public void render(IGraphics graphics) {
-        graphics.setColor(strokeColor);
+        graphics.setColor(color);
         graphics.fillRoundRectangle(getX(),getY(),getWidth(),getHeight(),20);
         super.render(graphics);
 
