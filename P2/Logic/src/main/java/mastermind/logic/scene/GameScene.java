@@ -10,6 +10,7 @@ import mastermind.engine.IInput;
 import mastermind.engine.ISensorListener;
 import mastermind.engine.ISensorsManager;
 import mastermind.engine.ISound;
+import mastermind.logic.BackgroundImage;
 import mastermind.logic.ColouringCell;
 import mastermind.logic.ColouringTable;
 import mastermind.logic.DaltonicListener;
@@ -40,11 +41,15 @@ public class GameScene extends Scene implements ISensorListener {
     boolean fileScene;
     Text tryText;
     ISound sonidoWin, sonidoGameover;
-    public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles, boolean fileScene) {
+    int num_world, level;
+    public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating, boolean circles, boolean fileScene,int world, int level) {
         super(engine);
         this.numColores=numColores;
         this.numIntentos=numIntentos;
         this.tamPassword=tamPassword;
+
+        this.num_world=world;
+        this.level=level;
 
         this.tables= new Table[this.numIntentos];
         this.solution= new int[this.tamPassword];
@@ -66,8 +71,8 @@ public class GameScene extends Scene implements ISensorListener {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
         IFont fonty = getEngine().getGraphics().newFont("fonts/KIN668.ttf",15,false);
 
-        IImage background= getEngine().getGraphics().newImage("images/backgrounds/background-0.png");
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
+        IImage background= getEngine().getGraphics().newImage("images/backgrounds/background-" + (num_world+1) + ".png");
 
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
@@ -81,10 +86,9 @@ public class GameScene extends Scene implements ISensorListener {
             sensors.registerAccelerometerListener(this);
         }
 
-        addGameObject(new Image(this,background)
-                .setSize(getEngine().getWidth(), getEngine().getHeight())
 
-        );
+
+        addGameObject(new BackgroundImage(this,background));
 
         generateData();
 
@@ -97,7 +101,7 @@ public class GameScene extends Scene implements ISensorListener {
             addGameObject(new GoToModeExplore(this)
                     .setPosition(20,20)
                     .setSize(50,50)
-                    .setColor(new Color(200,200,200,50))
+                    .setColor(new Color(200,200,200,150))
 
                     .addChild(new Image(this, back)
                             .setSize(50,50)
@@ -109,7 +113,7 @@ public class GameScene extends Scene implements ISensorListener {
         addGameObject(new GoToChooseLevel(this)
                 .setPosition(20,20)
                 .setSize(50,50)
-                .setColor(new Color(200,200,200,50))
+                .setColor(new Color(200,200,200,150))
 
                 .addChild(new Image(this, back)
                         .setSize(50,50)

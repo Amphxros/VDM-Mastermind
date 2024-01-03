@@ -11,16 +11,22 @@ public class GoToGameScene extends GoToScene{
     int numColores;
     int numIntentos;
     int numPassword;
+
+    int numWorld;
+    int numLevel;
+
     boolean repeating;
     boolean colors;
     boolean fileScene;
     boolean locked;
     Image image;
-    public GoToGameScene(IScene scene, int colores, int intentos, int tamPassword, boolean repeating,boolean colors, boolean fileScene, boolean locked) {
+    public GoToGameScene(IScene scene, int colores, int intentos, int tamPassword, boolean repeating,boolean colors, boolean fileScene, boolean locked,int numWorld, int numLevel) {
         super(scene);
         this.numColores=colores;
         this.numIntentos=intentos;
         this.numPassword=tamPassword;
+        this.numLevel=numLevel;
+        this.numWorld=numWorld;
         this.repeating=repeating;
         this.colors=colors;
         this.fileScene=fileScene;
@@ -38,6 +44,6 @@ public class GoToGameScene extends GoToScene{
 
     @Override
     protected Scene createScene() {
-             return new GameScene(getEngine(),numColores,numIntentos,numPassword,repeating,colors,fileScene);
+             return new GameScene(getEngine(),numColores,numIntentos,numPassword,repeating,colors,fileScene,numWorld,numLevel);
     }
 }

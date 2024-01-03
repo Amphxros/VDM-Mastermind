@@ -125,7 +125,7 @@ public class ExploreWorldsScene extends Scene {
             int codeSize= worldFile.getIntKey("codeSize");
             boolean locked= playerData.getLastWorld() <=numWorld || playerData.getLastLevel()<i;
 
-            GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked);
+            GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked,numWorld,i);
             game.setPosition(30 +(100*columna), 50 +(100*fila));
             game.setSize(80, 80);
             game.setColor(getLogicData().getButtons());
