@@ -36,7 +36,13 @@ public class AndroidShareContentManager implements IShareContentManager {
                 public void onPixelCopyFinished(int copyResult) {
                     if (copyResult == PixelCopy.SUCCESS) {
                         Bitmap screenBitmap = Bitmap.createBitmap(bitmap, 0, 0, view.getWidth(), view.getHeight());
-                        screenshotView(context, screenBitmap, "Mastermind", "", "", "description");
+                        String imageUri = MediaStore.Images.Media.insertImage(context.getContentResolver(), screenBitmap, "descriptionTitle", "description");
+                        Uri uri = Uri.parse(imageUri);
+                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                        shareIntent.setType("image/*");
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, "extraMessage");
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                        context.startActivity(Intent.createChooser(shareIntent, "shareTitle"));
                     }
                     handlerThread.quitSafely();
                 }
@@ -67,12 +73,6 @@ public class AndroidShareContentManager implements IShareContentManager {
 
 
     private void screenshotView(Context context, Bitmap screenBitmap, String shareTitle, String extraMessage, String descriptionTitle, String description) {
-        String imageUri = MediaStore.Images.Media.insertImage(context.getContentResolver(), screenBitmap, descriptionTitle, description);
-        Uri uri = Uri.parse(imageUri);
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("image/*");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, extraMessage);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        context.startActivity(Intent.createChooser(shareIntent, shareTitle));
+
     }
 }

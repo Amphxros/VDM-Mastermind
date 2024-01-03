@@ -80,15 +80,6 @@ public interface IEngine {
     IShareContentManager getShareContentManager();
 
     void setShareContentManager(IShareContentManager shareContentManager);
-    /**
-     * @return The application's window width.
-     */
-    int getWidth();
-
-    /**
-     * @return The application's window height.
-     */
-    int getHeight();
 
 
 }

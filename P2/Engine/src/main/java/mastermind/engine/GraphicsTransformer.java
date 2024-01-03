@@ -1,8 +1,8 @@
 package mastermind.engine;
 
 public final class GraphicsTransformer {
-    private int width = 600;
-    private int height = 800;
+    private int width;
+    private int height;
     private double ratio = width / (double) height;
     private int contentWidth = 0;
     private int contentHeight = 0;

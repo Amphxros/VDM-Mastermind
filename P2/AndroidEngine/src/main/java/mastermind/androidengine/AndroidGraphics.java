@@ -39,7 +39,7 @@ public final class AndroidGraphics implements IGraphics {
         this.paint = new Paint();
         this.assetManager = context.getAssets();
 
-        setResolution(600,400);
+        setResolution(400,600);
         setColor(Color.WHITE);
     }
 

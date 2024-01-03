@@ -31,15 +31,6 @@ public class AndroidEngine extends Engine implements Runnable {
         setNotificationHandler(new AndroidNotificationHandler(context));
     }
 
-    @Override
-    public int getWidth() {
-        return getGraphics().getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return getGraphics().getHeight();
-    }
 
     @Override
     public void run() {
@@ -85,6 +76,8 @@ public class AndroidEngine extends Engine implements Runnable {
     }
 
     private void handleEvents() {
+
+
         getLogic().handleEvents(getInput());
     }
 

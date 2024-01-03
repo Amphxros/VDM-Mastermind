@@ -11,7 +11,7 @@ public abstract class Button extends GameObject {
     }
 
     public boolean handleInput(TouchEvent event) {
-        if (event.getType() != EventType.DOWN && event.getType() != EventType.UP && event.getType() != EventType.MOVE) {
+        if (event.getType() != EventType.DOWN && event.getType() != EventType.UP) {
             return false;
         }
 

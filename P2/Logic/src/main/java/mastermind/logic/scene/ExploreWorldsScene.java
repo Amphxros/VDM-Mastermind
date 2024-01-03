@@ -23,6 +23,7 @@ public class ExploreWorldsScene extends Scene {
     int numWorlds;
     int numCols;
     int id=0;
+    int size;
     ArrayList<Container> containers= new ArrayList<>();
     String rootLevels;
     String[] nameWorlds;
@@ -40,10 +41,12 @@ public class ExploreWorldsScene extends Scene {
         playerData= getLogicData();
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",40,false);
+        IFont sub = getEngine().getGraphics().newFont("fonts/KIN668.ttf",40,false);
         IJsonObject levels= getEngine().getFileManager().readJSON("Json/levels/levels.json");
+        int maxWidth = getEngine().getGraphics().getWidth();
 
         this.numCols = 3;
-
+        this.size= maxWidth/(2*this.numCols);
         this.rootLevels = "levels/";
         this.nameWorlds = getEngine().getFileManager().getFileListDirectory(rootLevels);
         this.numWorlds = nameWorlds.length;
@@ -127,7 +130,7 @@ public class ExploreWorldsScene extends Scene {
 
             GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked,numWorld,i);
             game.setPosition(30 +(100*columna), 50 +(100*fila));
-            game.setSize(80, 80);
+            game.setSize(size, size);
             game.setColor(getLogicData().getButtons());
             game.addChild(new Text(this, String.valueOf(i),font)
                     .setPosition(70,200)
@@ -136,8 +139,8 @@ public class ExploreWorldsScene extends Scene {
             if(locked){
                 IImage img= getEngine().getGraphics().newImage("images/lock.png");
                 game.addChild(new Image(this,img)
-                        .setPosition(50,160)
-                        .setSize(50,50)
+                        .setPosition(size/2,80+size)
+                        .setSize(size,size)
 
                 );
 

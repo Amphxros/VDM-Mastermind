@@ -7,6 +7,7 @@ import mastermind.engine.IInput;
 import mastermind.engine.ILogic;
 import mastermind.engine.ILogicData;
 import mastermind.engine.IScene;
+import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.MenuScene;
 
 public class Logic implements ILogic {
@@ -57,6 +58,8 @@ public class Logic implements ILogic {
     public void handleEvents(IInput input) {
         if (currentScene!=null)
             currentScene.handleInput(input);
+
+
     }
 
     @Override
