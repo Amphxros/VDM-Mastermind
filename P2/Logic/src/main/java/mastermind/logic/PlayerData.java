@@ -48,7 +48,7 @@ public final class PlayerData implements ILogicData, Serializable {
         loadPalettes();
         this.coins=0;
         this.lastLevel=1;
-        this.lastWorld=0;
+        this.lastWorld=1;
     }
 
     public static PlayerData load(IEngine engine){
@@ -110,7 +110,8 @@ public final class PlayerData implements ILogicData, Serializable {
         
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        }
+        //return new PlayerData(engine); util para resetearme cosas
 
         return playerData;
     }

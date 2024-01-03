@@ -126,7 +126,7 @@ public class ExploreWorldsScene extends Scene {
             int numAttempts= worldFile.getIntKey("numAttempts");
             boolean rep= worldFile.getBooleanKey("repeat");
             int codeSize= worldFile.getIntKey("codeSize");
-            boolean locked= playerData.getLastWorld() <=numWorld || playerData.getLastLevel()<i;
+            boolean locked= playerData.getLastWorld() <=numWorld || playerData.getLastLevel() <=i;
 
             GoToGameScene game= new GoToGameScene(this,colors,numAttempts,codeSize,rep,true,true,locked,numWorld,i);
             game.setPosition(30 +(100*columna), 50 +(100*fila));

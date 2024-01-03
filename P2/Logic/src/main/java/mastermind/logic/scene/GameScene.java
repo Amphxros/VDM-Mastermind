@@ -137,9 +137,9 @@ public class GameScene extends Scene implements ISensorListener {
         }
 
         c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
-        .setPosition(0,500)
-        .setSize(400,70)
-        .setColor(getLogicData().getFont());
+            .setPosition(0,500)
+            .setSize(400,70)
+            .setColor(getLogicData().getFont());
         addGameObject(c);
         daltonicObservers.add(c);
 
