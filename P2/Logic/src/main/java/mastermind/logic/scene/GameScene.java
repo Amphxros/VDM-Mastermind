@@ -234,7 +234,21 @@ public class GameScene extends Scene implements ISensorListener {
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
                this.sonidoWin.play();
+               if(fileScene){
+                   if(this.num_world ==getLogicData().getLastWorld() && this.level ==getLogicData().getLastLevel()){
+                       getLogicData().onLevelCompleted();
+                       try{
+                        getLogicData().saveData();
+                       }
+                       catch (Exception e){
+                           e.printStackTrace();
+                       }
+                   }
+               }
+
                getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true,10* (numIntentos),fileScene));
+
+
            }
            else
            {

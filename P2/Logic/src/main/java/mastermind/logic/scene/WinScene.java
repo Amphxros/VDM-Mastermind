@@ -66,7 +66,7 @@ public class WinScene extends Scene {
             text.setText("You Won");
             if(fileLevel) {
                 getLogicData().setCoins(getLogicData().getCoins() + this.coinsAmount);
-                getLogicData().onLevelCompleted();
+
             }
 
             addGameObject(new ShareContentButton(this)

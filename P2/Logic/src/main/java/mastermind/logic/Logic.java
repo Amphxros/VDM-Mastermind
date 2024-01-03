@@ -18,6 +18,8 @@ public class Logic implements ILogic {
         this.engine=engine;
         this.playerData= PlayerData.load(this.engine);
         setLogicData(this.playerData);
+
+        engine.getGraphics().setResolution(400,700);
     }
 
     @Override

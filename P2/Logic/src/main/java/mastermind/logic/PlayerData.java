@@ -46,9 +46,9 @@ public final class PlayerData implements ILogicData, Serializable {
         }
 
         loadPalettes();
-        this.coins=900;
+        this.coins=0;
         this.lastLevel=1;
-        this.lastWorld=1;
+        this.lastWorld=0;
     }
 
     public static PlayerData load(IEngine engine){
@@ -216,7 +216,7 @@ public final class PlayerData implements ILogicData, Serializable {
         lastLevel++;
         int numLevels= engine.getFileManager().getFileListDirectory("levels/world" + lastWorld).length;
         if(lastLevel>=numLevels){
-            lastLevel=1;
+            lastLevel=0;
             lastWorld++;
         }
 
