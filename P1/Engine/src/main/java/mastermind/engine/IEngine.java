@@ -48,14 +48,5 @@ public interface IEngine {
      * @param audio An {@link IAudio} instance.
      */
     void setAudio(IAudio audio);
-
-    /**
-     * @return The application's window width.
-     */
-    int getWidth();
-
-    /**
-     * @return The application's window height.
-     */
-    int getHeight();
+    
 }

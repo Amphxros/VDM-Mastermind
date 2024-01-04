@@ -1,11 +1,9 @@
 package mastermind.logic;
 
-import java.util.ArrayList;
-
 import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 import mastermind.engine.ISound;
 
 public class Table extends GameObject implements DaltonicListener{

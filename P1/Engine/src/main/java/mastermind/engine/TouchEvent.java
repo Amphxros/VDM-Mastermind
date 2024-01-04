@@ -9,11 +9,11 @@ public class TouchEvent {
     private int x = -1, y = -1;
 
     boolean scroll;
-    public TouchEvent(int windowX, int windowY, EventType event, boolean scroll) {
+    public TouchEvent(int windowX, int windowY, EventType event) {
         this.windowX = windowX;
         this.windowY = windowY;
         this.type = event;
-        this.scroll=scroll;
+
     }
 
     /**
@@ -42,10 +42,6 @@ public class TouchEvent {
     public boolean isValid() {
         return x != -1 && y != -1;
     }
-    public boolean isScroll() {
-        return scroll;
-    }
-
     /**
      * Returns the absolute position in the X-axis where the event happened at, it will always be
      * defined.

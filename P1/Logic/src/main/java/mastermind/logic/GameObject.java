@@ -5,7 +5,7 @@ import java.util.Vector;
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 
 public class GameObject {

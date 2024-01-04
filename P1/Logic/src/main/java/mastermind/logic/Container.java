@@ -1,7 +1,7 @@
 package mastermind.logic;
 
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 
 /**
  * Empty game object

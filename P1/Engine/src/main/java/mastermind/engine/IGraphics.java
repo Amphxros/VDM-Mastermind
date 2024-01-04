@@ -127,7 +127,11 @@ public interface IGraphics {
     void drawCircle(float cx, float cy, float radius);
 
 
-
+    /**
+     * 
+     * @param width
+     * @param height
+     */
     void setResolution(int width, int height);
 
     /**

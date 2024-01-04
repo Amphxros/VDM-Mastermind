@@ -14,6 +14,10 @@ public abstract class Engine implements IEngine {
         return logic;
     }
 
+    /**
+     *
+     * @param logic An {@link ILogic} instance.
+     */
     @Override
     public void setLogic(ILogic logic) {
         this.logic = logic;

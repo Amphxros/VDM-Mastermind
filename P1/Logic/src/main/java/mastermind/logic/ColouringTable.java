@@ -2,7 +2,7 @@ package mastermind.logic;
 
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 
 public class ColouringTable extends GameObject implements DaltonicListener{
     boolean daltonic;

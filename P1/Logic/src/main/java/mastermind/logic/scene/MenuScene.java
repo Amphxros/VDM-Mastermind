@@ -9,6 +9,7 @@ import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
 
 public class MenuScene extends Scene {
+
     public MenuScene(IEngine engine) {
         super(engine);
     }

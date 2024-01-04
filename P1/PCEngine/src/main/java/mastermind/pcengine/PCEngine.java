@@ -7,7 +7,7 @@ import mastermind.engine.Engine;
 
 public class PCEngine extends Engine implements Runnable {
     private final JFrame renderView;
-    public boolean running;
+    public volatile boolean running;
 
     public PCEngine() {
         renderView = new JFrame("Mastermind");
@@ -24,16 +24,6 @@ public class PCEngine extends Engine implements Runnable {
 
         renderView.addMouseListener(input);
         renderView.addKeyListener(input);
-    }
-
-    @Override
-    public int getWidth() {
-        return renderView.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return renderView.getHeight();
     }
 
     @Override

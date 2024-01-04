@@ -12,10 +12,16 @@ import mastermind.engine.Input;
 import mastermind.engine.TouchEvent;
 
 public class AndroidInput extends Input implements View.OnTouchListener {
-    private int x,y;
-    EventType eventType;
-    TouchEvent scrollEvent=null;
-    int scrollYa, scrollYb;
+    private int x,y; // coordenadas del evento
+    EventType eventType; //tipo de evento
+
+    /**
+     *
+     * @param view The view the touch event has been dispatched to.
+     * @param motionEvent The MotionEvent object containing full information about
+     *        the event.
+     * @return si ha sucedido un evento que nos interesa parsear
+     */
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         TouchEvent t = null;
@@ -26,7 +32,7 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
 
-                t= new TouchEvent(x,y,eventType,false);
+                t= new TouchEvent(x,y,eventType);
                 addEvent(t);
                 break;
             case MotionEvent.ACTION_UP:
@@ -34,19 +40,11 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
 
-                t= new TouchEvent(x,y,eventType,true);
-                scrolling=false;
+                t= new TouchEvent(x,y,eventType);
                 addEvent(t);
 
                 break;
                 case MotionEvent.ACTION_MOVE:
-                    eventType=EventType.MOVE;
-                    x = (int) motionEvent.getX();
-                    y = (int) motionEvent.getY();
-                    scrolling=true;
-
-                    t= new TouchEvent(x,y,eventType,true);
-                    addEvent(t);
                     break;
 
         }

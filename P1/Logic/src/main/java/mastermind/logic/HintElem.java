@@ -2,8 +2,7 @@ package mastermind.logic;
 
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
-import mastermind.logic.GameObject;
+import mastermind.logic.scene.IScene;
 
 public class HintElem extends GameObject {
     private CellState cellState;

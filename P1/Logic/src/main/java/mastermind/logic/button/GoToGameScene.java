@@ -1,6 +1,6 @@
 package mastermind.logic.button;
 
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 import mastermind.logic.Scene;
 import mastermind.logic.scene.GameScene;
 

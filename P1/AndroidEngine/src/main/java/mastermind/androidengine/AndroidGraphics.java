@@ -105,11 +105,25 @@ public final class AndroidGraphics implements IGraphics {
         this.textAlignment = alignment;
     }
 
+    /**
+     *
+     * @param image The image to draw.
+     * @param x     The x-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param y     The y-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     */
     @Override
     public void drawImage(IImage image, int x, int y) {
         canvas.drawBitmap(((AndroidImage) image).getUnderlyingImage(), x, y, paint);
     }
 
+    /**
+     *
+     * @param image  The image to draw.
+     * @param x      The x-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param y      The y-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param width  The width to raw the `image` in the destination canvas. This allows scaling of the drawn image.
+     * @param height The height to raw the `image` in the destination canvas. This allows scaling of the drawn image.
+     */
     @Override
     public void drawImage(IImage image, int x, int y, int width, int height) {
         Rect src = new Rect(0, 0, image.getWidth(), image.getHeight());
@@ -117,6 +131,12 @@ public final class AndroidGraphics implements IGraphics {
         canvas.drawBitmap(((AndroidImage) image).getUnderlyingImage(), src, dst, paint);
     }
 
+    /**
+     *
+     * @param text The text to draw in the destination canvas.
+     * @param x    The x-axis coordinates from where to draw the text.
+     * @param y    The y-axis coordinates from where to draw the text.
+     */
     @Override
     public void drawText(String text, int x, int y) {
         int outX = x;
@@ -129,46 +149,94 @@ public final class AndroidGraphics implements IGraphics {
             paint.getTextBounds(text, 0, text.length(), result);
             outX -= result.width();
         }
-
+        paint.setStyle(Paint.Style.FILL);
         canvas.drawText(text, outX, y, paint);
     }
 
+    /**
+     * Dibuja un cuadrado relleno
+     * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y    The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param side The size of the rectangle to draw.
+     */
     @Override
     public void fillRectangle(int x, int y, int side) {
+        paint.setStyle(Paint.Style.FILL);
         fillRectangle(x, y, side, side);
     }
 
+    /**
+     * Dibuja un rectangulo relleno
+     * @param x      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     */
     @Override
     public void fillRectangle(int x, int y, int width, int height) {
+        paint.setStyle(Paint.Style.FILL);
         canvas.drawRect(x, y, x + width, y + height, paint);
     }
 
+    /**
+     * Dibuja un retangulo relleno con esquinas redondeadas
+     * @param cx  		The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy		The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width		The width of the rectangle to draw.
+     * @param height 	The height of the rectangle to draw.
+     * @param arc		The roundness of the corners
+     */
     @Override
     public void fillRoundRectangle(int cx, int cy, int width, int height, int arc) {
         assert (paint!=null);
         paint.setStyle(Paint.Style.FILL);
         canvas.drawRoundRect(cx,cy,cx+ width,cy + height,arc,arc,paint);
-        paint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * Dibuja un circulo
+     * @param cx centro x del circulo
+     * @param cy centro y del circulo
+     * @param radius radio del circulo
+     */
     @Override
     public void fillCircle(float cx, float cy, float radius) {
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(cx,cy,radius,paint);
     }
 
+    /**
+     * Dibuja el contorno de un cuadrado
+     * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y    The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param side The size of the rectangle to draw.
+     */
     @Override
     public void drawRectangle(int x, int y, int side) {
         drawRectangle(x, y, side, side);
     }
 
+    /**
+     * dibuja el contorno del rectangulo
+     * @param x      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     */
     @Override
     public void drawRectangle(int x, int y, int width, int height) {
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(x, y, x + width, y + height, paint);
-        paint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * dibuja el contorno de un rectangulo redondeado
+     * @param cx      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     * @param arc		The roundness of the corners
+     */
     @Override
     public void drawRoundRectangle(int cx, int cy, int width, int height, int arc) {
         paint.setStyle(Paint.Style.STROKE);
@@ -176,47 +244,85 @@ public final class AndroidGraphics implements IGraphics {
         paint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * Dibuja una linea de un punto init a un punto end
+     * @param initX The x-axis coordinate of the starting point of the line.
+     * @param initY The y-axis coordinate of the starting point of the line.
+     * @param endX  The x-axis coordinate of the ending point of the line.
+     * @param endY  The y-axis coordinate of the ending point of the line.
+     */
     @Override
     public void drawLine(int initX, int initY, int endX, int endY) {
         canvas.drawLine(initX, initY, endX, endY, paint);
     }
 
+    /**
+     * Dibuja una circunferencia
+     * @param cx centro en x
+     * @param cy centro en y
+     * @param radius radio de la circunferencia
+     */
     @Override
     public void drawCircle(float cx, float cy, float radius) {
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(cx,cy,radius,paint);
-        paint.setStyle(Paint.Style.FILL);
+
     }
 
+    /**
+     * Pone la dimension de la pantalla logica
+     * @param width
+     * @param height
+     */
     @Override
     public void setResolution(int width, int height) {
         transformer.setSize(width, height);
     }
 
+    /**
+     * Pone el color al que vamos a pintar con un int ARGB
+     * @param color Sets the current color with a raw ARGB integer.
+     */
     @Override
     public void setColor(int color) {
         paint.setColor(Color.rgbaToARGB(color));
     }
 
+    /**
+     * Pone el color a pintar
+     * @param color Sets the current color with a {@link Color} instance.
+     */
     @Override
     public void setColor(Color color) {
         paint.setColor(color.getARGB());
     }
 
+    /**
+     * Pone la tipografia que vamos a usar
+     * @param font
+     */
     @Override
     public void setFont(IFont font) {
         AndroidFont aFont = (AndroidFont) font;
         paint.setTypeface(aFont.getFont());
         paint.setTextSize(aFont.getSize());
-
     }
 
-
+    /**
+     * Mueve el canvas
+     * @param x posicion en x
+     * @param y posicion en y
+     */
     @Override
     public void translate(int x, int y) {
         canvas.translate(x, y);
     }
 
+    /**
+     * Escala el canvas
+     * @param x
+     * @param y
+     */
     @Override
     public void scale(double x, double y) {
         canvas.scale((float) x, (float) y);

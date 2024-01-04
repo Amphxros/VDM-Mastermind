@@ -1,7 +1,8 @@
 package mastermind.logic.button;
 
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.Logic;
+import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.Scene;
 
@@ -12,7 +13,8 @@ public abstract class GoToScene extends Button{
 
     @Override
     public boolean onTouchUp(TouchEvent event) {
-        getEngine().getLogic().setScene(createScene());
+        Logic l= (Logic)getEngine().getLogic();
+        l.setScene(createScene());
         return true;
     }
 

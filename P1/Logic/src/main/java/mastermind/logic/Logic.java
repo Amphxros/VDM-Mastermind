@@ -4,7 +4,7 @@ import mastermind.engine.IEngine;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
 import mastermind.engine.ILogic;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 import mastermind.logic.scene.MenuScene;
 
 public class Logic implements ILogic {
@@ -14,7 +14,6 @@ public class Logic implements ILogic {
         this.engine=engine;
     }
 
-    @Override
     public void setScene(IScene scene) {
         assert (scene!=null);
         if(this.currentScene!=null)

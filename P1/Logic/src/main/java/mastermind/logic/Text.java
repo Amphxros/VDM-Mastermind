@@ -1,10 +1,9 @@
 package mastermind.logic;
 
-import mastermind.engine.Color;
 import mastermind.engine.HorizontalAlignment;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 
 public class Text extends GameObject{
     private final IFont font;

@@ -14,7 +14,6 @@ public class AndroidImage implements IImage {
 
     /**
      * Gets the source width of the image.
-     *
      * @return The source width of the image.
      */
     @Override
@@ -24,7 +23,6 @@ public class AndroidImage implements IImage {
 
     /**
      * Gets the source height of the image.
-     *
      * @return The source height of the image.
      */
     @Override

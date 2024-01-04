@@ -7,8 +7,8 @@ import mastermind.engine.Color;
 import mastermind.engine.Engine;
 
 public class AndroidEngine extends Engine implements Runnable {
-    private Thread thread;
-    private boolean running;
+    private Thread thread; //Thread de la app
+    private volatile boolean running; //bool para el bucle principal
 
     public AndroidEngine(SurfaceView surfaceView, Context context) {
         setGraphics(new AndroidGraphics(surfaceView, context));
@@ -24,16 +24,9 @@ public class AndroidEngine extends Engine implements Runnable {
         return (AndroidGraphics) super.getGraphics();
     }
 
-    @Override
-    public int getWidth() {
-        return getGraphics().getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return getGraphics().getHeight();
-    }
-
+    /**
+     * Bucle principal del hilo
+     */
     @Override
     public void run() {
         if (thread != Thread.currentThread()) {
@@ -46,9 +39,11 @@ public class AndroidEngine extends Engine implements Runnable {
         while (running && getGraphics().getWidth() == 0) ;
 
         long lastFrameTime = System.nanoTime();
+        //inicializamos la logica una vez tengamos la vista inicializada
         getLogic().init();
+
         while (running) {
-            long currentTime = System.nanoTime();
+            long currentTime = System.nanoTime(); //tiempo en nano secs
             long nanoElapsedTime = currentTime - lastFrameTime;
             lastFrameTime = currentTime;
 
@@ -63,10 +58,8 @@ public class AndroidEngine extends Engine implements Runnable {
 
     private void render() {
         AndroidGraphics graphics = getGraphics();
-
         // Waits for an invalid surface
         while (!graphics.surfaceValid()) ;
-
         graphics.clear(Color.WHITE.getARGB());
         getLogic().render(graphics);
         graphics.present();
@@ -85,7 +78,6 @@ public class AndroidEngine extends Engine implements Runnable {
             // Only if we weren't doing anything yet
             // (Defensive programming at its best)
             running = true;
-
             // run() is "running" in a new thread
             thread = new Thread(this);
             thread.start();

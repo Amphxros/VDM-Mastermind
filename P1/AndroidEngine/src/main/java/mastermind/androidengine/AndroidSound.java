@@ -31,18 +31,29 @@ public class AndroidSound implements ISound {
 
 
     }
+
+    /**
+     * Reproduce el sonido loop veces (-1 es siempre, hasta que lo paremos por codigo)
+     */
     @Override
     public void play() {
         this.streamID=soundPool.play(soundID,1,1,1,loop,1);
     }
 
+    /**
+     * Para el sonido
+     */
     @Override
     public void stop() {
         soundPool.stop(this.streamID);
     }
 
+    /**
+     * Cambia el loop de reproducir una vez a hacerlo hasta que lo paremos y viceversa
+     */
     @Override
     public void setLoop() {
+
         if(this.loop==0)
             this.loop=-1;
         else

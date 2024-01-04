@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 
 public class HintObject extends GameObject{
 

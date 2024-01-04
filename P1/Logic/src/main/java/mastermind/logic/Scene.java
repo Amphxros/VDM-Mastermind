@@ -6,7 +6,7 @@ import java.util.List;
 import mastermind.engine.IEngine;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 
 public abstract class Scene implements IScene {

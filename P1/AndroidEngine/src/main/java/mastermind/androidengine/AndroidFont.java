@@ -14,25 +14,42 @@ public class AndroidFont implements IFont {
         font = Typeface.create(new Typeface.Builder(assetManager, route).setWeight(size).build(), isBold ? Typeface.NORMAL : Typeface.BOLD);
     }
 
+    /**
+     * @return
+     */
     public Typeface getFont() {
         return font;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getSize() {
         return size;
     }
 
+    /**
+     * @return
+     */
     @Override
     public boolean isBold() {
         return font.isBold();
     }
 
+    /**
+     * @return Si la fuente esta en cursiva
+     */
     @Override
     public boolean isItalic() {
         return font.isItalic();
     }
 
+    /**
+     *
+     * @return El
+     */
     public Typeface getUnderlyingFont() {
         return font;
     }

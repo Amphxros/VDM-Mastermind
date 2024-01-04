@@ -32,9 +32,9 @@ public class PCInput extends Input implements MouseInputListener, KeyListener {
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
-            addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.DOWN,false));
+            addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.DOWN));
         } else if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-            addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.UP,false));
+            addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.UP));
         }
 
     }

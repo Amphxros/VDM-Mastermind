@@ -2,7 +2,7 @@ package mastermind.logic;
 
 import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
-import mastermind.engine.IScene;
+import mastermind.logic.scene.IScene;
 
 public class Image extends GameObject{
     private IImage image;

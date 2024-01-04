@@ -1,4 +1,9 @@
-package mastermind.engine;
+package mastermind.logic.scene;
+
+import mastermind.engine.IEngine;
+import mastermind.engine.IGraphics;
+import mastermind.engine.IInput;
+import mastermind.engine.Input;
 
 public interface IScene {
     /**

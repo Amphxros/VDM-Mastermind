@@ -18,6 +18,7 @@ import mastermind.logic.Container;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
+import mastermind.logic.Logic;
 import mastermind.logic.Scene;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
@@ -178,7 +179,8 @@ public class GameScene extends Scene {
         tables[currTable].fillCell(c,value);
         if(tables[currTable].isComplete()){
            if(tables[currTable].correctHints(this.solution)){
-               getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,true));
+               Logic l= (Logic)getEngine().getLogic();
+               l.setScene(new WinScene(getEngine(),colors,solution,true));
            }
            else
            {
@@ -188,7 +190,8 @@ public class GameScene extends Scene {
                    tryText.setText("Tienes "+this.numIntentos+" intentos restantes");
                }
                else{
-                   getEngine().getLogic().setScene(new WinScene(getEngine(),colors,solution,false));
+                   Logic l= (Logic)getEngine().getLogic();
+                   l.setScene(new WinScene(getEngine(),colors,solution,false));
                }
            }
         }
