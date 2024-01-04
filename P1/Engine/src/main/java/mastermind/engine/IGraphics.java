@@ -1,8 +1,20 @@
 package mastermind.engine;
 
 public interface IGraphics {
+
+    /**
+     * @param name ruta donde se encuentra el archivo de la imagen
+     * @return Interfaz de una Image para las diferentes plataformas.
+     */
     IImage newImage(String name);
 
+    /**
+     *
+     * @param name ruta donde se encuentra el archivo de la fuente
+     * @param size tamaño de la fuente
+     * @param isBold boleano para saber si esta en negrita
+     * @return
+     */
     IFont newFont(String name, int size, boolean isBold);
 
     /**
@@ -73,9 +85,9 @@ public interface IGraphics {
 
     /**
      *
-     * @param cx
-     * @param cy
-     * @param radius
+     * @param cx The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param radius Radius of the circle to be drawn
      */
     void fillCircle(float cx, float cy, float radius);
 

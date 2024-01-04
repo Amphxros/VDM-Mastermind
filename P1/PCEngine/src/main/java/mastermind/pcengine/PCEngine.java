@@ -6,11 +6,15 @@ import mastermind.engine.Color;
 import mastermind.engine.Engine;
 
 public class PCEngine extends Engine implements Runnable {
+    public static final String titleGame = "Mastermind";
     private final JFrame renderView;
     public volatile boolean running;
 
+    /**
+     * Constructora del motor de PC. Inicializa todos los motores dentro del PC.
+     */
     public PCEngine() {
-        renderView = new JFrame("Mastermind");
+        renderView = new JFrame(titleGame);
         renderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         renderView.pack();
         renderView.setIgnoreRepaint(true);
@@ -28,22 +32,34 @@ public class PCEngine extends Engine implements Runnable {
 
     @Override
     public void run() {
+        // Obtener el tiempo actual en nanosegundos
         long lastFrameTime = System.nanoTime();
 
+        // Inicializar la lógica del juego
         getLogic().init();
+
+        // Bucle principal mientras la aplicación esté en ejecución
         while (running) {
             long currentTime = System.nanoTime();
+
+            // Calcular el tiempo transcurrido desde el último fotograma en segundos
             long nanoElapsedTime = currentTime - lastFrameTime;
             lastFrameTime = currentTime;
 
             // Frames Per Second
             double elapsedTime = (double) nanoElapsedTime / 1.0E9;
 
+            // Manejar eventos de entrada y actualizar la lógica del juego
             getLogic().handleEvents(getInput());
             getLogic().update(elapsedTime);
 
+            // Limpiar el fondo con color blanco
             getGraphics().clear(Color.WHITE.getARGB());
+
+            // Renderizar la lógica del juego en el lienzo
             getLogic().render(getGraphics());
+
+            // Presentar el lienzo para visualizar los cambios
             getGraphics().present();
         }
     }

@@ -26,28 +26,47 @@ public class PCGraphics implements IGraphics {
     private Graphics2D canvas;
     private HorizontalAlignment textAlignment;
 
+    /**
+     * Constructor de la clase PCGraphics que inicializa la representación gráfica para un JFrame dado
+     * @param window ventana que le pasas al motor grafico
+     */
     public PCGraphics(JFrame window) {
+        // Asignar el JFrame proporcionado a la variable de instancia 'window'
         this.window = window;
+
+        // Número de intentos para crear un buffer strategy
         int attempts = 10;
 
+        // Intentar crear un BufferStrategy con un máximo de 2 buffers
         while (attempts > 0) {
             try {
+                // Intentar crear un BufferStrategy con 2 buffers
                 this.window.createBufferStrategy(2);
                 break;
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            // Decrementar el número de intentos restantes
             attempts--;
         }
 
+        // Obtener el BufferStrategy creado
         this.buffer = this.window.getBufferStrategy();
+        // Obtener el contexto gráfico (Graphics2D) asociado al BufferStrategy
         this.canvas = (Graphics2D) this.buffer.getDrawGraphics();
     }
 
+    /**
+     *
+     * @param name ruta donde se encuentra el archivo de la imagen
+     * @return devuelve una imagen de PC (PCImage)
+     */
     @Override
-    public IImage newImage(String name) {
+    public PCImage newImage(String name) {
+        // Declaración de una BufferedImage para almacenar la imagen
         BufferedImage image;
         try {
+            // Intentar leer la imagen desde el archivo en la ruta especificada
             image = ImageIO.read(new File("Assets/" + name));
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -57,16 +76,25 @@ public class PCGraphics implements IGraphics {
         return new PCImage(image);
     }
 
+    /**
+     *
+     * @param name ruta donde se encuentra el archivo de la fuente
+     * @param size tamaño de la fuente
+     * @param isBold boleano para saber si esta en negrita
+     * @return devuelve una fuente de PC (PCFont)
+     */
     @Override
-    public IFont newFont(String name, int size, boolean isBold) {
+    public PCFont newFont(String name, int size, boolean isBold) {
         Font font;
         try {
+            // Intentar leer la fuente desde el archivo en la ruta especificada
             font = Font.createFont(Font.TRUETYPE_FONT, new File("Assets/" + name));
         } catch (Exception exception) {
             exception.printStackTrace();
             return null;
         }
 
+        // Derivar la fuente con el tamaño y el estilo especificados
         font = font.deriveFont(isBold ? Font.BOLD : Font.PLAIN, (float) size);
         return new PCFont(font);
     }
@@ -84,16 +112,36 @@ public class PCGraphics implements IGraphics {
         textAlignment = alignment;
     }
 
+    /**
+     *
+     * @param image The image to draw.
+     * @param x     The x-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param y     The y-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     */
     @Override
     public void drawImage(IImage image, int x, int y) {
         canvas.drawImage(((PCImage) image).getUnderlyingImage(), x, y, null);
     }
 
+    /**
+     *
+     * @param image  The image to draw.
+     * @param x      The x-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param y      The y-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param width  The width to raw the `image` in the destination canvas. This allows scaling of the drawn image.
+     * @param height The height to raw the `image` in the destination canvas. This allows scaling of the drawn image.
+     */
     @Override
     public void drawImage(IImage image, int x, int y, int width, int height) {
         canvas.drawImage(((PCImage) image).getUnderlyingImage(), x, y, width, height, null);
     }
 
+    /**
+     *
+     * @param text The text to draw in the destination canvas.
+     * @param x    The x-axis coordinates from where to draw the text.
+     * @param y    The y-axis coordinates from where to draw the text.
+     */
     @Override
     public void drawText(String text, int x, int y) {
         int outX = x;
@@ -106,21 +154,48 @@ public class PCGraphics implements IGraphics {
         canvas.drawString(text, outX, y);
     }
 
+    /**
+     *
+     * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y    The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param side The size of the rectangle to draw.
+     */
     @Override
     public void fillRectangle(int x, int y, int side) {
         fillRectangle(x, y, side, side);
     }
 
+    /**
+     *
+     * @param x      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     */
     @Override
     public void fillRectangle(int x, int y, int width, int height) {
         canvas.fillRect(x, y, width, height);
     }
 
+    /**
+     *
+     * @param cx  		The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy		The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width		The width of the rectangle to draw.
+     * @param height 	The height of the rectangle to draw.
+     * @param arc		The roundness of the corners
+     */
     @Override
     public void fillRoundRectangle(int cx, int cy, int width, int height, int arc) {
         canvas.fill(new RoundRectangle2D.Double(cx, cy, width, height, arc, arc));
     }
 
+    /**
+     *
+     * @param cx The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param radius Radius of the circle to be drawn
+     */
     @Override
     public void fillCircle(float cx, float cy, float radius) {
         Shape circle = new Ellipse2D.Double(cx - radius, cy - radius, radius * 2.0, radius * 2.0);
