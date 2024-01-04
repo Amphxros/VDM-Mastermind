@@ -31,6 +31,7 @@ public class Cell extends Button implements DaltonicListener{
 
     @Override
     public void render(IGraphics graphics) {
+
         if(state ==CellState.Empty) {
             graphics.setColor(initialColor);
         }
@@ -45,13 +46,16 @@ public class Cell extends Button implements DaltonicListener{
 
     @Override
     public boolean onTouchDown(TouchEvent event) {
+        getEngine().getAudio().stopSound(sound);
         state= CellState.Empty;
         this.value=-1;
-        getEngine().getAudio().playSound(sound);
+        if(sound!=null)
+            getEngine().getAudio().playSound(sound);
         return true;
     }
 
     public void fillCell(Color c, int value){
+        getEngine().getAudio().stopSound(sound);
         strokeColor=c;
         this.value=value;
         if(sound!=null) {
