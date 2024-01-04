@@ -6,6 +6,9 @@ import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.Scene;
 
+/**
+ * Boton que cuando se presiona en el mismo te cambia de escena
+ */
 public abstract class GoToScene extends Button{
     public GoToScene(IScene scene) {
         super(scene);

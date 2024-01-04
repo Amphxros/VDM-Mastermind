@@ -4,7 +4,7 @@ import mastermind.engine.IGraphics;
 import mastermind.logic.scene.IScene;
 
 /**
- * Empty game object
+ * Objeto vacio, su funcionalidad es contener otros objetos
  */
 public class Container extends GameObject{
     public Container(IScene scene) {

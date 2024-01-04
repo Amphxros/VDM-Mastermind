@@ -7,6 +7,9 @@ import mastermind.engine.TouchEvent;
 import mastermind.logic.button.Button;
 import mastermind.logic.scene.GameScene;
 
+/**
+ * Casilla que rellena con un valor las casillas rellenables
+ */
 public class ColouringCell extends Button implements DaltonicListener{
 
     int value;

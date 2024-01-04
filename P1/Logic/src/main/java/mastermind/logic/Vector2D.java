@@ -1,8 +1,8 @@
 package mastermind.logic;
 
-public class Vector2D {
-    private final int x;
-    private final int y;
+public final class Vector2D {
+    private final int x; //coordenada X
+    private final int y; // coordenada Y
 
     public Vector2D(int x, int y) {
         this.x = x;

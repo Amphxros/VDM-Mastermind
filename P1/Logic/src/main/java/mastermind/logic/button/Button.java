@@ -5,10 +5,14 @@ import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.GameObject;
 
+/**
+ * GO que reacciona a los eventos cuando esa pulsacion esta en su rectangulo
+ */
 public class Button extends GameObject {
     public Button(IScene scene) {
         super(scene);
     }
+
 
     public boolean handleInput(TouchEvent event) {
         if (event.getType() != EventType.DOWN && event.getType() != EventType.UP) {

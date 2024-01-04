@@ -8,6 +8,9 @@ import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.button.Button;
 
+/**
+ * Casilla rellenable del juego
+ */
 public class Cell extends Button implements DaltonicListener{
     int value=-1;
     CellState state;

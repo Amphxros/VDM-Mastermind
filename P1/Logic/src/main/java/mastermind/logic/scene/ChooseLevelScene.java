@@ -3,11 +3,15 @@ package mastermind.logic.scene;
 import mastermind.engine.Color;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
+import mastermind.engine.IImage;
 import mastermind.logic.Container;
 import mastermind.logic.GameObject;
+import mastermind.logic.Image;
 import mastermind.logic.Scene;
 import mastermind.logic.Text;
+import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToGameScene;
+import mastermind.logic.button.GoToMenuScene;
 
 public class ChooseLevelScene extends Scene {
     public ChooseLevelScene(IEngine engine) {
@@ -16,16 +20,29 @@ public class ChooseLevelScene extends Scene {
 
     @Override
     public void init() {
-        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
+        IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",15,false);
+        IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
 
         int buttonW = (int) (maxWidth * 0.8);
         int buttonX = center - buttonW / 2;
+
+        addGameObject(new GoToMenuScene(this)
+                .setPosition(0,20)
+                .setSize(50,50)
+                .setStrokeColor(new Color(200,200,200))
+
+                .addChild(new Image(this, back)
+                        .setSize(50,50)
+                )
+
+        );
+
         // Title
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
-                .setPosition(center, 20));
+                .setPosition(center, 50));
 
         addGameObject(new Container(this)
                 .setPosition(100, 100)

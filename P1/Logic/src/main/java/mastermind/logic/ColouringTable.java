@@ -4,6 +4,9 @@ import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.logic.scene.IScene;
 
+/**
+ * Tabla con todas las casillas que rellenan elem
+ */
 public class ColouringTable extends GameObject implements DaltonicListener{
     boolean daltonic;
 

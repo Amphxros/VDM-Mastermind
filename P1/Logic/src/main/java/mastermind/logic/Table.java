@@ -27,11 +27,12 @@ public class Table extends GameObject implements DaltonicListener{
 
     @Override
     public void init() {
+        int initialPos=getWidth()/numElems;
         for(int i=0;i<this.numElems;i++){
             this.cells[i]=(new Cell(getScene(),font,sound));
             this.cells[i].setSize(2*getHeight()/3,2*getHeight()/3)
                     .setStrokeColor(new Color(150,150,150))
-                    .setPosition(20 + 40*(i),10);
+                    .setPosition(initialPos/3 + (3*getHeight()/4)*(i),10);
             this.addChild(cells[i]);
         }
         if(showHints) {

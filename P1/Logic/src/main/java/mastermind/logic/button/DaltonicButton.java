@@ -6,7 +6,10 @@ import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.GameScene;
 
-public class DaltonicButton extends Button{
+/**
+ * Boton que activa/desactiva el modo daltonicof
+ */
+public final class DaltonicButton extends Button{
     IImage open, close;
     boolean daltonic= false;
     public DaltonicButton(IScene scene, IImage enable, IImage disable) {
