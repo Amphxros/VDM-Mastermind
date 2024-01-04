@@ -10,6 +10,7 @@ import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.engine.IImage;
 import mastermind.engine.IInput;
+import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.ColouringCell;
 import mastermind.logic.ColouringTable;
@@ -36,6 +37,8 @@ public class GameScene extends Scene {
     ArrayList<DaltonicListener> daltonicObservers;
     boolean isRepeating;
     Text tryText;
+
+
     public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating) {
         super(engine);
         this.numColores=numColores;
@@ -54,10 +57,12 @@ public class GameScene extends Scene {
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
+
         IImage open= getEngine().getGraphics().newImage("images/eye_opened.png");
         IImage close= getEngine().getGraphics().newImage("images/eye_closed_icon.png");
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
+        ISound sound= getEngine().getAudio().createSound("sounds/select.wav");
         generateData();
 
         tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",font)
@@ -83,7 +88,7 @@ public class GameScene extends Scene {
         );
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,font);
+            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,font,sound);
             addGameObject(t);
             daltonicObservers.add(t);
             tables[i]=t;
@@ -147,8 +152,8 @@ public class GameScene extends Scene {
 
     }
 
-    private GameObject createTable(int index, int x, int y, int w, int h, Color color, IFont font){
-        return new Table(this, this.tamPassword,font,true)
+    private GameObject createTable(int index, int x, int y, int w, int h, Color color, IFont font, ISound sound){
+        return new Table(this, this.tamPassword,font,true,sound)
                 .setPosition(x,y)
                 .setSize(w,h)
                 .setStrokeColor(color)

@@ -14,8 +14,8 @@ public class PCSound implements ISound {
     }
     @Override
     public void play() {
-        this.audioClip.setFramePosition(0);
-        this.audioClip.start();
+        if (!audioClip.isRunning())
+            audioClip.start();
 
     }
 

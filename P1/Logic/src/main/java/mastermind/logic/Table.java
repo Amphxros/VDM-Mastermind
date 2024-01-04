@@ -6,6 +6,7 @@ import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
+import mastermind.engine.ISound;
 
 public class Table extends GameObject implements DaltonicListener{
     int numElems;
@@ -15,19 +16,21 @@ public class Table extends GameObject implements DaltonicListener{
     IFont font;
     HintObject hintObject;
     boolean showHints;
-    public Table(IScene scene, int numElems, IFont font, boolean showHints) {
+    ISound sound;
+    public Table(IScene scene, int numElems, IFont font, boolean showHints, ISound sound) {
         super(scene);
         this.numElems=numElems;
         this.solution= new int[this.numElems];
         this.font=font;
         this.cells= new Cell[this.numElems];
         this.showHints=showHints;
+        this.sound=sound;
     }
 
     @Override
     public void init() {
         for(int i=0;i<this.numElems;i++){
-            this.cells[i]=(new Cell(getScene(),font));
+            this.cells[i]=(new Cell(getScene(),font,sound));
             this.cells[i].setSize(30,30)
                     .setStrokeColor(new Color(150,150,150))
                     .setPosition(20 + 40*(i),10);

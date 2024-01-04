@@ -11,34 +11,30 @@ import mastermind.engine.ISound;
 
 public class PCAudio implements IAudio {
 
-    public PCAudio(){
-
-    }
     @Override
-    public ISound createSound(String filename) {
-       Clip audioClip=null;
+    public ISound createSound(String path) {
+        Clip sound;
+
         try {
-            File audio = new File(filename);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audio);
-            audioClip = AudioSystem.getClip();
-            audioClip.open(audioInputStream);
-        } catch (Exception e) {
-            System.err.println("error while loading audio in PC");
-            e.printStackTrace();
+            File audioFile = new File("Assets/" + path);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            sound = AudioSystem.getClip();
+            sound.open(audioStream);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
         }
 
-        return new PCSound(audioClip);
+        return new PCSound(sound);
     }
 
     @Override
     public void playSound(ISound s) {
-        assert (s!=null);
         s.play();
     }
 
     @Override
     public void stopSound(ISound s) {
-        assert (s!=null);
         s.stop();
     }
 }

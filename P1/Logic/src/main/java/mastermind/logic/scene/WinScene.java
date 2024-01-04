@@ -23,7 +23,7 @@ public class WinScene extends Scene {
     @Override
     public void init() {
         IFont font= getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
-        Table t= new Table(this,this.solution.length,font,false);
+        Table t= new Table(this,this.solution.length,font,false,null);
         t.setPosition(100,200);
         t.setSize(200,50);
         t.setStrokeColor(new Color(200,200,200));

@@ -4,6 +4,7 @@ import mastermind.engine.Color;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
+import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.button.Button;
 
@@ -14,11 +15,12 @@ public class Cell extends Button implements DaltonicListener{
     boolean daltonic_mode;
 
     IFont font;
-    public Cell(IScene scene, IFont font) {
+    ISound sound;
+    public Cell(IScene scene, IFont font, ISound sound) {
         super(scene);
         this.font=font;
         this.state=CellState.Empty;
-
+        this.sound=sound;
     }
 
     @Override
@@ -44,12 +46,17 @@ public class Cell extends Button implements DaltonicListener{
     @Override
     public boolean onTouchDown(TouchEvent event) {
         state= CellState.Empty;
+        this.value=-1;
+        getEngine().getAudio().playSound(sound);
         return true;
     }
 
     public void fillCell(Color c, int value){
         strokeColor=c;
         this.value=value;
+        if(sound!=null) {
+            getEngine().getAudio().playSound(sound);
+        }
         state=CellState.Filled;
     }
 

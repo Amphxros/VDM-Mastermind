@@ -17,11 +17,12 @@ public class ColouringTable extends GameObject implements DaltonicListener{
 
     @Override
     public void init() {
+        int initialpos= getWidth()/numCells;
         for(int i=0;i<this.numCells;i++){
             this.addChild(new ColouringCell(getScene(),i)
-                    .setSize(30,30)
+                    .setSize(40,40)
                     .setStrokeColor(colors[i])
-                    .setPosition(20 + 40*(i),20)
+                    .setPosition(initialpos + 50*(i),20)
             );
         }
         super.init();
@@ -47,6 +48,6 @@ public class ColouringTable extends GameObject implements DaltonicListener{
 
     @Override
     public void drawDaltonicInfo(IGraphics graphics) {
-
+        //not need
     }
 }
