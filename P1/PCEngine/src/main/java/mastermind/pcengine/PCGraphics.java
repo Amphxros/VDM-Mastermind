@@ -153,7 +153,6 @@ public class PCGraphics implements IGraphics {
 
         canvas.drawString(text, outX, y);
     }
-
     /**
      *
      * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
@@ -202,28 +201,66 @@ public class PCGraphics implements IGraphics {
         canvas.fill(circle);
     }
 
+    /**
+     *
+     * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y    The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param side The size of the rectangle to draw.
+     */
     @Override
     public void drawRectangle(int x, int y, int side) {
         drawRectangle(x, y, side, side);
     }
 
+    /**
+     *
+     * @param x      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     */
     @Override
     public void drawRectangle(int x, int y, int width, int height) {
         canvas.drawRect(x, y, width, height);
     }
 
+    /**
+     *
+     * @param cx      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     * @param arc		The roundness of the corners
+     */
     @Override
     public void drawRoundRectangle(int cx, int cy, int width, int height, int arc) {
         canvas.draw(new RoundRectangle2D.Double(cx, cy, width, height, arc, arc));
     }
 
+    /**
+     *
+     * @param initX The x-axis coordinate of the starting point of the line.
+     * @param initY The y-axis coordinate of the starting point of the line.
+     * @param endX  The x-axis coordinate of the ending point of the line.
+     * @param endY  The y-axis coordinate of the ending point of the line.
+     */
     @Override
     public void drawLine(int initX, int initY, int endX, int endY) {
         canvas.drawLine(initX, initY, endX, endY);
     }
 
+    /**
+     *
+     * Método que dibuja un círculo en el lienzo.
+     *
+     * @param cx La coordenada x del centro del círculo.
+     * @param cy La coordenada y del centro del círculo.
+     * @param radius El radio del círculo.
+     */
     @Override
     public void drawCircle(float cx, float cy, float radius) {
+
+        // Se crea un objeto de la clase Shape que representa un círculo utilizando la clase Ellipse2D.Double.
         Shape circle = new Ellipse2D.Double(cx - radius, cy - radius, radius * 2.0, radius * 2.0);
         canvas.draw(circle);
     }
@@ -243,21 +280,29 @@ public class PCGraphics implements IGraphics {
     public void setColor(mastermind.engine.Color color) {
         canvas.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
     }
+
+    /**
+     *
+     * @param font Objeto que implementa la interfaz IFont y representa la fuente.
+     */
     @Override
     public void setFont(IFont font) {
-
         canvas.setFont(((PCFont) font).getUnderlyingFont().deriveFont((float) font.getSize()));
     }
 
+    /**
+     * Presenta el contenido del buffer en pantalla, luego libera el lienzo actual
+     * y lo reemplaza con uno actualizado.
+     */
     @Override
     public void present() {
-        // Show the buffer, then dispose the current canvas and replace with an updated one.
+        // Muestra el contenido del buffer en pantalla.
         buffer.show();
+        // Libera el lienzo actual para evitar pérdidas de recursos.
         canvas.dispose();
+        // Reemplaza el lienzo con uno actualizado del buffer.
         canvas = (Graphics2D) buffer.getDrawGraphics();
     }
-
-
 
     @Override
     public void clear(int color) {

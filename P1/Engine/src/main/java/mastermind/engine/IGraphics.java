@@ -131,18 +131,20 @@ public interface IGraphics {
     void drawLine(int initX, int initY, int endX, int endY);
 
     /**
+     * Método que dibuja un círculo en el lienzo.
      *
-     * @param cx
-     * @param cy
-     * @param radius
+     * @param cx La coordenada x del centro del círculo.
+     * @param cy La coordenada y del centro del círculo.
+     * @param radius El radio del círculo.
      */
     void drawCircle(float cx, float cy, float radius);
 
 
     /**
-     * 
-     * @param width
-     * @param height
+     * Establece la resolución del sistema con las dimensiones especificadas.
+     *
+     * @param width Ancho de la resolución.
+     * @param height Altura de la resolución.
      */
     void setResolution(int width, int height);
 
@@ -156,23 +158,63 @@ public interface IGraphics {
      */
     void setColor(mastermind.engine.Color color);
 
+    /**
+     * Establece la fuente utilizada por el objeto que llama a este método.
+     *
+     * @param font Objeto que implementa la interfaz IFont y representa la fuente.
+     */
     void setFont(IFont font);
 
+    /**
+     * Presenta o muesta el contenido actualizado
+     */
     void present();
 
-
+    /**
+     * Limpia el objeto que llama a este método, utilizando el color especificado.
+     *
+     * @param color Color con el que se limpiará el objeto (puede ser un valor hexadecimal o un código de color).
+     */
     void clear(int color);
 
+    /**
+     * Realiza una traslación en el objeto que llama a este método.
+     *
+     * @param x La cantidad de unidades a trasladar en el eje x.
+     * @param y La cantidad de unidades a trasladar en el eje y.
+     */
     void translate(int x, int y);
 
+    /**
+     * Escala el objeto que llama a este método en los ejes x e y.
+     *
+     * @param x Factor de escala para el eje x.
+     * @param y Factor de escala para el eje y.
+     */
     void scale(double x, double y);
 
+    /**
+     * Guarda el estado actual del objeto que llama a este método.
+     */
     void save();
 
+    /**
+     * Restaura el estado previamente guardado del objeto que llama a este método.
+     */
     void restore();
 
+    /**
+     * Obtiene el ancho del objeto que llama a este método.
+     *
+     * @return El ancho del objeto.
+     */
     int getWidth();
 
+    /**
+     * Obtiene el alto del objeto que llama a este método.
+     *
+     * @return El alto del objeto.
+     */
     int getHeight();
 
     /**
