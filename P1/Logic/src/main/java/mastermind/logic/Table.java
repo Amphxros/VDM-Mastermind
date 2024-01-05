@@ -6,15 +6,28 @@ import mastermind.engine.IGraphics;
 import mastermind.logic.scene.IScene;
 import mastermind.engine.ISound;
 
+/**
+ * Clase Table que representa una tabla de juego en un nivel (scene).
+ * Extiende la clase GameObject e implementa la interfaz DaltonicListener.
+ */
 public class Table extends GameObject implements DaltonicListener{
-    int numElems;
+    int numElems; // Número de elementos en la tabla.
+    int[] solution; // Solución de la tabla.
+    Cell [] cells; // Arreglo de celdas que forman la tabla.
+    IFont font; // Fuente utilizada en las celdas.
+    HintObject hintObject; // Objeto de pista para mostrar pistas en caso necesario.
+    boolean showHints; // Booleano que indica si se deben mostrar las pistas.
+    ISound sound; // Objeto de sonido asociado a la tabla.
 
-    int[] solution;
-    Cell [] cells;
-    IFont font;
-    HintObject hintObject;
-    boolean showHints;
-    ISound sound;
+    /**
+     * Constructor de la clase Table.
+     *
+     * @param scene      El escenario al que pertenece la tabla.
+     * @param numElems   Número de elementos en la tabla.
+     * @param font       La fuente utilizada en las celdas de la tabla.
+     * @param showHints  Indica si se deben mostrar las pistas.
+     * @param sound      Objeto de sonido asociado a la tabla.
+     */
     public Table(IScene scene, int numElems, IFont font, boolean showHints, ISound sound) {
         super(scene);
         this.numElems=numElems;
@@ -25,6 +38,9 @@ public class Table extends GameObject implements DaltonicListener{
         this.sound=sound;
     }
 
+    /**
+     * Inicializa la tabla, creando y posicionando las celdas.
+     */
     @Override
     public void init() {
         int initialPos=getWidth()/numElems;
@@ -45,9 +61,11 @@ public class Table extends GameObject implements DaltonicListener{
         }
         super.init();
     }
+
     /**
+     * Verifica si la tabla está completa.
      *
-     * @return true if the table is completed
+     * @return true si la tabla está completa.
      */
     public boolean isComplete(){
        int i=0;
@@ -61,6 +79,12 @@ public class Table extends GameObject implements DaltonicListener{
        return i==cells.length;
     }
 
+    /**
+     * Rellena una celda con un color y un valor dados.
+     *
+     * @param c     Color con el que se rellenará la celda.
+     * @param value Valor que se asignará a la celda.
+     */
     public void fillCell(Color c, int value){
         int i=0;
         while(i< cells.length && cells[i].getState()!=CellState.Empty) {
@@ -69,6 +93,11 @@ public class Table extends GameObject implements DaltonicListener{
         cells[i].fillCell(c,value);
     }
 
+    /**
+     * Método de renderizado que dibuja el contorno redondeado de la tabla.
+     *
+     * @param graphics El contexto gráfico utilizado para el renderizado.
+     */
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
@@ -76,7 +105,11 @@ public class Table extends GameObject implements DaltonicListener{
         super.render(graphics);
     }
 
-
+    /**
+     * Establece el modo daltónico de la tabla y aplica el mismo modo a todas las celdas.
+     *
+     * @param mode true para activar el modo daltónico, false para desactivarlo.
+     */
     @Override
     public void setDaltonicMode(boolean mode) {
         for(Cell c: cells)
@@ -84,12 +117,23 @@ public class Table extends GameObject implements DaltonicListener{
 
     }
 
+    /**
+     * Dibuja la información daltónica de cada celda en la tabla.
+     *
+     * @param graphics El contexto gráfico utilizado para el renderizado.
+     */
     @Override
     public void drawDaltonicInfo(IGraphics graphics) {
         for(Cell c: cells)
             c.drawDaltonicInfo(graphics);
     }
 
+    /**
+     * Verifica si las pistas proporcionadas coinciden con la solución de la tabla.
+     *
+     * @param solution Arreglo que contiene las pistas proporcionadas.
+     * @return true si las pistas son correctas, false en caso contrario.
+     */
     public boolean correctHints(int[] solution){
         return hintObject.showHints(solution, this.solution);
     }
