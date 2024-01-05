@@ -31,7 +31,7 @@ public class AndroidFont implements IFont {
     }
 
     /**
-     * @return
+     * @return Si la fuente esta en negrita
      */
     @Override
     public boolean isBold() {

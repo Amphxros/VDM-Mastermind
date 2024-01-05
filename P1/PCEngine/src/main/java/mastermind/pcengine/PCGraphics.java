@@ -18,6 +18,7 @@ import mastermind.engine.HorizontalAlignment;
 import mastermind.engine.IFont;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
+import mastermind.engine.ISound;
 
 public class PCGraphics implements IGraphics {
     private final JFrame window;
@@ -98,9 +99,6 @@ public class PCGraphics implements IGraphics {
         font = font.deriveFont(isBold ? Font.BOLD : Font.PLAIN, (float) size);
         return new PCFont(font);
     }
-
-
-
 
     /**
      * Sets the text alignment for text.
@@ -265,24 +263,37 @@ public class PCGraphics implements IGraphics {
         canvas.draw(circle);
     }
 
+    /**
+     * {@link IGraphics}
+     * @param width Ancho de la resolución.
+     * @param height Altura de la resolución.
+     */
     @Override
     public void setResolution(int width, int height) {
         window.setSize(width, height);
         transformer.setSize(width, height);
     }
 
+    /**
+     * {@link IGraphics}
+     * @param color Sets the current color with a raw RGBA integer.
+     */
     @Override
     public void setColor(int color) {
         canvas.setColor(new Color(color, true));
     }
 
+    /**
+     * {@link IGraphics}
+     * @param color Sets the current color with a {@link Color} instance.
+     */
     @Override
     public void setColor(mastermind.engine.Color color) {
         canvas.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
     }
 
     /**
-     *
+     * {@link IGraphics}
      * @param font Objeto que implementa la interfaz IFont y representa la fuente.
      */
     @Override
@@ -291,6 +302,7 @@ public class PCGraphics implements IGraphics {
     }
 
     /**
+     * {@link IGraphics}
      * Presenta el contenido del buffer en pantalla, luego libera el lienzo actual
      * y lo reemplaza con uno actualizado.
      */
@@ -304,6 +316,10 @@ public class PCGraphics implements IGraphics {
         canvas = (Graphics2D) buffer.getDrawGraphics();
     }
 
+    /**
+     * {@link IGraphics}
+     * @param color Color con el que se limpiará el objeto (puede ser un valor hexadecimal o un código de color).
+     */
     @Override
     public void clear(int color) {
         setColor(color);
@@ -311,11 +327,21 @@ public class PCGraphics implements IGraphics {
         updateTransformParameters();
     }
 
+    /**
+     * {@link IGraphics}
+     * @param x La cantidad de unidades a trasladar en el eje x.
+     * @param y La cantidad de unidades a trasladar en el eje y.
+     */
     @Override
     public void translate(int x, int y) {
         canvas.translate(x, y);
     }
 
+    /**
+     * {@link IGraphics}
+     * @param x Factor de escala para el eje x.
+     * @param y Factor de escala para el eje y.
+     */
     @Override
     public void scale(double x, double y) {
         canvas.scale(x, y);

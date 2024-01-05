@@ -271,8 +271,9 @@ public final class AndroidGraphics implements IGraphics {
 
     /**
      * Pone la dimension de la pantalla logica
-     * @param width
-     * @param height
+     *
+     * @param width Ancho de la resolución.
+     * @param height Altura de la resolución.
      */
     @Override
     public void setResolution(int width, int height) {
@@ -299,7 +300,8 @@ public final class AndroidGraphics implements IGraphics {
 
     /**
      * Pone la tipografia que vamos a usar
-     * @param font
+     *
+     * @param font Objeto que implementa la interfaz IFont y representa la fuente.
      */
     @Override
     public void setFont(IFont font) {
@@ -320,8 +322,8 @@ public final class AndroidGraphics implements IGraphics {
 
     /**
      * Escala el canvas
-     * @param x
-     * @param y
+     * @param x posicion en x
+     * @param y posicion en y
      */
     @Override
     public void scale(double x, double y) {
@@ -338,11 +340,17 @@ public final class AndroidGraphics implements IGraphics {
         canvas.restore();
     }
 
+    /**
+     * @return El ancho del objeto.
+     */
     @Override
     public int getWidth() {
         return transformer.getWidth();
     }
 
+    /**
+     * @return El alto del objeto.
+     */
     @Override
     public int getHeight() {
         return transformer.getHeight();

@@ -21,7 +21,12 @@ public class Input implements IInput{
         return tmp;
     }
 
+    /**
+     * Añade un evento de tipo TouchEvent de manera sincronizada a la lista de eventos.
+     * @param event El evento de tipo TouchEvent a ser añadido.
+     */
     protected synchronized void addEvent(TouchEvent event) {
+        // Añade el evento proporcionado a la lista de eventos de manera segura para hilos.
         events.add(event);
     }
 }

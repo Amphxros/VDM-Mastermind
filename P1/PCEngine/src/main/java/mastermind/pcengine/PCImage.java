@@ -33,11 +33,4 @@ public class PCImage implements IImage {
     public int getHeight() {
         return image.getHeight(null);
     }
-
-    /**
-     * Gets the underlying image.
-     *
-     * @return The buffered image.
-     */
-
 }
