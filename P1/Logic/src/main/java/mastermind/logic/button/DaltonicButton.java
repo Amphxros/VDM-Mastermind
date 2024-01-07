@@ -7,11 +7,19 @@ import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.GameScene;
 
 /**
- * Boton que activa/desactiva el modo daltonicof
+ * Clase final que representa un botón para habilitar/deshabilitar el modo daltónico.
  */
 public final class DaltonicButton extends Button{
-    IImage open, close;
-    boolean daltonic= false;
+    IImage open, close; // Imágenes para el botón en los estados de habilitado y deshabilitado
+    boolean daltonic= false; // Estado actual del modo daltónico
+
+    /**
+     * Constructor de la clase DaltonicButton.
+     *
+     * @param scene   La escena a la que pertenece el botón.
+     * @param enable  Imagen del botón cuando el modo daltónico está habilitado.
+     * @param disable Imagen del botón cuando el modo daltónico está deshabilitado.
+     */
     public DaltonicButton(IScene scene, IImage enable, IImage disable) {
         super(scene);
         this.open=enable;
@@ -19,6 +27,11 @@ public final class DaltonicButton extends Button{
 
     }
 
+    /**
+     * Renderiza el botón según el estado actual del modo daltónico.
+     *
+     * @param graphics El motor gráfico {@link IGraphics} específico asignado.
+     */
     @Override
     public void render(IGraphics graphics) {
         if(daltonic){
@@ -31,6 +44,12 @@ public final class DaltonicButton extends Button{
         super.render(graphics);
     }
 
+    /**
+     * Maneja la acción cuando se presiona sobre el botón, cambiando el estado del modo daltónico.
+     *
+     * @param event El evento táctil de presión.
+     * @return Verdadero si se maneja la acción, de lo contrario, falso.
+     */
     @Override
     public boolean onTouchDown(TouchEvent event) {
         daltonic=!daltonic;

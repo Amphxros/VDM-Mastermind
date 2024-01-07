@@ -5,6 +5,9 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
 import mastermind.engine.Input;
 
+/**
+ * Interfaz que define los métodos que deben ser implementados por todas las escenas en el juego.
+ */
 public interface IScene {
     /**
      * An event method called once the scene has been constructed. By default, this will call the

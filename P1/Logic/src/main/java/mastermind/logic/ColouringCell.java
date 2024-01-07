@@ -8,17 +8,31 @@ import mastermind.logic.button.Button;
 import mastermind.logic.scene.GameScene;
 
 /**
- * Casilla que rellena con un valor las casillas rellenables
+ * Clase que representa una casilla coloreable que implementa la interfaz DaltonicListener.
+ * Rellena la casilla con un valor asociado cuando es seleccionada.
  */
 public class ColouringCell extends Button implements DaltonicListener{
 
-    int value;
-    boolean daltonic_mode=false;
+    int value; // Valor asociado a la casilla.
+    boolean daltonic_mode=false; // Indica si la casilla está en modo daltónico.
+
+    /**
+     * Constructor de la clase ColouringCell.
+     *
+     * @param scene La escena a la que pertenece la casilla.
+     * @param value El valor asociado a la casilla.
+     */
     public ColouringCell(IScene scene, int value) {
         super(scene);
         this.value=value;
     }
 
+    /**
+     * Maneja el evento de toque en la casilla y notifica a la escena correspondiente.
+     *
+     * @param event Evento de toque recibido.
+     * @return true para indicar que el evento fue manejado.
+     */
     @Override
     public boolean onTouchDown(TouchEvent event) {
         GameScene scene= (GameScene) getScene();
@@ -27,6 +41,12 @@ public class ColouringCell extends Button implements DaltonicListener{
         return true;
     }
 
+    /**
+     * Maneja el evento de toque en la casilla y notifica a la escena correspondiente.
+     *
+     * @param event Evento de toque recibido.
+     * @return true para indicar que el evento fue manejado.
+     */
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
@@ -36,11 +56,21 @@ public class ColouringCell extends Button implements DaltonicListener{
         super.render(graphics);
     }
 
+    /**
+     * Establece el modo daltónico para la casilla.
+     *
+     * @param mode Valor del modo daltónico.
+     */
     @Override
     public void setDaltonicMode(boolean mode) {
         daltonic_mode=mode;
     }
 
+    /**
+     * Dibuja información daltónica en la casilla si el modo daltónico está activado.
+     *
+     * @param graphics Objeto que proporciona capacidades gráficas para el dibujo.
+     */
     @Override
     public void drawDaltonicInfo(IGraphics graphics) {
         if(daltonic_mode){

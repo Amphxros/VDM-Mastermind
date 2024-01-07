@@ -13,11 +13,23 @@ import mastermind.logic.button.GoToChooseLevel;
 import mastermind.logic.button.GoToGameScene;
 import mastermind.logic.button.GoToMenuScene;
 
+/**
+ * Clase que representa la escena para elegir la dificultad de juego en el Mastermind.
+ */
 public class ChooseLevelScene extends Scene {
+
+    /**
+     * Constructor de la clase ChooseLevelScene.
+     *
+     * @param engine El motor del juego.
+     */
     public ChooseLevelScene(IEngine engine) {
         super(engine);
     }
 
+    /**
+     * Inicializa la escena para elegir la dificultad de juego.
+     */
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",15,false);
@@ -40,7 +52,7 @@ public class ChooseLevelScene extends Scene {
 
         );
 
-        // Title
+        // Título
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
                 .setPosition(center, 50));
 
@@ -56,6 +68,9 @@ public class ChooseLevelScene extends Scene {
         );
     }
 
+    /**
+     * Método privado para crear un botón de juego con la configuración especificada.
+     */
     private GameObject createGameButton(int x, int y, int w, int h,
                                         Color color, String text, IFont font,
                                         int numColors, int numIntentos, int tamPassword,boolean repeating ){

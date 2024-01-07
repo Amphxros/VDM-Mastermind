@@ -25,13 +25,18 @@ import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
 import mastermind.logic.button.GoToChooseLevel;
 
+/**
+ * Clase que representa la escena de juego en el Mastermind.
+ */
 public class GameScene extends Scene {
 
+    // Configuraciones de juego
     private int numColores;
     private int numIntentos;
     private int tamPassword;
     int currTable;
 
+    // Datos del juego
     Color[] colors;
     Table[] tables;
     int [] solution;
@@ -39,7 +44,15 @@ public class GameScene extends Scene {
     boolean isRepeating;
     Text tryText;
 
-
+    /**
+     * Constructor de la clase GameScene.
+     *
+     * @param engine       El motor del juego.
+     * @param numColores   Número de colores disponibles.
+     * @param numIntentos  Número de intentos permitidos.
+     * @param tamPassword  Tamaño de la contraseña.
+     * @param isRepeating  Indica si la contraseña puede tener repeticiones.
+     */
     public GameScene(IEngine engine,int numColores, int numIntentos, int tamPassword, boolean isRepeating) {
         super(engine);
         this.numColores=numColores;
@@ -55,6 +68,9 @@ public class GameScene extends Scene {
         this.daltonicObservers= new ArrayList<>();
     }
 
+    /**
+     * Inicializa la escena del juego, generando datos, configurando elementos y mostrando la información del juego.
+     */
     @Override
     public void init() {
         IFont font = getEngine().getGraphics().newFont("fonts/handwriting.ttf",20,false);
@@ -106,6 +122,9 @@ public class GameScene extends Scene {
 
     }
 
+    /**
+     * Método privado para generar datos iniciales del juego (contraseña y colores).
+     */
     private void generateData(){
         /**
          * Generate password with repetitions
@@ -153,6 +172,9 @@ public class GameScene extends Scene {
 
     }
 
+    /**
+     * Método privado para crear un objeto de tipo Table.
+     */
     private GameObject createTable(int index, int x, int y, int w, int h, Color color, IFont font, ISound sound){
         return new Table(this, this.tamPassword,font,true,sound)
                 .setPosition(x,y)
@@ -164,16 +186,32 @@ public class GameScene extends Scene {
                 );
     }
 
+    /**
+     * Maneja la entrada de eventos del usuario.
+     *
+     * @param input El motor {@link IInput} específico asignado.
+     */
     @Override
     public void handleInput(IInput input) {
         super.handleInput(input);
     }
 
+    /**
+     * Maneja la entrada de eventos de cambio de modo daltonismo.
+     *
+     * @param mode Modo daltonismo activado o desactivado.
+     */
     public void onDaltonicMode(boolean mode){
         for(DaltonicListener d : daltonicObservers)
             d.setDaltonicMode(mode);
     }
 
+    /**
+     * Maneja el evento de selección de una celda de color en la tabla de colores.
+     *
+     * @param c     Color seleccionado.
+     * @param value Valor asociado al color.
+     */
     public void onColouringCellSelected(Color c,int value){
         System.out.println("Click " + value);
         tables[currTable].fillCell(c,value);

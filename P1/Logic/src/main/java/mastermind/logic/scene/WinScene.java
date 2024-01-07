@@ -8,11 +8,22 @@ import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.GoToChooseLevel;
 
+/**
+ * Clase que representa la escena de victoria o derrota en el juego.
+ */
 public class WinScene extends Scene {
-    Color[] colors;
-    int[] solution;
-    boolean hasWon;
+    Color[] colors; // Arreglo de colores utilizados en el juego.
+    int[] solution; // Solución del juego.
+    boolean hasWon; // Indica si el jugador ha ganado.
 
+    /**
+     * Constructor de la clase WinScene.
+     *
+     * @param engine   El motor del juego.
+     * @param colors   Arreglo de colores utilizados en el juego.
+     * @param solution Solución del juego.
+     * @param hasWon   Indica si el jugador ha ganado.
+     */
     public WinScene(IEngine engine, Color[] colors, int[] solution, boolean hasWon) {
         super(engine);
         this.colors=colors.clone();
@@ -20,9 +31,15 @@ public class WinScene extends Scene {
         this.hasWon=hasWon;
     }
 
+    /**
+     * Inicializa la escena de victoria o derrota, mostrando la solución y proporcionando la opción de ir a otros niveles.
+     */
     @Override
     public void init() {
+        // Crea una fuente para el texto.
         IFont font= getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
+
+        // Crea una tabla para mostrar la solución.
         Table t= new Table(this,this.solution.length,font,false,null);
         t.setPosition(100,200);
         t.setSize(200,50);
@@ -30,11 +47,12 @@ public class WinScene extends Scene {
 
         t.init();
 
-        //fills with the password
+        // Rellena la tabla con la contraseña.
         for(int i=0;i<this.solution.length;i++){
             t.fillCell(colors[solution[i]],solution[i]);
         }
 
+        // Crea un texto indicando el resultado del juego.
         Text text= new Text(this,"Game over",font);
         text.setPosition(200,10);
         text.setStrokeColor(new Color(20,20,20));
@@ -44,13 +62,13 @@ public class WinScene extends Scene {
 
         addGameObject(text);
 
+        // Añade un texto indicando la sección de la solución.
         text= new Text(this,"Solution:",font);
         text.setPosition(200,150);
         text.setStrokeColor(new Color(120,120,120));
         addGameObject(text);
 
-
-
+        // Añade un botón para ir a otros niveles.
         addGameObject(new GoToChooseLevel(this)
             .setPosition(50,450)
             .setStrokeColor(colors[0])
@@ -62,6 +80,6 @@ public class WinScene extends Scene {
 
         );
         super.init();
-        addGameObject(t); //added after so it doesnt add new cells (init table)
+        addGameObject(t); // Añadido después para evitar la creación de nuevas celdas (inicialización de la tabla).
     }
 }
