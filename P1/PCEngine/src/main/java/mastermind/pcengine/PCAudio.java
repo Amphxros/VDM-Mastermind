@@ -1,5 +1,4 @@
 package mastermind.pcengine;
-
 import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;
