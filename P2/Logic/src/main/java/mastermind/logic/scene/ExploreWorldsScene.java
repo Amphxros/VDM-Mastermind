@@ -14,8 +14,8 @@ import mastermind.logic.Image;
 import mastermind.logic.PlayerData;
 import mastermind.logic.SkinID;
 import mastermind.logic.Text;
-import mastermind.logic.button.GoToGameScene;
-import mastermind.logic.button.GoToMenuScene;
+import mastermind.logic.button.GoTo.GoToGameScene;
+import mastermind.logic.button.GoTo.GoToMenuScene;
 import mastermind.logic.button.WorldButtons;
 
 public class ExploreWorldsScene extends Scene {

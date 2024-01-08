@@ -20,8 +20,8 @@ import mastermind.logic.ScrollEventListener;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DaltonicButton;
-import mastermind.logic.button.GoToChooseLevel;
-import mastermind.logic.button.GoToModeExplore;
+import mastermind.logic.button.GoTo.GoToChooseLevel;
+import mastermind.logic.button.GoTo.GoToModeExplore;
 
 public class GameScene extends Scene implements ISensorListener {
 

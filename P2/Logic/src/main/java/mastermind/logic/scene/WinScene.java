@@ -11,8 +11,8 @@ import mastermind.logic.SkinID;
 import mastermind.logic.Table;
 import mastermind.logic.Text;
 import mastermind.logic.button.DoubleCoinsButton;
-import mastermind.logic.button.GoToChooseLevel;
-import mastermind.logic.button.GoToModeExplore;
+import mastermind.logic.button.GoTo.GoToChooseLevel;
+import mastermind.logic.button.GoTo.GoToModeExplore;
 import mastermind.logic.button.ShareContentButton;
 
 public class WinScene extends Scene {

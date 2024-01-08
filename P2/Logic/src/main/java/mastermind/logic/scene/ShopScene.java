@@ -12,7 +12,7 @@ import mastermind.logic.Container;
 import mastermind.logic.Image;
 import mastermind.logic.PaletteID;
 import mastermind.logic.Text;
-import mastermind.logic.button.GoToMenuScene;
+import mastermind.logic.button.GoTo.GoToMenuScene;
 import mastermind.logic.button.PaletteButton;
 import mastermind.logic.button.SetAnimalButton;
 import mastermind.logic.button.ShopButtons;

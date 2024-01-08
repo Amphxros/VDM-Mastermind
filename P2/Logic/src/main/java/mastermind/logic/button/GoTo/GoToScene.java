@@ -1,11 +1,15 @@
-package mastermind.logic.button;
+package mastermind.logic.button.GoTo;
 
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
+import mastermind.logic.button.Button;
 import mastermind.logic.scene.Scene;
 
-public abstract class GoToScene extends Button{
+/**
+ * Boton que al pulsarlo vas a una escena a definir por herencia
+ */
+public abstract class GoToScene extends Button {
     public GoToScene(IScene scene) {
         super(scene);
     }

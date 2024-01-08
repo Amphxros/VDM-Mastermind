@@ -8,8 +8,8 @@ import mastermind.logic.Container;
 import mastermind.logic.GameObject;
 import mastermind.logic.Image;
 import mastermind.logic.Text;
-import mastermind.logic.button.GoToGameScene;
-import mastermind.logic.button.GoToMenuScene;
+import mastermind.logic.button.GoTo.GoToGameScene;
+import mastermind.logic.button.GoTo.GoToMenuScene;
 
 public class ChooseLevelScene extends Scene {
     public ChooseLevelScene(IEngine engine) {

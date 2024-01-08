@@ -5,6 +5,9 @@ import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.GameObject;
 
+/**
+ * GO que reacciona a eventos cuando ese evento esta en el mismo
+ */
 public abstract class Button extends GameObject {
     public Button(IScene scene) {
         super(scene);

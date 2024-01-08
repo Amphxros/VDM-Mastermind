@@ -15,9 +15,9 @@ import mastermind.logic.ScrollEventListener;
 
 public abstract class Scene implements IScene {
     private final IEngine engine;
-    private final ArrayList<GameObject> objects = new ArrayList<>();
+    private final ArrayList<GameObject> objects = new ArrayList<>(); //objetos de la escena
 
-    private final ArrayList<ScrollEventListener> scrollEventListeners= new ArrayList<>();
+    private final ArrayList<ScrollEventListener> scrollEventListeners= new ArrayList<>(); //objetos scrolleables
 
     public Scene(IEngine engine) {
         this.engine = engine;
@@ -31,14 +31,26 @@ public abstract class Scene implements IScene {
         return engine;
     }
 
+    /**
+     * Incorpora un GO a la escena
+     * @param object
+     */
     public void addGameObject(GameObject object) {
         objects.add(object);
     }
 
+    /**
+     *
+     * @return El array de GO
+     */
     public ArrayList<GameObject> getObjects() {
         return objects;
     }
 
+    /**
+     * Incorpora un objeto scrolleable
+     * @param scrollEventListener
+     */
     public void addScrollListener(ScrollEventListener scrollEventListener){scrollEventListeners.add(scrollEventListener);}
     /**
      * Signal the scene's {@link GameObject}s to render given a {@link IGraphics} engine.

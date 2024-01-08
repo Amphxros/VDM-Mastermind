@@ -5,10 +5,10 @@ import mastermind.engine.HorizontalAlignment;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
 import mastermind.logic.Text;
-import mastermind.logic.button.GoToChooseLevel;
-import mastermind.logic.button.GoToModeExplore;
+import mastermind.logic.button.GoTo.GoToChooseLevel;
+import mastermind.logic.button.GoTo.GoToModeExplore;
 
-import mastermind.logic.button.GoToShopScene;
+import mastermind.logic.button.GoTo.GoToShopScene;
 
 public class MenuScene extends Scene {
     public MenuScene(IEngine engine) {

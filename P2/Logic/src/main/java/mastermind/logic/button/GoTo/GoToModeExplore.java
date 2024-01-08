@@ -1,4 +1,4 @@
-package mastermind.logic.button;
+package mastermind.logic.button.GoTo;
 
 
 import mastermind.engine.IScene;

@@ -10,18 +10,14 @@ public class Vector2D {
     }
 
     /**
-     * Get this instance's X-axis coordinate.
-     *
-     * @return The X-axis coordinate.
+     * @return La coordenada en el eje X.
      */
     public int getX() {
         return x;
     }
 
     /**
-     * Get this instance's Y-axis coordinate.
-     *
-     * @return The Y-axis coordinate.
+     * @return La coordenada en el eje Y.
      */
     public int getY() {
         return y;

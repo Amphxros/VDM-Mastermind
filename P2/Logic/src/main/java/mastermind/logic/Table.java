@@ -8,14 +8,16 @@ import mastermind.engine.IJsonObject;
 import mastermind.engine.IScene;
 import mastermind.logic.scene.Scene;
 
+/** Clase Table que representa una tabla de juego en un nivel (scene).
+ * Extiende la clase GameObject e implementa la interfaz DaltonicListener.
+ */
 public class Table extends GameObject implements DaltonicListener, ScrollEventListener {
-    int numElems;
-
-    int[] solution;
-    Cell[] cells;
-    IFont font;
-    HintObject hintObject;
-    boolean showHints;
+    int numElems; // Número de elementos en la tabla.
+    int[] solution; // Solución de la tabla.
+    Cell [] cells; // Arreglo de celdas que forman la tabla.
+    IFont font; // Fuente utilizada en las celdas.
+    HintObject hintObject; // Objeto de pista para mostrar pistas en caso necesario.
+    boolean showHints; // Booleano que indica si se deben mostrar las pistas
 
     public Table(IScene scene, int numElems, IFont font, boolean showHints) {
         super(scene);
