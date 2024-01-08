@@ -1,5 +1,8 @@
 package mastermind.engine;
 
+/**
+ * Interfaz que representa una imagen
+ */
 public interface IImage {
     /**
      * Gets the source width of the image.

@@ -1,5 +1,8 @@
 package mastermind.engine;
 
+/**
+ * Clase que contiene los datos de una notificacion.
+ */
 public class Notification {
     private final String title;
     private final String subtitle;

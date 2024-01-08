@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Interfaz que define un gestor de lectura/escritura de archivos
+ */
 public interface IFileManager {
 
     /**

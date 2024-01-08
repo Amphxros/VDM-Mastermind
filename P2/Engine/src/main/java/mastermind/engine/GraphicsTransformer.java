@@ -1,5 +1,7 @@
 package mastermind.engine;
-
+/**
+ * Clase que gestiona la transformación gráfica para adaptar la escala y posición del contenido en una ventana.
+ */
 public final class GraphicsTransformer {
     private int width;
     private int height;
@@ -14,19 +16,34 @@ public final class GraphicsTransformer {
     private int contentInsetB = 0;
     private int contentInsetR = 0;
 
+    /**
+     * Establece el tamaño de la ventana.
+     *
+     * @param width  Ancho de la ventana.
+     * @param height Altura de la ventana.
+     */
     public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
         this.ratio = width / (double) height;
     }
 
+    /**
+     *
+     * @return el ancho de la ventana logica
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     *
+     * @return el alto de la ventana logica
+     */
     public int getHeight() {
         return height;
     }
+
 
     public void setInset(int top, int left, int bottom, int right) {
         contentInsetT = top;
@@ -35,6 +52,11 @@ public final class GraphicsTransformer {
         contentInsetR = right;
     }
 
+    /**
+     * Actualiza la ventana acorde a los cambios de la ventana fisica (ejemplo: rotamos el telefono)
+     * @param contentWidth
+     * @param contentHeight
+     */
     public void update(int contentWidth, int contentHeight) {
         boolean changed = false;
 

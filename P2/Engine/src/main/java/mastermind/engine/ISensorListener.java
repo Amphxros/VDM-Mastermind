@@ -1,7 +1,8 @@
 package mastermind.engine;
 
-import java.util.ArrayList;
-
+/**
+ * Interfaz que define un escuchante de lossensores del movil
+ */
 public interface ISensorListener {
     void onSense();
 }

@@ -2,6 +2,9 @@ package mastermind.engine;
 
 import java.util.ArrayList;
 
+/**
+ * Intterfaz que define un gestor de notificaciones
+ */
 public interface INotificationHandler {
     /**
      * @return The channel ID.

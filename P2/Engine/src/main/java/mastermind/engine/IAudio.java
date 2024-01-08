@@ -1,5 +1,8 @@
 package mastermind.engine;
 
+/**
+ * Interfaz que define un gestor de audio
+ */
 public interface IAudio {
     /**
      * Creates an instance of a ISound

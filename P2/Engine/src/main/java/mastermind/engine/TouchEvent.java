@@ -1,5 +1,8 @@
 package mastermind.engine;
 
+/**
+ * Objeto que se crea cuando hay un evento en la pantalla
+ */
 public class TouchEvent {
     /**
      * The coordinates the touch event happened at.
