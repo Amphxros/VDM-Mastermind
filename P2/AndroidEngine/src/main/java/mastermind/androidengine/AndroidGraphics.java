@@ -90,6 +90,13 @@ public final class AndroidGraphics implements IGraphics {
         return aImage;
     }
 
+    /**
+     * Crea una fuente de android
+     * @param name
+     * @param size
+     * @param isBold
+     * @return
+     */
     @Override
     public AndroidFont newFont(String name, int size, boolean isBold) {
         AndroidFont aFont = new AndroidFont(name, assetManager, size, isBold);
@@ -107,6 +114,12 @@ public final class AndroidGraphics implements IGraphics {
         this.textAlignment = alignment;
     }
 
+    /**
+     * Dibuja una imagen
+     * @param image The image to draw.
+     * @param x     The x-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     * @param y     The y-axis coordinate in the destination canvas at which to place the top left corner of the source `image`.
+     */
     @Override
     public void drawImage(IImage image, int x, int y) {
         canvas.drawBitmap(((AndroidImage) image).getUnderlyingImage(), x, y, paint);
@@ -119,6 +132,12 @@ public final class AndroidGraphics implements IGraphics {
         canvas.drawBitmap(((AndroidImage) image).getUnderlyingImage(), src, dst, paint);
     }
 
+    /**
+     * Dibuja un texto
+     * @param text The text to draw in the destination canvas.
+     * @param x    The x-axis coordinates from where to draw the text.
+     * @param y    The y-axis coordinates from where to draw the text.
+     */
     @Override
     public void drawText(String text, int x, int y) {
         int outX = x;
@@ -135,16 +154,37 @@ public final class AndroidGraphics implements IGraphics {
         canvas.drawText(text, outX, y, paint);
     }
 
+    /**
+     * Dibuja un cuadrado relleno
+     * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y    The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param side The size of the rectangle to draw.
+     */
     @Override
     public void fillRectangle(int x, int y, int side) {
         fillRectangle(x, y, side, side);
     }
 
+    /**
+     * Dibuja un rectangulo relleno
+     * @param x      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     */
     @Override
     public void fillRectangle(int x, int y, int width, int height) {
         canvas.drawRect(x, y, x + width, y + height, paint);
     }
 
+    /**
+     * Dibuja un rectangulo con esquinas redondeadas
+     * @param cx  		The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param cy		The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width		The width of the rectangle to draw.
+     * @param height 	The height of the rectangle to draw.
+     * @param arc		The roundness of the corners
+     */
     @Override
     public void fillRoundRectangle(int cx, int cy, int width, int height, int arc) {
         assert (paint!=null);
@@ -153,17 +193,36 @@ public final class AndroidGraphics implements IGraphics {
         paint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * Dibuja un circulo
+     * @param cx
+     * @param cy
+     * @param radius
+     */
     @Override
     public void fillCircle(float cx, float cy, float radius) {
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(cx,cy,radius,paint);
     }
 
+    /**
+     * dibuja el contorno de un cuadrado
+     * @param x    The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y    The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param side The size of the rectangle to draw.
+     */
     @Override
     public void drawRectangle(int x, int y, int side) {
         drawRectangle(x, y, side, side);
     }
 
+    /**
+     * Dibuja el contorno de un rectangulo
+     * @param x      The x-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param y      The y-axis coordinate of the top left corner of the rectangle to draw into the destination canvas.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
+     */
     @Override
     public void drawRectangle(int x, int y, int width, int height) {
         paint.setStyle(Paint.Style.STROKE);
@@ -178,11 +237,24 @@ public final class AndroidGraphics implements IGraphics {
         paint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * dibuja una linea desde origin hasta end
+     * @param initX The x-axis coordinate of the starting point of the line.
+     * @param initY The y-axis coordinate of the starting point of the line.
+     * @param endX  The x-axis coordinate of the ending point of the line.
+     * @param endY  The y-axis coordinate of the ending point of the line.
+     */
     @Override
     public void drawLine(int initX, int initY, int endX, int endY) {
         canvas.drawLine(initX, initY, endX, endY, paint);
     }
 
+    /**
+     * Dibuja una circunferencia
+     * @param cx
+     * @param cy
+     * @param radius
+     */
     @Override
     public void drawCircle(float cx, float cy, float radius) {
         paint.setStyle(Paint.Style.STROKE);
@@ -190,21 +262,38 @@ public final class AndroidGraphics implements IGraphics {
         paint.setStyle(Paint.Style.FILL);
     }
 
+    /**
+     * Ajusta la resolucion del juego
+     * @param width
+     * @param height
+     */
     @Override
     public void setResolution(int width, int height) {
         transformer.setSize(width, height);
     }
 
+    /**
+     * Cambia el color de dibujado
+     * @param color Sets the current color with a raw RGBA integer.
+     */
     @Override
     public void setColor(int color) {
         paint.setColor(Color.rgbaToARGB(color));
     }
 
+    /**
+     * Cambia el color de dibujado
+     * @param color Sets the current color with a {@link Color} instance.
+     */
     @Override
     public void setColor(Color color) {
         paint.setColor(color.getARGB());
     }
 
+    /**
+     * Cambia la fuente para dibujar
+     * @param font {@link AndroidFont} a escribir
+     */
     @Override
     public void setFont(IFont font) {
         AndroidFont aFont = (AndroidFont) font;
@@ -213,12 +302,21 @@ public final class AndroidGraphics implements IGraphics {
 
     }
 
-
+    /**
+     * Mueve el canvas
+     * @param x
+     * @param y
+     */
     @Override
     public void translate(int x, int y) {
         canvas.translate(x, y);
     }
 
+    /**
+     * Redimensiona el canvas
+     * @param x
+     * @param y
+     */
     @Override
     public void scale(double x, double y) {
         canvas.scale((float) x, (float) y);

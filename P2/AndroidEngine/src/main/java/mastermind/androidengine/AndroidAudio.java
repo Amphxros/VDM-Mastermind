@@ -6,9 +6,13 @@ import android.media.SoundPool;
 import mastermind.engine.IAudio;
 import mastermind.engine.ISound;
 
+/**
+ * Gestor de audio del motor
+ */
 public class AndroidAudio implements IAudio {
-    Context context;
-    SoundPool soundPool;
+    Context context; //contexto de la aplicacion
+    SoundPool soundPool; // SoundPool
+
     public AndroidAudio(Context context) {
         this.context=context;
         this.soundPool= new SoundPool.Builder().setMaxStreams(10).build();

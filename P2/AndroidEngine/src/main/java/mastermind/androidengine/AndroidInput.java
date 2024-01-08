@@ -16,7 +16,7 @@ public class AndroidInput extends Input implements View.OnTouchListener {
         TouchEvent t = null;
 
         switch (motionEvent.getAction()){
-            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_DOWN: //bajar dedo
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
@@ -25,7 +25,7 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 lastY = motionEvent.getY();
                 addEvent(t);
                 break;
-            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_UP: //levantar dedo
                 eventType=EventType.UP;
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
@@ -35,7 +35,7 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 addEvent(t);
 
                 break;
-            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_MOVE: //evento de scroll
                 deltaX = (int) (motionEvent.getX() - lastX);
                 deltaY = (int) (motionEvent.getY() - lastY);
                 // Actualizar las coordenadas anteriores.

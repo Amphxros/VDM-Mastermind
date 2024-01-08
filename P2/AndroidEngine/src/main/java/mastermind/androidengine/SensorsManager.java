@@ -19,15 +19,15 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
     /**
      * Accelerometer data
      */
-    ArrayList<ISensorListener> sensorAccelListeners;
+    ArrayList<ISensorListener> sensorAccelListeners; //escuchantes del accelerometro
     /**
      * The acceleration in m/s² for an acceleration to be considered a shake.
      */
-    private static final float SHAKE_THRESHOLD = 3.25f;
+    private static final float SHAKE_THRESHOLD = 3.25f; // Threshold de agitado
     /**
      * The minimum amount of time between shakes, in milliseconds.
      */
-    private static final long SHAKE_PERIOD = 1000;
+    private static final long SHAKE_PERIOD = 1000; //cooldown
     private long lastShakeTime = System.currentTimeMillis();
 
 
@@ -44,6 +44,10 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
         }
     }
 
+    /**
+     * Registra los sensores a escuchar
+     * @return
+     */
     @Override
     public boolean register() {
         if (androidSensorManager == null) {
@@ -60,6 +64,7 @@ public class SensorsManager implements ISensorsManager, SensorEventListener {
         }
         androidSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
+        //otros sensores aqui
         return true;
     }
 

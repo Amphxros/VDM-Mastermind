@@ -7,18 +7,29 @@ import mastermind.engine.IJsonObject;
 
 public class AndroidJSONObject implements IJsonObject {
 
-    String infoJSON;
-    JSONObject jsonObject;
+    String infoJSON; //contenido del JSON
+    JSONObject jsonObject; //Objeto JSON
+
 
     public AndroidJSONObject(String infoJSON) throws JSONException {
         this.infoJSON=infoJSON;
         jsonObject= new JSONObject(infoJSON);
     }
+
+    /**
+     *
+     * @return el contenido del json
+     */
     @Override
     public String getInfoJSON() {
         return infoJSON;
     }
 
+    /**
+     *
+     * @param s
+     * @return El entero asociado a esa key
+     */
     @Override
     public int getIntKey(String s) {
         try {
@@ -30,6 +41,11 @@ public class AndroidJSONObject implements IJsonObject {
         return -1;
     }
 
+    /**
+     *
+     * @param s Key
+     * @return El boolean asociado a esa Key
+     */
     @Override
     public String getStringKey(String s) {
         try {

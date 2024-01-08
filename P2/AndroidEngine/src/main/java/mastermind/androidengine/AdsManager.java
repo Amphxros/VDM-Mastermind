@@ -21,13 +21,16 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import mastermind.engine.IAdsManager;
 
+/**
+ * Gestor de anuncios
+ */
 public final class AdsManager implements IAdsManager {
 
     private static final String AD_TOKEN = "ca-app-pub-3940256099942544/5224354917";
-    private final AdView adView;
-    private final AdRequest adRequest;
-    private final AppCompatActivity activity;
-    private RewardedAd rewardAd;
+    private final AdView adView; // vista de los anuncios de banner
+    private final AdRequest adRequest; // request para carger los anuncios
+    private final AppCompatActivity activity; // actividad de la app
+    private RewardedAd rewardAd; // anuncio recompensado
     private boolean hasRewardAdShown;
 
 

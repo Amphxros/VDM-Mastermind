@@ -13,6 +13,9 @@ import mastermind.engine.Color;
 import mastermind.engine.Engine;
 import mastermind.engine.Notification;
 
+/**
+ * Core del motor
+ */
 public class AndroidEngine extends Engine implements Runnable {
     private Thread thread;
     private volatile boolean running;
