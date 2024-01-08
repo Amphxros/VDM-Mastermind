@@ -1,0 +1,9 @@
+CAMBIOS P2
+
+- Scroll en ambos sentidos (antes había un threshold que se compara solo positivamente en lugar del valor absoluto)
+- Modulos innecesarios eliminados (aunque las interfaces del motor común se quedan)
+- Movido IScene a Logica
+- Documentacion
+- Fondos en los niveles del modo historia
+- Ya se comprueban las trampas con la NDK
+- Se han centrado las ColouringCells acorde a la ColouringTable

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18.1)
 
 project(nativeSHA)
 
-# inlcudes the library in the project
+# includes the library in the project
 add_library(
         native-sha-lib
         SHARED
