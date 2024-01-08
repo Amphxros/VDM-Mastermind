@@ -1,5 +1,8 @@
 package mastermind.logic;
 
+/**
+ * Enumerado con los tipos de animales posibles
+ */
 public enum AnimalID {
     None, //circles
     fish,

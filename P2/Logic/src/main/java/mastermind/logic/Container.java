@@ -5,7 +5,7 @@ import mastermind.engine.IScene;
 import mastermind.logic.scene.Scene;
 
 /**
- * Empty game object
+ * GameObject Scrolleable y que contiene otros GameObject
  */
 public class Container extends GameObject implements ScrollEventListener{
     public Container(IScene scene) {

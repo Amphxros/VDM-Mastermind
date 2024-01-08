@@ -17,6 +17,9 @@ import mastermind.logic.scene.GameScene;
 import mastermind.logic.scene.ShopScene;
 import mastermind.logic.scene.WinScene;
 
+/**
+ * Objeto que gestiona los datos de guardado
+ */
 public final class PlayerData implements ILogicData, Serializable {
     int coins;
     boolean[] unlockedAnimals;

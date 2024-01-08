@@ -2,6 +2,9 @@ package mastermind.logic;
 
 import mastermind.engine.IGraphics;
 
+/**
+ * Interfaz que define un escuchante del modo daltonico
+ */
 public interface DaltonicListener {
 
     /**

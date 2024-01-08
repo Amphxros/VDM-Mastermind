@@ -5,7 +5,9 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
 import mastermind.engine.IJsonObject;
 import mastermind.engine.IScene;
-
+/**
+ * Clase que representa una mesa de colores que implementa la interfaz DaltonicListener.
+ */
 public class ColouringTable extends GameObject implements DaltonicListener{
     boolean daltonic;
 

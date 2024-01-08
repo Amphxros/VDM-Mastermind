@@ -3,7 +3,10 @@ package mastermind.logic;
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
-
+/**
+ * Clase HintElem que representa un elemento de pista en un escenario (scene) de juego.
+ * Extiende la clase GameObject y se utiliza para visualizar pistas asociadas con las celdas del juego.
+ */
 public class HintElem extends GameObject {
     private CellState cellState;
     public HintElem(IScene scene) {

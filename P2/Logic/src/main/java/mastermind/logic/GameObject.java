@@ -8,6 +8,10 @@ import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
 import mastermind.engine.TouchEvent;
 
+/**
+ * Representa un objeto en el juego con capacidades de posicionamiento, dimensiones y jerarquía.
+ * Para nosotros es el elemento más básico de una escena
+ */
 public class GameObject {
     private final Vector<GameObject> children = new Vector<>();
     private final IScene scene;

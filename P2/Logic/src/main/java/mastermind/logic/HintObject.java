@@ -5,7 +5,10 @@ import java.util.Arrays;
 import mastermind.engine.Color;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IScene;
-
+/**
+ * Clase HintObject que representa un objeto de pistas en un escenario (scene) de juego.
+ * Extiende la clase GameObject y se utiliza para mostrar pistas relacionadas con la solución del juego.
+ */
 public class HintObject extends GameObject{
 
     private HintElem[] hintElems;
