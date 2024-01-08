@@ -11,8 +11,5 @@ public enum AnimalID {
     frog,
     cat,
     armadillo,
-
-
-
     Num_Animals
 }

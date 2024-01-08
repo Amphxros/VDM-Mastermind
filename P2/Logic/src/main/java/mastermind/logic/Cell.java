@@ -17,10 +17,9 @@ public class Cell extends Button implements DaltonicListener{
     boolean daltonic_mode;
 
     IFont font;
-
     IImage image;
-
     IImage initialImage;
+
     /**
      * Constructor de la clase Cell, en este caso se dibujara un circulo.
      *
@@ -31,8 +30,8 @@ public class Cell extends Button implements DaltonicListener{
         super(scene);
         this.font=font;
         this.state=CellState.Empty;
-
     }
+
     /**
      * Constructor de la clase Cell.
      *
@@ -45,8 +44,8 @@ public class Cell extends Button implements DaltonicListener{
         this.font=font;
         this.state=CellState.Empty;
         this.image=image;
-
     }
+
     /**
      * Inicializa la casilla estableciendo el color inicial.
      */

@@ -24,6 +24,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+    // This lane makes Android Studio acknowledge native code
     externalNativeBuild {
         cmake {
             path file('CMakeLists.txt')

@@ -23,7 +23,7 @@ public class AndroidFileManager implements IFileManager {
 
     /**
      *Metodo que llama a una funcion de c++ con el algoritmo picosha
-     *
+     *Data contiene TO.DO el save en formato string
      */
     static{ System.loadLibrary("native-sha-lib"); }
     public static native String Hash(String data);
