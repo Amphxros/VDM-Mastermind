@@ -4,12 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Input implements IInput{
+
+    protected int lastX, lastY;
+    protected int deltaX, deltaY;
+
+
     protected final LinkedList<TouchEvent> events = new LinkedList<>(); // tambien puede ser una cola
     /**
-     * @return Returns a list of all the queued events, clears the queue upon call.
+     * @return Returns a list of all the queued events, transforms them in the logic space and clears the queue upon call.
      */
     @Override
-    public synchronized LinkedList<TouchEvent> getTouchEvents() {
+    public synchronized LinkedList<TouchEvent> getTouchEvents(IGraphics graphics) {
         LinkedList<TouchEvent> tmp;
 
         synchronized (this) {
@@ -18,7 +23,31 @@ public class Input implements IInput{
             events.clear();
         }
 
+        for (TouchEvent t: tmp) {
+            t.defineLogicCoordinates(graphics);
+        }
+
         return tmp;
+    }
+
+    @Override
+    public int getDeltaX() {
+        return this.deltaX;
+    }
+
+    @Override
+    public int getDeltaY() {
+        return this.deltaY;
+    }
+
+    @Override
+    public void setDeltaX(int deltaX) {
+        this.deltaX= deltaX;
+    }
+
+    @Override
+    public void setDeltaY(int deltaY) {
+        this.deltaY= deltaY;
     }
 
     /**

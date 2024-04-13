@@ -29,10 +29,6 @@ public abstract class Scene implements IScene {
         objects.add(object);
     }
 
-    public ArrayList<GameObject> getObjects() {
-        return objects;
-    }
-
     /**
      * Signal the scene's {@link GameObject}s to render given a {@link IGraphics} engine.
      *
@@ -41,7 +37,8 @@ public abstract class Scene implements IScene {
     @Override
     public void render(IGraphics graphics) {
         for (GameObject object : objects) {
-            if (object.isEnabled()) object.render(graphics);
+            if (object.isEnabled())
+                object.render(graphics);
         }
     }
 
@@ -53,7 +50,8 @@ public abstract class Scene implements IScene {
     @Override
     public void update(double delta) {
         for (GameObject object : objects) {
-            if (object.isEnabled()) object.update(delta);
+            if (object.isEnabled())
+                object.update(delta);
         }
     }
 
@@ -64,16 +62,15 @@ public abstract class Scene implements IScene {
      */
     @Override
     public void handleInput(IInput input) {
-        List<TouchEvent> events = input.getTouchEvents();
-        if (events.isEmpty()) return;
-
         IGraphics graphics = getEngine().getGraphics();
-        for (TouchEvent event : events) {
-            event.defineLogicCoordinates(graphics);
-            if (!event.isValid()) continue;
+        List<TouchEvent> events = input.getTouchEvents(graphics);
 
+        if (events.isEmpty()) return;
+        for (TouchEvent event : events) {
+            if (!event.isValid()) continue;
             for (GameObject object : objects) {
-                if (object.isEnabled()) object.handleInput(event);
+                if (object.isEnabled())
+                    object.handleInput(event);
             }
         }
     }
@@ -94,6 +91,7 @@ public abstract class Scene implements IScene {
      */
     @Override
     public void dispose() {
+
     }
 
 }

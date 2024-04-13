@@ -14,6 +14,7 @@ import mastermind.engine.TouchEvent;
 public class AndroidInput extends Input implements View.OnTouchListener {
     private int x,y; // coordenadas del evento
     EventType eventType; //tipo de evento
+    private float lastX, lastY;
 
     /**
      *
@@ -45,6 +46,11 @@ public class AndroidInput extends Input implements View.OnTouchListener {
 
                 break;
                 case MotionEvent.ACTION_MOVE:
+                    deltaX = (int) (motionEvent.getX() - lastX);
+                    deltaY = (int) (motionEvent.getY() - lastY);
+                    // Actualizar las coordenadas anteriores.
+                    lastX = motionEvent.getX();
+                    lastY = motionEvent.getY();
                     break;
 
         }
