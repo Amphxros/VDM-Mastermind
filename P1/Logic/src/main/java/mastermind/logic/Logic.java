@@ -57,7 +57,7 @@ public class Logic implements ILogic {
     @Override
     public void update(double t) {
         if(currentScene!=null)
-        currentScene.update(t);
+            currentScene.update(t);
     }
 
     /**
@@ -69,7 +69,7 @@ public class Logic implements ILogic {
     public void render(IGraphics graphics)
     {
         if(currentScene!=null)
-        currentScene.render(graphics);
+            currentScene.render(graphics);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Logic implements ILogic {
     @Override
     public void handleEvents(IInput input) {
         if (currentScene!=null)
-        currentScene.handleInput(input);
+            currentScene.handleInput(input);
     }
 
     /**

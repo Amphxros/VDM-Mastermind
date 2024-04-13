@@ -59,4 +59,14 @@ public class AndroidSound implements ISound {
         else
             this.loop=0;
     }
+
+    @Override
+    public float getVolume() {
+        return 0;
+    }
+
+    @Override
+    public void setVolume(float volume) {
+
+    }
 }

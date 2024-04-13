@@ -15,4 +15,12 @@ public interface ISound {
      * Sets the sound in a loop.
      */
     void setLoop();
+
+    /**
+     *
+     * @return
+     */
+    float getVolume();
+
+    void setVolume(float volume);
 }

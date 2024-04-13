@@ -43,7 +43,7 @@ public class PCAudio implements IAudio {
             return null;
         }
 
-        return new PCSound(sound);
+        return new PCSound(sound, 0.03f);
     }
 
     /**
@@ -65,4 +65,6 @@ public class PCAudio implements IAudio {
     public void stopSound(ISound s) {
         s.stop();
     }
+
+
 }
