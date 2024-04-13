@@ -38,7 +38,7 @@ public class PCInput extends Input implements MouseInputListener, KeyListener {
     // Implementación de los métodos de la interfaz MouseInputListener:
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        // No se realiza ninguna acción al hacer clic.
+        addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.DOWN));
     }
 
     @Override
@@ -48,14 +48,7 @@ public class PCInput extends Input implements MouseInputListener, KeyListener {
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        // Al soltar el botón izquierdo (BUTTON1) se agrega un evento de tipo TouchEvent con tipo DOWN,
-        // y al soltar el botón derecho (BUTTON3) se agrega un evento con tipo UP.
-        if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
-            addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.DOWN));
-        } else if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-            addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.UP));
-        }
-
+        addEvent(new TouchEvent(mouseEvent.getX(), mouseEvent.getY(), EventType.UP));
     }
 
     @Override

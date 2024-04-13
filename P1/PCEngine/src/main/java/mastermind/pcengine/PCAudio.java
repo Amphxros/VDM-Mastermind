@@ -10,6 +10,9 @@ import mastermind.engine.ISound;
 
 public class PCAudio implements IAudio {
 
+    public PCAudio(){
+
+    }
     /**
      *
      * @param path // Crea un objeto PCSound a partir de un archivo de sonido

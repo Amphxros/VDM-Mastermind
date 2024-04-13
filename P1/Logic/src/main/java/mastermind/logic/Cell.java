@@ -86,7 +86,9 @@ public class Cell extends Button implements DaltonicListener{
      * @param value Valor asociado a la casilla.
      */
     public void fillCell(Color c, int value){
-        getEngine().getAudio().stopSound(sound);
+        if(sound!=null) {
+            getEngine().getAudio().stopSound(sound);
+        }
         strokeColor=c;
         this.value=value;
         if(sound!=null) {

@@ -54,7 +54,7 @@ public class WinScene extends Scene {
 
         // Crea un texto indicando el resultado del juego.
         Text text= new Text(this,"Game over",font);
-        text.setPosition(200,10);
+        text.setPosition(200,60);
         text.setStrokeColor(new Color(20,20,20));
         if(hasWon){
             text.setText("You Won");

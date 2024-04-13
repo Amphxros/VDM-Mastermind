@@ -169,6 +169,11 @@ public class GameScene extends Scene {
             this.colors[i]= new Color(r,g,b);
 
         }
+        for(int i=0;i<this.tamPassword;i++){
+            System.out.println(this.solution[i] + " ");
+
+        }
+        System.out.println("\n");
 
     }
 
