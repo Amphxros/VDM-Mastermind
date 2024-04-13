@@ -6,15 +6,14 @@ import mastermind.engine.Color;
 import mastermind.engine.Engine;
 
 public class PCEngine extends Engine implements Runnable {
-    public static final String titleGame = "Mastermind";
     private final JFrame renderView;
     public volatile boolean running;
 
     /**
      * Constructora del motor de PC. Inicializa todos los motores dentro del PC.
      */
-    public PCEngine() {
-        renderView = new JFrame(titleGame);
+    public PCEngine(String _titleGame) {
+        renderView = new JFrame(_titleGame);
         renderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         renderView.pack();
         renderView.setIgnoreRepaint(true);

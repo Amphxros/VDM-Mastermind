@@ -14,7 +14,7 @@ public class PCLauncher {
      */
     public static void main(String[] args) {
         // Crea una instancia de la clase PCEngine, que representa el motor de la aplicación.
-        PCEngine engine = new PCEngine();
+        PCEngine engine = new PCEngine("Mastermind");
         // Establece la resolución gráfica del motor a 400x600 píxeles.
         engine.getGraphics().setResolution(400, 600);
         // Crea una instancia de la clase Logic, que representa la lógica de la aplicación,
