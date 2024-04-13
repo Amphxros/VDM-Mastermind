@@ -58,11 +58,6 @@ public class PCSound implements ISound {
         }
     }
     @Override
-    public float getVolume() {
-        FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
-        return (float) Math.pow(10f, gainControl.getValue() / 20f);
-    }
-    @Override
     public void setVolume(float volume) {
         FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
         if (volume >= 0f && volume <= 1f){

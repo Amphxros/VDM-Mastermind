@@ -60,13 +60,9 @@ public class AndroidSound implements ISound {
             this.loop=0;
     }
 
-    @Override
-    public float getVolume() {
-        return 0;
-    }
 
     @Override
     public void setVolume(float volume) {
-
+        this.soundPool.setVolume(this.streamID, volume, volume);
     }
 }

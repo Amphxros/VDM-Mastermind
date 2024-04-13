@@ -16,11 +16,6 @@ public interface ISound {
      */
     void setLoop();
 
-    /**
-     *
-     * @return
-     */
-    float getVolume();
 
     void setVolume(float volume);
 }
