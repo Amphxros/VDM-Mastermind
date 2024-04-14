@@ -60,8 +60,11 @@ public class GameObject {
      */
     public GameObject setPosition(int x, int y) {
         setPosition(new Vector2D(x, y));
+
         return this;
     }
+
+
 
     /**
      * Mueve el GameObject y todos sus hijos en el espacio.

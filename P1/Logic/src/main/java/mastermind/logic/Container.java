@@ -27,4 +27,6 @@ public class Container extends GameObject{
         graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
         super.render(graphics);
     }
+
+
 }

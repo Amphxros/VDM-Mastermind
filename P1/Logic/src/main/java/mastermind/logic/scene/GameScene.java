@@ -107,7 +107,9 @@ public class GameScene extends Scene {
         for(int i=0;i<this.numIntentos; i++){
             Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,font,sound);
             addGameObject(t);
+            addScrollableObject(t);
             daltonicObservers.add(t);
+
             tables[i]=t;
         }
 

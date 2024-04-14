@@ -12,6 +12,7 @@ import mastermind.engine.TouchEvent;
 public abstract class Scene implements IScene {
     private final IEngine engine;
     private final ArrayList<GameObject> objects = new ArrayList<>();
+    private final ArrayList<IScrollable> scrollables= new ArrayList<>();
 
     public Scene(IEngine engine) {
         this.engine = engine;
@@ -29,6 +30,7 @@ public abstract class Scene implements IScene {
         objects.add(object);
     }
 
+    public  void addScrollableObject(IScrollable scrollable){scrollables.add(scrollable);}
     /**
      * Signal the scene's {@link GameObject}s to render given a {@link IGraphics} engine.
      *
@@ -72,7 +74,13 @@ public abstract class Scene implements IScene {
                 if (object.isEnabled())
                     object.handleInput(event);
             }
+
+
         }
+        for(IScrollable scroll : scrollables){
+            scroll.onScroll(input.getDeltaX(), input.getDeltaY());
+        }
+
     }
 
     /**
