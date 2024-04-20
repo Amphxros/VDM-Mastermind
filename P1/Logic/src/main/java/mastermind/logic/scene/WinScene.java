@@ -41,8 +41,8 @@ public class WinScene extends Scene {
 
         // Crea una tabla para mostrar la solución.
         Table t= new Table(this,this.solution.length,font,false,null);
-        t.setPosition(100,200);
-        t.setSize(200,50);
+        t.setPosition(50 + (100/this.solution.length),200);
+        t.setSize(40*this.solution.length,50);
         t.setStrokeColor(new Color(200,200,200));
 
         t.init();

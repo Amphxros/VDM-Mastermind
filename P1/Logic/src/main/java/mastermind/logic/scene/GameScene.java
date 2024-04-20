@@ -36,6 +36,19 @@ public class GameScene extends Scene {
     private int tamPassword;
     int currTable;
 
+    private static final Color[] palette={
+
+            new Color(80,15,80),
+            new Color(120,35,120),
+            new Color(180,40,125),
+            new Color(210,45,105),
+            new Color(225,80,110),
+            new Color(250,160,120)
+
+
+
+    };
+
     // Datos del juego
     Color[] colors;
     Table[] tables;
@@ -164,12 +177,8 @@ public class GameScene extends Scene {
          * Generate colors
          */
         for(int i=0;i<this.numColores;i++){
-            int r= (int)Math.floor(Math.random() * (255));
-            int g= (int)Math.floor(Math.random() * (255));
-            int b= (int)Math.floor(Math.random() * (255));
 
-            this.colors[i]= new Color(r,g,b);
-
+            colors[i]=palette[i];
         }
         for(int i=0;i<this.tamPassword;i++){
             System.out.println(this.solution[i] + " ");

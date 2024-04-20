@@ -63,12 +63,11 @@ public class PCInput extends Input implements MouseInputListener, KeyListener {
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
-        // No se realiza ninguna acción al arrastrar el ratón.
+
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-        // No se realiza ninguna acción al mover el ratón.
     }
 
     // Implementación de los métodos de la interfaz KeyListener:
