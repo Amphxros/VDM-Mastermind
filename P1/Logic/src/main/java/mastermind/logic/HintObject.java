@@ -36,15 +36,15 @@ public class HintObject extends GameObject{
             hintElems[i]= new HintElem(getScene());
 
             // Posiciona los elementos de pista de manera diferente según su posición en la pista.
-            if(i>=this.numCells/2){
+            if(i+1>this.numCells/2){
                 hintElems[i].setPosition(10+(i-this.numCells/2 )* (getWidth() / numCells), getHeight()/2 +10);
             }
             else {
-                hintElems[i].setPosition(15+ i * (getWidth() / numCells), 10);
+                hintElems[i].setPosition(10+ i * (getWidth() / numCells), 10);
             }
             // Establece el tamaño y color del contorno de los elementos de pista.
             hintElems[i].setSize((getWidth() / numCells) - 5, (getWidth() / numCells) - 10);
-            hintElems[i].setStrokeColor(new Color(200, 200, 200));
+            hintElems[i].setStrokeColor(Color.GRAY);
 
             // Agrega cada elemento de pista como hijo del objeto HintObject.
             addChild(hintElems[i]);

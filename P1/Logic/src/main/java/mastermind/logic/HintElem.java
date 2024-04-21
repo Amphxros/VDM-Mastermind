@@ -48,17 +48,19 @@ public class HintElem extends GameObject {
         // Dibuja el elemento de pista según su estado.
         graphics.setColor(strokeColor);
         if(cellState==CellState.Empty) {
-            graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+            graphics.setColor(Color.GRAY);
+            graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Misplaced){
+            graphics.setColor(Color.WHITE);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Correct){
-            graphics.setColor(Color.GREEN);
+            graphics.setColor(Color.BLACK);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else{ // CellState.WRONG
-            graphics.setColor(Color.RED);
+            graphics.setColor(Color.GRAY);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
 

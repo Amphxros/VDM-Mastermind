@@ -52,7 +52,7 @@ public class Cell extends Button implements DaltonicListener{
     public void render(IGraphics graphics) {
 
         if(state ==CellState.Empty) {
-            graphics.setColor(initialColor);
+            graphics.setColor(Color.GRAY);
         }
         else {
             graphics.setColor(strokeColor);
@@ -71,12 +71,17 @@ public class Cell extends Button implements DaltonicListener{
      */
     @Override
     public boolean onTouchDown(TouchEvent event) {
-        getEngine().getAudio().stopSound(sound);
-        state= CellState.Empty;
-        this.value=-1;
-        if(sound!=null)
-            getEngine().getAudio().playSound(sound);
-        return true;
+
+
+        if(state != CellState.Empty){
+            state = CellState.Empty;
+            this.value=-1;
+            getEngine().getAudio().stopSound(sound);
+            if(sound!=null)
+                getEngine().getAudio().playSound(sound);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -94,7 +99,7 @@ public class Cell extends Button implements DaltonicListener{
         if(sound!=null) {
             getEngine().getAudio().playSound(sound);
         }
-        state=CellState.Filled;
+        state = CellState.Filled;
     }
 
     /**
