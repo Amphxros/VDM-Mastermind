@@ -19,6 +19,8 @@ public class Table extends GameObject implements DaltonicListener, IScrollable{
     boolean showHints; // Booleano que indica si se deben mostrar las pistas.
     ISound sound; // Objeto de sonido asociado a la tabla.
 
+    boolean scrollUp; boolean scrollDown;
+
     /**
      * Constructor de la clase Table.
      *
@@ -59,6 +61,9 @@ public class Table extends GameObject implements DaltonicListener, IScrollable{
 
             this.addChild(hintObject);
         }
+
+        scrollUp = true; scrollDown = true;
+
         super.init();
     }
 
@@ -140,7 +145,18 @@ public class Table extends GameObject implements DaltonicListener, IScrollable{
 
     @Override
     public void onScroll(float inputX, float inputY) {
-         move(0, (int)inputY);
+            move(0, (int)inputY);
 
+
+
+    }
+
+    @Override
+    public void setScrollUP(boolean sUP){
+        scrollUp = sUP;
+    }
+    @Override
+    public void setScrollDOWN(boolean sDOWN){
+        scrollDown = sDOWN;
     }
 }

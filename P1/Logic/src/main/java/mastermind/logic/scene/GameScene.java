@@ -1,6 +1,7 @@
 package mastermind.logic.scene;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
@@ -8,6 +9,7 @@ import mastermind.engine.Color;
 import mastermind.engine.EventType;
 import mastermind.engine.IEngine;
 import mastermind.engine.IFont;
+import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
 import mastermind.engine.IInput;
 import mastermind.engine.ISound;
@@ -17,6 +19,7 @@ import mastermind.logic.ColouringTable;
 import mastermind.logic.Container;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
+import mastermind.logic.IScrollable;
 import mastermind.logic.Image;
 import mastermind.logic.Logic;
 import mastermind.logic.Scene;
@@ -210,6 +213,39 @@ public class GameScene extends Scene {
     @Override
     public void handleInput(IInput input) {
         super.handleInput(input);
+        IGraphics graphics = getEngine().getGraphics();
+        List<TouchEvent> events = input.getTouchEvents(graphics);
+
+        for (TouchEvent event : events) {
+            if(event.getType() == EventType.DRAG){
+                boolean scrollUP = true; boolean scrollDOWN = true;
+                int contUP = 0, contDOWN = 0;
+                for(Table t: tables){
+                    int posY = t.getY();
+                    if(posY > 80)
+                        contDOWN++;
+                    if(posY < 400)
+                        contUP++;
+                }
+                if(contDOWN == tables.length) scrollDOWN = false;
+                if(contUP == tables.length) scrollUP = false;
+                if(input.getDeltaY() < 0 && scrollUP){
+                    for(Table t: tables){
+                        t.onScroll(0, input.getDeltaY());
+                    }
+                }else if(input.getDeltaY() > 0 && scrollDOWN){
+                    for(Table t: tables){
+                        t.onScroll(0, input.getDeltaY());
+                    }
+                }
+
+                /*for(Table t: tables){
+                    t.onScroll(0, input.getDeltaY());
+                }*/
+
+            }
+        }
+
     }
 
     /**
