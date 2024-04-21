@@ -17,6 +17,7 @@ import mastermind.engine.TouchEvent;
 import mastermind.logic.ColouringCell;
 import mastermind.logic.ColouringTable;
 import mastermind.logic.Container;
+import mastermind.logic.ContainerScroll;
 import mastermind.logic.DaltonicListener;
 import mastermind.logic.GameObject;
 import mastermind.logic.IScrollable;
@@ -55,6 +56,7 @@ public class GameScene extends Scene {
     // Datos del juego
     Color[] colors;
     Table[] tables;
+    ContainerScroll containerTables;
     int [] solution;
     ArrayList<DaltonicListener> daltonicObservers;
     boolean isRepeating;
@@ -78,6 +80,7 @@ public class GameScene extends Scene {
         this.tables= new Table[this.numIntentos];
         this.solution= new int[this.tamPassword];
         this.colors= new Color[this.numColores];
+        this.containerTables = new ContainerScroll(this, 75, 500);
         this.currTable=0;
         this.isRepeating=isRepeating;
 
@@ -114,21 +117,32 @@ public class GameScene extends Scene {
 
         );
 
+
+
+
         addGameObject(new DaltonicButton(this, open, close)
                 .setPosition(330,20)
                 .setSize(50,50)
                 .setStrokeColor(Color.BLACK)
         );
 
+
+        int maxWidth = getEngine().getGraphics().getWidth();
+        addGameObject(containerTables
+                .setPosition(0,0)
+                .setSize(maxWidth/2,maxWidth/2)
+                .setStrokeColor(new Color(150,150,150,0)));
+
+
         for(int i=0;i<this.numIntentos; i++){
             Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,font,sound);
             addGameObject(t);
-            addScrollableObject(t);
+
             daltonicObservers.add(t);
+            containerTables.addChild(t);
 
             tables[i]=t;
         }
-
         ColouringTable c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
         .setPosition(0,500)
         .setSize(400,70)
@@ -218,26 +232,7 @@ public class GameScene extends Scene {
 
         for (TouchEvent event : events) {
             if(event.getType() == EventType.DRAG){
-                boolean scrollUP = true; boolean scrollDOWN = true;
-                int contUP = 0, contDOWN = 0;
-                for(Table t: tables){
-                    int posY = t.getY();
-                    if(posY > 80)
-                        contDOWN++;
-                    if(posY < 400)
-                        contUP++;
-                }
-                if(contDOWN == tables.length) scrollDOWN = false;
-                if(contUP == tables.length) scrollUP = false;
-                if(input.getDeltaY() < 0 && scrollUP){
-                    for(Table t: tables){
-                        t.onScroll(0, input.getDeltaY());
-                    }
-                }else if(input.getDeltaY() > 0 && scrollDOWN){
-                    for(Table t: tables){
-                        t.onScroll(0, input.getDeltaY());
-                    }
-                }
+                containerTables.onVerticalScroll(input.getDeltaY());
 
                 /*for(Table t: tables){
                     t.onScroll(0, input.getDeltaY());
