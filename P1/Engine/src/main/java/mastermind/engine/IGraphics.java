@@ -165,10 +165,6 @@ public interface IGraphics {
      */
     void setFont(IFont font);
 
-    /**
-     * Presenta o muesta el contenido actualizado
-     */
-    void present();
 
     /**
      * Limpia el objeto que llama a este método, utilizando el color especificado.

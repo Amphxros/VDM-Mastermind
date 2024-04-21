@@ -80,7 +80,7 @@ public class GameScene extends Scene {
         this.tables= new Table[this.numIntentos];
         this.solution= new int[this.tamPassword];
         this.colors= new Color[this.numColores];
-        this.containerTables = new ContainerScroll(this, 75, 500);
+        this.containerTables = new ContainerScroll(this, 20, 50* (numIntentos+1));
         this.currTable=0;
         this.isRepeating=isRepeating;
 
@@ -128,14 +128,15 @@ public class GameScene extends Scene {
 
 
         int maxWidth = getEngine().getGraphics().getWidth();
+        int maxHeight = getEngine().getGraphics().getHeight();
         addGameObject(containerTables
-                .setPosition(0,0)
-                .setSize(maxWidth/2,maxWidth/2)
-                .setStrokeColor(new Color(150,150,150,0)));
+                .setPosition(20,50)
+                .setSize(maxWidth,maxHeight)
+                .setStrokeColor(new Color(150,150,150,150)));
 
 
         for(int i=0;i<this.numIntentos; i++){
-            Table t= (Table) createTable(i,20,50 + 50* (i+1), 350, 45, Color.BLACK,font,sound);
+            Table t= (Table) createTable(i,20,50* (i+1), 350, 45, Color.BLACK,font,sound);
             addGameObject(t);
 
             daltonicObservers.add(t);
@@ -215,8 +216,9 @@ public class GameScene extends Scene {
                 .setStrokeColor(color)
 
                 .addChild(new Text(this,String.valueOf(index+1),font)
-                        .setPosition(10,3*h/4)
-                );
+                        .setPosition(10,80)
+                )
+        ;
     }
 
     /**

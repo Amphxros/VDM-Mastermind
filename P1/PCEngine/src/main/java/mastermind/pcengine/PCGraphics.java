@@ -306,7 +306,7 @@ public class PCGraphics implements IGraphics {
      * Presenta el contenido del buffer en pantalla, luego libera el lienzo actual
      * y lo reemplaza con uno actualizado.
      */
-    @Override
+
     public void present() {
         // Muestra el contenido del buffer en pantalla.
         buffer.show();

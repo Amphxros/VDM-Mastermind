@@ -9,6 +9,8 @@ public class PCEngine extends Engine implements Runnable {
     private final JFrame renderView;
     public volatile boolean running;
 
+    PCGraphics pcGraphics;
+
     /**
      * Constructora del motor de PC. Inicializa todos los motores dentro del PC.
      */
@@ -20,7 +22,8 @@ public class PCEngine extends Engine implements Runnable {
         renderView.setVisible(true);
 
         setAudio(new PCAudio());
-        setGraphics(new PCGraphics(renderView));
+        pcGraphics = new PCGraphics(renderView);
+        setGraphics(pcGraphics);
         PCInput input = new PCInput(renderView);
         setInput(input);
         running = true;
@@ -56,10 +59,10 @@ public class PCEngine extends Engine implements Runnable {
             getGraphics().clear(Color.WHITE.getARGB());
 
             // Renderizar la lógica del juego en el lienzo
-            getLogic().render(getGraphics());
+            getLogic().render(pcGraphics);
 
             // Presentar el lienzo para visualizar los cambios
-            getGraphics().present();
+            pcGraphics.present();
         }
     }
 }
