@@ -25,6 +25,7 @@ public class Input implements IInput{
 
         for (TouchEvent t: tmp) {
             t.defineLogicCoordinates(graphics);
+
         }
 
         return tmp;
@@ -57,5 +58,16 @@ public class Input implements IInput{
     protected synchronized void addEvent(TouchEvent event) {
         // Añade el evento proporcionado a la lista de eventos de manera segura para hilos.
         events.add(event);
+
+
+        /*// Calcula el desplazamiento (delta) entre la posición actual y la anterior del dedo
+        if (lastX != 0 && lastY != 0) {
+            deltaX = event.getX() - lastX;
+            deltaY = event.getY() - lastY;
+        }
+
+        // Actualiza las coordenadas anteriores del dedo
+        lastX = event.getX();
+        lastY = event.getY();*/
     }
 }

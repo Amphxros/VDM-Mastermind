@@ -73,7 +73,7 @@ public class GameObject {
      * @param moveY Desplazamiento en el eje Y.
      */
     public void move(int moveX, int moveY){
-        setPosition(getX() + moveX, getY() +moveY);
+        setPosition(getX() + moveX, getY() + moveY);
         for(GameObject g: children)
             g.setPosition(g.getX() + moveX, g.getY() + moveY);
     }

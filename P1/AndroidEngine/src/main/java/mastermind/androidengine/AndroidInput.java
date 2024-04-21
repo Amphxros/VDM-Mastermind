@@ -2,6 +2,7 @@ package mastermind.androidengine;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -14,7 +15,7 @@ import mastermind.engine.TouchEvent;
 public class AndroidInput extends Input implements View.OnTouchListener {
     private int x,y; // coordenadas del evento
     EventType eventType; //tipo de evento
-    private float lastX, lastY;
+    private int lastX = 0, lastY = 0;
 
     /**
      *
@@ -26,13 +27,15 @@ public class AndroidInput extends Input implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         TouchEvent t = null;
+        //deltaX = 0; deltaY = 0;
 
         switch (motionEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
                 eventType=EventType.DOWN;
-
+                lastX = x;
+                lastY = y;
                 t= new TouchEvent(x,y,eventType);
                 addEvent(t);
                 break;
@@ -45,14 +48,19 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 addEvent(t);
 
                 break;
-                case MotionEvent.ACTION_MOVE:
-                    deltaX = (int) (motionEvent.getX() - lastX);
-                    deltaY = (int) (motionEvent.getY() - lastY);
-                    // Actualizar las coordenadas anteriores.
-                    lastX = motionEvent.getX();
-                    lastY = motionEvent.getY();
+            case MotionEvent.ACTION_MOVE:
 
-                    break;
+                Log.d("ACTION_MOVE", "Entro en ACTION_MOVE");
+
+                eventType = EventType.DRAG;
+                deltaX = (int) (motionEvent.getX() - lastX);
+                deltaY = (int) (motionEvent.getY() - lastY);
+                // Actualizar las coordenadas anteriores.
+                lastX = (int)motionEvent.getX();
+                lastY = (int)motionEvent.getY();
+                t= new TouchEvent(lastX,lastY,eventType);
+                addEvent(t);
+                break;
 
         }
         return t != null;

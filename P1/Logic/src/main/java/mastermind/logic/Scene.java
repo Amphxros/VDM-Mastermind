@@ -3,6 +3,7 @@ package mastermind.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import mastermind.engine.EventType;
 import mastermind.engine.IEngine;
 import mastermind.engine.IGraphics;
 import mastermind.engine.IInput;
@@ -74,12 +75,14 @@ public abstract class Scene implements IScene {
                 if (object.isEnabled())
                     object.handleInput(event);
             }
-
+            if(event.getType() == EventType.DRAG){
+                for(IScrollable scroll : scrollables){
+                    scroll.onScroll(0, input.getDeltaY());
+                }
+            }
 
         }
-        for(IScrollable scroll : scrollables){
-            scroll.onScroll(input.getDeltaX(), input.getDeltaY());
-        }
+
 
     }
 
