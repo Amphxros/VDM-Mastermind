@@ -80,7 +80,7 @@ public class GameScene extends Scene {
         this.tables= new Table[this.numIntentos];
         this.solution= new int[this.tamPassword];
         this.colors= new Color[this.numColores];
-        this.containerTables = new ContainerScroll(this, 20, 50* (numIntentos+1));
+        this.containerTables = new ContainerScroll(this, 30, 400);
         this.currTable=0;
         this.isRepeating=isRepeating;
 
@@ -131,7 +131,7 @@ public class GameScene extends Scene {
         int maxHeight = getEngine().getGraphics().getHeight();
         addGameObject(containerTables
                 .setPosition(20,50)
-                .setSize(maxWidth,maxHeight)
+                .setSize(maxWidth,50* (numIntentos+1))
                 .setStrokeColor(new Color(150,150,150,150)));
 
 
