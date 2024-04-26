@@ -12,7 +12,7 @@ public class PCEngine extends Engine implements Runnable {
     PCGraphics pcGraphics;
 
     /**
-     * Constructora del motor de PC. Inicializa todos los motores dentro del PC.
+     * Constructor del motor de PC. Inicializa todos los motores dentro del PC.
      */
     public PCEngine(String _titleGame) {
         renderView = new JFrame(_titleGame);

@@ -2,6 +2,7 @@ package mastermind.logic.button;
 
 import mastermind.engine.IGraphics;
 import mastermind.engine.IImage;
+import mastermind.engine.ISound;
 import mastermind.logic.scene.IScene;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.GameScene;
@@ -13,6 +14,8 @@ public final class DaltonicButton extends Button{
     IImage open, close; // Imágenes para el botón en los estados de habilitado y deshabilitado
     boolean daltonic= false; // Estado actual del modo daltónico
 
+    ISound mySound;
+
     /**
      * Constructor de la clase DaltonicButton.
      *
@@ -20,11 +23,11 @@ public final class DaltonicButton extends Button{
      * @param enable  Imagen del botón cuando el modo daltónico está habilitado.
      * @param disable Imagen del botón cuando el modo daltónico está deshabilitado.
      */
-    public DaltonicButton(IScene scene, IImage enable, IImage disable) {
+    public DaltonicButton(IScene scene, IImage enable, IImage disable, ISound sound) {
         super(scene);
         this.open=enable;
         this.close=disable;
-
+        this.mySound = sound;
     }
 
     /**
@@ -56,6 +59,7 @@ public final class DaltonicButton extends Button{
         GameScene scene= (GameScene) getScene();
         if(scene!=null){
             scene.onDaltonicMode(daltonic);
+            mySound.play();
         }
 
         return daltonic;

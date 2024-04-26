@@ -99,6 +99,8 @@ public class GameScene extends Scene {
         IImage back= getEngine().getGraphics().newImage("images/back_button.png");
 
         ISound sound= getEngine().getAudio().createSound("sounds/select.wav");
+        ISound soundEye= getEngine().getAudio().createSound("sounds/select_005.wav");
+
         generateData();
 
         tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",font)
@@ -114,13 +116,9 @@ public class GameScene extends Scene {
                 .addChild(new Image(this, back)
                         .setSize(50,50)
                 )
-
         );
 
-
-
-
-        addGameObject(new DaltonicButton(this, open, close)
+        addGameObject(new DaltonicButton(this, open, close, soundEye)
                 .setPosition(330,20)
                 .setSize(50,50)
                 .setStrokeColor(Color.BLACK)
