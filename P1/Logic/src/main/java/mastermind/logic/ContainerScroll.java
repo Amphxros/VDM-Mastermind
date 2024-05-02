@@ -28,8 +28,13 @@ public class ContainerScroll extends Container implements IScrollable{
 
     @Override
     public void onVerticalScroll(float inputY) {
-
-        move(0, (int)inputY);
+        int aux = (int)inputY;
+        if(inputY < 0 && ((int)inputY + this.getHeight() + this.getY()) <= limitDOWN){
+            aux = (this.getY() + this.getHeight()) - limitDOWN;
+        } else if (inputY > 0 && ((int)inputY + this.getY()) >= limitUP){
+            aux = limitUP - this.getY();
+        }
+        move(0, aux);
     }
 
     @Override
