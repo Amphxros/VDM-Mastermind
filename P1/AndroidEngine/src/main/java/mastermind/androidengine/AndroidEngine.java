@@ -11,12 +11,12 @@ public class AndroidEngine extends Engine implements Runnable {
     private volatile boolean running; //bool para el bucle principal
 
     public AndroidEngine(SurfaceView surfaceView, Context context) {
-        setGraphics(new AndroidGraphics(surfaceView, context));
-        setAudio(new AndroidAudio(context));
+        this.setGraphics(new AndroidGraphics(surfaceView, context));
+        this.setAudio(new AndroidAudio(context));
 
         AndroidInput input = new AndroidInput();
         surfaceView.setOnTouchListener(input);
-        setInput(input);
+        this.setInput(input);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Container extends GameObject{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
+        //graphics.drawRectangle(getX(),getY(),getWidth(),getHeight());
         super.render(graphics);
     }
 

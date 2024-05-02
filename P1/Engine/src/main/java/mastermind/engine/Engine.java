@@ -3,7 +3,7 @@ package mastermind.engine;
 public abstract class Engine implements IEngine {
     private IGraphics graphics;
     private IAudio audio;
-    private Input input;
+    private IInput input;
     private ILogic logic;
 
     /**
@@ -31,8 +31,7 @@ public abstract class Engine implements IEngine {
         return graphics;
     }
 
-    @Override
-    public void setGraphics(IGraphics graphics) {
+    protected void setGraphics(IGraphics graphics) {
         this.graphics = graphics;
     }
 
@@ -40,12 +39,11 @@ public abstract class Engine implements IEngine {
      * @return An {@link Input} instance.
      */
     @Override
-    public Input getInput() {
+    public IInput getInput() {
         return input;
     }
 
-    @Override
-    public void setInput(Input input) {
+    protected void setInput(IInput input) {
         this.input = input;
     }
 
@@ -57,8 +55,7 @@ public abstract class Engine implements IEngine {
         return audio;
     }
 
-    @Override
-    public void setAudio(IAudio audio) {
+    protected void setAudio(IAudio audio) {
         this.audio = audio;
     }
 }
