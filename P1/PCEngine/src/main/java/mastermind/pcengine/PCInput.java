@@ -5,6 +5,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JFrame;
 import javax.swing.event.MouseInputListener;
@@ -17,7 +19,7 @@ import mastermind.engine.TouchEvent;
  * Clase que implementa la interfaz Input y los listeners MouseInputListener y KeyListener
  * para manejar la entrada desde el ratón y el teclado en un entorno de PC.
  */
-public class PCInput extends Input implements MouseInputListener, KeyListener {
+public class PCInput extends Input implements MouseInputListener, MouseWheelListener, KeyListener {
 
 
     // Variable que indica si la aplicación se encuentra en modo pantalla completa.
@@ -93,5 +95,15 @@ public class PCInput extends Input implements MouseInputListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         // No se realiza ninguna acción al soltar una tecla.
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
+        int notches = mouseWheelEvent.getWheelRotation();
+        if (notches < 0) {
+            addEvent(new TouchEvent(mouseWheelEvent.getX(), mouseWheelEvent.getY(), EventType.DRAG_UP));
+        } else {
+            addEvent(new TouchEvent(mouseWheelEvent.getX(), mouseWheelEvent.getY(), EventType.DRAG_DOWN));
+        }
     }
 }

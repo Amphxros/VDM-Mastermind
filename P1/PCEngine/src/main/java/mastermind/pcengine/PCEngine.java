@@ -30,6 +30,7 @@ public class PCEngine extends Engine implements Runnable {
 
         renderView.addMouseListener(input);
         renderView.addKeyListener(input);
+        renderView.addMouseWheelListener(input);
     }
 
     @Override

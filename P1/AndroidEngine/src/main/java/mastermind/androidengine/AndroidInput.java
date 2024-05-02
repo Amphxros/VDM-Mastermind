@@ -50,17 +50,22 @@ public class AndroidInput extends Input implements View.OnTouchListener {
                 break;
             case MotionEvent.ACTION_MOVE:
 
-                Log.d("ACTION_MOVE", "Entro en ACTION_MOVE");
+                int currentX = (int) motionEvent.getX();
+                int currentY = (int) motionEvent.getY();
 
-                eventType = EventType.DRAG;
-                deltaX = (int) (motionEvent.getX() - lastX);
-                deltaY = (int) (motionEvent.getY() - lastY);
+                if (currentY < lastY) {
+                    eventType = EventType.DRAG_UP;
+                } else {
+                    eventType = EventType.DRAG_DOWN;
+                }
+
                 // Actualizar las coordenadas anteriores.
-                lastX = (int)motionEvent.getX();
-                lastY = (int)motionEvent.getY();
-                t= new TouchEvent(lastX,lastY,eventType);
+                lastX = currentX;
+                lastY = currentY;
+                t = new TouchEvent(currentX, currentY, eventType);
                 addEvent(t);
                 break;
+
 
         }
         return t != null;

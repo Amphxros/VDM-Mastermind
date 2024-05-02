@@ -230,16 +230,12 @@ public class GameScene extends Scene {
         IGraphics graphics = getEngine().getGraphics();
         List<TouchEvent> events = input.getTouchEvents(graphics);
 
-        for (TouchEvent event : events) {
+        /*for (TouchEvent event : events) {
             if(event.getType() == EventType.DRAG){
                 containerTables.onVerticalScroll(input.getDeltaY());
 
-                /*for(Table t: tables){
-                    t.onScroll(0, input.getDeltaY());
-                }*/
-
             }
-        }
+        }*/
 
     }
 
