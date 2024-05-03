@@ -172,7 +172,6 @@ public class GameScene extends Scene {
         if(isRepeating){
             for(int i=0;i<this.tamPassword;i++){
                 this.solution[i]= (int)Math.floor(Math.random() * (this.numColores));
-                System.out.println( this.solution[i]);
             }
         }
         /**
@@ -191,7 +190,6 @@ public class GameScene extends Scene {
                     repetition[r]=true;
                     this.solution[i]=r;
                     i++;
-                    System.out.println(r);
                 }
                 r=(int)Math.floor(Math.random() * (this.numColores));
             }
@@ -204,13 +202,8 @@ public class GameScene extends Scene {
         for(int i=0;i<this.numColores;i++){
 
             colors[i]=palette[i];
-        }
-        for(int i=0;i<this.tamPassword;i++){
             System.out.println(this.solution[i] + " ");
-
         }
-        System.out.println("\n");
-
     }
 
     /**
