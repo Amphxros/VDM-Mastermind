@@ -119,7 +119,6 @@ public class Table extends GameObject implements DaltonicListener{
     public void setDaltonicMode(boolean mode) {
         for(Cell c: cells)
             c.setDaltonicMode(mode);
-
     }
 
     /**
@@ -140,6 +139,9 @@ public class Table extends GameObject implements DaltonicListener{
      * @return true si las pistas son correctas, false en caso contrario.
      */
     public boolean correctHints(int[] solution){
+        for(int i = 0; i < cells.length; ++i){
+            cells[i].setCellState(CellState.Resolve);
+        }
         return hintObject.showHints(solution, this.solution);
     }
 

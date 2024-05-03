@@ -52,8 +52,12 @@ public class HintElem extends GameObject {
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
         }
         else if(cellState==CellState.Misplaced){
+
             graphics.setColor(Color.WHITE);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+            graphics.setColor(Color.BLACK);
+            graphics.drawCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);
+
         }
         else if(cellState==CellState.Correct){
             graphics.setColor(Color.BLACK);

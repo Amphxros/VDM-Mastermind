@@ -72,8 +72,7 @@ public class Cell extends Button implements DaltonicListener{
     @Override
     public boolean onTouchDown(TouchEvent event) {
 
-
-        if(state != CellState.Empty){
+        if(state != CellState.Resolve && state != CellState.Empty){
             state = CellState.Empty;
             this.value=-1;
             getEngine().getAudio().stopSound(sound);
@@ -99,7 +98,7 @@ public class Cell extends Button implements DaltonicListener{
         if(sound!=null) {
             getEngine().getAudio().playSound(sound);
         }
-        state = CellState.Filled;
+        this.state = CellState.Filled;
     }
 
     /**
@@ -143,5 +142,9 @@ public class Cell extends Button implements DaltonicListener{
 
             graphics.drawText(String.valueOf(value + 1), getX() + getWidth()/2, getY()+ 3*getHeight()/4);
         }
+    }
+
+    public void setCellState(CellState cs){
+        state = cs;
     }
 }

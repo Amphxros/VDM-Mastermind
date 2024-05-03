@@ -241,7 +241,7 @@ public final class AndroidGraphics implements IGraphics {
     public void drawRoundRectangle(int cx, int cy, int width, int height, int arc) {
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRoundRect(cx,cy,cx+ width,cy + height,arc,arc,paint);
-        paint.setStyle(Paint.Style.FILL);
+        //paint.setStyle(Paint.Style.FILL);
     }
 
     /**

@@ -8,5 +8,6 @@ public enum CellState {
     Filled, // Estado que indica que la celda está llenada.
     Correct, // Estado que indica que la celda está correctamente ubicada.
     Misplaced, // Estado que indica que la celda está ubicada, pero en una posición incorrecta.
-    Wrong // Estado que indica que la celda está equivocada o incorrecta.
+    Wrong, // Estado que indica que la celda está equivocada o incorrecta.
+    Resolve
 }

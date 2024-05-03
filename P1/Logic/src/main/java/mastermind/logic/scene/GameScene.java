@@ -1,5 +1,6 @@
 package mastermind.logic.scene;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -80,7 +81,7 @@ public class GameScene extends Scene {
         this.tables= new Table[this.numIntentos];
         this.solution= new int[this.tamPassword];
         this.colors= new Color[this.numColores];
-        this.containerTables = new ContainerScroll(this, 30, 400);
+        this.containerTables = new ContainerScroll(this, 50, 400);
         this.currTable=0;
         this.isRepeating=isRepeating;
 
@@ -103,28 +104,6 @@ public class GameScene extends Scene {
 
         generateData();
 
-        tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",font)
-                .setPosition(200,75)
-                .setStrokeColor(Color.BLACK);
-        addGameObject(tryText);
-
-        addGameObject(new GoToChooseLevel(this)
-                .setPosition(0,20)
-                .setSize(50,50)
-                .setStrokeColor(new Color(200,200,200))
-
-                .addChild(new Image(this, back)
-                        .setSize(50,50)
-                )
-        );
-
-        addGameObject(new DaltonicButton(this, open, close, soundEye)
-                .setPosition(330,20)
-                .setSize(50,50)
-                .setStrokeColor(Color.BLACK)
-        );
-
-
         int maxWidth = getEngine().getGraphics().getWidth();
         int maxHeight = getEngine().getGraphics().getHeight();
         addGameObject(containerTables
@@ -143,11 +122,41 @@ public class GameScene extends Scene {
             tables[i]=t;
         }
         ColouringTable c= (ColouringTable) new ColouringTable(this, this.numColores,this.colors)
-        .setPosition(0,500)
-        .setSize(400,70)
-        .setStrokeColor(new Color(200,200,200));
+                .setPosition(0,maxHeight - 70)
+                .setSize(400,70)
+                .setStrokeColor(new Color(200,200,200));
         addGameObject(c);
         daltonicObservers.add(c);
+
+        Container myContainer = new Container(this);
+        myContainer.setPosition(0, 0);
+        myContainer.setStrokeColor(Color.GRAY);
+        myContainer.setSize(maxWidth, 100);
+        myContainer.setOpaque(true);
+
+        addGameObject(myContainer);
+
+        tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",font)
+                .setPosition(200,75)
+                .setStrokeColor(Color.BLACK);
+        addGameObject(tryText);
+
+
+        addGameObject(new GoToChooseLevel(this)
+                .setPosition(0,20)
+                .setSize(50,50)
+                .setStrokeColor(new Color(200,200,200))
+
+                .addChild(new Image(this, back)
+                        .setSize(50,50)
+                )
+        );
+
+        addGameObject(new DaltonicButton(this, open, close, soundEye)
+                .setPosition(330,20)
+                .setSize(50,50)
+                .setStrokeColor(Color.BLACK)
+        );
 
         super.init();
 
@@ -229,14 +238,6 @@ public class GameScene extends Scene {
         super.handleInput(input);
         IGraphics graphics = getEngine().getGraphics();
         List<TouchEvent> events = input.getTouchEvents(graphics);
-
-        /*for (TouchEvent event : events) {
-            if(event.getType() == EventType.DRAG){
-                containerTables.onVerticalScroll(input.getDeltaY());
-
-            }
-        }*/
-
     }
 
     /**
