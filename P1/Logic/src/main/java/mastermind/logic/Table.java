@@ -55,8 +55,8 @@ public class Table extends GameObject implements DaltonicListener{
         }
         if(showHints) {
             hintObject = new HintObject(getScene(), this.numElems);
-            hintObject.setPosition(getWidth() - 90, 2);
-            hintObject.setSize(70, 40);
+            hintObject.setPosition(getWidth()-90, 5);
+            hintObject.setSize(90, getHeight() -10);
             hintObject.setStrokeColor(new Color(50, 50, 50));
 
             this.addChild(hintObject);

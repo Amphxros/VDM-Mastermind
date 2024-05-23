@@ -32,24 +32,67 @@ public class HintObject extends GameObject{
      */
     @Override
     public void init() {
-        for(int i=0;i<this.numCells;i++){
-            hintElems[i]= new HintElem(getScene());
+        boolean even= this.numCells%2==0;
+        if(even) {
+            setUpEven();
+        }
+        else{
+            setUpUneven();
+        }
+        super.init();
+    }
 
-            // Posiciona los elementos de pista de manera diferente según su posición en la pista.
-            if(i+1>this.numCells/2){
-                hintElems[i].setPosition(10+(i-this.numCells/2 )* (getWidth() / numCells), getHeight()/2 +10);
+    private void setUpUneven(){
+        int w = getWidth();
+        int h = getHeight();
+        int cellSize = w / this.numCells; // Tamaño de cada celda
+        int halfCellSize = cellSize / 2;
+
+        for (int i = 0; i < this.numCells; i++) {
+            hintElems[i] = new HintElem(getScene());
+            int posX = (i * cellSize);
+            int posY;
+
+            if (i % 2 == 0) {
+                posY = 0;
+            } else {
+                posY = h - cellSize ;
             }
-            else {
-                hintElems[i].setPosition(10+ i * (getWidth() / numCells), 10);
-            }
-            // Establece el tamaño y color del contorno de los elementos de pista.
-            hintElems[i].setSize((getWidth() / numCells) - 5, (getWidth() / numCells) - 10);
+
+            hintElems[i].setPosition(posX, posY);
+            hintElems[i].setSize(cellSize, cellSize);
             hintElems[i].setStrokeColor(Color.GRAY);
 
             // Agrega cada elemento de pista como hijo del objeto HintObject.
             addChild(hintElems[i]);
         }
-        super.init();
+    }
+    private void setUpEven(){
+        int w = getWidth();
+        int h = getHeight();
+        int cellSize = h / 2; // Tamaño de cada celda
+        int halfCellSize = cellSize / 2;
+
+        for (int i = 0; i < this.numCells; i++) {
+            hintElems[i] = new HintElem(getScene());
+            int posX;
+            int posY;
+
+            if (i % 2 == 0) {
+                posX = (i * cellSize) + halfCellSize;
+                posY = 0;
+            } else {
+                posX = ((i - 1) * cellSize) + halfCellSize;
+                posY = (3 * h / 5) ;
+            }
+
+            hintElems[i].setPosition(posX, posY);
+            hintElems[i].setSize(cellSize, cellSize);
+            hintElems[i].setStrokeColor(Color.GRAY);
+
+            // Agrega cada elemento de pista como hijo del objeto HintObject.
+            addChild(hintElems[i]);
+        }
     }
 
     /**
@@ -60,9 +103,17 @@ public class HintObject extends GameObject{
     @Override
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
-        graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),30);
+        graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),20);
 
         super.render(graphics);
+    }
+
+
+    @Override
+    public void update(double delta) {
+
+
+
     }
 
     /**

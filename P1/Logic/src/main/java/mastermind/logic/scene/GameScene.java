@@ -192,6 +192,8 @@ public class GameScene extends Scene {
                     i++;
                 }
                 r=(int)Math.floor(Math.random() * (this.numColores));
+
+
             }
 
 
@@ -200,9 +202,7 @@ public class GameScene extends Scene {
          * Generate colors
          */
         for(int i=0;i<this.numColores;i++){
-
             colors[i]=palette[i];
-            System.out.println(this.solution[i] + " ");
         }
     }
 
