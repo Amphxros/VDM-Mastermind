@@ -60,7 +60,6 @@ public class GameObject {
      */
     public GameObject setPosition(int x, int y) {
         setPosition(new Vector2D(x, y));
-
         return this;
     }
 
@@ -74,36 +73,30 @@ public class GameObject {
      */
     public void move(int moveX, int moveY){
         setPosition(this.getX() + moveX, this.getY() + moveY);
-        for(GameObject g: children)
+        for(GameObject g: children) {
             g.move(moveX, moveY);
-
+        }
     }
 
     /**
-     * Obtiene la coordenada X de la posición del GameObject.
-     *
-     * @return Coordenada X del GameObject.
+     * @return Coordenada X de la posicion del GameObject.
      */
     public int getX() {
         return position.getX();
     }
 
     /**
-     * Obtiene la coordenada Y de la posición del GameObject.
-     *
-     * @return Coordenada Y del GameObject.
+     * @return Coordenada Y de la posicion del GameObject.
      */
     public int getY() {
-        return position.getY();
+        return this.position.getY();
     }
 
     /**
-     * Obtiene las dimensiones del objeto.
-     *
      * @return Las dimensiones del objeto en forma de un objeto Vector2D.
      */
     public Vector2D getSize() {
-        return size;
+        return this.size;
     }
 
     /**
@@ -129,8 +122,6 @@ public class GameObject {
     }
 
     /**
-     * Obtiene el ancho del objeto.
-     *
      * @return Ancho del objeto.
      */
     public int getWidth() {
@@ -138,8 +129,6 @@ public class GameObject {
     }
 
     /**
-     * Obtiene el alto del objeto.
-     *
      * @return Alto del objeto.
      */
     public int getHeight() {
@@ -152,7 +141,7 @@ public class GameObject {
      * @return true si el objeto está activo, false de lo contrario.
      */
     public boolean isEnabled() {
-        return enabled;
+        return this.enabled;
     }
 
     /**
@@ -170,7 +159,7 @@ public class GameObject {
      * @return El objeto padre.
      */
     public GameObject getParent() {
-        return parent;
+        return this.parent;
     }
 
     /**
@@ -179,7 +168,7 @@ public class GameObject {
      * @return Vector con los hijos del objeto.
      */
     public Vector<GameObject> getChildren() {
-        return children;
+        return this.children;
     }
 
     /**
@@ -199,7 +188,7 @@ public class GameObject {
      * @return La escena asociada al objeto.
      */
     public IScene getScene() {
-        return scene;
+        return this.scene;
     }
 
     /**
@@ -208,7 +197,7 @@ public class GameObject {
      * @return El motor del juego.
      */
     public IEngine getEngine() {
-        return scene.getEngine();
+        return this.scene.getEngine();
     }
 
 
@@ -237,9 +226,8 @@ public class GameObject {
     }
 
     /**
-     * Método de evento llamado en cada cuadro.
      *
-     * @param delta El número de segundos desde el último cuadro.
+     * @param graphics
      */
     public void render(IGraphics graphics) {
         for (GameObject child : getChildren()) {
@@ -249,11 +237,7 @@ public class GameObject {
         }
     }
 
-    /**
-     * Método de evento llamado en cada cuadro.
-     *
-     * @param delta El número de segundos desde el último cuadro.
-     */
+
     public void update(double delta) {
         for (GameObject child : getChildren()) {
             if (child.isEnabled()) {
@@ -262,12 +246,6 @@ public class GameObject {
         }
     }
 
-    /**
-     * Método de evento llamado cuando el dispositivo recibe un evento.
-     *
-     * @param event El evento recibido desde el dispositivo.
-     * @return Si la entrada ha sido procesada o no.
-     */
     public boolean handleInput(TouchEvent event) {
         for (GameObject child : getChildren()) {
             if (child.isEnabled() && child.handleInput(event)) {

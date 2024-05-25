@@ -5,29 +5,22 @@ import java.util.List;
 
 public abstract class Input implements IInput{
 
-    protected int lastX, lastY;
     protected int deltaX, deltaY;
-
 
     protected final LinkedList<TouchEvent> events = new LinkedList<>(); // tambien puede ser una cola
     /**
-     * @return Returns a list of all the queued events, transforms them in the logic space and clears the queue upon call.
+     * @return Copia los eventos y los redimensiona a la pantalla logica
      */
     @Override
     public synchronized LinkedList<TouchEvent> getTouchEvents(IGraphics graphics) {
         LinkedList<TouchEvent> tmp;
-
         synchronized (this) {
-            // Copy the queued events into a list:
             tmp = new LinkedList<>(events);
             events.clear();
+            for (TouchEvent t : tmp) {
+                t.defineLogicCoordinates(graphics);
+            }
         }
-
-        for (TouchEvent t: tmp) {
-            t.defineLogicCoordinates(graphics);
-
-        }
-
         return tmp;
     }
 

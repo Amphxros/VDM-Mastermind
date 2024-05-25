@@ -6,7 +6,6 @@ import mastermind.engine.IFont;
 
 public class PCFont implements IFont {
     private final Font font;
-
     public PCFont(Font font) {
         this.font = font;
     }

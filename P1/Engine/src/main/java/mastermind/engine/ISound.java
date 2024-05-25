@@ -2,20 +2,23 @@ package mastermind.engine;
 
 public interface ISound {
     /**
-     * Plays the sound.
+     * Reproduce el sonido
      */
     void play();
 
     /**
-     * Stops playing the sound.
+     * Para el sonido
      */
     void stop();
 
     /**
-     * Sets the sound in a loop.
+     * Pone el sonido en bucle
      */
     void setLoop();
 
-
+    /**
+     * Cambia el volumen del sonido
+     * @param volume Volumen al que se pone
+     */
     void setVolume(float volume);
 }

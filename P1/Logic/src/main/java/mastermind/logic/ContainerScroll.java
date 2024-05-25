@@ -7,6 +7,9 @@ import mastermind.engine.ISound;
 import mastermind.engine.TouchEvent;
 import mastermind.logic.scene.IScene;
 
+/**
+ * Contenedor scrolleable
+ */
 public class ContainerScroll extends Container implements IScrollable{
 
     int limitUP;

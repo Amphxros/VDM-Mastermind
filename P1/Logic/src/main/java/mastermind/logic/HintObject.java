@@ -38,11 +38,11 @@ public class HintObject extends GameObject{
     public void init() {
         boolean even= this.numCells%2==0; //TRUE = PAR; FALSE = IMPAR
         int mitadCell = this.numCells/2;
-        int w = getWidth(), h = getHeight();
-        int cellSizeW = (w - (margin*2)) / mitadCell; // Tamaño de cada celda
-        int cellSizeH = (h - (margin*2)) / 2;
-
-        int cellSize;
+        int w = getWidth(),
+            h = getHeight();
+        int cellSizeW = (w - (2 * margin )) / mitadCell,
+            cellSizeH = (h - (2* margin )) / 2,
+            cellSize=-1;
 
         if(cellSizeW < cellSizeH) cellSize = cellSizeW;
         else cellSize = cellSizeH;
@@ -68,7 +68,7 @@ public class HintObject extends GameObject{
             for(int i = 0; i < numCells; i++){
                 if(i <= mitadCell ){
                     posY = margin/2;
-                    posX = ((w - margin*2)/(mitadCell+1)) * i + cellSize/2 + margin;
+                    posX = ((w - 2*margin)/(mitadCell+1)) * i + cellSize/2 + margin;
 
                 }else{
                     posY = h - cellSize - margin/2;
@@ -86,61 +86,6 @@ public class HintObject extends GameObject{
         super.init();
     }
 
-    private void setUpUneven(){
-
-        int w = getWidth();
-        int h = getHeight();
-        int cellSize = w / this.numCells; // Tamaño de cada celda
-        int halfCellSize = cellSize / 2;
-
-        for (int i = 0; i < this.numCells; i++) {
-            hintElems[i] = new HintElem(getScene());
-            int posX = (i * cellSize);
-            int posY;
-
-            if (i % 2 == 0) {
-                posY = 0;
-            } else {
-                posY = h - cellSize ;
-            }
-
-            hintElems[i].setPosition(posX, posY);
-            hintElems[i].setSize(cellSize, cellSize);
-            hintElems[i].setStrokeColor(Color.GRAY);
-
-            // Agrega cada elemento de pista como hijo del objeto HintObject.
-            addChild(hintElems[i]);
-        }
-    }
-    private void setUpEven(){
-
-        int w = getWidth();
-        int h = getHeight();
-        int cellSize = h / 2; // Tamaño de cada celda
-        int halfCellSize = cellSize / 2;
-
-        for (int i = 0; i < this.numCells; i++) {
-            hintElems[i] = new HintElem(getScene());
-            int posX;
-            int posY;
-
-            if (i % 2 == 0) {
-                posX = (i * cellSize) + halfCellSize;
-                posY = 0;
-            } else {
-                posX = ((i - 1) * cellSize) + halfCellSize;
-                posY = (3 * h / 5) ;
-            }
-
-            hintElems[i].setPosition(posX, posY);
-            hintElems[i].setSize(cellSize, cellSize);
-            hintElems[i].setStrokeColor(Color.GRAY);
-
-            // Agrega cada elemento de pista como hijo del objeto HintObject.
-            addChild(hintElems[i]);
-        }
-    }
-
     /**
      * Método de renderizado que dibuja el contorno redondeado del objeto HintObject.
      *
@@ -150,7 +95,6 @@ public class HintObject extends GameObject{
     public void render(IGraphics graphics) {
         graphics.setColor(strokeColor);
         graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),20);
-
         super.render(graphics);
     }
 
@@ -172,8 +116,8 @@ public class HintObject extends GameObject{
             if(tableSolution[i]==solution[i]){
                 visto[i] = true;
                 correctElems++;
-            }else{
-
+            }
+            else{
                 boolean encontrado = false;
                 int j = 0;
 
@@ -181,7 +125,8 @@ public class HintObject extends GameObject{
                 while (!encontrado && j < visto.length){
                     if(visto[i]){
                         encontrado = true;
-                    }else if(tableSolution[j] == solution[i] && tableSolution[j] != solution[j]){
+                    }
+                    else if(tableSolution[j] == solution[i] && tableSolution[j] != solution[j]){
                         visto[i] = true;
                         wrongPosition++;
                         encontrado = true;
@@ -193,6 +138,7 @@ public class HintObject extends GameObject{
 
         int n = 0;
         // Establece el estado de los elementos de pista según las pistas proporcionadas.
+
         //Elementos correctos
         for (int i = 0; i < correctElems; i++) {
             this.hintElems[n].setCellState(CellState.Correct);

@@ -7,7 +7,6 @@ import mastermind.engine.IAudio;
 import mastermind.engine.ISound;
 
 public class AndroidAudio implements IAudio {
-
     Context context;
     SoundPool soundPool;
     public AndroidAudio(Context context) {

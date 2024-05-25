@@ -42,10 +42,8 @@ public class ColouringCell extends Button implements DaltonicListener{
     }
 
     /**
-     * Maneja el evento de toque en la casilla y notifica a la escena correspondiente.
-     *
-     * @param event Evento de toque recibido.
-     * @return true para indicar que el evento fue manejado.
+     * Renderiza la cell
+     * @param graphics
      */
     @Override
     public void render(IGraphics graphics) {

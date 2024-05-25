@@ -1,14 +1,11 @@
 package mastermind.engine;
 
 public class TouchEvent {
-    /**
-     * The coordinates the touch event happened at.
-     */
-    private final int windowX, windowY;
-    private final EventType type; //type of event
-    private int x = -1, y = -1;
 
-    boolean scroll;
+    private int x = -1, y = -1; //coordenadas logicas
+    private final int windowX, windowY; //coordenadas absolutas
+    private final EventType type; //tipo de evento
+
     public TouchEvent(int windowX, int windowY, EventType event) {
         this.windowX = windowX;
         this.windowY = windowY;
@@ -16,66 +13,55 @@ public class TouchEvent {
 
     }
 
+
     /**
-     * The X-axis position in the logic, will be -1 if invalid or unset. See {@link #isValid()}.
      *
-     * @return The logic X-axis position the event happened at.
+     * @return La coordenada X (horizontal) del evento logico
      */
     public int getX() {
-        return x;
+        return this.x;
     }
 
     /**
-     * The Y-axis position in the logic, will be -1 if invalid or unset. See {@link #isValid()}.
-     *
-     * @return The logic Y-axis position the event happened at.
+     * @return La coordenada Y (vertical) del evento logico
      */
     public int getY() {
-        return y;
+        return this.y;
     }
 
     /**
-     * Checks whether or not the event happened at a valid set of coordinates.
-     *
-     * @return Whether or not the event happened at a valid set of coordinates.
+     * @return Si las coordenadas estan en nuestro margen
      */
     public boolean isValid() {
         return x != -1 && y != -1;
     }
+
     /**
-     * Returns the absolute position in the X-axis where the event happened at, it will always be
-     * defined.
-     *
-     * @return The absolute position in the X-axis where the event happened at.
+     * @return La coordenada X (horizontal) absoluta sin transformar en la logica
      */
     public int getWindowX() {
         return windowX;
     }
 
     /**
-     * Returns the absolute position in the Y-axis where the event happened at, it will always be
-     * defined.
-     *
-     * @return The absolute position in the Y-axis where the event happened at.
+     * @return La coordenada Y (vertical) absoluta sin transformar en la logica
      */
     public int getWindowY() {
         return windowY;
     }
 
     /**
-     * Sets the logic coordinates, sets the values that {@link #getX()} and {@link #getY()} return.
-     * Ideally, this should be called before consuming the events in the game's objects. The new
-     * values will be the result of calling {@link IGraphics#getLogicPointX(int)} with
-     * {@link #getWindowX()}, and {@link IGraphics#getLogicPointY(int)} with {@link #getWindowY()},
-     * respectively.
-     *
-     * @param graphics The graphics engine to read the values from.
+     * Cambia el evento para que sea acorde a la pantalla logica
+     * @param graphics
      */
-    public void defineLogicCoordinates(IGraphics graphics) {
+    protected void defineLogicCoordinates(IGraphics graphics) {
         this.x = graphics.getLogicPointX(getWindowX());
         this.y = graphics.getLogicPointY(getWindowY());
     }
 
+    /**
+     * @return El tipo de evento
+     */
     public EventType getType() {
         return type;
     }
