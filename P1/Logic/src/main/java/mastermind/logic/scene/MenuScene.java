@@ -48,13 +48,13 @@ public class MenuScene extends Scene {
 
         // Texto para partida rápida
         Text t= new Text(this, "partida rapida",fonty);
-        t.setPosition(center-50,25);
-        t.setAlignment(HorizontalAlignment.CENTRE);
+        t.setPosition(center - 40,25);
+
 
         // Botón para iniciar una partida rápida
         addGameObject(new GoToChooseLevel(this)
-                .setPosition(center/3,250)
-                .setSize(300,50)
+                .setPosition(buttonX,250)
+                .setSize(buttonW,50)
                 .setStrokeColor(new Color(150,150,150))
 
                 .addChild(t)

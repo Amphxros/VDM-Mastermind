@@ -42,19 +42,18 @@ public class ChooseLevelScene extends Scene {
         int buttonX = center - buttonW / 2;
 
         addGameObject(new GoToMenuScene(this)
-                .setPosition(0,20)
-                .setSize(50,50)
+                .setPosition(0,40)
+                .setSize(30,30)
                 .setStrokeColor(new Color(200,200,200))
 
                 .addChild(new Image(this, back)
-                        .setSize(50,50)
+                        .setSize(30,30)
                 )
-
         );
 
         // Título
         addGameObject(new Text(this,"¿en que dificultad quieres jugar?",font)
-                .setPosition(center, 50));
+                .setPosition(center, 65));
 
         addGameObject(new Container(this)
                 .setPosition(100, 100)

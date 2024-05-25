@@ -137,24 +137,24 @@ public class GameScene extends Scene {
         addGameObject(myContainer);
 
         tryText= (Text) new Text(this,"Tienes "+this.numIntentos+" intentos restantes",font)
-                .setPosition(200,75)
+                .setPosition(195,65)
                 .setStrokeColor(Color.BLACK);
         addGameObject(tryText);
 
 
         addGameObject(new GoToChooseLevel(this)
-                .setPosition(0,20)
-                .setSize(50,50)
+                .setPosition(0,40)
+                .setSize(30,30)
                 .setStrokeColor(new Color(200,200,200))
 
                 .addChild(new Image(this, back)
-                        .setSize(50,50)
+                        .setSize(30,30)
                 )
         );
 
         addGameObject(new DaltonicButton(this, open, close, soundEye)
-                .setPosition(330,20)
-                .setSize(50,50)
+                .setPosition(360,40)
+                .setSize(30,30)
                 .setStrokeColor(Color.BLACK)
         );
 
