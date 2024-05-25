@@ -15,6 +15,8 @@ public class HintObject extends GameObject{
     private HintElem[] hintElems; // Arreglo de elementos de pista que componen el objeto HintObject.
     int numCells; // Número de celdas en la pista.
 
+    int margin;
+
     /**
      * Constructor de la clase HintObject.
      *
@@ -25,6 +27,8 @@ public class HintObject extends GameObject{
         super(scene);
         this.numCells=numCells;
         this.hintElems= new HintElem[this.numCells];
+
+        margin = 6;
     }
 
     /**
@@ -32,17 +36,58 @@ public class HintObject extends GameObject{
      */
     @Override
     public void init() {
-        boolean even= this.numCells%2==0;
-        if(even) {
-            setUpEven();
+        boolean even= this.numCells%2==0; //TRUE = PAR; FALSE = IMPAR
+        int mitadCell = this.numCells/2;
+        int w = getWidth(), h = getHeight();
+        int cellSizeW = (w - (margin*2)) / mitadCell; // Tamaño de cada celda
+        int cellSizeH = (h - (margin*2)) / 2;
+
+        int cellSize;
+
+        if(cellSizeW < cellSizeH) cellSize = cellSizeW;
+        else cellSize = cellSizeH;
+
+        int posX= 0, posY = 0;
+        if(even){// CASO PAR
+            for(int i = 0; i < numCells; i++){
+                if(i < mitadCell){
+                    posY = margin/2;
+                    posX = cellSizeW * i + margin/2 + cellSizeW/2;
+                }else{
+                    posY = h - cellSize - margin/2;
+                    posX = cellSizeW * (i - mitadCell) + margin/2 + cellSizeW/2;
+                }
+
+                this.hintElems[i] =  new HintElem(getScene());
+                this.hintElems[i].setPosition(posX, posY);
+                this.hintElems[i].setSize(cellSize, cellSize);
+                hintElems[i].setStrokeColor(Color.GRAY);
+                addChild(hintElems[i]);
+            }
+        }else{ //CASO IMPAR
+            for(int i = 0; i < numCells; i++){
+                if(i <= mitadCell ){
+                    posY = margin/2;
+                    posX = ((w - margin*2)/(mitadCell+1)) * i + cellSize/2 + margin;
+
+                }else{
+                    posY = h - cellSize - margin/2;
+                    posX = cellSizeW * (i - mitadCell - 1)  + cellSizeW/2;
+                }
+
+                this.hintElems[i] =  new HintElem(getScene());
+                this.hintElems[i].setPosition(posX, posY);
+                this.hintElems[i].setSize(cellSize, cellSize);
+                hintElems[i].setStrokeColor(Color.GRAY);
+                addChild(hintElems[i]);
+            }
         }
-        else{
-            setUpUneven();
-        }
+
         super.init();
     }
 
     private void setUpUneven(){
+
         int w = getWidth();
         int h = getHeight();
         int cellSize = w / this.numCells; // Tamaño de cada celda
@@ -68,6 +113,7 @@ public class HintObject extends GameObject{
         }
     }
     private void setUpEven(){
+
         int w = getWidth();
         int h = getHeight();
         int cellSize = h / 2; // Tamaño de cada celda
@@ -106,14 +152,6 @@ public class HintObject extends GameObject{
         graphics.drawRoundRectangle(getX(),getY(),getWidth(),getHeight(),20);
 
         super.render(graphics);
-    }
-
-
-    @Override
-    public void update(double delta) {
-
-
-
     }
 
     /**
