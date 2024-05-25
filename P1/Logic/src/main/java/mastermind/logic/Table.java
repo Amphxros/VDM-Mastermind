@@ -18,7 +18,7 @@ public class Table extends GameObject implements DaltonicListener{
     HintObject hintObject; // Objeto de pista para mostrar pistas en caso necesario.
     boolean showHints; // Booleano que indica si se deben mostrar las pistas.
     ISound sound; // Objeto de sonido asociado a la tabla.
-
+    int marginCell; //Margen de las cells en cada table. Se configura en la constructora. 
     boolean scrollUp; boolean scrollDown;
 
     /**
@@ -38,6 +38,7 @@ public class Table extends GameObject implements DaltonicListener{
         this.cells= new Cell[this.numElems];
         this.showHints=showHints;
         this.sound=sound;
+        this.marginCell = 10;
     }
 
     /**
@@ -50,7 +51,8 @@ public class Table extends GameObject implements DaltonicListener{
             this.cells[i]=(new Cell(getScene(),font,sound));
             this.cells[i].setSize(2*getHeight()/3,2*getHeight()/3)
                     .setStrokeColor(new Color(150,150,150))
-                    .setPosition(initialPos/3 + (3*getHeight()/4)*(i),10);
+                    //.setPosition(initialPos/3 + (3*getHeight()/4)*(i),10);
+                    .setPosition(((getWidth()-90 - marginCell*2)/numElems)*i + marginCell,10);
             this.addChild(cells[i]);
         }
         if(showHints) {
