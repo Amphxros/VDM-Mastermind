@@ -11,14 +11,14 @@ import mastermind.logic.button.Button;
 /**
  * Clase que representa una casilla rellenable en el juego, implementa la interfaz DaltonicListener.
  */
-public class Cell extends Button implements DaltonicListener{
+public final  class Cell extends Button implements DaltonicListener{
     int value=-1; // Valor asociado a la casilla.
     CellState state; // Estado actual de la casilla.
     Color initialColor; // Color inicial de la casilla.
     boolean daltonic_mode; // Indica si la casilla está en modo daltónico.
 
-    IFont font; // Fuente utilizada para dibujar información daltónica.
-    ISound sound; // Sonido asociado a la casilla.
+    final IFont font; // Fuente utilizada para dibujar información daltónica.
+    final ISound sound; // Sonido asociado a la casilla.
 
     /**
      * Constructor de la clase Cell.

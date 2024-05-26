@@ -16,7 +16,7 @@ import mastermind.logic.button.GoToMenuScene;
 /**
  * Clase que representa la escena para elegir la dificultad de juego en el Mastermind.
  */
-public class ChooseLevelScene extends Scene {
+public final class ChooseLevelScene extends Scene {
 
     /**
      * Constructor de la clase ChooseLevelScene.

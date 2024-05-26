@@ -10,12 +10,10 @@ import mastermind.logic.scene.IScene;
 /**
  * Contenedor scrolleable
  */
-public class ContainerScroll extends Container implements IScrollable{
+public final class ContainerScroll extends Container implements IScrollable{
 
-    int limitUP;
-    int limitDOWN;
-
-    int vel;
+    final int limitUP,limitDOWN;
+    static final int vel=5;
 
     /**
      * Constructor que asigna la escena al objeto.
@@ -26,7 +24,7 @@ public class ContainerScroll extends Container implements IScrollable{
         super(scene);
         this.limitUP = limitUp;
         this.limitDOWN = LimitDown;
-        this.vel = 5;
+
     }
 
     @Override

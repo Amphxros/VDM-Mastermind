@@ -8,7 +8,7 @@ import mastermind.logic.scene.IScene;
  * Clase HintElem que representa un elemento de pista en un escenario (scene) de juego.
  * Extiende la clase GameObject y se utiliza para visualizar pistas asociadas con las celdas del juego.
  */
-public class HintElem extends GameObject {
+public final class HintElem extends GameObject {
     private CellState cellState; // Estado del elemento de pista (Empty, Misplaced, Correct, Wrong).
 
     /**

@@ -11,7 +11,7 @@ import mastermind.logic.scene.GameScene;
  * Clase que representa una casilla coloreable que implementa la interfaz DaltonicListener.
  * Rellena la casilla con un valor asociado cuando es seleccionada.
  */
-public class ColouringCell extends Button implements DaltonicListener{
+public final class ColouringCell extends Button implements DaltonicListener{
 
     int value; // Valor asociado a la casilla.
     boolean daltonic_mode=false; // Indica si la casilla está en modo daltónico.

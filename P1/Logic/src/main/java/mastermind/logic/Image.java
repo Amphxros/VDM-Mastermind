@@ -8,7 +8,7 @@ import mastermind.logic.scene.IScene;
  * Clase Image que representa un objeto de imagen en un escenario (scene) de juego.
  * Extiende la clase GameObject y se utiliza para renderizar imágenes en el juego.
  */
-public class Image extends GameObject{
+public final  class Image extends GameObject{
     private IImage image; // Objeto IImage que representa la imagen a ser renderizada.
 
     /**

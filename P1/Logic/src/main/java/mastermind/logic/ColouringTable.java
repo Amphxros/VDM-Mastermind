@@ -7,7 +7,7 @@ import mastermind.logic.scene.IScene;
 /**
  * Clase que representa una mesa de colores que implementa la interfaz DaltonicListener.
  */
-public class ColouringTable extends GameObject implements DaltonicListener{
+public final class ColouringTable extends GameObject implements DaltonicListener{
     boolean daltonic; // Flag que indica si se encuentra en modo daltónico.
     Color[] colors; // Arreglo de colores para las celdas de la mesa.
     int numCells; // Número de celdas en la mesa.

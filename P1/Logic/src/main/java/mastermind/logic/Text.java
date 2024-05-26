@@ -9,7 +9,7 @@ import mastermind.logic.scene.IScene;
  * Clase Text que representa un objeto de texto en un escenario (scene) de juego.
  * Extiende la clase GameObject e implementa la interfaz renderizable.
  */
-public class Text extends GameObject{
+public final class Text extends GameObject{
     private final IFont font; // Fuente del texto.
     private String text; // Contenido del texto.
 

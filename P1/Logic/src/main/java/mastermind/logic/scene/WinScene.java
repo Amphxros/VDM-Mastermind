@@ -11,12 +11,12 @@ import mastermind.logic.button.GoToChooseLevel;
 /**
  * Clase que representa la escena de victoria o derrota en el juego.
  */
-public class WinScene extends Scene {
-    Color[] colors; // Arreglo de colores utilizados en el juego.
-    int[] solution; // Solución del juego.
-    boolean hasWon; // Indica si el jugador ha ganado.
+public final class WinScene extends Scene {
+    final Color[] colors; // Arreglo de colores utilizados en el juego.
+    final int[] solution; // Solución del juego.
+    final boolean hasWon; // Indica si el jugador ha ganado.
 
-    int windowW, windowH;
+    final int windowW, windowH;
 
     /**
      * Constructor de la clase WinScene.

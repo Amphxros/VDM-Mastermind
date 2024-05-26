@@ -36,10 +36,6 @@ import mastermind.logic.button.GoToChooseLevel;
 public class GameScene extends Scene {
 
     // Configuraciones de juego
-    private int numColores;
-    private int numIntentos;
-    private int tamPassword;
-    int currTable;
 
     private static final Color[] palette={
 
@@ -53,15 +49,19 @@ public class GameScene extends Scene {
 
 
     };
+    private final int numColores;
+    private final Color[] colors;
 
-    // Datos del juego
-    Color[] colors;
-    Table[] tables;
-    ContainerScroll containerTables;
-    int [] solution;
-    ArrayList<DaltonicListener> daltonicObservers;
-    boolean isRepeating;
-    Text tryText;
+    private final int tamPassword;
+    private int numIntentos;
+    private final Table[] tables;
+    private final int [] solution;
+
+    private int currTable;
+    private final ContainerScroll containerTables;
+    private final ArrayList<DaltonicListener> daltonicObservers;
+    private final boolean isRepeating;
+    private Text tryText;
 
     /**
      * Constructor de la clase GameScene.

@@ -10,7 +10,7 @@ import mastermind.logic.scene.IScene;
  * Clase HintObject que representa un objeto de pistas en un escenario (scene) de juego.
  * Extiende la clase GameObject y se utiliza para mostrar pistas relacionadas con la solución del juego.
  */
-public class HintObject extends GameObject{
+public final class HintObject extends GameObject{
 
     private HintElem[] hintElems; // Arreglo de elementos de pista que componen el objeto HintObject.
     int numCells; // Número de celdas en la pista.

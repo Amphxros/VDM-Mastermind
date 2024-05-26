@@ -10,7 +10,7 @@ import mastermind.engine.ISound;
  * Clase Table que representa una tabla de juego en un nivel (scene).
  * Extiende la clase GameObject e implementa la interfaz DaltonicListener.
  */
-public class Table extends GameObject implements DaltonicListener{
+public final class Table extends GameObject implements DaltonicListener{
     int numElems; // Número de elementos en la tabla.
     int[] solution; // Solución de la tabla.
     Cell [] cells; // Arreglo de celdas que forman la tabla.

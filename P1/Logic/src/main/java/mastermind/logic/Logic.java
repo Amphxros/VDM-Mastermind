@@ -10,8 +10,8 @@ import mastermind.logic.scene.MenuScene;
 /**
  * Clase Logic que implementa la interfaz ILogic para gestionar la lógica del juego.
  */
-public class Logic implements ILogic {
-    IEngine engine; // Referencia al motor del juego.
+public final  class Logic implements ILogic {
+    final IEngine engine; // Referencia al motor del juego.
     IScene currentScene; // Escena actual en ejecución.
 
     /**

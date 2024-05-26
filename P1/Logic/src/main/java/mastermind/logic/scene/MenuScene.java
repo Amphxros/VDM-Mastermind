@@ -11,7 +11,7 @@ import mastermind.logic.button.GoToChooseLevel;
 /**
  * Clase que representa la escena del menú en el juego.
  */
-public class MenuScene extends Scene {
+public final class MenuScene extends Scene {
 
     /**
      * Constructor de la clase MenuScene.
