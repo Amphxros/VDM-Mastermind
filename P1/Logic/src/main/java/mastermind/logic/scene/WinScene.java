@@ -14,9 +14,9 @@ import mastermind.logic.button.GoToChooseLevel;
 public final class WinScene extends Scene {
     final Color[] colors; // Arreglo de colores utilizados en el juego.
     final int[] solution; // Solución del juego.
-    final boolean hasWon; // Indica si el jugador ha ganado.
+    private final boolean hasWon; // Indica si el jugador ha ganado.
 
-    final int windowW, windowH;
+    private final int windowW, windowH;
 
     /**
      * Constructor de la clase WinScene.
@@ -41,7 +41,7 @@ public final class WinScene extends Scene {
     @Override
     public void init() {
         // Crea una fuente para el texto.
-        IFont font= getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
+        final IFont font= getEngine().getGraphics().newFont("fonts/handwriting.ttf",30,false);
 
         // Crea una tabla para mostrar la solución.
         Table t= new Table(this,this.solution.length,font,false,null);
