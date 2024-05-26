@@ -46,10 +46,12 @@ public class HintObject extends GameObject{
 
         if(cellSizeW < cellSizeH) cellSize = cellSizeW;
         else cellSize = cellSizeH;
-
+        //La colocacion de las pistas la diferenciamos entre PAR e IMPAR
         int posX= 0, posY = 0;
+
         if(even){// CASO PAR
             for(int i = 0; i < numCells; i++){
+
                 if(i < mitadCell){
                     posY = margin/2;
                     posX = cellSizeW * i + margin/2 + cellSizeW/2;
@@ -72,7 +74,8 @@ public class HintObject extends GameObject{
 
                 }else{
                     posY = h - cellSize - margin/2;
-                    posX = cellSizeW * (i - mitadCell - 1)  + cellSizeW/2;
+                    //EN ESTE CASO LOS MARGENES NO IMPORTAN
+                    posX = (w/mitadCell)/2 * (i - mitadCell) + cellSize/2;
                 }
 
                 this.hintElems[i] =  new HintElem(getScene());
