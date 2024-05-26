@@ -47,7 +47,7 @@ public class HintElem extends GameObject {
 
         // Dibuja el elemento de pista según su estado.
         graphics.setColor(strokeColor);
-        graphics.drawRectangle(getX(),getY(), getWidth(), getHeight());
+
         if(cellState==CellState.Empty) {
             graphics.setColor(Color.GRAY);
             graphics.fillCircle(getX() + getWidth() / 2, getY() + getHeight() / 2, getWidth() / 2);

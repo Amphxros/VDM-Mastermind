@@ -18,7 +18,7 @@ public class Table extends GameObject implements DaltonicListener{
     HintObject hintObject; // Objeto de pista para mostrar pistas en caso necesario.
     boolean showHints; // Booleano que indica si se deben mostrar las pistas.
     ISound sound; // Objeto de sonido asociado a la tabla.
-    int marginCell; //Margen de las cells en cada table. Se configura en la constructora. 
+    int marginCell; //Margen de las cells en cada table. Se configura en la constructora.
     boolean scrollUp; boolean scrollDown;
 
     /**
@@ -47,14 +47,7 @@ public class Table extends GameObject implements DaltonicListener{
     @Override
     public void init() {
         int initialPos=getWidth()/numElems;
-        for(int i=0;i<this.numElems;i++){
-            this.cells[i]=(new Cell(getScene(),font,sound));
-            this.cells[i].setSize(2*getHeight()/3,2*getHeight()/3)
-                    .setStrokeColor(new Color(150,150,150))
-                    //.setPosition(initialPos/3 + (3*getHeight()/4)*(i),10);
-                    .setPosition(((getWidth()-90 - marginCell*2)/numElems)*i + marginCell,10);
-            this.addChild(cells[i]);
-        }
+        int w = getWidth();
         if(showHints) {
             hintObject = new HintObject(getScene(), this.numElems);
             hintObject.setPosition(getWidth()-90, 5);
@@ -62,6 +55,14 @@ public class Table extends GameObject implements DaltonicListener{
             hintObject.setStrokeColor(new Color(50, 50, 50));
 
             this.addChild(hintObject);
+            w = getWidth() - 90;
+        }
+        for(int i=0;i<this.numElems;i++){
+            this.cells[i]=(new Cell(getScene(),font,sound));
+            this.cells[i].setSize(2*getHeight()/3,2*getHeight()/3)
+                    .setStrokeColor(new Color(150,150,150))
+                    .setPosition(((w - marginCell*2)/numElems)*i + marginCell,10);
+            this.addChild(cells[i]);
         }
 
         scrollUp = true; scrollDown = true;
