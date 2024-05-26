@@ -38,9 +38,6 @@ public class ChooseLevelScene extends Scene {
         int maxWidth = getEngine().getGraphics().getWidth();
         int center = maxWidth / 2;
 
-        int buttonW = (int) (maxWidth * 0.8);
-        int buttonX = center - buttonW / 2;
-
         addGameObject(new GoToMenuScene(this)
                 .setPosition(0,40)
                 .setSize(30,30)
@@ -60,6 +57,7 @@ public class ChooseLevelScene extends Scene {
                 .setSize(center, center)
                 .setStrokeColor(new Color(150,150,150,0))
 
+                //Cada uno de los niveles:
                 .addChild(createGameButton(0,0,center,center/4,new Color(200,200,120),"facil",font,4,6,4,false))
                 .addChild(createGameButton(0,center/3,center,center/4,new Color(249,231,132),"Medio",font,6,6,5,false))
                 .addChild(createGameButton(0,2*center/3,center,center/4,new Color(229,145,101),"Dificil",font,6,6,6,true))

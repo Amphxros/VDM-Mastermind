@@ -9,5 +9,5 @@ public enum CellState {
     Correct, // Estado que indica que la celda está correctamente ubicada.
     Misplaced, // Estado que indica que la celda está ubicada, pero en una posición incorrecta.
     Wrong, // Estado que indica que la celda está equivocada o incorrecta.
-    Resolve
+    Resolve // Estado que indica que ya se ha dado una solucion a esta celda y asi no poder borrarla.
 }

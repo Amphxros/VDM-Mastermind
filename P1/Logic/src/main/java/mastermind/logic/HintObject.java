@@ -46,6 +46,7 @@ public class HintObject extends GameObject{
 
         if(cellSizeW < cellSizeH) cellSize = cellSizeW;
         else cellSize = cellSizeH;
+
         //La colocacion de las pistas la diferenciamos entre PAR e IMPAR
         int posX= 0, posY = 0;
 
